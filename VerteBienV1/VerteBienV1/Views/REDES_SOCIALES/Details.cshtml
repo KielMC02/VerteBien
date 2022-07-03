@@ -1,0 +1,66 @@
+﻿@model VerteBienV1.Models.REDES_SOCIALES
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>REDES_SOCIALES</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.whatsapp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.whatsapp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instagram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instagram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.facebook)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facebook)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.web_app)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.web_app)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_redes }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

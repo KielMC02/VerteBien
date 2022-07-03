@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b3c254618c6482fab115cc9f159c5d2" Name="Diagram1" ZoomLevel="92" >
+        <EntityTypeShape EntityType="VERTEBIENModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VERTEBIENModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="16.25" />
+        <EntityTypeShape EntityType="VERTEBIENModel.AspNetUserClaims" Width="1.5" PointX="7.875" PointY="11" />
+        <EntityTypeShape EntityType="VERTEBIENModel.AspNetUserLogins" Width="1.5" PointX="5.75" PointY="13.25" />
+        <EntityTypeShape EntityType="VERTEBIENModel.AspNetUsers" Width="1.5" PointX="0.875" PointY="3.875" />
+        <EntityTypeShape EntityType="VERTEBIENModel.CATEGORIAS_SERVICIOS" Width="1.5" PointX="5.625" PointY="10" />
+        <EntityTypeShape EntityType="VERTEBIENModel.CITAS" Width="1.5" PointX="13.125" PointY="4" />
+        <EntityTypeShape EntityType="VERTEBIENModel.HORARIOS" Width="1.5" PointX="11.25" PointY="10.375" />
+        <EntityTypeShape EntityType="VERTEBIENModel.PUNTUACION_PELUQUERIA" Width="1.5" PointX="14.875" PointY="8.125" />
+        <EntityTypeShape EntityType="VERTEBIENModel.PUNTUACION_SERVICIOS" Width="1.5" PointX="11" PointY="1.375" />
+        <EntityTypeShape EntityType="VERTEBIENModel.REDES_SOCIALES" Width="1.5" PointX="8" PointY="0.5" />
+        <EntityTypeShape EntityType="VERTEBIENModel.SERVICIOS" Width="1.5" PointX="8.5" PointY="4.75" />
+        <EntityTypeShape EntityType="VERTEBIENModel.SUSCRIPCION" Width="1.5" PointX="8.5" PointY="16.125" />
+        <EntityTypeShape EntityType="VERTEBIENModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="VERTEBIENModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="VERTEBIENModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="VERTEBIENModel.FK_HorarioPeluqueria" />
+        <AssociationConnector Association="VERTEBIENModel.FK_PuntuacionPeluqueria" />
+        <AssociationConnector Association="VERTEBIENModel.FK_UserPuntuacionServicios" />
+        <AssociationConnector Association="VERTEBIENModel.FK_UsuarioCita" />
+        <AssociationConnector Association="VERTEBIENModel.FK_UsuarioRedes" />
+        <AssociationConnector Association="VERTEBIENModel.FK_UsuarioServicio" />
+        <AssociationConnector Association="VERTEBIENModel.FK_UsuarioSuscripcion" />
+        <AssociationConnector Association="VERTEBIENModel.FK_CategoriaServicios" />
+        <AssociationConnector Association="VERTEBIENModel.FK_CitaPeluqueriaPuntuada" />
+        <AssociationConnector Association="VERTEBIENModel.FK_CitaServicioPuntuado" />
+        <AssociationConnector Association="VERTEBIENModel.FK_ServiciosCitas" />
+        <AssociationConnector Association="VERTEBIENModel.FK_PuntuacionServicio" />
+        <AssociationConnector Association="VERTEBIENModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

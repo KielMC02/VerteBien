@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VERTEBIENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="VERTEBIENEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="VERTEBIENModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="VERTEBIENModel.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="VERTEBIENModel.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="VERTEBIENModel.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="VERTEBIENModel.AspNetUsers" />
+    <EntitySet Name="CATEGORIAS_SERVICIOS" EntityType="VERTEBIENModel.CATEGORIAS_SERVICIOS" />
+    <EntitySet Name="CITAS" EntityType="VERTEBIENModel.CITAS" />
+    <EntitySet Name="HORARIOS" EntityType="VERTEBIENModel.HORARIOS" />
+    <EntitySet Name="PUNTUACION_PELUQUERIA" EntityType="VERTEBIENModel.PUNTUACION_PELUQUERIA" />
+    <EntitySet Name="PUNTUACION_SERVICIOS" EntityType="VERTEBIENModel.PUNTUACION_SERVICIOS" />
+    <EntitySet Name="REDES_SOCIALES" EntityType="VERTEBIENModel.REDES_SOCIALES" />
+    <EntitySet Name="SERVICIOS" EntityType="VERTEBIENModel.SERVICIOS" />
+    <EntitySet Name="SUSCRIPCION" EntityType="VERTEBIENModel.SUSCRIPCION" />
+    <EntitySet Name="sysdiagrams" EntityType="VERTEBIENModel.sysdiagrams" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="VERTEBIENModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="VERTEBIENModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HorarioPeluqueria" Association="VERTEBIENModel.FK_HorarioPeluqueria">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="HORARIOS" EntitySet="HORARIOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PuntuacionPeluqueria" Association="VERTEBIENModel.FK_PuntuacionPeluqueria">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="PUNTUACION_PELUQUERIA" EntitySet="PUNTUACION_PELUQUERIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPuntuacionServicios" Association="VERTEBIENModel.FK_UserPuntuacionServicios">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="PUNTUACION_SERVICIOS" EntitySet="PUNTUACION_SERVICIOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioCita" Association="VERTEBIENModel.FK_UsuarioCita">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="CITAS" EntitySet="CITAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioRedes" Association="VERTEBIENModel.FK_UsuarioRedes">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="REDES_SOCIALES" EntitySet="REDES_SOCIALES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioServicio" Association="VERTEBIENModel.FK_UsuarioServicio">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioSuscripcion" Association="VERTEBIENModel.FK_UsuarioSuscripcion">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="SUSCRIPCION" EntitySet="SUSCRIPCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoriaServicios" Association="VERTEBIENModel.FK_CategoriaServicios">
+      <End Role="CATEGORIAS_SERVICIOS" EntitySet="CATEGORIAS_SERVICIOS" />
+      <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CitaPeluqueriaPuntuada" Association="VERTEBIENModel.FK_CitaPeluqueriaPuntuada">
+      <End Role="CITAS" EntitySet="CITAS" />
+      <End Role="PUNTUACION_PELUQUERIA" EntitySet="PUNTUACION_PELUQUERIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CitaServicioPuntuado" Association="VERTEBIENModel.FK_CitaServicioPuntuado">
+      <End Role="CITAS" EntitySet="CITAS" />
+      <End Role="PUNTUACION_SERVICIOS" EntitySet="PUNTUACION_SERVICIOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiciosCitas" Association="VERTEBIENModel.FK_ServiciosCitas">
+      <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+      <End Role="CITAS" EntitySet="CITAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PuntuacionServicio" Association="VERTEBIENModel.FK_PuntuacionServicio">
+      <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+      <End Role="PUNTUACION_SERVICIOS" EntitySet="PUNTUACION_SERVICIOS" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="VERTEBIENModel.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(VERTEBIENModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(VERTEBIENModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="disponibilidad">
+      <Parameter Name="usuario_peluqueria" Mode="In" Type="String" />
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="dia" Mode="In" Type="String" />
+      <Parameter Name="servicio_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="latitud" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="longitud" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="nombre_peluqueria" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="estado" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="fecha_nacimiento_" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_creacion_" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="capacidad_simultanea_" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="VERTEBIENModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="VERTEBIENModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="HORARIOS" Relationship="VERTEBIENModel.FK_HorarioPeluqueria" FromRole="AspNetUsers" ToRole="HORARIOS" />
+    <NavigationProperty Name="PUNTUACION_PELUQUERIA" Relationship="VERTEBIENModel.FK_PuntuacionPeluqueria" FromRole="AspNetUsers" ToRole="PUNTUACION_PELUQUERIA" />
+    <NavigationProperty Name="PUNTUACION_SERVICIOS" Relationship="VERTEBIENModel.FK_UserPuntuacionServicios" FromRole="AspNetUsers" ToRole="PUNTUACION_SERVICIOS" />
+    <NavigationProperty Name="CITAS" Relationship="VERTEBIENModel.FK_UsuarioCita" FromRole="AspNetUsers" ToRole="CITAS" />
+    <NavigationProperty Name="REDES_SOCIALES" Relationship="VERTEBIENModel.FK_UsuarioRedes" FromRole="AspNetUsers" ToRole="REDES_SOCIALES" />
+    <NavigationProperty Name="SERVICIOS" Relationship="VERTEBIENModel.FK_UsuarioServicio" FromRole="AspNetUsers" ToRole="SERVICIOS" />
+    <NavigationProperty Name="SUSCRIPCION" Relationship="VERTEBIENModel.FK_UsuarioSuscripcion" FromRole="AspNetUsers" ToRole="SUSCRIPCION" />
+    <NavigationProperty Name="AspNetRoles" Relationship="VERTEBIENModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <Property Name="fotos_local" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CATEGORIAS_SERVICIOS">
+    <Key>
+      <PropertyRef Name="id_categoria_servicio" />
+    </Key>
+    <Property Name="id_categoria_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_categoria" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SERVICIOS" Relationship="VERTEBIENModel.FK_CategoriaServicios" FromRole="CATEGORIAS_SERVICIOS" ToRole="SERVICIOS" />
+  </EntityType>
+  <EntityType Name="CITAS">
+    <Key>
+      <PropertyRef Name="id_cita" />
+    </Key>
+    <Property Name="id_cita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="id_servicio" Type="Int32" />
+    <Property Name="fecha_creacion" Type="DateTime" Precision="0" />
+    <Property Name="fecha_cita" Type="DateTime" Precision="0" />
+    <Property Name="estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.FK_UsuarioCita" FromRole="CITAS" ToRole="AspNetUsers" />
+    <NavigationProperty Name="PUNTUACION_PELUQUERIA" Relationship="VERTEBIENModel.FK_CitaPeluqueriaPuntuada" FromRole="CITAS" ToRole="PUNTUACION_PELUQUERIA" />
+    <NavigationProperty Name="PUNTUACION_SERVICIOS" Relationship="VERTEBIENModel.FK_CitaServicioPuntuado" FromRole="CITAS" ToRole="PUNTUACION_SERVICIOS" />
+    <NavigationProperty Name="SERVICIOS" Relationship="VERTEBIENModel.FK_ServiciosCitas" FromRole="CITAS" ToRole="SERVICIOS" />
+    <Property Name="hora" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="comentario_cliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="comentario_peluqueria" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="HORARIOS">
+    <Key>
+      <PropertyRef Name="id_horario" />
+    </Key>
+    <Property Name="id_horario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="semanales_inicio" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="semanales_cierre" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="sabados_inicio" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="sabados_cierre" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="domingo_inicio" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="domingo_cierre" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.FK_HorarioPeluqueria" FromRole="HORARIOS" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="PUNTUACION_PELUQUERIA">
+    <Key>
+      <PropertyRef Name="id_puntuacion_peluqueria" />
+    </Key>
+    <Property Name="id_puntuacion_peluqueria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="id_cita" Type="Int32" />
+    <Property Name="comentario" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="estrellas" Type="Int32" />
+    <Property Name="fecha_creacion" Type="DateTime" Precision="0" />
+    <Property Name="estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.FK_PuntuacionPeluqueria" FromRole="PUNTUACION_PELUQUERIA" ToRole="AspNetUsers" />
+    <NavigationProperty Name="CITAS" Relationship="VERTEBIENModel.FK_CitaPeluqueriaPuntuada" FromRole="PUNTUACION_PELUQUERIA" ToRole="CITAS" />
+  </EntityType>
+  <EntityType Name="PUNTUACION_SERVICIOS">
+    <Key>
+      <PropertyRef Name="id_puntuacion_servicio" />
+    </Key>
+    <Property Name="id_puntuacion_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="id_servicio" Type="Int32" />
+    <Property Name="id_cita" Type="Int32" />
+    <Property Name="comentario" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="estrellas" Type="Int32" />
+    <Property Name="fecha_creacion" Type="DateTime" Precision="0" />
+    <Property Name="estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.FK_UserPuntuacionServicios" FromRole="PUNTUACION_SERVICIOS" ToRole="AspNetUsers" />
+    <NavigationProperty Name="CITAS" Relationship="VERTEBIENModel.FK_CitaServicioPuntuado" FromRole="PUNTUACION_SERVICIOS" ToRole="CITAS" />
+    <NavigationProperty Name="SERVICIOS" Relationship="VERTEBIENModel.FK_PuntuacionServicio" FromRole="PUNTUACION_SERVICIOS" ToRole="SERVICIOS" />
+  </EntityType>
+  <EntityType Name="REDES_SOCIALES">
+    <Key>
+      <PropertyRef Name="id_redes" />
+    </Key>
+    <Property Name="id_redes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="whatsapp" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="instagram" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="facebook" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="web_app" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.FK_UsuarioRedes" FromRole="REDES_SOCIALES" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="SERVICIOS">
+    <Key>
+      <PropertyRef Name="id_servicio" />
+    </Key>
+    <Property Name="id_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="id_categoria" Type="Int32" />
+    <Property Name="nombre_servicio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="precio_servicio" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="tiempo" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="imagenes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.FK_UsuarioServicio" FromRole="SERVICIOS" ToRole="AspNetUsers" />
+    <NavigationProperty Name="CATEGORIAS_SERVICIOS" Relationship="VERTEBIENModel.FK_CategoriaServicios" FromRole="SERVICIOS" ToRole="CATEGORIAS_SERVICIOS" />
+    <NavigationProperty Name="CITAS" Relationship="VERTEBIENModel.FK_ServiciosCitas" FromRole="SERVICIOS" ToRole="CITAS" />
+    <NavigationProperty Name="PUNTUACION_SERVICIOS" Relationship="VERTEBIENModel.FK_PuntuacionServicio" FromRole="SERVICIOS" ToRole="PUNTUACION_SERVICIOS" />
+  </EntityType>
+  <EntityType Name="SUSCRIPCION">
+    <Key>
+      <PropertyRef Name="id_suscripcion" />
+    </Key>
+    <Property Name="id_suscripcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.FK_UsuarioSuscripcion" FromRole="SUSCRIPCION" ToRole="AspNetUsers" />
+    <Property Name="comentario" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_suscripcion" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="VERTEBIENModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="VERTEBIENModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="VERTEBIENModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="VERTEBIENModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HorarioPeluqueria">
+    <End Type="VERTEBIENModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.HORARIOS" Role="HORARIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HORARIOS">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PuntuacionPeluqueria">
+    <End Type="VERTEBIENModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.PUNTUACION_PELUQUERIA" Role="PUNTUACION_PELUQUERIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PUNTUACION_PELUQUERIA">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPuntuacionServicios">
+    <End Type="VERTEBIENModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.PUNTUACION_SERVICIOS" Role="PUNTUACION_SERVICIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PUNTUACION_SERVICIOS">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioCita">
+    <End Type="VERTEBIENModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.CITAS" Role="CITAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CITAS">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioRedes">
+    <End Type="VERTEBIENModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.REDES_SOCIALES" Role="REDES_SOCIALES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="REDES_SOCIALES">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioServicio">
+    <End Type="VERTEBIENModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.SERVICIOS" Role="SERVICIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SERVICIOS">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioSuscripcion">
+    <End Type="VERTEBIENModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.SUSCRIPCION" Role="SUSCRIPCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SUSCRIPCION">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoriaServicios">
+    <End Type="VERTEBIENModel.CATEGORIAS_SERVICIOS" Role="CATEGORIAS_SERVICIOS" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.SERVICIOS" Role="SERVICIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORIAS_SERVICIOS">
+        <PropertyRef Name="id_categoria_servicio" />
+      </Principal>
+      <Dependent Role="SERVICIOS">
+        <PropertyRef Name="id_categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CitaPeluqueriaPuntuada">
+    <End Type="VERTEBIENModel.CITAS" Role="CITAS" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.PUNTUACION_PELUQUERIA" Role="PUNTUACION_PELUQUERIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CITAS">
+        <PropertyRef Name="id_cita" />
+      </Principal>
+      <Dependent Role="PUNTUACION_PELUQUERIA">
+        <PropertyRef Name="id_cita" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CitaServicioPuntuado">
+    <End Type="VERTEBIENModel.CITAS" Role="CITAS" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.PUNTUACION_SERVICIOS" Role="PUNTUACION_SERVICIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CITAS">
+        <PropertyRef Name="id_cita" />
+      </Principal>
+      <Dependent Role="PUNTUACION_SERVICIOS">
+        <PropertyRef Name="id_cita" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiciosCitas">
+    <End Type="VERTEBIENModel.SERVICIOS" Role="SERVICIOS" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.CITAS" Role="CITAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVICIOS">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="CITAS">
+        <PropertyRef Name="id_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PuntuacionServicio">
+    <End Type="VERTEBIENModel.SERVICIOS" Role="SERVICIOS" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.PUNTUACION_SERVICIOS" Role="PUNTUACION_SERVICIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SERVICIOS">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="PUNTUACION_SERVICIOS">
+        <PropertyRef Name="id_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="VERTEBIENModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+    <End Type="VERTEBIENModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

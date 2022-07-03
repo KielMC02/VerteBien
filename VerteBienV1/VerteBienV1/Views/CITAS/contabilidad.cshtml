@@ -1,0 +1,103 @@
+﻿@model IEnumerable<VerteBienV1.Models.CITAS>
+
+@{
+    ViewBag.Title = "contabilidad";
+}
+
+<center>
+    <img src="~/Imagenes/verte bien negro.png" width="128" height="128" style="margin-top:2%" />
+    <h4>Panel de Contabilidad</h4>
+    <hr class="w-50" /><br />
+</center>
+
+<div class="container">
+
+    @using (Html.BeginForm("contabilidad", "CITAS", FormMethod.Get))
+    {
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label class="control-label">Desde</label>
+                <input type="date" class="form-control col-md-12" id="datetime" name="desde">
+            </div>
+            <div class="form-group col-md-4">
+                <label class="control-label">Hasta</label>
+                <input type="date" class="form-control col-md-12" id="datetime" name="hasta">
+            </div>
+            <div class="col-md-4 col-sm-12" style="margin-top:2.8%">
+                <button type="submit" class="btn col-md-6 text-white" style="background-color:#DBA312">Buscar</button>
+            </div>
+        </div>
+    }
+
+    @{decimal ganancias = new decimal(); }
+    @foreach (var item in Model)
+    {
+        <div class="card  shadow-lg col-md-12 col-sm-12 col-lg-12 col-xl-12" style="width: 70rem; margin-top:2%">
+            <div class="card-body">
+                <h4 class="card-title float-left col-md-8 col-sm-12"> @Html.DisplayFor(modelItem => item.SERVICIOS.nombre_servicio)</h4>
+                <h6 class="float-right col-md-4 col-sm-12"><b>Estado de la cita: </b>@Html.DisplayFor(modelItem => item.estado)</h6>
+                <h6 class="float-left col-md-8 col-sm-12">@Html.DisplayFor(modelItem => item.AspNetUsers.Email) </h6>
+                <h6 class="float-left col-md-4 col-sm-12"><b>Fecha de la cita: </b>@Html.DisplayFor(modelItem => item.fecha_cita) </h6>
+                <h6 class="float-left col-md-4 col-sm-12"><b>Precio: </b>@Html.DisplayFor(modelItem => item.SERVICIOS.precio_servicio) </h6> <br />
+            </div>
+        </div>
+        ganancias = ganancias + Convert.ToDecimal(item.SERVICIOS.precio_servicio);
+    }
+
+    @*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_creacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_cita)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SERVICIOS.nombre_servicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SERVICIOS.precio_servicio)
+            </th>
+            <th></th>
+        </tr>
+        @{decimal ganancias = new decimal(); }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_creacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_cita)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SERVICIOS.nombre_servicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SERVICIOS.precio_servicio)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id_cita }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id_cita }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id_cita })
+                </td>
+            </tr>
+            ganancias = ganancias + Convert.ToDecimal(item.SERVICIOS.precio_servicio);
+        }
+        </table>*@
+
+    <h4 style="margin-top:1%">Ganancias Totales: @ganancias </h4>
+</div>
+

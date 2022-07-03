@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right mx-2" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <!--<ul class="nav navbar-nav navbar-right mx-2">
+            <li class="mx-2">
+                @Html.ActionLink("MI PERFIL", "Edit", "AspNetUsers", null, htmlAttributes: new { @class = "nav-link text-white" })-->
+                @*@Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+            @*</li>
+            <li class="mx-2"> <a class="nav-link text-white" href="javascript:document.getElementById('logoutForm').submit()">CERRAR SESION</a></li>
+        </ul>*@
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Mi Perfil
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li>@Html.ActionLink("Mi Informacion", "Edit", "AspNetUsers", null, htmlAttributes: new { @class = "dropdown-item" })</li>
+                <li>@Html.ActionLink("Editar Horarios", "Edit", "HORARIOS", null, htmlAttributes: new { @class = "dropdown-item" })</li>
+                <li>@Html.ActionLink("Redes Sociales", "Edit", "REDES_SOCIALES", null, htmlAttributes: new { @class = "dropdown-item" })</li>
+                <li> <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Cerrar Sesion</a></li>
+            </ul>
+        </li>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right float-right">
+        <li class="mx-2">@Html.ActionLink("INICIAR SESION", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @style = "text-decoration:none", @class = "text-white" })</li>
+        <li class="mx-2">@Html.ActionLink("REGISTRA TU NEGOCIO", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @style = "text-decoration:none", @class = "text-white" })</li>
+        <li class="mx-2">@Html.ActionLink("REGISTRARSE COMO CLIENTE", "RegisterUser", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @style = "text-decoration:none", @class = "text-white" })</li>
+    </ul>
+}

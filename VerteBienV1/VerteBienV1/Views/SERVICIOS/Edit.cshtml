@@ -1,0 +1,231 @@
+﻿@model VerteBienV1.Models.SERVICIOS
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<style>
+    img {
+        width: 128px;
+        height: 128px;
+    }
+</style>
+<div class="container">
+    <form action="/SERVICIOS/Edit" enctype="multipart/form-data" method="post">
+
+        @Html.AntiForgeryToken()
+        <div class="card-body ml-5 mt-5">
+            <center>
+                <img src="~/Imagenes/verte bien negro.png" width="128" height="128" style="margin-top:2%" />
+                <h4>Editar Servicio</h4>
+                <hr class="w-50" />
+            </center><br />
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger col-md-10" })
+            @Html.HiddenFor(model => model.id_servicio)
+
+            <div class="form-row">
+                @*<div class="form-group col-md-10">
+                    <div class="col-md-6">
+                        @Html.DropDownList("id_usuario", null, htmlAttributes: new { @class = "form-control col-md-10", @hidden = "hidden", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+                <div class="row">
+                    <div class="container">
+                        <div class="card h-100 shadow-lg">
+                            <div class="card-body" style="margin-left:5%">
+                                <div class="form-row">
+                                    @*<div class="col-md-4">*@
+                                    <div class="form-group col-md-6">
+                                        @Html.Label("Nombre del servicio", htmlAttributes: new { @class = "control-label col-md-10" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.nombre_servicio, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                                            @Html.ValidationMessageFor(model => model.nombre_servicio, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        @Html.Label("Categoría del Servicio", htmlAttributes: new { @class = "control-label col-md-12" })
+                                        <div class="col-md-12">
+                                            @Html.DropDownList("id_categoria", null, htmlAttributes: new { @class = "form-control col-md-10" })
+                                            @Html.ValidationMessageFor(model => model.id_categoria, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    @*</div>*@
+
+                                    @*<div class="col-md-4">*@
+                                    <div class="form-group col-md-6">
+                                        @Html.Label("Precio del Servicio", htmlAttributes: new { @class = "control-label col-md-10" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.precio_servicio, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                                            @Html.ValidationMessageFor(model => model.precio_servicio, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label col-md-8" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.tiempo, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                                            @Html.ValidationMessageFor(model => model.tiempo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        @Html.Label("Estado del Servicio", htmlAttributes: new { @class = "control-label col-md-8" })
+                                        <div class="col-md-12">
+                                            @Html.DropDownList("estados", null, htmlAttributes: new { @class = "form-control col-md-10" })
+                                            @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        @Html.Label("Descripción", htmlAttributes: new { @class = "control-label col-md-8" })
+                                        <div class="col-md-12">
+                                            @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control col-md-11", @rows = "3" })
+                                            @*<textarea class="form-control col-md-11" id="exampleFormControlTextarea1" rows="3"></textarea>*@
+                                            @*@Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })*@
+                                            @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    @{
+                                        var inputsFaltantes = 0;
+                                    }
+
+
+                                    @{
+                                        List<String> _list = ViewData["imagenes_s"] as List<String>;
+                                        ViewBag.contador = 0;
+
+                                    }
+                                </div>
+                                <div class="row mt-4">
+                                    @if (_list != null)
+                                    {
+                                        foreach (var item in _list)
+                                        {
+                                            ViewBag.contador = ViewBag.contador + 1;
+
+                                            <div class="col-lg-4 mt-3">
+                                                <img src="~/imagenes_servicios/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; max-height:250px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
+
+                                                <div class="mt-3 row col-12">
+
+                                                    <span class="@("file"+@ViewBag.contador)">
+                                                        <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
+                                                    </span>
+                                                    <label for="@("file"+@ViewBag.contador)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Subir foto</span></label>
+
+                                                </div>
+
+                                            </div>
+                                        }
+
+                                    }
+                                    @if (User.IsInRole("preferencial"))
+                                    {
+                                        inputsFaltantes = 6;
+                                        inputsFaltantes = inputsFaltantes - ViewBag.contador;
+                                    }
+
+                                    @if (User.IsInRole("vip"))
+                                    {
+                                        inputsFaltantes = 9;
+                                        inputsFaltantes = inputsFaltantes - ViewBag.contador;
+                                    }
+
+                                    @if (inputsFaltantes != 0)
+                                    {
+                                        <h2>Agregar Nuevas imagenes al servicio</h2>
+                                        ViewBag.contador2 = ViewBag.contador;
+                                        for (int i = 1; i <= inputsFaltantes; i++)
+                                        {
+                                            ViewBag.contador2 = ViewBag.contador2 + 1;
+                                            <span class="@("file"+@ViewBag.contador2)">
+                                                <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
+                                            </span>
+                                            <label for="@("file"+@ViewBag.contador2)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Agregar Fotos</span></label>
+                                        }
+                                    }
+                                </div>
+                                <!-- #region Botones_subir_imagenes -->
+                                @* <div class="form-group row mt-4">
+                                    @Html.Label("Imagenes del Servicio", htmlAttributes: new { @class = "control-label col-md-10 col-sm-12" })
+                                    <div class="col-md-12 col-sm-12">
+                                        @if (User.IsInRole("expres"))
+                                        {
+                                            <input type="file" name="img1" class="btn col-md-4 col-sm-12 col" style="background-color:#EBE3E2" /><span>Reemplazar imagen 1</span>
+
+                                        }
+                                        @if (User.IsInRole("preferencial"))
+                                        {
+                                            <input type="file" name="img1" class="btn col-md-3 col-sm-12 ml-4 col" style="background-color:#EBE3E2; margin-top:1%" /><span>Reemplazar imagen 1</span>
+                                            <input type="file" name="img2" class="btn col-md-3 col-sm-12 col" style="background-color:#EBE3E2; margin-top:1%" /><span>Reemplazar o subir nueva imagen 2</span>
+                                            <input type="file" name="img3" class="btn col-md-3 col-sm-12 col" style="background-color:#EBE3E2; margin-top:1%" /><span>Reemplazar o subir nueva imagen 3</span>
+                                        }
+                                        @if (User.IsInRole("vip"))
+
+                                        {<div class="row">
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-6 ">
+                                                    <div class="col-4 col-xl-6 col-sm-2 col-md-6 ">
+                                                        <input type="file" name="img1" class="btn shadow-lg shadow-md input-group-text" style="background-color:#ffffff; margin-top:1%;" />
+                                                    </div>
+                                                    <span>Reemplazar imagen 1</span>
+                                                </div>
+
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                    <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                        <input type="file" name="img2" class="btn mx-2 " style="background-color:#ededed; margin-top:1%;" />
+                                                    </div>
+                                                    <span>subir nueva imagen 2</span>
+                                                </div>
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                    <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                        <input type="file" name="img3" class="btn  mx-2 " style="background-color:#ffffff; margin-top:1%;" />
+                                                    </div>
+                                                    <span>Reemplazar o subir nueva imagen 3</span>
+                                                </div>
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                    <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                        <input type="file" name="img4" class="btn  mx-2 " style="background-color:#ffffff; margin-top:1%;" /><span>Reemplazar o subir nueva imagen 4</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                    <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                        <input type="file" name="img5" class="btn  mx-2 " style="background-color:#ffffff; margin-top:1%;" /><span>Reemplazar o subir nueva imagen 5</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                    <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                        <input type="file" name="img6" class="btn mx-2" style="background-color:#ffffff; margin-top:1%;" />
+                                                    </div>
+                                                    <span>Reemplazar o subir nueva imagen 6</span>
+                                                </div>
+                                            </div>
+                                        }*@
+                                <!-- #endregion -->
+                                @*@Html.EditorFor(model => model.imagenes, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.imagenes, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+
+                                    <div class="col-12 text-center my-3">
+                                        @Html.ActionLink("Volver", "misServicios", null, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+                                        <input type="submit" value="Guardar" class="btn text-white col-8 col-sm-8 col-xl-2 col-md-2" style="background-color:#DBA312;" />
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        @Html.EditorFor(model => model.imagenes, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.imagenes, "", new { @class = "text-danger" })
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

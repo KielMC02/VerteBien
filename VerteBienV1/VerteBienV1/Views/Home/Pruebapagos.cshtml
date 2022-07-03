@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Pruebapagos";
+}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+<script src="https://cdn.kushkipagos.com/kushki.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<h2>Pruebapagos</h2>
+
+<div id="app">
+    <div>
+        <form id="payment-form">
+            <input placeholder="Card Number" type="text" v-model="form.number" name="number">
+            <input placeholder="Full Name" type="text" v-model="form.name" name="name">
+            <input placeholder="MM" type="text" v-model="form.expiry_month" name="expiry_month">
+            <input placeholder="YY" type="text" v-model="form.expiry_uear" name="expiry_uear">
+            <input placeholder="CVC" type="text" v-model="form.cvc" name="cvc">
+            <button id="submit" v-on:click="sendData">Pay $49.99</button>
+        </form>
+        <br />
+        <button onclick='@Url.Action("GetSubscription","Suscripcion")'>Get Subscription</button>
+    </div>
+</div>
+
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: `Vue in the works!`,
+            form: {
+                number: null,
+                name: null,
+                expiry_month: null,
+                expiry_uear: null,
+                cvc: null
+            },
+            kushki: null
+        },
+        mounted() {
+            console.log("hey")
+            kushki = new Kushki({
+                merchantId: '5238f4b63a0e428f99af8031abcf21b4', // Your public merchant id
+                inTestEnvironment: true,
+            });
+        },
+        methods: {
+            async sendData(e) {
+                console.log("here")
+                e.preventDefault();
+
+                kushki.requestSubscriptionToken({
+                    currency: "USD",
+                    card: {
+                        name: this.form.name,
+                        number: this.form.number,
+                        cvc: this.form.cvc,
+                        expiryMonth: this.form.expiry_month,
+                        expiryYear: this.form.expiry_uear,
+                    },
+                }, async (response) => {
+
+                    if (!response.code) {
+                        console.log(response.token);
+
+                        fetch('@Url.Action("Subscribe", "Suscripcions")', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                token: response.token,
+                                nombre: this.form.name
+                            })
+                        }).then((response) => {
+                            console.log(response);
+                        })
+                    }
+                });
+            }
+        }
+    })
+</script>

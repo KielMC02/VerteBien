@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "PagoRequerido";
+}
+
+<br />
+<center>
+    <h1>Atencion Pago Requerido</h1>
+    <p>Su cuenta tiene un pago pendiente, por favor presione continuar para proceder con el mismo. En caso de que esto sea un error comunicarse con nosotros por cualquiera de nuestras vias de comunicacion</p>
+    <br />
+    @Html.ActionLink("Realizar Pago", "DatosParaPagos", "SUSCRIPCION", htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+</center>
+<br />

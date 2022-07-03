@@ -1,0 +1,82 @@
+﻿@model VerteBienV1.Models.HORARIOS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HORARIOS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.semanales_inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.semanales_inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.semanales_cierre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.semanales_cierre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sabados_inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sabados_inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sabados_cierre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sabados_cierre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.domingo_inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.domingo_inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.domingo_cierre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.domingo_cierre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_horario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

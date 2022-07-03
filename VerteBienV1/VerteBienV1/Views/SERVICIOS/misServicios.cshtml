@@ -1,0 +1,71 @@
+﻿@model IEnumerable<VerteBienV1.Models.SERVICIOS>
+
+@{
+    ViewBag.Title = "Mis Servicios";
+}
+
+<h2 class="text-center my-5"> @ViewBag.Title</h2>
+
+<div class=" container my-2">
+    <div class="row col-12  Miser invisible-scrollbar">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-12 col-md-10 col-lg-6 col-xl-4 d-flex">
+                <div class="card shadow my-2 cf " style="position:relative">
+                    <div class="card-header"> @Html.DisplayFor(modelItem => item.CATEGORIAS_SERVICIOS.nombre_categoria)</div>
+                    <div class="row">
+                        <div class=" col-12">
+                        </div>
+                        <div class="card-body col-12 p-4 ">
+                            <h1 class="card-title h4"> @Html.DisplayFor(modelItem => item.nombre_servicio)</h1>
+                            <p class="card-subtitle mb-2 text-muted"> <b>Estado:</b> @Html.DisplayFor(modelItem => item.estado)</p>
+                            <p class="card-subtitle mb-2 text-muted">  <b>Tiempo:</b> @Html.DisplayFor(modelItem => item.tiempo)</p>
+                            <p class="card-subtitle mb-2 text-muted"> <b>Precio:</b> $@Html.DisplayFor(modelItem => item.precio_servicio)</p>
+                            <p class="card-text mb-5">@Html.DisplayFor(modelItem => item.descripcion)</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="justify-content-center m-4" style="position:absolute; bottom:0px;">
+                            @Html.ActionLink("Editar", "Edit", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn text-white btn-sm rounded ", style = "background-color:#DBA312" })
+                            @Html.ActionLink("Más información", "Details", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm mx-1 rounded ", id = "volbtn" })
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm mx-1 rounded ", id = "volbtn" })
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* <tr>
+                    <td>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.precio_servicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tiempo)
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CATEGORIAS_SERVICIOS.nombre_categoria)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id_servicio }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id_servicio }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id_servicio })
+                    </td>
+                </tr>*@
+        }
+    </div>
+</div>
+
+<div class="text-center my-4">
+    @Html.ActionLink("Crear nuevo", "Create", new { }, htmlAttributes: new { @class = "btn text-white btn-sm rounded sticky-top", style = "background-color:#DBA312" })
+</div>
+

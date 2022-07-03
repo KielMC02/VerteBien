@@ -1,0 +1,65 @@
+﻿@model VerteBienV1.Models.PUNTUACION_SERVICIOS
+
+
+
+<h2 class="text-center my-2"> Eliminar puntuación</h2>
+
+<h3 class="text-center my-3"> ¿Seguro que desea eliminar esta puntuación?</h3>
+
+
+<div class="container edi h-75 shadow my-5 p-5 rounded">
+
+    <div class="row ">
+
+        <div class="form-group col-12 col-md-6 mt-md-2">
+
+            <b> @Html.LabelFor(model => model.comentario, "Comentario:")</b>
+
+            @Html.DisplayFor(model => model.comentario)
+
+        </div>
+        <div class="form-group col-12 col-md-6 mt-md-2">
+            <b>  @Html.LabelFor(model => model.estrellas, "Estrellas:")</b>
+
+            <span id="st" class="starrr" data-rating="@Html.DisplayFor(model => model.estrellas)"></span>
+            <span class="text-muted nr"> ( @Html.DisplayFor(model => model.estrellas)) </span>
+
+        </div>
+
+        <div class="form-group col-12 col-md-6 my-2 mt-md-3">
+            <b> @Html.LabelFor(model => model.fecha_creacion, "Fecha de creacion:")</b>
+
+            @Html.DisplayFor(model => model.fecha_creacion)
+
+        </div>
+        <div class="form-group col-12 col-md-6 my-2 mt-md-3">
+            <b> @Html.LabelFor(model => model.estado, "Estado:")</b>
+            @Html.DisplayFor(model => model.estado)
+        </div>
+        <div class="form-group col-12 col-md-6 my-2 mt-md-3">
+            <b>  @Html.LabelFor(model => model.AspNetUsers.Email, "Email:")</b>
+
+            @Html.DisplayFor(model => model.AspNetUsers.Email)
+        </div>
+        <div class="form-group col-12 col-md-6 my-2 mt-md-3">
+            <b> @Html.LabelFor(model => model.CITAS.id_usuario, "Id de usuario:")</b>
+
+            @Html.DisplayFor(model => model.CITAS.id_usuario)
+        </div>
+        <div class="form-group col-12 col-md-6 my-2 mt-md-3">
+            <b>@Html.LabelFor(model => model.SERVICIOS.id_usuario, "Id de servicio:")</b>
+
+            @Html.DisplayFor(model => model.SERVICIOS.id_usuario)
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions text-center">
+        <input type="submit" value="Eliminar" class="btn text-white rounded" style="background-color:#DBA312" />             @Html.ActionLink("Volver", "Index", new { }, htmlAttributes: new { @class = "btn btn-outline-warning  rounded my-5", id = "volbtn" })
+    </div>
+}
+
+

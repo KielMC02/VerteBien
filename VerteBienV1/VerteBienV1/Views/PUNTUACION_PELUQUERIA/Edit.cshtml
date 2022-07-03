@@ -1,0 +1,82 @@
+﻿@model VerteBienV1.Models.PUNTUACION_PELUQUERIA
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="my-4 text-center">Editar </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 class="text-center">Puntuar peluquería</h4>
+        <div class="container edi h-75 shadow my-4 p-5 rounded">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id_puntuacion_peluqueria)
+
+            <div class="form-group">
+                <b> @Html.LabelFor(model => model.id_usuario, "Usuario", htmlAttributes: new { @class = "control-label col-md-2" })</b>
+                <div class="col-md-10">
+                    @Html.DropDownList("id_usuario", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group my-2">
+                <b>  @Html.LabelFor(model => model.id_cita, "Id cita", htmlAttributes: new { @class = "control-label col-md-2" })</b>
+                <div class="col-md-10">
+                    @Html.DropDownList("id_cita", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_cita, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group my-2">
+                <b>  @Html.LabelFor(model => model.comentario, "Comentario", htmlAttributes: new { @class = "control-label col-md-2" })</b>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.comentario, new { htmlAttributes = new { @class = "form-control ", placeholder = "Comentario...", style = "width: 100%; height: 60px; min-height:50px;" } })
+                    @Html.ValidationMessageFor(model => model.comentario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group my-2">
+                <b>
+                    @Html.LabelFor(model => model.estrellas, "Estrellas", htmlAttributes: new { @class = "control-label " })
+                </b>
+                <span id="" class="str" data-rating="@Html.DisplayFor(model => model.estrellas)"></span>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.estrellas, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.estrellas, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group my-2">
+                <b>   @Html.LabelFor(model => model.fecha_creacion, "Fecha de creación", htmlAttributes: new { @class = "control-label col-md-2" })</b>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fecha_creacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group my-2">
+                <b>  @Html.LabelFor(model => model.estado, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })</b>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group ">
+                <div class="col-md-offset-2 text-center">
+                    <input type="submit" value="Guardar" class="btn text-white rounded my-5" style="background-color:#DBA312" />
+                    @Html.ActionLink("Volver", "Index", new { }, htmlAttributes: new { @class = "btn btn-outline-warning  rounded my-5", id = "volbtn" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

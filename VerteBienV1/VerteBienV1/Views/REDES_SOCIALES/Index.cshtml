@@ -1,0 +1,53 @@
+﻿@model IEnumerable<VerteBienV1.Models.REDES_SOCIALES>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if (ViewBag.comprobar == "True")
+{
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.whatsapp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.instagram)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.facebook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.web_app)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.whatsapp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.instagram)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.facebook)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.web_app)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_redes }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_redes }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_redes })
+        </td>
+    </tr>
+}
+
+</table>

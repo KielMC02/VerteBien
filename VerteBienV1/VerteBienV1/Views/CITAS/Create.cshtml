@@ -1,0 +1,413 @@
+﻿
+@model VerteBienV1.Models.CITAS
+
+@{
+    ViewBag.Title = "Crear Citas";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <center>
+        <img src="~/Imagenes/verte bien negro.png" width="128" height="128" style="margin-top:2%" />
+        <h4 style="margin-top:2%">Crear cita</h4>
+        <h5>Servicio Seleccionado: @ViewBag.servicio_selec</h5>
+        <hr class="w-50" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.id_usuario, "id_usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("id_usuario", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.id_servicio, "id_servicio", htmlAttributes: new { @class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.DropDownList("id_servicio", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.id_servicio, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="container">
+            <div class="card h-100 w-75 shadow-lg">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            @Html.Label("Servicio seleccionado", htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-10 col-sm-12">
+                                @Html.Editor("id_servicio", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.id_servicio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            @Html.Label("Comentario", htmlAttributes: new { @class = "control-label col-md-8" })
+                            <div class="col-md-12">
+                                @Html.TextAreaFor(model => model.comentario_cliente, new { @class = "form-control col-md-11", @rows = "3" })
+                                @Html.ValidationMessageFor(model => model.comentario_cliente, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+            @Html.LabelFor(model => model.fecha_creacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fecha_creacion, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+                        @*<div class="form-group col-md-12">
+            @Html.Label("Fecha de la cita", htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10 col-sm-12">
+                @Html.EditorFor(model => model.fecha_cita, new { htmlAttributes = new { @class = "form-control" } })
+                <input name="fecha_cita" />
+                @Html.ValidationMessageFor(model => model.fecha_cita, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+
+                        <div class="container">
+                            <div id="Reservacion">
+                                <div class="contenedor">
+                                    <input class="form-control col-md-10" type="date" name="fecha" v-model="fecha">
+                                </div>
+                                <div class="contenedor">
+                                    <slot v-if="horarios.length">
+                                        <div class="card">
+                                            <div class="horarios card-body overflow-auto">
+                                                <h5 class="card-title ">Horarios Disponibles</h5>
+                                                <div v-for="item in horarios">
+                                                    <button v-on:click="reservarCita(item.hora)" style="width:95px; margin-top:5px;" v-if="item.disponibilidad == 'si'" type="button" class="btn btn-outline-primary horario">
+                                                        <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
+                                                    </button>
+                                                    <button style="width:95px; margin-top:5px;" v-else disabled type="button" class="btn btn-outline-secondary horario">
+                                                        <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </slot>
+                                </div>
+                            </div>
+                        </div>
+                        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+                        <script>
+            new Vue({
+                el: '#Reservacion',
+                data: {
+                    nameApp: 'Tasks App',
+                    fecha: null,
+                    servicio: {
+                        nombre: '@ViewBag.servicio_selec',
+                        tiempo: '@ViewBag.tiempo'
+                    },
+                    horarios: [],
+                    horas: [
+                        { hora: '1.00', formateada: '1:00 AM'},
+                        { hora: '1.30', formateada: '1:30 AM'},
+                        { hora: '2.00', formateada: '2:00 AM'},
+                        { hora: '2.30', formateada: '2:30 AM'},
+                        { hora: '3.00', formateada: '3:00 AM'},
+                        { hora: '3.30', formateada: '3:30 AM'},
+                        { hora: '4.00', formateada: '4:00 AM'},
+                        { hora: '4.30', formateada: '4:30 AM'},
+                        { hora: '5.00', formateada: '5:00 PM'},
+                        { hora: '5.30', formateada: '5:30 PM'},
+                        { hora: '6.00', formateada: '6:00 AM'},
+                        { hora: '6.30', formateada: '6:30 AM'},
+                        { hora: '7.00', formateada: '7:00 AM'},
+                        { hora: '7.30', formateada: '7:30 AM'},
+                        { hora: '8.00', formateada: '8:00 AM'},
+                        { hora: '8.30', formateada: '8:30 AM'},
+                        { hora: '9.00', formateada: '9:00 AM'},
+                        { hora: '9.30', formateada: '9:30 AM'},
+                        { hora: '10.00', formateada: '10:00 AM'},
+                        { hora: '10.30', formateada: '10:30 AM'},
+                        { hora: '11.00', formateada: '11:00 AM'},
+                        { hora: '11.30', formateada: '11:30 AM'},
+                        { hora: '12.00', formateada: '12:00 PM'},
+                        { hora: '12.30', formateada: '12:30 PM'},
+                        { hora: '13.00', formateada: '1:00 PM'},
+                        { hora: '13.30', formateada: '1:30 PM'},
+                        { hora: '14.00', formateada: '2:00 PM'},
+                        { hora: '14.30', formateada: '2:30 PM'},
+                        { hora: '15.00', formateada: '3:00 PM'},
+                        { hora: '15.30', formateada: '3:30 PM'},
+                        { hora: '16.00', formateada: '4:00 PM'},
+                        { hora: '16.30', formateada: '4:30 PM'},
+                        { hora: '17.00', formateada: '5:00 PM'},
+                        { hora: '17.30', formateada: '5:30 PM'},
+                        { hora: '18.00', formateada: '6:00 PM'},
+                        { hora: '18.30', formateada: '6:30 PM'},
+                        { hora: '19.00', formateada: '7:00 PM'},
+                        { hora: '19.30', formateada: '7:30 PM'},
+                        { hora: '20.00', formateada: '8:00 PM'},
+                        { hora: '20.30', formateada: '8:30 PM'},
+                        { hora: '21.00', formateada: '9:00 PM'},
+                        { hora: '21.30', formateada: '9:30 PM'},
+                        { hora: '22.00', formateada: '10:00 PM'},
+                        { hora: '22.30', formateada: '10:30 PM'},
+                        { hora: '23.00', formateada: '11:00 PM'},
+                        { hora: '23.30', formateada: '11:30 PM'},
+                    ]
+                },
+                watch:{
+                    fecha: function(){
+                        this.getHorarios();
+
+                    }
+                },
+                methods:{
+                    async getHorarios() {
+                        console.log("La fecha es:",this.fecha);
+                        try{
+                                let data = {
+                                    idServicio: '@ViewBag.id_servicio',
+                                    fecha: this.fecha,
+                                    servicio: this.servicio
+                            }
+                            console.log("Data Disp: ", data)
+                                let response = await axios.post('@Url.Action("Disponibilidad", "CITAS")', data , { 'headers': { 'Content-Type': 'application/json' } });
+                            console.log(response);
+                            this.horarios = response.data
+
+                            }catch(error){
+                                console.log(error)
+    }
+
+                        /*this.horarios = [
+                            { hora: '8.00', tiempo: '1.00', disponible:'no' },
+                            { hora: '8.30', tiempo: '1.00', disponible:'si' },
+                            { hora: '9.00', tiempo: '1.00', disponible:'si' },
+                            { hora: '9.30', tiempo: '1.00', disponible:'no' },
+                            { hora: '10.00', tiempo: '1.00', disponible:'si' },
+                            { hora: '10.30', tiempo: '1.00', disponible:'no' },
+                            { hora: '11.00', tiempo: '1.00', disponible:'si' },
+                            { hora: '11.30', tiempo: '1.00', disponible:'no' },
+                            { hora: '12.00', tiempo: '1.00', disponible:'no' },
+                            { hora: '12.30', tiempo: '1.00', disponible:'si' },
+                            { hora: '13.00', tiempo: '1.00', disponible:'no' },
+                            { hora: '13.30', tiempo: '1.00', disponible:'si' },
+                            { hora: '14.00', tiempo: '1.00', disponible:'no' },
+                            { hora: '14.30', tiempo: '1.00', disponible:'no' },
+                            { hora: '15.00', tiempo: '1.00', disponible:'si' },
+                            { hora: '15.30', tiempo: '1.00', disponible:'si' },
+                            { hora: '16.00', tiempo: '1.00', disponible:'si' },
+                            { hora: '16.30', tiempo: '1.00', disponible:'si' },
+                            { hora: '17.00', tiempo: '1.00', disponible:'no' },
+                        ]*/
+                    },
+
+                    async reservarCita( hora ){
+
+                        let text = `Esta seguro que desea reservar la cita para las ${this.horas.find(x=> x.hora === hora).formateada} del ${new Date(this.fecha+'T00:00:00').toLocaleDateString('es-DO', {year:"numeric", month:"short", day:"numeric"})}?`
+
+                        Swal.fire({
+                        title: 'Reservacion de Cita',
+                        text: text,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si, reservar'
+                        }).then(async (result) => {
+
+                            if (result.isConfirmed) {
+
+                                try {
+
+                                    let data = {
+                                        idServicio: '@ViewBag.id_servicio',
+                                        fecha: this.fecha,
+                                        hora: parseFloat(hora)
+                                    }
+                                    console.log("Esta es la data:",data)
+                                    let query = await axios.post('@Url.Action("AgregarCita", "CITAS")', data, { 'headers': { 'Content-Type': 'application/json' } });
+                                    let response = query.data;
+                                    console.log(response);
+
+                                    //Aqui el if(response == 'si')...
+
+                                    if (response == 'si') {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Cita agregada correctamente',
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        }).then(async(result) => {
+                                            '@Url.Action("Index","CITAS")';
+                                        })
+
+                                    } else {
+
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Ocurrio un error al insertar cita, favor intentar nuevamente.',
+                                            showConfirmButton: false,
+                                            timer: 2000
+                                        }).then(async (result) => {
+                                            this.getHorarios();
+                                        })
+
+                                    }
+
+                                } catch (error) {
+                                    console.log(error)
+                                }
+                            }
+
+                        })
+                    }
+                }
+            })
+                        </script>
+                        <style>
+                            [type="date"] {
+                                background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+                            }
+
+                                [type="date"]::-webkit-inner-spin-button {
+                                    display: none;
+                                }
+
+                                [type="date"]::-webkit-calendar-picker-indicator {
+                                    opacity: 0;
+                                }
+
+                            /* custom styles */
+                            input {
+                                border: 1px solid #c4c4c4;
+                                border-radius: 5px;
+                                background-color: #fff;
+                                padding: 3px 5px;
+                                box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+                                width: 190px;
+                            }
+
+                            #Reservacion {
+                                margin-top: 5%;
+                            }
+
+                            .contenedor {
+                                display: flex;
+                                justify-content: center;
+                                margin-bottom: 15px;
+                            }
+
+
+                            .horarios {
+                                height: 300px;
+                                text-align: center;
+                            }
+
+                                .horarios::-webkit-scrollbar {
+                                    width: 8px; /* Tamaño del scroll en vertical */
+                                    height: 8px; /* Tamaño del scroll en horizontal */
+                                    display: none; /* Ocultar scroll */
+                                }
+
+                                .horarios::-webkit-scrollbar-thumb {
+                                    background: #ccc;
+                                    border-radius: 4px;
+                                }
+
+                                    /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+                                    .horarios::-webkit-scrollbar-thumb:hover {
+                                        background: #b3b3b3;
+                                        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+                                    }
+
+                                    /* Cambiamos el fondo cuando esté en active */
+                                    .horarios::-webkit-scrollbar-thumb:active {
+                                        background-color: #999999;
+                                    }
+
+                                .horarios::-webkit-scrollbar-track {
+                                    background: #e1e1e1;
+                                    border-radius: 4px;
+                                }
+
+                                    /* Cambiamos el fondo cuando esté en active o hover */
+                                    .horarios::-webkit-scrollbar-track:hover,
+                                    .horarios::-webkit-scrollbar-track:active {
+                                        background: #d4d4d4;
+                                    }
+                        </style>
+
+
+
+
+
+                        @*<div class="form-group">
+            @Html.LabelFor(model => model.estado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn text-white" style="background-color:#DBA312; margin-top:1%">Agendar cita</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br />
+    </center>}
+
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <center>
+            @*<i class="far fa-user-circle fa-3x" style="margin-top:2%; color:#DBA312"></i>
+            <img src="~/Imagenes/verte bien negro.png" width="128" height="128" style="margin-top:2%" />
+            <h4>Registrar citas</h4>
+            <hr class="w-50" />
+        </center><br />
+        <div class="container">
+            <center>
+                <div class="card h-100 shadow-lg">
+                    <div class="card-body">
+                        <center>
+                            <div class="form-row">
+                                @Html.ValidationSummary("", new { @class = "text-danger" })
+                                <div class=" form-group col-md-12">
+                                    @Html.Label("Servicio", new { @class = "col-md-6 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.id_servicio, new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    @Html.Label("Fecha de la cita", new { @class = "col-md-8 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(m => m.fecha_cita, new { @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </center>
+        </div><br />
+        <center>
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-lg text-white" style="background-color:#DBA312">Registrar</button>
+            </div>
+        </center>
+    }
+    <br />*@
+
+
+

@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Subscribe";
+}
+@*CDN`S para pasarela de pago*@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+<script src="https://cdn.kushkipagos.com/kushki.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<h2>Subscribe</h2>
+<div id="app">
+    <input type="text" v-model="form.membresiaSelec" name="membresiaSelec" class="form-control" readonly>
+    <input type="text" v-model="form.Email" name="Email" class="form-control" readonly>
+    <input type="text" v-model="form.nombre" name="nombre" class="form-control" readonly>
+    <input type="text" v-model="form.apellido" name="apellido" class="form-control" readonly>
+    <input type="text" v-model="form.telefono" name="telefono" class="form-control" readonly>
+    <input type="text" v-model="form.idUser" name="idUser" class="form-control" readonly>
+
+    <input placeholder="Card Number" type="text" v-model="form.number" name="number" class="form-control">
+    <input placeholder="Full Name" type="text" v-model="form.name" name="name" class="form-control">
+    <input placeholder="MM" type="text" v-model="form.expiry_month" name="expiry_month" class="form-control">
+    <input placeholder="YY" type="text" v-model="form.expiry_uear" name="expiry_uear" class="form-control">
+    <input placeholder="CVC" type="text" v-model="form.cvc" name="cvc" class="form-control">
+    <button id="submit" v-on:click="sendData" class="btn btn-lg text-white" style="background-color:#DBA312">Realizar Pago!</button>
+
+</div>
+
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: `Vue in the works!`,
+            form: {
+                membresiaSelec: '@ViewBag.membresiaSelec',
+                Email: '@ViewBag.email',
+                telefono:'@ViewBag.telefono',
+                nombre: '@ViewBag.nombre',
+                apellido: '@ViewBag.apellido',
+                telefono: '@ViewBag.telefono',
+                idUser: '@ViewBag.idUser',
+                number: null,
+                name: null,
+                expiry_month: null,
+                expiry_uear: null,
+                cvc: null
+            },
+            kushki: null
+        },
+        mounted() {
+            console.log("hey")
+            kushki = new Kushki({
+                merchantId: '5238f4b63a0e428f99af8031abcf21b4', // Your public merchant id
+                inTestEnvironment: true,
+            });
+        },
+        methods: {
+            async sendData(e) {
+                console.log("here")
+                e.preventDefault();
+
+                kushki.requestSubscriptionToken({
+                    currency: "USD",
+                    card: {
+                        name: this.form.name,
+                        number: this.form.number,
+                        cvc: this.form.cvc,
+                        expiryMonth: this.form.expiry_month,
+                        expiryYear: this.form.expiry_uear,
+                    },
+                }, async (response) => {
+
+                        if (!response.code) {
+                        console.log(response.token);
+
+                        fetch('@Url.Action("SubscribeKushki", "suscripcion")', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                token: response.token,
+                                membresiaSelec: this.form.membresiaSelec,
+                                Email: this.form.Email,
+                                nombre: this.form.nombre,
+                                apellido: this.form.apellido,
+                                telefono: this.form.telefono,
+                                idUser: this.form.idUser
+                            })
+                        }).then((response) => {
+
+                            console.log(response);
+                            window.location.href="@Url.Action("Login", "account")";
+
+                        })
+                    }
+                });
+            }
+        }
+    })
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<VerteBienV1.Models.PUNTUACION_PELUQUERIA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center my-3">Index</h2>
+
+
+<div class="table table container-fluid">
+
+
+    @foreach (var item in Model)
+    {
+        <div class="card col-lg-4 m-3 rounded" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title" style="color:#DBA312"> @Html.DisplayFor(modelItem => item.AspNetUsers.UserName)</h5>
+                <h6 class="card-subtitle mb-2 text-muted"> @Html.DisplayFor(modelItem => item.AspNetUsers.Email)</h6>
+                <p class="card-text comentedit">   @Html.DisplayFor(modelItem => item.comentario)</p>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> @Html.DisplayFor(modelItem => item.estado)</li>
+                    <li class="list-group-item">
+                        <span id="st" class="starrr" data-rating=" @Html.DisplayFor(modelItem => item.estrellas)"></span>
+                        <span class="text-muted">(@Html.DisplayFor(modelItem => item.estrellas))</span>
+                    </li>
+                    <li> </li>
+
+                </ul>
+                <div class="my-2 text-center">
+
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id_puntuacion_peluqueria }, htmlAttributes: new { @class = "btn text-white rounded ", style = "background-color:#DBA312" })
+
+                    @Html.ActionLink("Detalles", "Details", new { id = item.id_puntuacion_peluqueria }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm rounded", id = "volbtn" })
+
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id_puntuacion_peluqueria }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm rounded", id = "volbtn" })
+
+                </div>
+                <div class="card-footer mt-2">
+                    <small class="text-muted">@Html.DisplayFor(modelItem => item.fecha_creacion)</small>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<VerteBienV1.Models.CATEGORIAS_SERVICIOS>
+
+@{
+    ViewBag.Title = "Lista de categorías de los servicios";
+}
+
+<div class="container">
+    <center>
+        <img src="~/Imagenes/verte bien negro.png" width="128" height="128" style="margin-top:2%" />
+        <h4>Listado de las categorías de los servicios</h4>
+        <hr class="w-50" />
+    </center>
+
+
+    @foreach (var item in Model)
+    {
+
+        <div class="card h-100 shadow-lg" style="margin-top:2%">
+            <div class="card-body">
+                <h4 class="card-title float-left col-md-8 col-sm-12"> @Html.DisplayFor(modelItem => item.nombre_categoria)</h4>
+                <h6 class="float-right col-md-4 col-sm-12"><b>Estado de la categoría: </b>@Html.DisplayFor(modelItem => item.estado)</h6>
+                <h6 class="float-left col-md-8 col-sm-12">@Html.DisplayFor(modelItem => item.descripcion) </h6>
+                @Html.ActionLink("Editar", "Edit", "CATEGORIAS_SERVICIOS", new { id = item.id_categoria_servicio }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6 float-right", @style = "background-color:#DBA312; margin-top:2%" })
+                <br />
+            </div>
+        </div>
+
+    }
+</div>
+<br />
+

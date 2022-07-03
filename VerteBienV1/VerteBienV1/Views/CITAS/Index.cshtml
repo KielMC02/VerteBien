@@ -1,0 +1,123 @@
+﻿@model IEnumerable<VerteBienV1.Models.CITAS>
+
+@{
+    ViewBag.Title = "Lista de citas";
+}
+
+<center>
+    <img src="~/Imagenes/verte bien negro.png" width="128" height="128" style="margin-top:2%" />
+    <h4>Lista de citas</h4>
+    <hr class="w-50" /><br />
+</center>
+<div class="container">
+    @using (Html.BeginForm("Index", "CITAS", FormMethod.Get))
+    {
+        if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip"))
+        {
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <select class="form-control float-right col-md-4" style="margin-left:15%" name="estatusCitasSelec">
+                <option>Filtrar por el estado de la cita</option>
+                <option value="pendiente">Pendientes</option>
+                <option value="aceptado">Aceptadas</option>
+                <option value="cancelado">Canceladas</option>
+            </select>
+            <div class="col-2">
+                <button type="submit" class="btn col-lg-11 text-white" style="background-color:#DBA312">Filtrar</button>
+            </div>
+        </div>
+    </div>
+
+        }
+    }
+    <div class="form-row">
+        @foreach (var item in Model)
+        {
+            <div class="card  shadow-lg col-md-12 col-sm-12 col-lg-12 col-xl-12" style="width: 70rem; margin-top:2%">
+                <div class="card-body">
+                    <h4 class="card-title float-left col-md-8 col-sm-12"> @Html.DisplayFor(modelItem => item.SERVICIOS.nombre_servicio)</h4>
+                    <h6 class="float-right col-md-4 col-sm-12"><b>Estado de la cita: </b>@Html.DisplayFor(modelItem => item.estado)</h6>
+                    <h6 class="float-left col-md-8 col-sm-12"><strong>Cliente: </strong>@Html.DisplayFor(modelItem => item.AspNetUsers.Email) </h6>
+                    <h6 class="float-left col-md-4 col-sm-12"><b>Fecha de la cita: </b>@Html.DisplayFor(modelItem => item.fecha_cita) </h6> <br /><br /><br />
+                    <h6 class="float-left col-md-4 col-sm-12"><b>Comentario:</b>@Html.DisplayFor(modelItem => item.comentario_cliente) </h6> <br /><br /><br />
+                    <p class="float-left col-md-12 col-sm-12">@Html.DisplayFor(modelItem => item.SERVICIOS.descripcion)</p><br />
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end col-md-12 col-sm-12">
+                        <p class="col-md-8 col-sm-12"><b>Precio: </b>@Html.DisplayFor(modelItem => item.SERVICIOS.precio_servicio)</p>
+                        @if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip"))
+                        {
+                            if (item.estado == "aceptado")
+                            {
+                                @Html.ActionLink("Completar Cita", "EstatusCita", "CITAS", new { id = item.id_cita, estatus = "completado" }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Aceptar cita", "EstatusCita", "CITAS", new { id = item.id_cita, estatus = "aceptado" }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+                            }
+                        }
+                        @Html.ActionLink("Cancelar", "EstatusCita", "CITAS", new { id = item.id_cita, estatus = "cancelado" }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+                        @Html.ActionLink("Agregar Comentario", "Edit", "CITAS", new { id = item.id_cita}, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+                    </div>
+                </div>
+            </div><br />
+        }
+
+    </div>
+</div>
+<br />
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_creacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_cita)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SERVICIOS.id_servicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SERVICIOS.id_usuario)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_creacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_cita)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SERVICIOS.id_servicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SERVICIOS.id_usuario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id_cita }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id_cita }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id_cita })
+        </td>
+    </tr>
+    }
+
+    </table>*@

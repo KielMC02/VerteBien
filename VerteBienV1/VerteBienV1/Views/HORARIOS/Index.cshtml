@@ -1,0 +1,79 @@
+﻿@model IEnumerable<VerteBienV1.Models.HORARIOS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (ViewBag.comprobar == "True")
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.semanales_inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.semanales_cierre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sabados_inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sabados_cierre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.domingo_inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.domingo_cierre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUsers.nombre_peluqueria)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.semanales_inicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.semanales_cierre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sabados_inicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sabados_cierre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.domingo_inicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.domingo_cierre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUsers.nombre_peluqueria)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_horario }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id_horario }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_horario })
+            </td>
+        </tr>
+    }
+
+</table>

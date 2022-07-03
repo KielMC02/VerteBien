@@ -1,0 +1,109 @@
+﻿@model VerteBienV1.Models.PUNTUACION_SERVICIOS
+
+@{
+    /**/
+
+    ViewBag.Title = "Puntuación del Servicio";
+}
+
+@if (ViewBag.comprobar != null)
+{
+    <h3>Este Formulario ya ha sido contestado</h3>
+}
+
+else
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <center>
+            <img src="~/Imagenes/verte bien negro.png" width="128" height="128" style="margin-top:2%" />
+            <h4>Puntuación del Servicio</h4>
+            <hr class="w-50" />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.id_usuario, "id_usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("id_usuario", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="container">
+                <div class="card h-100 w-75 shadow-lg">
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                @Html.Label("Usuario", htmlAttributes: new { @class = "control-label col-md-6" })
+                                <div class="col-md-10">
+                                    @Html.Editor("id_usuario", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @*@Html.DropDownList("id_servicio", null, htmlAttributes: new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                @Html.Label("Servicio", htmlAttributes: new { @class = "control-label col-md-6" })
+                                <div class="col-md-10">
+                                    @Html.Editor("id_servicio", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                    @*@Html.DropDownList("id_servicio", null, htmlAttributes: new { @class = "form-control" })*@
+                                    @Html.ValidationMessageFor(model => model.id_servicio, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                @Html.Label("Id Cita", htmlAttributes: new { @class = "control-label col-md-6" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.id_cita, new { htmlAttributes = new { @class = "form-control", @value = @ViewBag.id_cita, @readonly = "readonly" } })
+                                    @*@Html.DropDownList("id_cita", null, htmlAttributes: new { @class = "form-control" })*@
+
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                @Html.Label("Comentario", htmlAttributes: new { @class = "control-label col-md-6" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.comentario, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.comentario, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                @Html.Label("Cantidad de estrellas", htmlAttributes: new { @class = "control-label col-md-6" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.estrellas, new { htmlAttributes = new { @class = "form-control" } })
+                                    <span id="st" class=""></span>
+                                    @Html.ValidationMessageFor(model => model.estrellas, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            @*<div class="form-group">
+                                    @Html.LabelFor(model => model.fecha_creacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.fecha_creacion, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.estado, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>*@
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn text-white" style="background-color:#DBA312; margin-top:2%">Agregar Puntuación</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <br />
+        </center> }
+
+    @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+}

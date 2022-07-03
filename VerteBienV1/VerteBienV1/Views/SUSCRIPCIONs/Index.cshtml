@@ -1,0 +1,51 @@
+﻿@model IEnumerable<VerteBienV1.Models.SUSCRIPCION>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comentario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_suscripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comentario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_suscripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_suscripcion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_suscripcion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_suscripcion })
+        </td>
+    </tr>
+}
+
+</table>

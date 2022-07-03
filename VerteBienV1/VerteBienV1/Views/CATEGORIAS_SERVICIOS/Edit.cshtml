@@ -1,0 +1,60 @@
+﻿@model VerteBienV1.Models.CATEGORIAS_SERVICIOS
+
+@{
+    ViewBag.Title = "Editar categoría de servicio";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <center>
+            <img src="~/Imagenes/verte bien negro.png" width="128" height="128" style="margin-top:2%" />
+            <h4>Editar categoría de servicio</h4>
+            <hr class="w-50" />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id_categoria_servicio)
+
+            <div class="card-h-100 w-75 shadow-lg">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            @Html.Label("Nombre de categoría", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.nombre_categoria, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.nombre_categoria, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            @Html.Label("Descripción", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            @Html.Label("Estado", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-md-10" style="margin-top:1%">
+                            <button type="submit" class="btn text-white col-md-3" style="background-color:#DBA312">Guardar cambios</button>
+                            @Html.ActionLink("Volver a la lista", "Index", "CATEGORIAS_SERVICIOS", new { id = "" }, htmlAttributes: new { @class = "btn text-white col-md-3 col-sm-6", @style = "background-color:#DBA312" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+}
+<br />
+@*<div>
+        @Html.ActionLink("Volver a la lista", "Index")
+    </div>*@

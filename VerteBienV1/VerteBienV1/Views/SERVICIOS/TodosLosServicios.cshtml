@@ -1,0 +1,81 @@
+﻿@model IEnumerable<VerteBienV1.Models.SERVICIOS>
+
+@{
+    ViewBag.Title = "Todos Los Servicios";
+}
+
+<h2>misServicios</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<form class="row row-cols-lg-12 g-2 align-content-center">
+    @using (Html.BeginForm("TodosLosServicios", "SERVICIOS", FormMethod.Get))
+    {
+        <div class="col-8">
+            <input type="text" id="servicio" name="servicio" class="form-control col-lg-12" placeholder="Buscar por nombre de servicio" />
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn col-lg-11 text-white" style="background-color:#DBA312">Buscar</button>
+        </div>
+    }
+</form>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_servicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio_servicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tiempo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CATEGORIAS_SERVICIOS.nombre_categoria)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_servicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio_servicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tiempo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CATEGORIAS_SERVICIOS.nombre_categoria)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_servicio }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id_servicio }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_servicio })
+            </td>
+        </tr>
+    }
+
+</table>

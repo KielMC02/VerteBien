@@ -1,0 +1,80 @@
+﻿@model VerteBienV1.Models.CITAS
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Agregar Comentario</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    @*<h4>CITAS</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id_cita)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.id_usuario, "id_usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("id_usuario", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.id_servicio, "id_servicio", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("id_servicio", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.id_servicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fecha_creacion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.fecha_creacion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fecha_cita, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fecha_cita, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.fecha_cita, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.estado, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+
+    <div class="form-group col-md-12">
+        @Html.Label("Comentario", htmlAttributes: new { @class = "control-label col-md-8" })
+        <div class="col-md-12">
+            @Html.TextAreaFor(model => model.comentario_peluqueria, new { @class = "form-control col-md-11", @rows = "3" })
+            @Html.ValidationMessageFor(model => model.comentario_peluqueria, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip"))
+    {
+        @Html.ActionLink("Aceptar cita", "EstatusCita", "CITAS", new { id = @ViewBag.idCita, estatus = "aceptado" }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+
+        @Html.ActionLink("Cancelar", "EstatusCita", "CITAS", new { id = @ViewBag.idCita, estatus = "cancelado" }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+
+    }
+
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
