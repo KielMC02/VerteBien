@@ -1321,3 +1321,129 @@ input.error {
 .formulario__input-error-activo {
     display: block;
 }
+
+
+/* ----- -----  Membresias ----- ----- */
+.precio-vip {
+    -webkit-transform: scale(1.1, 1.1);
+    -moz-transform: scale(1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    -o-transform: scale(1, 1.1);
+    transform: scale(1, 1.1);
+   
+}
+
+@media only screen and (max-width: 991px) {
+    .precio-vip {
+        -webkit-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+        margin: 4px 0 2rem 0;
+    }
+}
+/* ----- -----  Membresias  recomendado----- ----- */
+
+.ribbon {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 93px;
+    height: 93px;
+    text-align: right;
+}
+
+    .ribbon span {
+        font-size: 0.8rem;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: bold;
+        line-height: 32px;
+        transform: rotate(45deg);
+        width: 125px;
+        display: block;
+        background: #79a70a;
+        background: linear-gradient(#9bc90d 0%, #79a70a 100%);
+        box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+        position: absolute;
+        top: 17px;
+        // change this, if no border right: -29px;
+        // change this, if no border
+    }
+
+        .ribbon span::before {
+            content: '';
+            position: absolute;
+            left: 0px;
+            top: 100%;
+            z-index: -1;
+            border-left: 3px solid #79A70A;
+            border-right: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #79A70A;
+        }
+
+        .ribbon span::after {
+            content: '';
+            position: absolute;
+            right: 0%;
+            top: 100%;
+            z-index: -1;
+            border-right: 3px solid #79A70A;
+            border-left: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            border-top: 3px solid #79A70A;
+        }
+
+
+
+.blue span {
+    background: #DBA312;
+}
+
+    .blue span::before {
+        border-left-color: #DBA312;
+        border-top-color: #DBA312;
+    }
+
+    .blue span::after {
+        border-right-color: #DBA312;
+        border-top-color: #DBA312;
+    }
+
+.foo {
+    clear: both;
+}
+
+.bar {
+    content: "";
+    left: 0px;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid #79a70a;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #79a70a;
+}
+
+.baz {
+    font-size: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    line-height: 2em;
+    transform: rotate(45deg);
+    width: 100px;
+    display: block;
+    background: #79a70a;
+    background: linear-gradient(#9bc90d 0%, #79a70a 100%);
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 100px;
+    left: 1000px;
+}
