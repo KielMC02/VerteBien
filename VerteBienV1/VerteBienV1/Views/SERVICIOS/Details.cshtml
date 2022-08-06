@@ -6,260 +6,201 @@
 
 
 
-<div class="container">
+<div class="container mt-5">
 
-
-    @*Galeria de foto con lightbox*@
-    <section id="galeria" class="container mt-5 align-self-center">
-        <div class="text-left">
-            <h2 class="container">@Html.DisplayFor(model => model.nombre_servicio)</h2>
-        </div>
-        <div class="container ">
-            <div class="row col-sm-12 justify-content-lg-center ">
-
-                @{
-                    List<String> _list = ViewData["imagenes_s"] as List<String>;
-                }
-
-                @if (_list != null)
-                {
-                    foreach (var item in _list)
-                    {<div class="col-lg-4 col-md-6 col-sm- p-2 justify-content-lg-center ">
-                            <a href="~/imagenes_servicios/@item" data-lightbox="Sgaleria" style="width:100%; height:100%;"><img src="~/imagenes_servicios/@item" class="img-fluid img-thumbnail justify-content-lg-center" alt="..." data-title="" style="max-width:600px; max-height:600px;"></a>
-
-                        </div>
-                    }
-                }
-
-            </div>
-        </div>
-
-    </section>
-    @*FIN  Galeria de foto con lightbox*@
-
-
-    <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            @*   @Html.DisplayNameFor(model => model.nombre_servicio)
-                    @Html.DisplayFor(model => model.nombre_servicio)
-
-                           <dt>
-                    @Html.DisplayNameFor(model => model.descripcion)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.descripcion)
-                </dd>
-                        <dt>
-                    @Html.DisplayNameFor(model => model.precio_servicio)
-                </dt>
-
-                         <dt>
-                    @Html.DisplayNameFor(model => model.imagenes)
-                </dt>
-
-                         <dt>
-                    @Html.DisplayNameFor(model => model.tiempo)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.tiempo)
-                </dd>
-
-
-                <dd>
-                          </dt>
+    @*Titulo de la pagina con el nombredel servicio*@
+    <div class="text-left">
+        <h1 class=" dtext container">@Html.DisplayFor(model => model.AspNetUsers.nombre_peluqueria)</h1>
+    </div>
+    @*FIN Titulo de la pagina con el nombredel servicio*@
 
 
 
-
-                <dd>
-
-                </dd>
-
-            *@
-    </dl>
-    <div class="col-sm-12 col-md-12 col-lg-12 card h-100 container my-5 shadow-lg rounded">
+    <div class="" id="dproduct">
         <!-- product -->
         <div class="product-content product-wrap clearfix product-deatil">
-            <div class=" row col-12">
+            <div class="row">
+                <div class="col-md-5 col-sm-12">
+                    @*<div class="product-image">
+            </div>*@
+                    @{
+                        List<String> _list = ViewData["imagenes_s"] as List<String>;
+                    }
+                    <div class="carousel">
+                        <div class="carousel__contenedor">
+                            <button aria-label="Anterior" class="carousel__anterior">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
 
-                <div class="col-md-6 col-sm-12 col-xs-4 ">
-                    <div class="product-image row col-12">
+                            <div class="carousel__lista">
+                                @if (_list != null)
+                                {
+                                    foreach (var item in _list)
+                                    {
+                                        <div class="carousel__elemento">
+                                            <a href="~/imagenes_servicios/@item" data-lightbox="Sgaleria" style="width:100%; height:100%;">
+                                                <img src="~/imagenes_servicios/@item" alt="" style=" height: 350px;">
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <button aria-label="Siguiente" class="carousel__siguiente">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
 
-
-                        <div class="certified row col-12 ml-2 rounded">
-
-                            @foreach (var item in Model.AspNetUsers.HORARIOS)
-                            {
-                                <div class="col-sm-6 col-md-6 col-xd-4 ">
-                                    <ul>
-                                        <li class="text-left text-capitalize rounded shadow">
-
-                                            <h1><a href="" class="text-center">Horario</a></h1>
-                                            <p>L-V: <Span>@item.semanales_inicio-@item.semanales_cierre</Span></p>
-                                            <p>Sabado: <Span>@item.sabados_inicio-@item.sabados_cierre</Span></p>
-                                            <p>Domingo: <Span>@item.domingo_inicio-@item.domingo_cierre</Span></p>
-                                        </li>
-
-
-                                    </ul>
-                                </div>
-                                <div class="certified rounded col-sm-6 col-xd-4 col-md-6 ml-2">
-                                    <ul>
-                                        <li class="text-muted rounded">
-                                            <a href="">Tiempo<span>@Html.DisplayFor(model => model.tiempo) Hora</span></a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-
-                                <ul>
-                                    <li class="text-center text-capitalize">
-                                        <a href="">Direccion: <span>Edificio roble, Calle Lic. Carlos Sánchez 55, Santo Domingo</span></a>
-                                    </li>
-                                </ul>
-
-
-                            }
+                            <div role="tablist" class="carousel__indicadores"></div>
                         </div>
-
-
-                        <div class="name d-flex ">
-                            Calificación:
-                            <span id="" class="starrr" data-rating="@ViewBag.promedio"></span>
-
-                            <span class="text-muted nr"> (@ViewBag.promedio) </span>
-
-                        </div>
-
-
                     </div>
+
                 </div>
+                <div class="mx-md-3 col-md-6 col-md-offset-1 col-sm-12">
+                    <h2 class="name">
+                        @Html.DisplayFor(model => model.nombre_servicio)
+                        <small>por  <a href="" class="text-black-50 description-nombre">@Html.DisplayFor(model => model.AspNetUsers.nombre_peluqueria) </a></small>
+                        <span href="javascript:void(0);" id="" class="starrr" data-rating="@ViewBag.promedio"></span>
+                        <span class="fa fa-2x"><h5 id="cantidad-votos" class="text-muted nr"></h5></span>
+                        <a href="javascript:void(0);" class="text-black-50" id="reviews-clientes" style="text-decoration:none;"> reviews de los clientes.</a>
+                        <a href="#" class="" id="miDiv" value="" data-promedio="@ViewBag.promedio" style="display:none;"></a>
+                    </h2>
 
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                    <div class="card-title">
-                        <h3>Descripcion del servicio</h3>
-                    </div>
-                    <div class="rounded card-body shadow my-2">
-                        @Html.DisplayFor(model => model.descripcion)
-                    </div>
-                    <div class="comentarios rounded mt-4 dboxx">
-                        @foreach (var item in Model.PUNTUACION_SERVICIOS)
-                        {
+                    <hr />
+                    <h3 class="price-container">
 
-                            <ul>
-                                <li><p><i class="fas fa-angle-right"></i> @item.comentario</p></li>
-
-                            </ul>
-
-                        }
-
-                    </div>
-
-                    <h3 class="price-container mt-2">
-                        <b class="h3">Precio: </b> $@Html.DisplayFor(model => model.precio_servicio)
+                        $@Html.DisplayFor(model => model.precio_servicio)
                         <small> <b>*Impuestos incluido</b></small>
                     </h3>
+                    <hr />
+                    <div class="description description-tabs">
+
+                        <ul id="myTab" class="nav nav-pills">
+                            <li class="active opcion-detalles"><a href="#more-information" data-toggle="tab" class="no-margin">Descripción</a></li>
+                            @* <li class="opcion-detalles"><a href="#specifications" data-toggle="tab">Specifications</a></li>*@
+                            <li class="opcion-detalles"><a href="#reviews" data-toggle="tab">Comentarios</a></li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade active in" id="more-information">
+                                <br />
+                                <strong style="padding: 10px 10px;">Sobre el servicio</strong>
+                                <p id="pdetalles" data-rating="@Html.DisplayFor(model => model.descripcion)">
+                                    @Html.DisplayFor(model => model.descripcion)
+                                </p>
+                            </div>
+                           
 
 
+                      
+                            <div class="tab-pane fade" id="reviews">
+
+                                <div class="comentarios rounded mt-4 dboxx invisible-scrollbar">
+                                    @foreach (var item in Model.PUNTUACION_SERVICIOS)
+                                    {
+                                        <div class="card p-3 my-2" id="comentarios-conteo">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="user d-flex flex-row align-items-center"> <i class="fas fa-user user-img rounded-circle mr-2" width="30"></i> <span><small class="font-weight-bold " style="color: #DBA312;"> @item.AspNetUsers.nombre </small> <small class="font-weight-bold"> @item.comentario</small></span> </div> <small></small>
+                                            </div>
+                                            <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                                <div class="reply px-4"> <small>@item.fecha_creacion</small>  </div>
+                                                <div class="icons align-items-center"> <i class="fa fa-star text-warning"></i> <span class="text-muted nr">@item.estrellas </span></div>
+                                            </div>
+                                        </div>
 
 
+                                    }
+
+                                    <br />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="row col-12 text-center my-3">
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+
+                                    <a href="" class="btn bss btn-lg col-10 col-lg-6">Crear cita</a>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
         <!-- end product -->
-        <div class="row col-12 text-center">
-            <div class="col-sm-12 col-md-12 col-lg-12 mb-5">
-                <div class="">
-                    <a href="" class="btn bss btn-lg">Crear cita</a>
-                </div>
-            </div>
+    </div>
+</div>
 
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-5">
+
+            <!--<div class="project-info-box mt-0">
+                <h5 style="padding:0px 10px 10px ">@Html.DisplayFor(model => model.AspNetUsers.nombre_peluqueria)</h5>
+                <p class="mb-0">Vivamus pellentesque, felis in aliquam ullamcorper, lorem tortor porttitor erat, hendrerit porta nunc tellus eu lectus. Ut vel imperdiet est. Pellentesque condimentum, dui et blandit laoreet, quam nisi tincidunt tortor.</p>
+            </div>-->
+            <!-- / project-info-box -->
+
+            <div class="project-info-box mt-0 mb-0">
+                <p class="mb-0">
+                    <span class="fw-bold mr-10 va-middle hide-mobile">Horario:</span>
+                    @foreach (var item in Model.AspNetUsers.HORARIOS)
+                    {
+                    <p class="">
+                        <i class="fas fa-circle"></i>
+                        <Span id="l-v" data-semanaini="@item.semanales_inicio" data-semanafin="@item.semanales_cierre" class=""></Span><br />
+                        <i class="fas fa-circle"></i>
+                        <Span id="sabado" data-findesemanaini="@item.sabados_inicio" data-findesemanafin="@item.sabados_cierre" class=""></Span> <br />
+                        <i class="fas fa-circle"></i>
+                        <Span id="domingo" data-domingoini="@item.domingo_inicio" data-domingofin="@item.domingo_cierre" class=""></Span>
+                    </p>
+
+
+                    <span id="nombre-negocio" data-nombre="@item.AspNetUsers.nombre_peluqueria"></span>
+                    <span id="latitud" data-latitud=" @item.AspNetUsers.latitud"></span>
+                    <span id="longitud" data-longitud=" @item.AspNetUsers.longitud"></span>
+
+
+                }
+
+                    </p>
+                </div><!-- / project-info-box -->
+                <div class="project-info-box">
+                    <p id="tiempo" data-tiempo=" @Html.DisplayFor(model => model.tiempo)">
+                    </p>
+                    <p><b>@Html.LabelFor(model => model.estado, "Estado"): </b> @Html.DisplayFor(model => model.estado)</p>
+                    <p><b>Capacidad: </b>@Html.DisplayFor(model => model.AspNetUsers.capacidad_simultanea_)</p>
+                    <p><b>Categoria:</b> @Html.DisplayFor(model => model.CATEGORIAS_SERVICIOS.nombre_categoria)</p>
+                    <p><b> @Html.DisplayNameFor(model => model.AspNetUsers.Email):</b>@Html.DisplayFor(model => model.AspNetUsers.Email)</p>
+                    <p class="mb-0"><b>Telefono: </b>@Html.DisplayFor(model => model.AspNetUsers.telefono)</p>
+                </div><!-- / project-info-box -->
+
+
+            </div><!-- / column MAPA -->
+
+            <div class="col-md-7">
+                <div class="mx-md-3" style="max-width:650px; height:350px;">
+                    <div id="map" style="max-width:650px; height:350px;"></div>
+                    <div id="map" class="rounded" alt="Mapa" style="max-width:650px; height:350px;"></div>
+                </div>
+                <!-- / project-info-box -->
+                <div class="project-info-box mx-md-3" id="info-map">
+                    <p><b>Dirección: </b>@Html.DisplayFor(model => model.AspNetUsers.sector),
+                    #@Html.DisplayFor(model => model.AspNetUsers.calle),@Html.DisplayFor(model => model.AspNetUsers.ciudad)</p>
+
+
+
+
+                </div><!-- FIN / project-info-box -->
+            </div><!-- /FIN column MAPA -->
         </div>
+
+
     </div>
 
-    @*
-        <dt>
-            @Html.DisplayNameFor(model => model.estado)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.estado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AspNetUsers.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CATEGORIAS_SERVICIOS.nombre_categoria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CATEGORIAS_SERVICIOS.nombre_categoria)
-        </dd>
-
-        <dd>
-            <h3>Comentarios</h3>
-            @foreach (var item in Model.PUNTUACION_SERVICIOS)
-            {
-
-                <p>@item.comentario</p><br />
-
-
-            }
-        </dd>*@
-    @*    <dd>
-                        <h3>Horario Peluqueria</h3>
-
-                       <div class="certified">
-
-                @foreach (var item in Model.AspNetUsers.HORARIOS)
-                {
-
-                    <ul>
-                        <li class="text-center text-capitalize">
-
-                            <a href="javascript:void(0);">Horario<span></span></a>
-                            <p>L-V <Span>@item.semanales_inicio-@item.semanales_cierre</Span></p>
-                            <p>Sabado <Span>@item.sabados_inicio-@item.sabados_cierre</Span></p>
-                            <p>Domingo <Span>@item.domingo_inicio-@item.domingo_cierre</Span></p>
-
-                            <a href="javascript:void(0);">calendario <span></span></a>
-                        </li>
-                        <li class="text-center text-capitalize">
-                            <a href="javascript:void(0);">Direccion<span>Quality Assured</span></a>
-                        </li>
-                    </ul>
-
-                    /*  <p>Semanales Inicio<p>@item.semanales_inicio</p></p> <br />
-                      <p>Semanales Cierre<p>@item.semanales_cierre</p></p> <br />
-                      <p>Sabados Inicio<p>@item.sabados_inicio</p></p> <br />
-                      <p>Sabadps Cierre<p>@item.sabados_cierre</p></p> <br />
-                      <p>Domingo Iniciio<p>@item.domingo_inicio</p></p> <br />
-                      <p>Domingo Cierre<p>@item.domingo_cierre</p></p><br />
-                    */
-                }
-            </div>
-            </dd>
-            <dd>
-                <h3>Puntuacion en estrellas</h3>
-
-                <p>@ViewBag.promedio</p>
-            </dd>
-        </dl>
-            </div>
-            <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.id_servicio }) |
-                @Html.ActionLink("Back to List", "Index")
-            </p>*@
-
-</div>
