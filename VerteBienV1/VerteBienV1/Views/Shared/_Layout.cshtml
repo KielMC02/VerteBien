@@ -11,15 +11,25 @@
     @Styles.Render("https://pro.fontawesome.com/releases/v5.10.0/css/all.css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.css">
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin="" />
 
     @*Galeria de fotos*@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css" integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    @*JQUERY*@
+    @*JQUERY *@
     @*<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>*@
-
+    @*paymentez version*@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 
     @*paymentez*@
     <link href="https://cdn.paymentez.com/ccapi/sdk/payment_stable.min.css" rel="stylesheet" type="text/css" />
@@ -37,20 +47,31 @@
     <!-- Sweetalert import-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 
-
+    @*FAvicon aqui*@
+    <link rel="shortcut icon" href="~/Imagenes/verte-bien-logo-sin-eslogan.png">
+    @* FiN del FAvicon *@
     <style>
         .navbar-nav {
             margin-left: auto;
             margin-right: auto;
         }
 
-        .navbar-toggler-icon {
-            background-color: white !important;
-        }
+       
     </style>
 
 </head>
 <body>
+
+    <!--Mensaje de cookies  -->
+    <div class="aviso-cookies" id="aviso-cookies">
+        <img class="galleta" src="~/Imagenes/verte bien negro.png" alt="Galleta">
+        <h3 class="titulo">Cookies</h3>
+        <p class="parrafo">Utilizamos cookies propias y de terceros para mejorar nuestros servicios.</p>
+        <button class="boton" id="btn-aceptar-cookies">De acuerdo</button>
+        <a class="enlace" href="aviso-cookies.html">Aviso de Cookies</a>
+    </div>
+    <div class="fondo-aviso-cookies" id="fondo-aviso-cookies"></div>
+
     @*<nav class="navbar navbar-expand-lg navbar-light bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/SERVICIOS/Index"><img src="~/Imagenes/verte-bien-logo-sin-eslogan.png" alt="" class="d-inline-block align-text-top mx-3"></a>
@@ -121,7 +142,7 @@
 
     @*-------NUEVO MENU DE NAVEGACION-------------------*@
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/SERVICIOS/Index"><img src="~/Imagenes/verte-bien-logo-sin-eslogan.png" alt="" class="d-inline-block align-text-top mx-3"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -306,12 +327,14 @@
     </footer>
     <!-- Footer -->
 
-    @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
-    @Scripts.Render("~/Scripts/js.js")
-    @*@Scripts.Render("~/Scripts/tilt.jquery.min.js")*@
-    @Scripts.Render("~/Scripts/lightbox.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/tilt.jquery.min.js")
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    @Scripts.Render("~/Scripts/js.js")
+    @Scripts.Render("~/Scripts/lightbox.js")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+
+    <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>
     @RenderSection("scripts", required: false)
 
 </body>
