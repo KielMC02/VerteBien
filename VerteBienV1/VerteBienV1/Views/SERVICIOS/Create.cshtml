@@ -23,37 +23,38 @@
         </div>*@
 
     <div class="container">
-        <div class="card h-100 shadow-lg">
+        <div class="card h-100 shadow-lg mb-5 p-2">
             <div class="card-body" style="margin-left:5%">
-                <div class="form-row">
-                    @*<div class="col-md-4">*@
-                    <div class="form-group col-md-6">
-                        @Html.Label("Nombre del servicio", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-12">
-                            @Html.EditorFor(model => model.nombre_servicio, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                <div class="form-row ">
+                    
+                    <div class="row">
+                    <div class="form-group col-md-6 ">
+                        @Html.Label("Nombre del servicio", htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.nombre_servicio, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.nombre_servicio, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        @Html.Label("Categoría del Servicio", htmlAttributes: new { @class = "control-label col-md-12" })
-                        <div class="col-md-12">
-                            @Html.DropDownList("id_categoria", null, htmlAttributes: new { @class = "form-control col-md-10" })
+                    <div class="form-group col-md-6 ">
+                        @Html.Label("Categoría del Servicio", htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-10">
+                            @Html.DropDownList("id_categoria", null, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.id_categoria, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     @*</div>*@
 
                     @*<div class="col-md-4">*@
-                    <div class="form-group col-md-6">
-                        @Html.Label("Precio del Servicio", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-12">
-                            @Html.EditorFor(model => model.precio_servicio, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                    <div class="form-group col-md-6 ">
+                        @Html.Label("Precio del Servicio", htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-10" >
+                            @Html.EditorFor(model => model.precio_servicio, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.precio_servicio, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label col-md-8" })
-                        <div class="col-md-12">
+                    <div class="form-group col-md-6 ">
+                        @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-10">
                             <select name="duracion" id="cars" class="form-control col-md-10">
                                 <option value="0,50" step="any">30 Minutos</option>
                                 <option value="1">1 Hora</option>
@@ -65,46 +66,81 @@
                     </div>
                     <div class="form-group col-md-12">
                         @Html.Label("Descripción", htmlAttributes: new { @class = "control-label col-md-8" })
-                        <div class="col-md-12">
-                            @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control col-md-11", @rows = "3" })
+                        <div class="col-md-11">
+                            @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", @rows = "3" })
                             @*<textarea class="form-control col-md-11" id="exampleFormControlTextarea1" rows="3"></textarea>*@
                             @*@Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    @*</div>*@
+                    </div>
 
                     @*<div class="col-md-4">*@
-                    <div class="form-group col-md-12 col-sm-12">
-                        @Html.Label("Imagenes del Servicio", htmlAttributes: new { @class = "control-label col-md-10 col-sm-12" })
+                    <div class="form-group col-md-12 col-sm-12 my-4">
+                        @Html.Label("Imagenes del servicio", htmlAttributes: new { @class = "control-label col-md-10 col-sm-12 my-4 h2 text-center" })
                         <div class="col-md-12 col-sm-12">
-                            @if (User.IsInRole("expres"))
-                            {
-                                <input type="file" name="img1" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
-                                <input type="file" name="img2" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                                <input type="file" name="img3" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                            }
-                            @if (User.IsInRole("preferencial"))
-                            {
-                                <input type="file" name="img1" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
-                                <input type="file" name="img2" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                                <input type="file" name="img3" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                                <input type="file" name="img4" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                                <input type="file" name="img5" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                                <input type="file" name="img6" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                            }
-                            @if (User.IsInRole("vip"))
-                            {
-                                <input type="file" name="img1" id="archivo" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
-                                <input type="file" name="img2" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
-                                <input type="file" name="img3" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                                <input type="file" name="img4" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                                <input type="file" name="img5" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                                <input type="file" name="img6" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                                <input type="file" name="img7" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                                <input type="file" name="img8" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                                <input type="file" name="img9" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
-                            }
+                            <div class="row ">
+                                @if (User.IsInRole("expres"))
+                                {
+
+                                    <label for="img1" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
+                                    <label for="img2" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
+                                    <label for="img3" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
+
+                                    <input type="file" name="img1" id="img1" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
+                                    <input type="file" name="img2" id="img2" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img3" id="img3" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                }
+                            </div>
+                            <div class="row ">
+                                @if (User.IsInRole("preferencial"))
+                                {
+                                    <label for="img1" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
+                                    <label for="img2" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
+                                    <label for="img3" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
+                                    <label for="img4" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
+                                    <label for="img5" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
+                                    <label for="img6" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
+
+                                    <input type="file" name="img1" id="img1" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
+                                    <input type="file" name="img2" id="img2" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img3" id="img3" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img4" id="img4" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img5" id="img5" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img6" id="img6" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                }
+                            </div>
+                            <div class="row ">
+                                @if (User.IsInRole("vip"))
+
+                                {
+
+                                    
+
+                                    <label for="img1" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img1"> Subir imagen</span> </label>
+                                    <label for="img2" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img2"> Subir imagen</span> </label>
+                                    <label for="img3" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img3"> Subir imagen</span> </label>
+                                    <label for="img4" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img4"> Subir imagen</span> </label>
+                                    <label for="img5" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img5"> Subir imagen</span> </label>
+                                    <label for="img6" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img6"> Subir imagen</span> </label>
+                                    <label for="img7" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img7"> Subir imagen</span> </label>
+                                    <label for="img8" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img8"> Subir imagen</span> </label>
+                                    <label for="img9" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img9"> Subir imagen</span> </label>
+
+
+                                    <input type="file" name="img1" id="img1" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
+                                    <input type="file" name="img2" id="img2" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img3" id="img3" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img4" id="img4" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img5" id="img5" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img6" id="img6" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img7" id="img7" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img8" id="img8" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+                                    <input type="file" name="img9" id="img9" accept=".png, .jpg, .jpeg" class="btn col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
+
+                                }
+                            </div>
+
                             @*@Html.EditorFor(model => model.imagenes, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.imagenes, "", new { @class = "text-danger" })
                         </div>
@@ -124,8 +160,8 @@
                 <center>
                     <div class="form-group mt-2" >
                         <div class="col-md-12">
-                            @Html.ActionLink("Volver", "misServicios", null, htmlAttributes: new { @class = "btn text-white", @style = "background-color:#DBA312" })
-                            <button type="submit" class="btn text-white" style="background-color:#DBA312; ">Registrar Servicio</button>
+                            @Html.ActionLink("Volver", "misServicios", null, htmlAttributes: new { @class = "btn text-white ", @style = "background-color:#DBA312" })
+                            <button type="submit" class="btn text-white " style="background-color:#DBA312; ">Registrar Servicio</button>
                         </div>
                     </div>
                 </center>
