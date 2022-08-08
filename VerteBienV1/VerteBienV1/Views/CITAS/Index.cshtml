@@ -9,61 +9,85 @@
     <h4>Lista de citas</h4>
     <hr class="w-50" /><br />
 </center>
-<div class="container">
-    @using (Html.BeginForm("Index", "CITAS", FormMethod.Get))
-    {
-        if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip"))
+
+   
+        @using (Html.BeginForm("Index", "CITAS", FormMethod.Get))
         {
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <select class="form-control float-right col-md-4" style="margin-left:15%" name="estatusCitasSelec">
-                <option>Filtrar por el estado de la cita</option>
-                <option value="pendiente">Pendientes</option>
-                <option value="aceptado">Aceptadas</option>
-                <option value="cancelado">Canceladas</option>
-            </select>
-            <div class="col-2">
-                <button type="submit" class="btn col-lg-11 text-white" style="background-color:#DBA312">Filtrar</button>
+            if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip"))
+            {
+    <div class="container">
+        <div class="row row-cols-lg-12 g-2 align-content-center">
+            <div class="col-md-4 col-12 ">
+                <button type="submit" class="btn col-12 text-white" style="background-color:#DBA312">Filtrar</button>
             </div>
+            <div class="col-md-8 col-12 ">
+                <select class="form-control" style="" name="estatusCitasSelec">
+                    <option>Filtrar por el estado de la cita</option>
+                    <option value="pendiente">Pendientes</option>
+                    <option value="aceptado">Aceptadas</option>
+                    <option value="cancelado">Canceladas</option>
+                </select>
+
+            </div>
+
         </div>
     </div>
 
-        }
-    }
-    <div class="form-row">
-        @foreach (var item in Model)
-        {
-            <div class="card  shadow-lg col-md-12 col-sm-12 col-lg-12 col-xl-12" style="width: 70rem; margin-top:2%">
-                <div class="card-body">
-                    <h4 class="card-title float-left col-md-8 col-sm-12"> @Html.DisplayFor(modelItem => item.SERVICIOS.nombre_servicio)</h4>
-                    <h6 class="float-right col-md-4 col-sm-12"><b>Estado de la cita: </b>@Html.DisplayFor(modelItem => item.estado)</h6>
-                    <h6 class="float-left col-md-8 col-sm-12"><strong>Cliente: </strong>@Html.DisplayFor(modelItem => item.AspNetUsers.Email) </h6>
-                    <h6 class="float-left col-md-4 col-sm-12"><b>Fecha de la cita: </b>@Html.DisplayFor(modelItem => item.fecha_cita) </h6> <br /><br /><br />
-                    <h6 class="float-left col-md-4 col-sm-12"><b>Comentario:</b>@Html.DisplayFor(modelItem => item.comentario_cliente) </h6> <br /><br /><br />
-                    <p class="float-left col-md-12 col-sm-12">@Html.DisplayFor(modelItem => item.SERVICIOS.descripcion)</p><br />
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end col-md-12 col-sm-12">
-                        <p class="col-md-8 col-sm-12"><b>Precio: </b>@Html.DisplayFor(modelItem => item.SERVICIOS.precio_servicio)</p>
-                        @if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip"))
-                        {
-                            if (item.estado == "aceptado")
-                            {
-                                @Html.ActionLink("Completar Cita", "EstatusCita", "CITAS", new { id = item.id_cita, estatus = "completado" }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
-                            }
-                            else
-                            {
-                                @Html.ActionLink("Aceptar cita", "EstatusCita", "CITAS", new { id = item.id_cita, estatus = "aceptado" }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
-                            }
-                        }
-                        @Html.ActionLink("Cancelar", "EstatusCita", "CITAS", new { id = item.id_cita, estatus = "cancelado" }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
-                        @Html.ActionLink("Agregar Comentario", "Edit", "CITAS", new { id = item.id_cita}, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
-                    </div>
-                </div>
-            </div><br />
-        }
 
+            }
+        }
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {<div class="container col-12 col-lg-6 d-flex">
+
+                 <div class="card shadow my-4  cf">
+                     <div class="card-header row" style="margin-left: 1px;">
+                         <h4 class="card-title col-8 text-capitalize col-7"> @Html.DisplayFor(modelItem => item.SERVICIOS.nombre_servicio)</h4>
+                         <h6 class="card-title col-4"><b>Estado de la cita: </b> <span class="text-success">@Html.DisplayFor(modelItem => item.estado)</span></h6>
+                     </div>
+                     <div class="card-body col-12 p-4 ">
+                         <ul class="list-group list-group-flush">
+                             <li class="list-group-item"><strong>Cliente: </strong>@Html.DisplayFor(modelItem => item.AspNetUsers.Email) </li>
+                             <li class="list-group-item"><b>Fecha de la cita: </b>@Html.DisplayFor(modelItem => item.fecha_cita) </li>
+                             <li class="list-group-item mb-2"><b>Comentario: </b>@Html.DisplayFor(modelItem => item.comentario_cliente) </li>
+                         </ul>
+                         <br />
+                         <textarea readonly class="col-12 " rows="3" cols="15" style="resize: none; padding: 0.5rem 1rem;">@Html.DisplayFor(modelItem => item.SERVICIOS.descripcion) </textarea>
+                     </div>
+                     <p class="" style="padding:1.5rem 2rem;"><b>Precio: </b>@Html.DisplayFor(modelItem => item.SERVICIOS.precio_servicio)</p>
+                     <div class=" row p-4 text-end">
+
+                         @if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip"))
+                         {
+                             if (item.estado == "aceptado")
+                             {
+                                 @Html.ActionLink("Completar Cita", "EstatusCita", "CITAS", new { id = item.id_cita, estatus = "completado" }, htmlAttributes: new { @class = "btn text-white cbtn", @style = "background-color:#DBA312" })
+                             }
+                             else
+                             {
+                                 @Html.ActionLink("Aceptar cita", "EstatusCita", "CITAS", new { id = item.id_cita, estatus = "aceptado" }, htmlAttributes: new { @class = "btn text-white cbtn", @style = "background-color:#DBA312" })
+                             }
+                         }
+                         @Html.ActionLink("Cancelar", "EstatusCita", "CITAS", new { id = item.id_cita, estatus = "cancelado" }, htmlAttributes: new { @class = "btn text-white  my-2 my-md-0 cbtn", @style = "background-color:#DBA312" })
+                         @Html.ActionLink("Comentar", "Edit", "CITAS", new { id = item.id_cita }, htmlAttributes: new { @class = "btn text-white cbtn", @style = "background-color:#DBA312" })
+                     </div>
+
+                 </div>
+                </div>
+
+
+
+
+
+
+
+
+            }
+
+        </div>
     </div>
-</div>
-<br />
+
 
 
 @*<p>
