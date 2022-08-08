@@ -288,13 +288,21 @@ $(document).ready(function () {
 
 
 });
-
 /* query para poner el nombre del archivo que se sube*/
-jQuery('input[type=file]').change(function () {
+jQuery('input[type=file]').change(function (event) {
     var filename = jQuery(this).val().split('\\').pop();
     var idname = jQuery(this).attr('id');
-    jQuery('span.' + idname).next().find('span').html(filename);
+    let id = this.id;
+    var res = filename.substring(0, 15);
+    var fname = res + "...";
+    jQuery('span.' + idname).next().find('span').html(fname);
+    $('span.' + id).html(fname);
+    
+
 });
+
+
+/* FIN query para poner el nombre del archivo que se sube*/
 
 $(document).on('change', 'input[type="file"]', function () {
     // this.files[0].size recupera el tamaño del archivo
@@ -508,6 +516,8 @@ const validarFech = (expresion, input, campo) => {
 
 //Validar fecha de cumpleaños
 
+var loc = window.location;
+var pathNa = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
 
 var pathname = window.location.pathname;
 //if (pathname == '/Account/Register') {
@@ -659,10 +669,10 @@ inputs.forEach((input) => {
 
 
 
-$('input[type="file"]').change(function () {
-    $("button").prop("disabled", this.files.length == 0);
-    document.getElementById('obj1').style.display = 'none';
-});
+//$('input[type="file"]').change(function () {
+//    $("button").prop("disabled", this.files.length == 0);
+//    document.getElementById('obj1').style.display = 'none';
+//});
 
 
 
@@ -676,8 +686,6 @@ $('input[type="file"]').change(function () {
 //} else { }
 
 // Busca la pagina y el directorio exacto. 
-var loc = window.location;
-var pathNa = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
 
 
 
