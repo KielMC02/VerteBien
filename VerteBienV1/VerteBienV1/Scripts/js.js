@@ -288,63 +288,63 @@ $(document).ready(function () {
 
 
 });
-/* query para poner el nombre del archivo que se sube*/
-jQuery('input[type=file]').change(function (event) {
-    var filename = jQuery(this).val().split('\\').pop();
-    var idname = jQuery(this).attr('id');
-    let id = this.id;
-    var res = filename.substring(0, 15);
-    var fname = res + "...";
-    jQuery('span.' + idname).next().find('span').html(fname);
-    $('span.' + id).html(fname);
+///* query para poner el nombre del archivo que se sube*/
+//jQuery('input[type=file]').change(function (event) {
+//    var filename = jQuery(this).val().split('\\').pop();
+//    var idname = jQuery(this).attr('id');
+//    let id = this.id;
+//    var res = filename.substring(0, 15);
+//    var fname = res + "...";
+//    jQuery('span.' + idname).next().find('span').html(fname);
+//    $('span.' + id).html(fname);
     
 
-});
+//});
 
 
-/* FIN query para poner el nombre del archivo que se sube*/
+///* FIN query para poner el nombre del archivo que se sube*/
 
-$(document).on('change', 'input[type="file"]', function () {
-    // this.files[0].size recupera el tamaño del archivo
-    // alert(this.files[0].size);
+//$(document).on('change', 'input[type="file"]', function () {
+//    // this.files[0].size recupera el tamaño del archivo
+//    // alert(this.files[0].size);
 
-    var fileName = this.files[0].name;
-    var fileSize = this.files[0].size;
-
-
-    if (fileSize > 5000000) {
+//    var fileName = this.files[0].name;
+//    var fileSize = this.files[0].size;
 
 
-        alert('El archivo no debe superar los 5MB');
-
-        this.value = '';
-        this.files[0].name = '';
-    } else {
+//    if (fileSize > 5000000) {
 
 
-        // recuperamos la extensión del archivo
-        var ext = fileName.split('.').pop();
+//        alert('El archivo no debe superar los 5MB');
 
-        // Convertimos en minúscula porque 
-        // la extensión del archivo puede estar en mayúscula
-        ext = ext.toLowerCase();
+//        this.value = '';
+//        this.files[0].name = '';
+//    } else {
 
-        // console.log(ext);
-        switch (ext) {
-            case 'jpg':
-            case 'jpeg':
-            case 'png':
-            case 'pdf': break;
-            default:
-                alert('El archivo no tiene la extensión adecuada');
-                this.value = ''; // reset del valor
-                this.files[0].name = '';
 
-        }
+//        // recuperamos la extensión del archivo
+//        var ext = fileName.split('.').pop();
 
-    }
-});
-/* fin query para poner el nombre del archivo que se sube*/
+//        // Convertimos en minúscula porque 
+//        // la extensión del archivo puede estar en mayúscula
+//        ext = ext.toLowerCase();
+
+//        // console.log(ext);
+//        switch (ext) {
+//            case 'jpg':
+//            case 'jpeg':
+//            case 'png':
+//            case 'pdf': break;
+//            default:
+//                alert('El archivo no tiene la extensión adecuada');
+//                this.value = ''; // reset del valor
+//                this.files[0].name = '';
+
+//        }
+
+//    }
+//});
+///* fin query para poner el nombre del archivo que se sube*/
 
 
 /*Inicio de validacion */
