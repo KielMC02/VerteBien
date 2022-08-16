@@ -11,6 +11,7 @@
     @*Titulo de la pagina con el nombredel servicio*@
     <div class="text-left">
         <h1 class=" dtext container">@Html.DisplayFor(model => model.AspNetUsers.nombre_peluqueria)</h1>
+        <span>@Html.ActionLink("Ver peluqueria", "Details", "AspNetUsers", new { id = ViewBag.id }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm mx-1 rounded ", id = "volbtn" })</span>
     </div>
     @*FIN Titulo de la pagina con el nombredel servicio*@
 

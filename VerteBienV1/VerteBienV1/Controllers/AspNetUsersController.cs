@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Web;
 using System.Web.Mvc;
 using VerteBienV1.Models;
-
 
 namespace VerteBienV1.Controllers
 {
@@ -81,8 +83,21 @@ namespace VerteBienV1.Controllers
             }
             return RedirectToAction("Index","AspNetUsers");
         }
-
-
+        public string borrarImagen(string imagenParaBorrar)
+        {
+            string confirmado;
+            String imagenBorra = Path.Combine(HttpContext.Server.MapPath("~/imagenes_local/"), imagenParaBorrar);
+            if (System.IO.File.Exists(imagenBorra))
+            {
+                System.IO.File.Delete(imagenBorra);
+                confirmado = "Borrado Exitoso";
+            }
+            else
+            {
+                confirmado = "No existe la imagen";
+            }
+            return confirmado;
+        }
         //[Authorize(Roles = "administrador")]
         // GET: AspNetUsers
         public ActionResult Index(string email)
@@ -112,6 +127,12 @@ namespace VerteBienV1.Controllers
             {
                 return HttpNotFound();
             }
+
+            //Separamos los nombres de las imagenes y guardamos en una lista
+            List<String> imagenes = (aspNetUsers.fotos_local.Split(';')).ToList();
+            //Enviamos la lista a la vista
+            ViewData["imagenes_s"] = imagenes;
+
             return View(aspNetUsers);
         }
 
@@ -137,6 +158,7 @@ namespace VerteBienV1.Controllers
 
             return View(aspNetUsers);
         }
+
 
         [Authorize(Roles = "expres,preferencial,vip,administrador")]
         // GET: AspNetUsers/Edit/5
@@ -251,6 +273,16 @@ namespace VerteBienV1.Controllers
                 #endregion
                 ViewBag.fecha_nacimiento = aspNetUsers.fecha_nacimiento_;
                 ViewBag.sectores = new SelectList(sectores, aspNetUsers.sector);
+
+                //Separamos los nombres de las imagenes y guardamos en una lista
+
+                if (aspNetUsers.fotos_local != null) 
+                {
+                    List<String> imagenes = (aspNetUsers.fotos_local.Split(';')).ToList();
+                    //Enviamos la lista a la vista
+                    ViewData["imagenes_s"] = imagenes;
+                }
+
                 return View(aspNetUsers);
             }
             else
@@ -264,7 +296,7 @@ namespace VerteBienV1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,nombre,apellido,ciudad,sector,calle,telefono,latitud,longitud,nombre_peluqueria,estado,fecha_nacimiento_,fecha_creacion_,capacidad_simultanea_")] AspNetUsers aspNetUsers, string sectores)
+        public ActionResult Edit(HttpPostedFileBase img1, HttpPostedFileBase img2, HttpPostedFileBase img3, HttpPostedFileBase img4, HttpPostedFileBase img5, HttpPostedFileBase img6,[Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,nombre,apellido,ciudad,sector,calle,telefono,latitud,longitud,nombre_peluqueria,estado,fecha_nacimiento_,fecha_creacion_,capacidad_simultanea_")] AspNetUsers aspNetUsers, string sectores)
         {
             AspNetUsers usuarioEdit = db.AspNetUsers.Find(aspNetUsers.Id);
 
@@ -283,6 +315,7 @@ namespace VerteBienV1.Controllers
             usuarioEdit.fecha_creacion_ = usuarioEdit.fecha_creacion_;
             usuarioEdit.capacidad_simultanea_ = usuarioEdit.capacidad_simultanea_;
             //////---FIN DATOS NO MODIFICABLES
+            ///
             ///Datos si modificables
             usuarioEdit.nombre = aspNetUsers.nombre;
             usuarioEdit.apellido = aspNetUsers.apellido;
@@ -294,7 +327,211 @@ namespace VerteBienV1.Controllers
             usuarioEdit.longitud = aspNetUsers.longitud;
             usuarioEdit.nombre_peluqueria = aspNetUsers.nombre_peluqueria;
             usuarioEdit.fecha_nacimiento_ = aspNetUsers.fecha_nacimiento_;
-            
+
+            //Guardado y edicion de imagenes.//
+            //Variable para generar numeros ramdon para el nombre de las imagenes.
+            Random rnd = new Random();
+
+        if(usuarioEdit.fotos_local == null) 
+        { 
+            //Establecemos la ruta donde se guardaran las imagenes
+            if (img1 != null)
+            {
+
+                    int numero = rnd.Next(52);
+                    Convert.ToString(numero).Trim();
+                    var nuevaImagen = numero + aspNetUsers.Id + img1.FileName;
+                    String ruta_img1 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                    img1.SaveAs(ruta_img1);
+                    aspNetUsers.fotos_local = nuevaImagen;
+                }
+                if (img2 != null)
+                {
+                    int numero = rnd.Next(52);
+                    Convert.ToString(numero).Trim();
+                    var nuevaImagen = numero + aspNetUsers.Id + img2.FileName;
+                    String ruta_img2 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                    img2.SaveAs(ruta_img2);
+                    aspNetUsers.fotos_local += ";" + nuevaImagen;
+                }
+                if (img3 != null)
+                {
+                    int numero = rnd.Next(52);
+                    Convert.ToString(numero).Trim();
+                    var nuevaImagen = numero + aspNetUsers.Id + img3.FileName;
+                    String ruta_img3 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                    img3.SaveAs(ruta_img3);
+                    aspNetUsers.fotos_local += ";" + nuevaImagen;
+                }
+                if (img4 != null)
+                {
+                    int numero = rnd.Next(52);
+                    Convert.ToString(numero).Trim();
+                    var nuevaImagen = numero + aspNetUsers.Id + img4.FileName;
+                    String ruta_img4 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                    img4.SaveAs(ruta_img4);
+                    aspNetUsers.fotos_local += ";" + nuevaImagen;
+                }
+                if (img5 != null)
+                {
+                    int numero = rnd.Next(52);
+                    Convert.ToString(numero).Trim();
+                    var nuevaImagen = numero + aspNetUsers.Id + img5.FileName;
+                    String ruta_img5 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                    img5.SaveAs(ruta_img5);
+                    aspNetUsers.fotos_local += ";" + nuevaImagen;
+
+                }
+                if (img6 != null)
+                {
+                    int numero = rnd.Next(52);
+                    Convert.ToString(numero).Trim();
+                    var nuevaImagen = numero + aspNetUsers.Id + img6.FileName;
+                    String ruta_img6 = Server.MapPath("~/imagenes_servicios/") + nuevaImagen;
+                    img6.SaveAs(ruta_img6);
+                    aspNetUsers.fotos_local += ";" + nuevaImagen;
+                }
+                //Rellenar campo Fotos
+                usuarioEdit.fotos_local = aspNetUsers.fotos_local;
+            }
+            else 
+            {
+                //Separamos los nombres de las imagenes y guardamos en una lista
+                List<String> imagenes = (usuarioEdit.fotos_local.Split(';')).ToList();
+                //Establecemos la ruta donde se guardaran las imagenes
+                if (img1 != null)
+                {
+                    int numero = rnd.Next(52);
+                    Convert.ToString(numero).Trim();
+                    var nuevaImagen = numero + aspNetUsers.Id + img1.FileName;
+                    usuarioEdit.fotos_local = usuarioEdit.fotos_local.Replace(imagenes[0], nuevaImagen);
+                    ViewBag.comprobar = usuarioEdit.fotos_local;
+                    String ruta_img1 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                    img1.SaveAs(ruta_img1);
+                    var borrar = borrarImagen(imagenes[0]);
+                }
+                if (img2 != null)
+                {
+                    if (imagenes.Count < 2)
+                    {
+                        int numero = rnd.Next(52);
+                        Convert.ToString(numero).Trim();
+                        var nuevaImagen = numero + aspNetUsers.Id + img2.FileName;
+                        String ruta_img2 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                        img2.SaveAs(ruta_img2);
+                        usuarioEdit.fotos_local += ";" + nuevaImagen;
+                    }
+                    else
+                    {
+                        int numero = rnd.Next(52);
+                        Convert.ToString(numero).Trim();
+                        var nuevaImagen = numero + aspNetUsers.Id + img2.FileName;
+                        usuarioEdit.fotos_local = usuarioEdit.fotos_local.Replace(imagenes[1], nuevaImagen);
+                        ViewBag.comprobar = usuarioEdit.fotos_local;
+                        String ruta_img2 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                        img2.SaveAs(ruta_img2);
+                        var borrar = borrarImagen(imagenes[1]);
+                    }
+                }
+                if (img3 != null)
+                {
+                    if (imagenes.Count < 3)
+                    {
+                        int numero = rnd.Next(52);
+                        Convert.ToString(numero).Trim();
+                        var nuevaImagen = numero + aspNetUsers.Id + img3.FileName;
+                        String ruta_img3 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                        img3.SaveAs(ruta_img3);
+                        usuarioEdit.fotos_local += ";" + nuevaImagen;
+                    }
+                    else
+                    {
+                        int numero = rnd.Next(52);
+                        Convert.ToString(numero).Trim();
+                        var nuevaImagen = numero + aspNetUsers.Id + img3.FileName;
+                        usuarioEdit.fotos_local = usuarioEdit.fotos_local.Replace(imagenes[2], nuevaImagen);
+                        ViewBag.comprobar = usuarioEdit.fotos_local;
+                        String ruta_img3 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                        img3.SaveAs(ruta_img3);
+                        var borrar = borrarImagen(imagenes[2]);
+                    }
+                }
+                if (img4 != null)
+                {
+                    if (imagenes.Count < 4)
+                    {
+                        int numero = rnd.Next(52);
+                        Convert.ToString(numero).Trim();
+                        var nuevaImagen = numero + aspNetUsers.Id + img4.FileName;
+                        String ruta_img4 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                        img4.SaveAs(ruta_img4);
+                        usuarioEdit.fotos_local += ";" + nuevaImagen;
+                    }
+                    else
+                    {
+                        int numero = rnd.Next(52);
+                        Convert.ToString(numero).Trim();
+                        var nuevaImagen = numero + aspNetUsers.Id + img4.FileName;
+                        usuarioEdit.fotos_local = usuarioEdit.fotos_local.Replace(imagenes[3], nuevaImagen);
+                        ViewBag.comprobar = usuarioEdit.fotos_local;
+                        String ruta_img4 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                        img4.SaveAs(ruta_img4);
+                        var borrar = borrarImagen(imagenes[3]);
+                    }
+
+                }
+                if (img5 != null)
+                {
+                    if (imagenes.Count < 5)
+
+                    {
+                            int numero = rnd.Next(52);
+                            Convert.ToString(numero).Trim();
+                            var nuevaImagen = numero + aspNetUsers.Id + img5.FileName;
+                            String ruta_img5 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                            img5.SaveAs(ruta_img5);
+                            usuarioEdit.fotos_local += ";" + nuevaImagen;
+                    }
+                    else
+                    {
+                            int numero = rnd.Next(52);
+                            Convert.ToString(numero).Trim();
+                            var nuevaImagen = numero + aspNetUsers.Id + img5.FileName;
+                            usuarioEdit.fotos_local = usuarioEdit.fotos_local.Replace(imagenes[4], nuevaImagen);
+                            ViewBag.comprobar = usuarioEdit.fotos_local;
+                            String ruta_img5 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                            img5.SaveAs(ruta_img5);
+                            var borrar = borrarImagen(imagenes[4]);
+                    }
+                }
+                if (img6 != null)
+                {
+                    if (imagenes.Count < 6)
+                    {
+                        int numero = rnd.Next(52);
+                        Convert.ToString(numero).Trim();
+                        var nuevaImagen = numero + aspNetUsers.Id + img6.FileName;
+                        String ruta_img6 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                        img6.SaveAs(ruta_img6);
+                        usuarioEdit.fotos_local += ";" + nuevaImagen;
+                    }
+                    else
+                    {
+                        int numero = rnd.Next(52);
+                        Convert.ToString(numero).Trim();
+                        var nuevaImagen = numero + aspNetUsers.Id + img6.FileName;
+                        usuarioEdit.fotos_local = usuarioEdit.fotos_local.Replace(imagenes[5], nuevaImagen);
+                        ViewBag.comprobar = usuarioEdit.fotos_local;
+                        String ruta_img6 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                        img6.SaveAs(ruta_img6);
+                        var borrar = borrarImagen(imagenes[5]);
+                    }
+                }
+
+            }
+
+
+
             if (ModelState.IsValid)
             {
 

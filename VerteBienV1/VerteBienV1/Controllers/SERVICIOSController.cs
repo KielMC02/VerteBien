@@ -123,7 +123,11 @@ namespace VerteBienV1.Controllers
             List<String> imagenes = (sERVICIOS.imagenes.Split(';')).ToList();
             //Enviamos la lista a la vista
             ViewData["imagenes_s"] = imagenes;
-
+            //Enviamos ID peluqueria
+            ViewBag.id = sERVICIOS.id_usuario;
+            //Enviamos nombre
+            AspNetUsers nombre = db.AspNetUsers.Find(sERVICIOS.id_usuario);
+            ViewBag.nombre = nombre.nombre_peluqueria; 
             //Promedio 
             List<PUNTUACION_SERVICIOS> puntuacion = (from puntuacionS in db.PUNTUACION_SERVICIOS where puntuacionS.id_servicio == id select puntuacionS).ToList();
             decimal sumadas = new decimal();
