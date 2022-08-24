@@ -69,24 +69,6 @@
             </div>
             <p class="formulario__input-error">por favor, introducir link correcto.</p>
         </div>
-
-        <div class="form-group my-1 formulario__grupo">
-            <i class="far fa-user-circle sn"></i>
-            @Html.LabelFor(model => model.id_usuario, "Usuario", htmlAttributes: new { @class = "control-label" })
-            <div class="col-md-10 ">
-                @Html.DropDownList("id_usuario", null, htmlAttributes: new { @class = "form-control formulario__input", id = "id_usuario", name = "id_usuario" })
-                <i class="fas fa-check-circle" style="color: #1ed12d;"></i>
-            </div>
-        </div>
-        <div class="form-group my-1">
-            @Html.LabelFor(model => model.estado, "Estado", htmlAttributes: new { @class = "control-label " })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
         <div class="modal" tabindex="-1" id="modal">
             <div class="modal-dialog">
                 <div class="modal-content">
