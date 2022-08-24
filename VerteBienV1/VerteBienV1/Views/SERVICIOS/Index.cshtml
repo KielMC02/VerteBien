@@ -146,38 +146,76 @@
     <br />
     <br />
     <div class="my-4" style="min-height:35vh;">
-        <div class="row ">
-            <div class="row col-12">
+        <div class=" ">
+            <div class="row">
                 @foreach (var item in Model)
                 {
                     //Separamos los nombres de las imagenes y guardamos en una lista
                     List<String> imagenes = (item.imagenes.Split(';')).ToList();
-                    <div class="col-xd-12 col-md-12 col-lg-6 col-xl-6 col-sm-12 ">
-                        <div class="card shadow my-2 justify-content-md-center" style="max-width:576px; ">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-12 col-xs-12 col-lg-4 col-xl-4">
-                                    <img src="~/imagenes_servicios/@imagenes[0]" class="card-img img-fluid my-2 mx-auto d-block " alt="...">
+
+                <div class="col-12 col-md-6 col-lg-4 mb-2">
+
+                    <div class="card " style="max-width: 100%; height: 100%; ">
+                        <img class="card-img-top" src="~/imagenes_servicios/@imagenes[0]" alt="Card image cap" style="height: 265px; object-fit: cover;">
+                        <div class="card-body" style="height:100%">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.nombre_servicio)</h5>
+                            <p class="card-text indexdetlles">@Html.DisplayFor(modelItem => item.descripcion).</p>
+                       
+                                <div class="my-2 mb-3">
+                                    <small class=" mx-2" style="font-family: 'Lato', sans-serif; color: #777; font-size: 18px; color: #777; font-weight: 900; line-height: 45px; z-index: 1;"> $ @Html.DisplayFor(modelItem => item.precio_servicio)</small>
+                                </div>
+                                
+                           
+                            <div class="row justify-content-between align-items-center " style="">
+                                <div class="col-12 col-md-6">
+                                    @Html.ActionLink("Crear cita", "Create", "CITAS", new { idServicio = item.id_servicio }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm my-2 my-md-0 rounded text-wrap col-12", id = "volbtn", style = " " })
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    @Html.ActionLink("Más detalles", "Details", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn text-white btn-sm rounded text-wrap col-12 my-2 my-md-0", style = "background-color:#DBA312" })
 
                                 </div>
 
-                                <div class="card-body col-md-8 col-sm-12 col-xs-12 col-lg-8 col-xl-8 p-4">
-                                    <h1 class="card-title">@Html.DisplayFor(modelItem => item.nombre_servicio)</h1>
-                                    <p class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.AspNetUsers.nombre_peluqueria)</p>
-                                    <p class="card-text">@Html.DisplayFor(modelItem => item.descripcion)</p>
 
-                                    <div class="d-flex justify-content-between align-items-center ">
-                                        <div class="btn-group">
-                                            @Html.ActionLink("Crear cita", "Create", "CITAS", new { idServicio = item.id_servicio }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm mx-1 rounded", id = "volbtn", style = " " })
-                                            @Html.ActionLink("Más información", "Details", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn text-white btn-sm rounded", style = "background-color:#DBA312" })
-
-                                        </div>
-
-                                        <small class="text-muted mx-2"> $ @Html.DisplayFor(modelItem => item.precio_servicio)</small>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
+
+
+                    @*<div class="card shadow my-2 justify-content-md-center" style="max-width:576px; ">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 col-xs-12 col-lg-12 col-xl-4">
+                                <div class="glider-contain">
+                                    <div class="glider" style="width:100%; height:100%;">
+                                        <div> <img src="~/imagenes_servicios/@imagenes[0]" class="w-full h-98 md:h-auto object-fit  md:rounded-none md:rounded-l-lg" style="height: 265px;" alt="..."></div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="card-body col-md-8 col-sm-12 col-xs-12 col-lg-12 col-xl-8 p-4">
+                                <h3 class="card-title fw-bold">@Html.DisplayFor(modelItem => item.nombre_servicio)</h3>
+                                <p class="card-subtitle mb-4 text-muted "> @Html.DisplayFor(modelItem => item.AspNetUsers.nombre_peluqueria)</p>
+                                <p class="card-text d-inline-block text-truncate mb-4 " style="max-width: 200px;">@Html.DisplayFor(modelItem => item.descripcion)</p>
+                                <div class="my-2">
+                                    <small class="text-muted mx-2"> $ @Html.DisplayFor(modelItem => item.precio_servicio)</small>
+                                </div>
+                                <div class="row justify-content-between align-items-center ">
+                                    <div class="col-12 col-md-6">
+                                        @Html.ActionLink("Crear cita", "Create", "CITAS", new { idServicio = item.id_servicio }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm my-2 my-md-0 rounded text-wrap col-12", id = "volbtn", style = " " })
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        @Html.ActionLink("Más información", "Details", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn text-white btn-sm rounded text-wrap col-12 my-2 my-md-0", style = "background-color:#DBA312" })
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+
 
 
 
