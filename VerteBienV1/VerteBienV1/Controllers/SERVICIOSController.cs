@@ -34,6 +34,26 @@ namespace VerteBienV1.Controllers
             return confirmado;
         }
 
+        //Metodo que valida si el usuario tienen horarios creados.
+        public string VerificarUser()
+        {
+            var idUser = User.Identity.GetUserId();
+            //Horarios
+            List<HORARIOS> verificarHorario = new List<HORARIOS>();
+            verificarHorario = (from busqueda in db.HORARIOS where busqueda.id_usuario == idUser select busqueda).ToList();
+            //Redes sociales
+            List<REDES_SOCIALES> verificarRedes = new List<REDES_SOCIALES>();
+            verificarRedes = (from busqueda in db.REDES_SOCIALES where busqueda.id_usuario == idUser select busqueda).ToList();
+            if (verificarHorario.Count == 0)
+            {
+                return ("horario");
+            }
+            if (verificarRedes.Count == 0)
+            {
+                return ("redes");
+            }
+            return ("ok");
+        }
 
 
         // GET: SERVICIOS
@@ -154,6 +174,16 @@ namespace VerteBienV1.Controllers
         // GET: SERVICIOS/Create
         public ActionResult Create()
         {
+            string respuesta = VerificarUser();
+            if (respuesta == "horario") 
+            {
+                return RedirectToAction("Create", "HORARIOS");
+            }
+            if (respuesta == "redes")
+            {
+                return RedirectToAction("Create", "REDES_SOCIALES");
+            }
+
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.id_categoria = new SelectList(db.CATEGORIAS_SERVICIOS, "id_categoria_servicio", "nombre_categoria");
             return View();
