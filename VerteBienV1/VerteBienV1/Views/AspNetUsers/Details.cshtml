@@ -4,236 +4,252 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+
 
 <div>
     @{
         List<String> _list = ViewData["imagenes_s"] as List<String>;
     }
-    <div class="carousel">
-        <div class="carousel__contenedor">
-            <button aria-label="Anterior" class="carousel__anterior">
-                <i class="fas fa-chevron-left"></i>
-            </button>
 
-            <div class="carousel__lista">
-                @if (_list != null)
-                {
-                    foreach (var item in _list)
-                    {
-                        <div class="carousel__elemento">
-                            <a href="~/Imagenes_local/" data-lightbox="Sgaleria" style="width:100%; height:100%;">
-                                <img src="~/Imagenes_local/@item" alt="" style=" height: 350px;">
-                            </a>
+
+    <center>
+      
+        <h4 class=" my-4">Perfil  de @Html.DisplayFor(model => model.nombre_peluqueria)</h4>
+        <hr class="w-50" />
+    </center>
+
+
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="">
+                <div class="card">
+                    <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:250px;">
+                        <div class="ms-4 mt-5 d-flex flex-column" style="width: 250px;">
+                            <img src="~/Imagenes/pexels-cottonbro-3998429 (1).jpg"
+                                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                                 style="width: 250px; z-index: 1; max-height: 220px; object-fit: cover;">
+                            @Html.ActionLink("Editar perfil", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-outline-dark btn-sm mx-1 rounded my-2", Style = "z-index: 1;" })
                         </div>
-                    }
-                }
-            </div>
-            <button aria-label="Siguiente" class="carousel__siguiente">
-                <i class="fas fa-chevron-right"></i>
-            </button>
 
-            <div role="tablist" class="carousel__indicadores"></div>
+                        <div class="ms-3 d-none d-md-block d-lg-block d-xl-block" style="margin-top: 138px;">
+                            <h5 class="pl-3">@Html.DisplayFor(model => model.nombre_peluqueria)</h5>
+                            <p>@Html.DisplayFor(model => model.ciudad)</p>
+                        </div>
+                    </div>
+                    <div class="p-4 text-black mb-3 " style="background-color: #f8f9fa; height: 190PX;">
+                        <div class="d-flex justify-content-end text-center py-3">
+                            <div class="ms-3 d-block d-sm-block d-md-none " style="margin-top: 60px;">
+                                <h5 class="pl-3">@Html.DisplayFor(model => model.nombre_peluqueria)</h5>
+                                <p>@Html.DisplayFor(model => model.ciudad)</p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <p class="lead fw-normal mb-0 ml-2 my-2">Galeria de fotos</p>
+                        @*<p class="mb-0"><a href="#!" class="text-muted">Show all</a></p>*@
+                    </div>
+
+                    @*<div class="row g-2">
+
+                            @if (_list != null)
+                            {
+                                foreach (var item in _list)
+                                {
+                                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+
+                                        <a href="~/Imagenes_local/@item" data-lightbox="Sgaleria" style="width:100%; height:100%; ">
+                                            <img src="~/Imagenes_local/@item" class="w-100 rounded-3" alt="image 1" style=" ">
+
+                                        </a>
+                                    </div>
+
+                                }
+
+                            }
+
+                        </div>*@
+
+
+                    <div class="carousel">
+                        <div class="carousel__contenedor">
+                            <button aria-label="Anterior" class="carousel__anterior" style="margin-left:10%">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+
+                            <div class="carousel__lista">
+                                @if (_list != null)
+                                {
+                                    foreach (var item in _list)
+                                    {
+                                        <div class="carousel__elemento">
+                                            <a href="~/Imagenes_local/@item" data-lightbox="Sgaleria" style="width:100%; height:100%;">
+                                                <img src="~/Imagenes_local/@item" alt="" style="height: 350px; width:450px;">
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <button aria-label="Siguiente" class="carousel__siguiente" style="margin-right:10%">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+
+                            <div role="tablist" class="carousel__indicadores"></div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="card-body p-4 text-black mt-5">
+                        <div class="mb-5">
+                            <p class="lead fw-normal mb-1">Contacto:</p>
+                            <div class="p-4" style="background-color: #f8f9fa;">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0"> @Html.DisplayNameFor(model => model.Email) </p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">@Html.DisplayFor(model => model.Email)</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Telefono:</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0"> @Html.DisplayFor(model => model.telefono)</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Direccion</p>
+                                        </div>
+                                        <div class="col-sm-9">
+
+                                            <p class="text-muted mb-0">
+                                                @Html.DisplayFor(model => model.sector),
+                                                #@Html.DisplayFor(model => model.calle),@Html.DisplayFor(model => model.ciudad)
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Capacidad:</p>
+                                        </div>
+                                        <div class="col-sm-9">
+
+                                            <p class="text-muted mb-0">
+                                                @Html.DisplayFor(model => model.capacidad_simultanea_)
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Cuenta creada:</p>
+                                        </div>
+                                        <div class="col-sm-9">
+
+                                            <p class="text-muted mb-0">
+                                                @Html.DisplayFor(model => model.fecha_creacion_)
+                                            </p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <p class="lead fw-normal mb-1">Ubicacion:</p>
+
+                    <div id="map" style="max-width:100%; height:350px;"></div>
+
+
+
+                </div>
+            </div>
         </div>
     </div>
-    <h4>AspNetUsers</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailConfirmed)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmailConfirmed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PasswordHash)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SecurityStamp)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SecurityStamp)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TwoFactorEnabled)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LockoutEndDateUtc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LockoutEnabled)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LockoutEnabled)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AccessFailedCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.apellido)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.apellido)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ciudad)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ciudad)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.sector)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.sector)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.calle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.calle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.telefono)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.telefono)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.latitud)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.latitud)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.longitud)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.longitud)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre_peluqueria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nombre_peluqueria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.estado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha_nacimiento_)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fecha_nacimiento_)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha_creacion_)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fecha_creacion_)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.capacidad_simultanea_)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.capacidad_simultanea_)
-        </dd>
-
-    </dl>
+    <center>
+        @Html.ActionLink("Volver", "Index", new { }, htmlAttributes: new { @class = "btn btn-outline-warning  rounded my-5", id = "volbtn" })
+    </center>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+
+
+
+
+
+<span id="nombre-negocio" data-nombre="   @Html.DisplayFor(model => model.nombre_peluqueria)"></span>
+<span id="latitud" data-latitud="@Html.DisplayFor(model => model.latitud)"></span>
+<span id="longitud" data-longitud="    @Html.DisplayFor(model => model.longitud)"></span>
+
+
+
+
+
+
+
+
+
+
+
+
+@Html.DisplayNameFor(model => model.UserName)
+
+
+@Html.DisplayFor(model => model.UserName)
+
+@Html.DisplayNameFor(model => model.nombre)
+
+@Html.DisplayFor(model => model.nombre)
+
+@Html.DisplayNameFor(model => model.apellido)
+
+@Html.DisplayFor(model => model.apellido)
+
+@Html.DisplayNameFor(model => model.calle)
+
+@Html.DisplayFor(model => model.calle)
+
+@Html.DisplayNameFor(model => model.telefono)
+
+@Html.DisplayFor(model => model.telefono)
+
+@Html.DisplayNameFor(model => model.nombre_peluqueria)
+
+
+@Html.DisplayNameFor(model => model.estado)
+
+@Html.DisplayFor(model => model.estado)
+
+@Html.DisplayNameFor(model => model.fecha_nacimiento_)
+
+@Html.DisplayFor(model => model.fecha_nacimiento_)
+
+@Html.DisplayNameFor(model => model.fecha_creacion_)
+
+
+
+@Html.DisplayNameFor(model => model.capacidad_simultanea_)
+
+
+
+
+
+

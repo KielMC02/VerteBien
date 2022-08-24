@@ -12,7 +12,7 @@
 </center>
 <br />
 
-<form action="~/AspNetUsers/Edit" enctype="multipart/form-data" method="post">
+<form action="~/AspNetUsers/Edit" role = "form" id = "formulario"  enctype="multipart/form-data" method="post">
     @Html.AntiForgeryToken()
 
     <div class="container">
@@ -21,138 +21,207 @@
                 <div class="form-row">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.Id)
+                    <div class="row">
 
-                    <div class="form-group col-md-6 col-sm-12">
-                        @Html.Label("Nombre", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-                            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                        <div class="form-group col-md-6 col-sm-12 formulario__grupo" id="grupo__nombre">
+                            @Html.Label("Nombre ", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10 formulario__grupo-inpu">
+                                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control col-md-10 formulario__input", id = "nombre", name = "nombre" } })
+                                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario__input-error">El nombre tiene que ser letras espacion y pueden llevar acento. </p>
                         </div>
-                    </div>
-                    <div class="form-group col-md-6 col-sm-12">
-                        @Html.Label("Sector", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("sectores", null, htmlAttributes: new { @class = "form-control col-md-10" })
-                            @Html.ValidationMessageFor(model => model.sector, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 col-sm-12">
-                        @Html.Label("Apellidos", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-                            @Html.ValidationMessageFor(model => model.apellido, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 col-sm-12">
-                        @Html.Label("Calle", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.calle, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-                            @Html.ValidationMessageFor(model => model.calle, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 col-sm-12">
-                        @Html.Label("Fecha de nacimiento", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(model => model.fecha_nacimiento_, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control col-md-10" })
-                            @Html.ValidationMessageFor(model => model.fecha_nacimiento_, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 col-sm-12">
-                        @Html.Label("Longitud", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.longitud, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-                            @Html.ValidationMessageFor(model => model.longitud, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 col-sm-12">
-                        @Html.Label("Teléfono", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-                            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 col-sm-12">
-                        @Html.Label("Latitud", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.latitud, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-                            @Html.ValidationMessageFor(model => model.latitud, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 col-sm-12">
-                        @Html.Label("Ciudad", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.ciudad, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-                            @Html.ValidationMessageFor(model => model.ciudad, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6 col-sm-12">
-                        @Html.Label("Nombre del negocio", htmlAttributes: new { @class = "control-label col-md-10" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.nombre_peluqueria, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-                            @Html.ValidationMessageFor(model => model.nombre_peluqueria, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    @*Imagenes peluqeuria*@
 
-                    @{
-                        List<String> _list = ViewData["imagenes_s"] as List<String>;
-                        ViewBag.contador = 0;
-                        var inputsFaltantes = 6;
+                        <div class="form-group col-md-6 col-sm-12formulario__grupo" id="grupo__apellido">
+                            @Html.Label("Apellidos ", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10 formulario__grupo-input">
+                                @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control col-md-10 formulario__input", id = "apellido", name = "apellido" } })
+                                @Html.ValidationMessageFor(model => model.apellido, "", new { @class = "text-danger" })
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario__input-error">El apellido tiene que ser letras espacion y pueden llevar acento.</p>
+                        </div>
 
-                    }
 
-                <div class="row mt-4">
-                    @if (_list != null)
-                    {
-                        foreach (var item in _list)
+
+                        <div class="form-group col-md-6 col-sm-12 my-2 formulario__grupo" id="grupo__fecha_nacimiento_">
+                            @Html.Label("Fecha de nacimiento ", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10 formulario__grupo-input">
+                                @Html.TextBoxFor(model => model.fecha_nacimiento_, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control col-md-10", id = "fecha_nacimiento_", name = "fecha_nacimiento_" })
+                                @Html.ValidationMessageFor(model => model.fecha_nacimiento_, "", new { @class = "text-danger" })
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario__input-error">La fecha tiene que ser mes/dia/años</p>
+                            <p class="formulario__input-errorr">Tiene que ser mayo de edad</p>
+                        </div>
+
+
+
+                        <div class="form-group col-md-6 col-sm-12 my-2 formulario__grupo" id="grupo__nombre_peluqueria">
+                            @Html.Label("Nombre del negocio ", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10 formulario__grupo-input">
+                                @Html.EditorFor(model => model.nombre_peluqueria, new { htmlAttributes = new { @class = "form-control col-md-10 formulario__input", id = "nombre_peluqueria", name = "nombre_peluqueria" } })
+                                @Html.ValidationMessageFor(model => model.nombre_peluqueria, "", new { @class = "text-danger" })
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario__input-error">El nombre de la peluqueria debe tener minimo 4 caracteres.</p>
+                        </div>
+
+
+
+
+                        <div class="form-group col-md-6 col-sm-12  formulario__grupo" id="grupo__telefono">
+                            @Html.Label("Teléfono ", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10  formulario__grupo-input">
+                                @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control col-md-10 formulario__input", id = "telefono", name = "telefono" } })
+                                @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario__input-error">Por favor, introducir un telefono valido </p>
+                        </div>
+
+                        <div class="form-group col-md-6 col-sm-12 mb-2">
+                            @Html.Label("Sector ", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("sectores", null, htmlAttributes: new { @class = "form-control col-md-10" })
+                                @Html.ValidationMessageFor(model => model.sector, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-sm-12 mb-2 formulario__grupo" id="grupo__calle">
+                            @Html.Label("Calle ", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10 formulario__grupo-input">
+                                @Html.EditorFor(model => model.calle, new { htmlAttributes = new { @class = "form-control col-md-10 formulario__input", id = "calle", name = "calle" } })
+                                @Html.ValidationMessageFor(model => model.calle, "", new { @class = "text-danger" })
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario__input-error">El numero de la calle  solo puede contener numeros y maximo 4 digitos</p>
+                        </div>
+
+
+
+
+                         
+                        <div class="form-group col-md-6 col-sm-12 formulario__grupo" id="grupo__ciudad">
+                            @Html.Label("Ciudad ", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10  formulario__grupo-input">
+                                @Html.EditorFor(model => model.ciudad, new { htmlAttributes = new { @class = "form-control col-md-10 formulario__input", id = "ciudad", name = "ciudad" } })
+                                @Html.ValidationMessageFor(model => model.ciudad, "", new { @class = "text-danger" })
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            </div>
+                            <p class="formulario__input-error">Elegir una ciudad valida</p>
+                        </div>
+                     
+
+                        <span id="nombre-negocio" data-nombre="   @Html.DisplayFor(model => model.nombre_peluqueria)"></span>
+                        <span id="latitud" data-latitud="@Html.DisplayFor(model => model.latitud)"></span>
+                        <span id="longitud" data-longitud="    @Html.DisplayFor(model => model.longitud)"></span>
+
+
+
+                        <div id="map" class="form-group col-12 my-1 text-center mt-4" style="width:100%; height: 350px;"></div>
+
+
+                        <div class="form-group col-md-6 col-sm-12">
+                            @Html.Label("Latitud ", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.latitud, new { htmlAttributes = new { @class = "form-control col-md-10", id = "Latitud" } })
+                                @Html.ValidationMessageFor(model => model.latitud, "", new { @class = "text-danger", })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12">
+                            @Html.Label("Longitud ", htmlAttributes: new { @class = "control-label col-md-10" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.longitud, new { htmlAttributes = new { @class = "form-control col-md-10", id = "Longitud" } })
+                                @Html.ValidationMessageFor(model => model.longitud, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        @{
+                            List<String> _list = ViewData["imagenes_s"] as List<String>;
+                            ViewBag.contador = 0;
+                            var inputsFaltantes = 6;
+
+                        }
+
+                    <div class="row mt-4">
+                        <h4 class="my-3"> Fotos</h4>
+                        @if (_list != null)
                         {
-                            ViewBag.contador = ViewBag.contador + 1;
+                            foreach (var item in _list)
+                            {
+                                ViewBag.contador = ViewBag.contador + 1;
 
-                            <div class="col-lg-4 mt-3">
-                                <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; max-height:250px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
+                                <div class="col-lg-4 mt-3">
+                                    <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; max-height:250px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
 
-                                <div class="mt-3 row col-12">
+                                    <div class="mt-3 row col-12">
 
-                                    <span class="@("file"+@ViewBag.contador)">
-                                        <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
-                                    </span>
-                                    <label for="@("file"+@ViewBag.contador)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Subir foto</span></label>
+                                        <span class="@("file"+@ViewBag.contador)">
+                                            <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
+                                        </span>
+                                        <label for="@("file"+@ViewBag.contador)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Subir foto</span></label>
+
+                                    </div>
 
                                 </div>
-
-                            </div>
+                            }
                         }
-                    }
-                    @{
-                        inputsFaltantes = inputsFaltantes - ViewBag.contador;
-                     }
+                        @{
+                            inputsFaltantes = inputsFaltantes - ViewBag.contador;
+                        }
 
-                    @if (inputsFaltantes != 0)
-                    {
-                        ViewBag.contador2= ViewBag.contador;
-                        <h2>Agregar Nuevas imagenes al servicio</h2>
-                      
-                        for (int i =1; i <= inputsFaltantes; i++)
+                        @if (inputsFaltantes != 0)
                         {
-                            ViewBag.contador2 = ViewBag.contador2 + 1;
-                            <span class="@("file"+@ViewBag.contador2)">
-                                <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
-                            </span>
-                            <label for="@("file"+@ViewBag.contador2)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Agregar Fotos</span></label>
+                            ViewBag.contador2 = ViewBag.contador;
+                            <h2>Agregar Nuevas imagenes al servicio</h2>
+
+                            for (int i = 1; i <= inputsFaltantes; i++)
+                            {
+                                ViewBag.contador2 = ViewBag.contador2 + 1;
+                                <span class="@("file"+@ViewBag.contador2)">
+                                    <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
+                                </span>
+                                <label for="@("file"+@ViewBag.contador2)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Agregar Fotos</span></label>
+                            }
                         }
-                    }
 
-
-                    @Html.ActionLink("Cambiar mi contraseña", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "btn text-white col-md-5", @style = "background-color:#DBA312;" })
-                    <center>
-                        <div class="form-group col-md-12 col-sm-12">
-                            <div class="col-md-offset-2 col-md-10">
-                                <button type="submit" class="btn text-white col-md-5" style="background-color:#DBA312; margin-top:2%; margin-right:10%">Guardar cambios</button>
+                        <div class="my-3">
+                            @Html.ActionLink("Cambiar mi contraseña", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "btn text-white col-md-5", @style = "background-color:#DBA312;" })
+                        </div>
+                        <div class="modal" tabindex="-1" id="modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">
+                                            Verificar formulario
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Por favor verificar que los datos del formulario esten correcto.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </center>
-                </div>
-                </div>
+                        <center>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button type="submit" class="btn text-white col-md-5" style="background-color:#DBA312; margin-top:2%; margin-right:10%">Guardar cambios</button>
+                                </div>
+                            </div>
+                        </center>
+                    </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -177,9 +246,9 @@
 @Html.ValidationMessageFor(model => model.capacidad_simultanea_, "", new { @class = "text-danger" })
 
 
-@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+@*@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
 
-@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })*@
 
 
 @Html.EditorFor(model => model.EmailConfirmed, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
