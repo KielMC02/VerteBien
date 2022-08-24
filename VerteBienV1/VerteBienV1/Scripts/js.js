@@ -288,62 +288,62 @@ $(document).ready(function () {
 
 
 });
-///* query para poner el nombre del archivo que se sube*/
-//jQuery('input[type=file]').change(function (event) {
-//    var filename = jQuery(this).val().split('\\').pop();
-//    var idname = jQuery(this).attr('id');
-//    let id = this.id;
-//    var res = filename.substring(0, 15);
-//    var fname = res + "...";
-//    jQuery('span.' + idname).next().find('span').html(fname);
-//    $('span.' + id).html(fname);
+/* query para poner el nombre del archivo que se sube*/
+jQuery('input[type=file]').change(function (event) {
+    var filename = jQuery(this).val().split('\\').pop();
+    var idname = jQuery(this).attr('id');
+    let id = this.id;
+    var res = filename.substring(0, 15);
+    var fname = res + "...";
+    jQuery('span.' + idname).next().find('span').html(fname);
+ /*   $('span.' + id).html(fname);*/
     
 
-//});
+});
 
 
 ///* FIN query para poner el nombre del archivo que se sube*/
 
-//$(document).on('change', 'input[type="file"]', function () {
-//    // this.files[0].size recupera el tamaño del archivo
-//    // alert(this.files[0].size);
+$(document).on('change', 'input[type="file"]', function () {
+    // this.files[0].size recupera el tamaño del archivo
+    // alert(this.files[0].size);
 
-//    var fileName = this.files[0].name;
-//    var fileSize = this.files[0].size;
-
-
-//    if (fileSize > 5000000) {
+    var fileName = this.files[0].name;
+    var fileSize = this.files[0].size;
 
 
-//        alert('El archivo no debe superar los 5MB');
-
-//        this.value = '';
-//        this.files[0].name = '';
-//    } else {
+    if (fileSize > 5000000) {
 
 
-//        // recuperamos la extensión del archivo
-//        var ext = fileName.split('.').pop();
+        alert('El archivo no debe superar los 5MB');
 
-//        // Convertimos en minúscula porque 
-//        // la extensión del archivo puede estar en mayúscula
-//        ext = ext.toLowerCase();
+        this.value = '';
+        this.files[0].name = '';
+    } else {
 
-//        // console.log(ext);
-//        switch (ext) {
-//            case 'jpg':
-//            case 'jpeg':
-//            case 'png':
-//            case 'pdf': break;
-//            default:
-//                alert('El archivo no tiene la extensión adecuada');
-//                this.value = ''; // reset del valor
-//                this.files[0].name = '';
 
-//        }
+        // recuperamos la extensión del archivo
+        var ext = fileName.split('.').pop();
 
-//    }
-//});
+        // Convertimos en minúscula porque 
+        // la extensión del archivo puede estar en mayúscula
+        ext = ext.toLowerCase();
+
+        // console.log(ext);
+        switch (ext) {
+            case 'jpg':
+            case 'jpeg':
+            case 'png':
+            case 'pdf': break;
+            default:
+                alert('El archivo no tiene la extensión adecuada');
+                this.value = ''; // reset del valor
+                this.files[0].name = '';
+
+        }
+
+    }
+});
 ///* fin query para poner el nombre del archivo que se sube*/
 
 
@@ -358,7 +358,7 @@ const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-\@]{4,16}$/, // Letras, numeros, guion y guion_bajo
-    nombre: /^[a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras y espacios, pueden llevar acentos.
+    nombre: /^[a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
     password: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
     telefono: /^\d{9,10}$/, // 7 a 14 numeros.
@@ -366,11 +366,10 @@ const expresiones = {
     numero: /^[0-9]{1,4}$/, //numeros de 1 a 4 digios
     alphanumerico: /[A-Z? a-z 0-9?]{10,150}$/,//Alfanumerico
     precio: /^\d{1,4}(\.\d{1,2})?$/, //número decimal o flotante
-    fbuser: /(?: (?: http | https): \/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/, //Fb user 
-    iguser: /(?:www\.)?(?:instagram\.com|instagr\.am)/,// Instgram User. 
-    web: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/,//PAra paginas web
-
-
+    fbuser: /(?: (?: http | https): \/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?@/, //Fb user 
+    iguser: /(?:www\.)?(?:instagram\.com|instagr\.am)@/,// Instgram User. 
+    web: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})@/,//PAra paginas webz
+    ciudadnombre: /[A-Z? a-z 0-9?]{10,25}$/,//Alfanumerico
 }
 
 const campos = {
@@ -431,7 +430,7 @@ const validarFormulario = (e) => {
             calcularEdad();
             break;
         case "ciudad":
-            validarCampo(expresiones.nombre, e.target, 'ciudad');
+            validarCampo(expresiones.ciudadnombre, e.target, 'ciudad');
             break;
         case "sector":
             validarCampo(expresiones.nombre, e.target, 'sector');
@@ -748,7 +747,7 @@ if (frm) {
                 break;
 
             case '/AspNetUsers/Edit': // ppara editar la info del que esta logueado
-                if (campos.nombre && campos.apellido && campos.telefono && campos.calle && campos.ciudad && campos.nombre_peluqueria) {
+                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.ciudad && campos.calle  && campos.telefono) {
 
 
                     formulario.submit();
@@ -759,6 +758,31 @@ if (frm) {
                 }
 
                 break;
+            case '/AspNetUsers/Edit/': // ppara editar la info del que esta logueado
+                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.ciudad && campos.calle && campos.telefono) {
+
+
+                    formulario.submit();
+
+                } else {
+                    $('#modal').modal('show'); // abrirr el modal de boostrap 
+
+                }
+
+                break;
+            case '/Aspnetusers/Edit/': // ppara editar la info del que esta logueado
+                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.ciudad && campos.calle  && campos.telefono) {
+
+
+                    formulario.submit();
+
+                } else {
+                    $('#modal').modal('show'); // abrirr el modal de boostrap 
+
+                }
+
+                break;
+
 
 
 
@@ -823,6 +847,30 @@ if (frm) {
 
                 }
                 break;
+            case '/Aspnetusers/Edit/':
+                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.ciudad && campos.calle  && campos.telefono) {
+
+
+                    formulario.submit();
+
+                } else {
+                    $('#modal').modal('show'); // abrirr el modal de boostrap 
+
+                }
+                break;
+
+            case '/AspNetUsers/Edit/':
+                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.ciudad && campos.calle  && campos.telefono ) {
+
+
+                    formulario.submit();
+
+                } else {
+                    $('#modal').modal('show'); // abrirr el modal de boostrap 
+
+                }
+                break;
+         
         }
 
 
@@ -852,7 +900,7 @@ if (document.getElementById(`pdetalles`)) {
             resolve('resolved');
             if (pdetalles !== "") {
                 det.classList.add('show');
-                console.log("Show la cosa ");
+               
 
             }
 
@@ -1328,4 +1376,153 @@ for (var a = 0; a < rating.length; a++) {
 
         }
     });
+}
+
+
+/*MAPA para servicio*/
+
+if (pathNa === '/AspNetUsers/Details/') {
+    var latitud = $('#latitud').data('latitud');
+    var longitud = $('#longitud').data('longitud');
+    var nombre = $('#nombre-negocio').data('nombre');
+    var map = L.map('map').setView([latitud, longitud], 15);
+    L.marker([latitud, longitud]).addTo(map)
+        .bindPopup(nombre)
+        .openPopup();
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data & copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(map);
+
+
+    /* FIN MAPA*/
+  
+
+}
+
+/*MAPA edita informacion*/
+
+if (pathNa === '/AspNetUsers/Edit/') {
+
+    var latitud = $('#latitud').data('latitud');
+    var longitud = $('#longitud').data('longitud');
+    var nombre = $('#nombre-negocio').data('nombre');
+   
+
+    var tileLayer = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data & copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    });
+
+
+    var map = new L.Map('map', {
+        'setView': [latitud,longitud],
+        'center': [latitud, longitud],
+        'zoom': 12,
+        'layers': [tileLayer]
+    });
+
+    var marker = L.marker([latitud,longitud], {
+        draggable: true
+    }).addTo(map);
+
+
+    marker.on('dragend', function (e) {
+        document.getElementById('Latitud').text = marker.getLatLng().lat;
+        console.log(document.getElementById('Latitud').value = marker.getLatLng().lat)
+        document.getElementById('Longitud').value = marker.getLatLng().lng;
+        console.log(document.getElementById('Longitud').text = marker.getLatLng().lng)
+    });
+
+    /* FIN MAPA*/
+
+
+}
+if (pathname === '/AspNetUsers/Edit') {
+
+    var latitud = $('#latitud').data('latitud');
+    var longitud = $('#longitud').data('longitud');
+    var nombre = $('#nombre-negocio').data('nombre');
+
+
+    var tileLayer = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data & copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    });
+
+
+    var map = new L.Map('map', {
+        'setView': [latitud, longitud],
+        'center': [latitud, longitud],
+        'zoom': 12,
+        'layers': [tileLayer]
+    });
+
+    var marker = L.marker([latitud, longitud], {
+        draggable: true
+    }).addTo(map);
+
+
+    marker.on('dragend', function (e) {
+        document.getElementById('Latitud').text = marker.getLatLng().lat;
+        console.log(document.getElementById('Latitud').value = marker.getLatLng().lat)
+        document.getElementById('Longitud').value = marker.getLatLng().lng;
+        console.log(document.getElementById('Longitud').text = marker.getLatLng().lng)
+    });
+
+    /* FIN MAPA*/
+
+
+}
+
+
+if (pathNa === '/Aspnetusers/Edit/') {
+
+    var latitud = $('#latitud').data('latitud');
+    var longitud = $('#longitud').data('longitud');
+    var nombre = $('#nombre-negocio').data('nombre');
+
+
+    var tileLayer = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data & copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    });
+
+
+    var map = new L.Map('map', {
+        'setView': [latitud, longitud],
+        'center': [latitud, longitud],
+        'zoom': 12,
+        'layers': [tileLayer]
+    });
+
+    var marker = L.marker([latitud, longitud], {
+        draggable: true
+    }).addTo(map);
+
+
+    marker.on('dragend', function (e) {
+        document.getElementById('Latitud').text = marker.getLatLng().lat;
+        console.log(document.getElementById('Latitud').value = marker.getLatLng().lat)
+        document.getElementById('Longitud').value = marker.getLatLng().lng;
+        console.log(document.getElementById('Longitud').text = marker.getLatLng().lng)
+    });
+
+/* FIN MAPA*/
 }
