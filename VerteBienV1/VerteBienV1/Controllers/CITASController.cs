@@ -244,7 +244,7 @@ namespace VerteBienV1.Controllers
             CITAS cITAS = db.CITAS.Find(id);
             ViewBag.idCita = id;
             if (cITAS == null || cITAS.SERVICIOS.id_usuario != idPeluqueria)
-            {z
+            {
                 return HttpNotFound();
             }
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", cITAS.id_usuario);
