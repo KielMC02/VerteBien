@@ -125,7 +125,7 @@ namespace VerteBienV1.Controllers
             return resultadoDisponibilidad;
         }
 
-        public String AgregarCita(int idservicio, DateTime fecha, decimal hora) 
+        public String AgregarCita(int idservicio, DateTime fecha, decimal hora, string comentario_cliente, string comentario_peluqueria) 
         {
             var dia = "semanal";
             string resultado = "no";
@@ -133,7 +133,7 @@ namespace VerteBienV1.Controllers
             var idcliente = User.Identity.GetUserId();
             List<CITAS> agregarCita = new List<CITAS>();
 
-            agregarCita = db.Database.SqlQuery<CITAS>("addCita @usuario_peluqueria, @Fecha, @hora, @servicio, @dia, @usuario_cita", new SqlParameter("@usuario_peluqueria", sERVICIO.id_usuario), new SqlParameter("@Fecha", fecha), new SqlParameter("@hora", hora), new SqlParameter("@servicio", idservicio), new SqlParameter("@dia", dia), new SqlParameter("@usuario_cita", idcliente)).ToList();
+            agregarCita = db.Database.SqlQuery<CITAS>("addCita @usuario_peluqueria, @Fecha, @hora, @servicio, @dia, @usuario_cita", new SqlParameter("@usuario_peluqueria", sERVICIO.id_usuario), new SqlParameter("@Fecha", fecha), new SqlParameter("@hora", hora), new SqlParameter("@servicio", idservicio), new SqlParameter("@dia", dia), new SqlParameter("@usuario_cita", idcliente), new SqlParameter ("@comentario_cliente", comentario_cliente), new SqlParameter( "@comentario_peluqueria", comentario_peluqueria)).ToList();
 
             if (agregarCita.Count > 0)
             {
@@ -240,10 +240,11 @@ namespace VerteBienV1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var idPeluqueria = User.Identity.GetUserId();
             CITAS cITAS = db.CITAS.Find(id);
             ViewBag.idCita = id;
-            if (cITAS == null)
-            {
+            if (cITAS == null || cITAS.SERVICIOS.id_usuario != idPeluqueria)
+            {z
                 return HttpNotFound();
             }
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", cITAS.id_usuario);

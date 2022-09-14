@@ -316,8 +316,9 @@ namespace VerteBienV1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var idPeluqueria = User.Identity.GetUserId();
             SERVICIOS sERVICIOS = db.SERVICIOS.Find(id);
-            if (sERVICIOS == null)
+            if (sERVICIOS == null || sERVICIOS.id_usuario != idPeluqueria)
             {
                 return HttpNotFound();
             }
