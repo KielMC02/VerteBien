@@ -48,15 +48,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 
     @*FAvicon aqui*@
-    <link rel="shortcut icon" href="~/Imagenes/verte-bien-logo-sin-eslogan.png">
+    <link rel="shortcut icon" href="~/Imagenes/Verte Bien Transparente 1.png">
     @* FiN del FAvicon *@
     <style>
         .navbar-nav {
             margin-left: auto;
             margin-right: auto;
         }
-
-       
     </style>
 
 </head>
@@ -64,7 +62,7 @@
 
     <!--Mensaje de cookies  -->
     <div class="aviso-cookies" id="aviso-cookies">
-        <img class="galleta" src="~/Imagenes/verte bien negro.png" alt="Galleta">
+        <img class="galleta" src="~/Imagenes/Verte Bien Transparente 2.png" alt="Galleta">
         <h3 class="titulo">Cookies</h3>
         <p class="parrafo">Utilizamos cookies propias y de terceros para mejorar nuestros servicios.</p>
         <button class="boton" id="btn-aceptar-cookies">De acuerdo</button>
@@ -144,7 +142,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/SERVICIOS/Index"><img src="~/Imagenes/verte-bien-logo-sin-eslogan.png" alt="" class="d-inline-block align-text-top mx-3"></a>
+            <a class="navbar-brand" href="/SERVICIOS/Index"><img src="~/Imagenes/Verte Bien Transparente 1.png" width="64px" height="64px" alt="" class="d-inline-block align-text-top mx-3"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -157,11 +155,11 @@
                         <a class="nav-link text-white" href="/Home/Membresias">MEMBRESIAS</a>
                     </li>
                     @*@if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="/SERVICIOS/Index">SERVICIOS</a>
-                            </li>
-                        }*@
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/SERVICIOS/Index">SERVICIOS</a>
+                    </li>
+                }*@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">TENDENCIAS</a>
                     </li>
@@ -217,23 +215,14 @@
             <!-- Left -->
             <!-- Right -->
             <div>
-                <a href="" class="me-4 text-reset">
+                <a href="https://www.facebook.com/Verte-Bien-601258597201840/" class="me-4 text-reset">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="" class="me-4 text-reset">
+                <a href="https://twitter.com/VerteBien_FC?t=hsk78p6NnVBjdiQXK3Plug&s=08" class="me-4 text-reset">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
+                <a href="https://www.instagram.com/vertebien_ec/?utm_medium=copy_link" class="me-4 text-reset">
                     <i class="fab fa-instagram"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="" class="me-4 text-reset">
-                    <i class="fab fa-github"></i>
                 </a>
             </div>
             <!-- Right -->
@@ -245,40 +234,37 @@
                 <!-- Grid row -->
                 <div class="row mt-3">
                     <!-- Grid column -->
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
                         <!-- Content -->
                         <h6 class="text-uppercase fw-bold mb-4">
                             <i class="fas fa-cut me-3"></i> Verte Bien
                         </h6>
-                        <p>
-                            Here you can use rows and columns to organize your footer content. Lorem ipsum
-                            dolor sit amet, consectetur adipisicing elit.
+                        <p style="text-align:justify">
+                            Somos una empresa donde puedes registrar tu negocio del sector estetico, ofrecer tus servicios y adquirir clientes vía nuestra página web.
                         </p>
                     </div>
                     <!-- Grid column -->
                     <!-- Grid column -->
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">
                             Menú
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">Inicio</a>
+                            <a href="/SERVICIOS/Index" class="text-reset" style="text-decoration:none">Inicio</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Servicios</a>
+                            <a href="/Home/Membresias" class="text-reset" style="text-decoration:none">Membresías</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Tendencias</a>
+                            <a href="/Account/Register" class="text-reset" style="text-decoration:none">Registra tu negocio</a>>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Membresías</a>
+                            <a href="/Account/RegisterUser" class="text-reset" style="text-decoration:none">Registrate como cliente</a>
                         </p>
                     </div>
-                    <!-- Grid column -->
-                    <!-- Grid column -->
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <!-- Links -->
+
+                    @*<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">                  
                         <h6 class="text-uppercase fw-bold mb-4">
                             Useful links
                         </h6>
@@ -294,25 +280,20 @@
                         <p>
                             <a href="#!" class="text-reset">Help</a>
                         </p>
-                    </div>
-                    <!-- Grid column -->
-                    <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <!-- Links -->
+                    </div>*@
+
+                    <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
                         <h6 class="text-uppercase fw-bold mb-4">
                             Contactos
                         </h6>
-                        <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+                        <p><i class="fas fa-home me-1"></i> Ecuador </p>
                         <p>
-                            <i class="fas fa-envelope me-3"></i>
-                            info@example.com
+                            <i class="fas fa-envelope me-1"></i> Informaciones@vertebien.net
                         </p>
-                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                        @*<p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>*@
                     </div>
-                    <!-- Grid column -->
                 </div>
-                <!-- Grid row -->
             </div>
         </section>
         <!-- Section: Links  -->
