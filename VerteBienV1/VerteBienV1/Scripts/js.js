@@ -115,6 +115,27 @@ $(document).ready(function () {
         });
     }
 
+
+    /*pequeño Js para enseñar las estrellas este es para la parte de  para mostrar edicion*/
+    var rating = document.getElementsByClassName("str");
+    var reltado = document.getElementById("resstrella");
+
+    for (var a = 0; a < rating.length; a++) {
+
+        $(rating[a]).starrr({
+
+
+            rating: rating[a].getAttribute("data-rating"),
+
+            change: function (e, valor) {
+
+                //   alert(valor);
+                reltado.value = valor;
+
+
+            }
+        })
+    }
     /* Cambiar numeros flotantes.*/
     function financial(x) {
         return Number.parseFloat(x).toFixed(1);
@@ -267,7 +288,7 @@ $(document).ready(function () {
 
             change: function (e, valor) {
 
-                //   alert(valor);
+               
                 reltado.value = valor;
 
             }
@@ -1358,25 +1379,7 @@ if (tiempo) {
     document.getElementById("tiempo").innerHTML = "<b>Tiempo:</b>" + " " + t + " " + "hora";
 }
 
-/*pequeño Js para enseñar las estrellas este es para la parte de  para mostrar edicion*/
-var rating = document.getElementsByClassName("str");
-var reltado = document.getElementById("resstrella");
 
-for (var a = 0; a < rating.length; a++) {
-
-    $(rating[a]).starrr({
-
-
-        rating: rating[a].getAttribute("data-rating"),
-
-        change: function (e, valor) {
-
-            //   alert(valor);
-            reltado.value = valor;
-
-        }
-    });
-}
 
 
 /*MAPA para servicio*/
