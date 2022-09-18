@@ -382,10 +382,11 @@ const expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
     password: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-    telefono: /^\d{9,10}$/, // 7 a 14 numeros.
+    telefono: /^\d{9,10}$/, // 9 a 10 numeros.
     fecha: /^(?:0?[1-9]|1[1-2])([\-/.])(3[01]|[12][0-9]|0?[1-9])\1\d{4}$/, //pra fechas mes/dia/año
     numero: /^[0-9]{1,4}$/, //numeros de 1 a 4 digios
     alphanumerico: /[A-Z? a-z 0-9?]{10,150}$/,//Alfanumerico
+    callenumero: /^[a-zA-ZÀ-ÿ\s  0-9?]{2,15}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
     precio: /^\d{1,4}(\.\d{1,2})?$/, //número decimal o flotante
     fbuser: /(?: (?: http | https): \/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?@/, //Fb user 
     iguser: /(?:www\.)?(?:instagram\.com|instagr\.am)@/,// Instgram User. 
@@ -420,6 +421,7 @@ const campos = {
     id_usuario: false,
     comentario: false,
     nombre_categoria: false,
+  
 
 }
 const validarFormulario = (e) => {
@@ -470,7 +472,7 @@ const validarFormulario = (e) => {
             Validate();
             break;
         case "calle":
-            validarCampo(expresiones.numero, e.target, 'calle');
+            validarCampo(expresiones.callenumero, e.target, 'calle');
             break;
         case "nombre_peluqueria":
             validarCampo(expresiones.nombre, e.target, 'nombre_peluqueria');
@@ -496,6 +498,8 @@ const validarFormulario = (e) => {
         case "nombre_categoria":
             validarCampo(expresiones.nombre, e.target, 'nombre_categoria');
             break;
+       
+       
     }
 }
 
@@ -680,6 +684,8 @@ const Validate = (e) => {
     }
 }
 
+
+
 inputs.forEach((input) => {
     input.addEventListener('keyup', validarFormulario);
     input.addEventListener('blur', validarFormulario);
@@ -732,7 +738,7 @@ if (frm) {
             // para registrar negocios o peluqueria 
             case '/Account/Register':
 
-                if (campos.Email && campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.ciudad && campos.Password && campos.ConfirmPassword && campos.calle && campos.ciudad) {
+                if (campos.Email && campos.nombre && campos.apellido && campos.nombre_peluqueria  && campos.Password && campos.ConfirmPassword && campos.calle) {
 
 
                     formulario.submit();
