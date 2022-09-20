@@ -190,12 +190,22 @@ namespace VerteBienV1.Controllers
                 db.SaveChanges();
                 //Correo para el usuario
                 string from = "kielcuentas@gmail.com"; //example:- sourabh9303@gmail.com
+                
+                //Inserta la imagen
+                LinkedResource theEmailImage = new LinkedResource("~/Imagenes/Verte Bien Transparente 2.png");
+                theEmailImage.ContentId = "myImageID";
+
                 MailMessage mailUser = new MailMessage(from, emailUsuario);
                 {
 
-                    mailUser.Subject = "Su Cita ha sido creada con exito";
-                    mailUser.Body = "Gracias por usar Verte Bien, su cita en "+usuarioNegocio.nombre_peluqueria+" ha sido creada con excito, le avisaremos cuando la peluqueria acepte su cita";
-                    mailUser.IsBodyHtml = false;
+                    mailUser.Subject = "Su cita ha sido creada con exito";
+                    mailUser.Body = @"<center> <img src=cid:myImageID> </center>" +
+                                     @"<style>
+                                       h4{text-align:justify;
+                                          margin-top: 2%;}
+                                         </style>
+                        <h4>Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria+" ha sido creada con exito, le avisaremos cuando la peluqueria acepte su cita</h4>";
+                    mailUser.IsBodyHtml = true;
                     SmtpClient smtp = new SmtpClient();
                     smtp.Host = "smtp.gmail.com";
                     smtp.EnableSsl = true;

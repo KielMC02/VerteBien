@@ -46,5 +46,11 @@ namespace VerteBienV1.Controllers
 
             return View();
         }
+        public ActionResult Error()
+        {
+
+
+            return View();
+        }
     }
 }
