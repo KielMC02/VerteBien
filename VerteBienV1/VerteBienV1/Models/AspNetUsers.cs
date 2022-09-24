@@ -27,6 +27,7 @@ namespace VerteBienV1.Models
             this.SERVICIOS = new HashSet<SERVICIOS>();
             this.SUSCRIPCION = new HashSet<SUSCRIPCION>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
+            this.CARD = new HashSet<CARD>();
         }
     
         public string Id { get; set; }
@@ -76,5 +77,7 @@ namespace VerteBienV1.Models
         public virtual ICollection<SUSCRIPCION> SUSCRIPCION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CARD> CARD { get; set; }
     }
 }

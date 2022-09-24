@@ -75,6 +75,20 @@
     <Property Name="capacidad_simultanea_" Type="int" Nullable="false" />
     <Property Name="fotos_local" Type="varchar(max)" />
   </EntityType>
+  <EntityType Name="CARD">
+    <Key>
+      <PropertyRef Name="id_card" />
+    </Key>
+    <Property Name="id_card" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_usuario" Type="nvarchar" MaxLength="128" />
+    <Property Name="estatus" Type="varchar" MaxLength="50" />
+    <Property Name="token" Type="varchar(max)" />
+    <Property Name="trasaction_reference" Type="varchar(max)" />
+    <Property Name="digitos" Type="varchar" MaxLength="5" />
+    <Property Name="fecha_expiracion" Type="varchar" MaxLength="10" />
+    <Property Name="fecha_agregada" Type="date" />
+    <Property Name="comentario" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="CATEGORIAS_SERVICIOS">
     <Key>
       <PropertyRef Name="id_categoria_servicio" />
@@ -172,6 +186,8 @@
     <Property Name="estado" Type="varchar" MaxLength="25" />
     <Property Name="comentario" Type="varchar" MaxLength="128" />
     <Property Name="fecha_suscripcion" Type="date" />
+    <Property Name="trasaction_reference" Type="varchar(max)" />
+    <Property Name="respuesta" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -335,6 +351,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UsuarioCard">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="CARD" Type="Self.CARD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CARD">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UsuarioCita">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
     <End Role="CITAS" Type="Self.CITAS" Multiplicity="*" />
@@ -427,6 +455,7 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CARD" EntityType="Self.CARD" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CATEGORIAS_SERVICIOS" EntityType="Self.CATEGORIAS_SERVICIOS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CITAS" EntityType="Self.CITAS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HORARIOS" EntityType="Self.HORARIOS" Schema="dbo" store:Type="Tables" />
@@ -483,6 +512,10 @@
     <AssociationSet Name="FK_UserPuntuacionServicios" Association="Self.FK_UserPuntuacionServicios">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="PUNTUACION_SERVICIOS" EntitySet="PUNTUACION_SERVICIOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioCard" Association="Self.FK_UsuarioCard">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="CARD" EntitySet="CARD" />
     </AssociationSet>
     <AssociationSet Name="FK_UsuarioCita" Association="Self.FK_UsuarioCita">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

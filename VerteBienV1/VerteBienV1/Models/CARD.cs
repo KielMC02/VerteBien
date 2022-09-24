@@ -12,15 +12,17 @@ namespace VerteBienV1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SUSCRIPCION
+    public partial class CARD
     {
-        public int id_suscripcion { get; set; }
+        public int id_card { get; set; }
         public string id_usuario { get; set; }
-        public string estado { get; set; }
-        public string comentario { get; set; }
-        public Nullable<System.DateTime> fecha_suscripcion { get; set; }
+        public string estatus { get; set; }
+        public string token { get; set; }
         public string trasaction_reference { get; set; }
-        public string respuesta { get; set; }
+        public string digitos { get; set; }
+        public string fecha_expiracion { get; set; }
+        public Nullable<System.DateTime> fecha_agregada { get; set; }
+        public string comentario { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
     }

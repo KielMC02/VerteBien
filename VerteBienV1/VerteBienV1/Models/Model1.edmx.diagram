@@ -34,6 +34,8 @@
         <AssociationConnector Association="VERTEBIENModel.FK_ServiciosCitas" />
         <AssociationConnector Association="VERTEBIENModel.FK_PuntuacionServicio" />
         <AssociationConnector Association="VERTEBIENModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="VERTEBIENModel.CARD" Width="1.5" PointX="3.125" PointY="6.5" />
+        <AssociationConnector Association="VERTEBIENModel.FK_UsuarioCard" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

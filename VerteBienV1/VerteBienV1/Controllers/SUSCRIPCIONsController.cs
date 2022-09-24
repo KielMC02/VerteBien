@@ -1,11 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Mail;
-using System.Web;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using VerteBienV1.Models;
 
@@ -15,12 +20,25 @@ namespace VerteBienV1.Controllers
     {
         private VERTEBIENEntities db = new VERTEBIENEntities();
 
+        public class CardResponse
+        {
+            public String status { get; set; }
+            public String token { get; set; }
+            public String transaction_reference { get; set; }
+            public String IdUser { get; set; }
+            public string Membresia { get; set; }
+            public String Email { get; set; }
+
+        }
+
         // GET: SUSCRIPCIONs
         public ActionResult Index()
         {
             var sUSCRIPCION = db.SUSCRIPCION.Include(s => s.AspNetUsers);
             return View(sUSCRIPCION.ToList());
         }
+
+
 
         //Recordatorio para mitad de mes
         public ActionResult RecordatorioMitad() 
@@ -128,6 +146,7 @@ namespace VerteBienV1.Controllers
         // GET: SUSCRIPCIONs/Create
         public ActionResult Create()
         {
+
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
@@ -217,5 +236,238 @@ namespace VerteBienV1.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        //------------------------METODOS DE PAYMENTEZ-----------------
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
+        public async Task<ActionResult> CanalAsync(CardResponse respuesta) 
+        {
+            AspNetUsers aspNetUsers = db.AspNetUsers.Find(respuesta.IdUser);
+            if ( aspNetUsers.estado == "new") 
+            {
+               var respuestaDebit = await debit(respuesta);
+                return RedirectToAction("index", "SERVICIOS",new {resultado=respuestaDebit });
+            }
+            else
+            {
+                return RedirectToAction("");
+            }
+            return View();
+        }
+        public ActionResult SaveCard(string Id, string Email, string membresiaSelec) 
+        {
+            ViewBag.idUser = Id;
+            ViewBag.Email = Email;
+            ViewBag.membresia = membresiaSelec;
+            return View();
+        }
+
+        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        //[HttpPost]
+        public async Task<string> deleteCard(Data data)
+        {
+            var info = new
+            {
+                user = new { id = "uid123456" },
+                card = new { token = "16126824737099654930" }
+            };
+            var token = await getToken();
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://ccapi-stg.paymentez.com/v2/card/delete/");
+            client.DefaultRequestHeaders
+                  .Accept
+                  .Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://ccapi-stg.paymentez.com/v2/card/delete/");
+            request.Content = new StringContent(JsonConvert.SerializeObject(info),
+                                                Encoding.UTF8,
+                                                "application/json");//CONTENT-TYPE header
+
+            request.Content.Headers.Add("Auth-Token", token);
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var response = await client.SendAsync(request);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            if (responseString != null)
+            {
+                return responseString.ToString();
+            }
+            else
+            {
+                return "oh oh esto esta nulo";
+            }
+
+        }
+
+        public async Task<string> debit(CardResponse respuesta)
+        {
+            var obtainedToken = await getToken();
+            double monto = 0;
+            if (respuesta.Membresia == "expres")
+            {
+                monto = 8.00;
+            }
+            if (respuesta.Membresia == "preferencial")
+            {
+                monto = 20.00;
+            }
+            if (respuesta.Membresia == "vip")
+            {
+                monto = 40.00;
+            }
+            //var info = new
+            //{
+            //    user = new { id = "uid123456", email = "jenn0417@gmail.com" },
+            //    order = new { amount = 3, description = "pago servicio Verte Bien", dev_reference = "debit", tax_percentage = 0, vat = 0 },
+            //    card = new { token = "13223813938152627183"}
+            //};
+            var info = new
+            {
+                user = new { id = respuesta.IdUser, email = respuesta.Email },
+                order = new { amount = 10, description = "pago servicio Verte Bien", dev_reference = "debit", tax_percentage = 0, vat = 0 },
+                card = new { token = respuesta.token }
+            };
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://ccapi-stg.paymentez.com/v2/transaction/debit/");
+            client.DefaultRequestHeaders
+                  .Accept
+                  .Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://ccapi-stg.paymentez.com/v2/transaction/debit/");
+            request.Content = new StringContent(JsonConvert.SerializeObject(info),
+                                                Encoding.UTF8,
+                                                "application/json");//CONTENT-TYPE header
+
+            request.Content.Headers.Add("Auth-Token", obtainedToken);
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var response = await client.SendAsync(request);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            if (responseString != null)
+            {
+                return responseString.ToString();
+            }
+            else
+            {
+                return "oh oh esto esta nulo";
+            }
+
+        }
+
+        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        //[HttpPost]
+        public async Task<string> refund(Data data)
+        {
+            var info = new
+            {
+                transaction = new { id = "DF-214117" }
+            };
+            var token = await getToken();
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://ccapi-stg.paymentez.com/v2/transaction/refund/");
+            client.DefaultRequestHeaders
+                  .Accept
+                  .Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://ccapi-stg.paymentez.com/v2/transaction/refund/");
+            request.Content = new StringContent(JsonConvert.SerializeObject(info),
+                                                Encoding.UTF8,
+                                                "application/json");//CONTENT-TYPE header
+
+            request.Content.Headers.Add("Auth-Token", token);
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var response = await client.SendAsync(request);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            if (responseString != null)
+            {
+                return responseString.ToString();
+            }
+            else
+            {
+                return "oh oh esto esta nulo";
+            }
+
+        }
+
+        public async Task<string> verifyOTP(Data data)
+        {
+            var info = new
+            {
+                user = new { id = "uid123456" },
+                transaction = new { id = "DF-214117" },
+                type = "BY_AMOUNT",
+                value = "831283"
+            };
+            var token = await getToken();
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://ccapi-stg.paymentez.com/v2/transaction/verify");
+            client.DefaultRequestHeaders
+                  .Accept
+                  .Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
+
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://ccapi-stg.paymentez.com/v2/transaction/verify");
+            request.Content = new StringContent(JsonConvert.SerializeObject(info),
+                                                Encoding.UTF8,
+                                                "application/json");//CONTENT-TYPE header
+
+            request.Content.Headers.Add("Auth-Token", token);
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var response = await client.SendAsync(request);
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            if (responseString != null)
+            {
+                return responseString.ToString();
+            }
+            else
+            {
+                return "oh oh esto esta nulo";
+            }
+
+        }
+
+        public async Task<string> getToken()
+        {
+            var API_LOGIN_DEV = "TPP3-EC-SERVER";
+            var API_KEY_DEV = "JdXTDl2d0o0B8ANZ1heJOq7tf62PC6";
+
+            var server_application_code = API_LOGIN_DEV;
+            var server_app_key = API_KEY_DEV;
+            var unix_timestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
+
+            var uniq_token_string = server_app_key + unix_timestamp;
+            var uniq_token_hash = sha256(uniq_token_string);
+            var auth_token = Base64Encode(server_application_code + ";" + unix_timestamp + ";" + uniq_token_hash);
+            return auth_token;
+        }
+
+        static string sha256(string randomString)
+        {
+            var crypt = new SHA256Managed();
+            string hash = String.Empty;
+            byte[] crypto = crypt.ComputeHash(Encoding.ASCII.GetBytes(randomString));
+            foreach (byte theByte in crypto)
+            {
+                hash += theByte.ToString("x2");
+            }
+            return hash;
+        }
+
+        static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
     }
 }

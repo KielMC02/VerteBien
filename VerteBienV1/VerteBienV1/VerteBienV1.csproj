@@ -384,6 +384,9 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CARD.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CATEGORIAS_SERVICIOS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -779,6 +782,7 @@
     <Content Include="Views\SUSCRIPCIONs\Index.cshtml" />
     <Content Include="Views\Home\Pruebapagos.cshtml" />
     <Content Include="Views\Home\pruebaPago.cshtml" />
+    <Content Include="Views\SUSCRIPCIONs\SaveCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

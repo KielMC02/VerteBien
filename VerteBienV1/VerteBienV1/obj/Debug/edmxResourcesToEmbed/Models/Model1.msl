@@ -168,6 +168,8 @@
     <EntitySetMapping Name="SUSCRIPCION">
       <EntityTypeMapping TypeName="VERTEBIENModel.SUSCRIPCION">
         <MappingFragment StoreEntitySet="SUSCRIPCION">
+          <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+          <ScalarProperty Name="trasaction_reference" ColumnName="trasaction_reference" />
           <ScalarProperty Name="fecha_suscripcion" ColumnName="fecha_suscripcion" />
           <ScalarProperty Name="comentario" ColumnName="comentario" />
           <ScalarProperty Name="estado" ColumnName="estado" />
@@ -220,5 +222,20 @@
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="VERTEBIENModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="VERTEBIENModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="disponibilidad" FunctionName="VERTEBIENModel.Store.disponibilidad" />
+    <EntitySetMapping Name="CARD">
+      <EntityTypeMapping TypeName="VERTEBIENModel.CARD">
+        <MappingFragment StoreEntitySet="CARD">
+          <ScalarProperty Name="comentario" ColumnName="comentario" />
+          <ScalarProperty Name="fecha_agregada" ColumnName="fecha_agregada" />
+          <ScalarProperty Name="fecha_expiracion" ColumnName="fecha_expiracion" />
+          <ScalarProperty Name="digitos" ColumnName="digitos" />
+          <ScalarProperty Name="trasaction_reference" ColumnName="trasaction_reference" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_card" ColumnName="id_card" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

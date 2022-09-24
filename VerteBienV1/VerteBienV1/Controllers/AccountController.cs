@@ -177,7 +177,8 @@ namespace VerteBienV1.Controllers
                 {
                     user.capacidad_simultanea_ = 7;
                 }
-                user.estado = "no pago";
+                user.estado = "new";
+                user.EmailConfirmed = true;
 
                 //Capturando el Id del usuario recien creado
                 var IdUsuarioCreado = user.Id;
@@ -192,12 +193,12 @@ namespace VerteBienV1.Controllers
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Enviar correo electrónico con este vínculo
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                     await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Gracias por registrarte en Verte Bien para confirmar tu cuenta, haz clic <a href=\"" + callbackUrl + "\">aquí</a>");
+                    //// Enviar correo electrónico con este vínculo
+                    //string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Gracias por registrarte en Verte Bien para confirmar tu cuenta, haz clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
-                    return RedirectToAction("Subscribe", "SUSCRIPCION",new {user.Email, user.nombre, user.apellido, user.telefono, membresiaSelec});
+                    return RedirectToAction("SaveCard", "SUSCRIPCIONs",new {user.Id,user.Email, membresiaSelec});
                 }
                 AddErrors(result);
             }

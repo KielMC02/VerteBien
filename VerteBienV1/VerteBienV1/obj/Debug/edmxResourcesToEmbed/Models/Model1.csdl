@@ -111,6 +111,11 @@
       <Parameter Name="dia" Mode="In" Type="String" />
       <Parameter Name="servicio_id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="CARD" EntityType="VERTEBIENModel.CARD" />
+    <AssociationSet Name="FK_UsuarioCard" Association="VERTEBIENModel.FK_UsuarioCard">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="CARD" EntitySet="CARD" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -191,6 +196,7 @@
     <NavigationProperty Name="SUSCRIPCION" Relationship="VERTEBIENModel.FK_UsuarioSuscripcion" FromRole="AspNetUsers" ToRole="SUSCRIPCION" />
     <NavigationProperty Name="AspNetRoles" Relationship="VERTEBIENModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
     <Property Name="fotos_local" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CARD" Relationship="VERTEBIENModel.FK_UsuarioCard" FromRole="AspNetUsers" ToRole="CARD" />
   </EntityType>
   <EntityType Name="CATEGORIAS_SERVICIOS">
     <Key>
@@ -306,6 +312,8 @@
     <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.FK_UsuarioSuscripcion" FromRole="SUSCRIPCION" ToRole="AspNetUsers" />
     <Property Name="comentario" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
     <Property Name="fecha_suscripcion" Type="DateTime" Precision="0" />
+    <Property Name="trasaction_reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="respuesta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -504,4 +512,31 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="CARD">
+    <Key>
+      <PropertyRef Name="id_card" />
+    </Key>
+    <Property Name="id_card" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="trasaction_reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="digitos" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_expiracion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_agregada" Type="DateTime" Precision="0" />
+    <Property Name="comentario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="VERTEBIENModel.FK_UsuarioCard" FromRole="CARD" ToRole="AspNetUsers" />
+  </EntityType>
+  <Association Name="FK_UsuarioCard">
+    <End Type="VERTEBIENModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+    <End Type="VERTEBIENModel.CARD" Role="CARD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CARD">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

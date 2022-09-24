@@ -41,6 +41,7 @@ namespace VerteBienV1.Models
         public virtual DbSet<SERVICIOS> SERVICIOS { get; set; }
         public virtual DbSet<SUSCRIPCION> SUSCRIPCION { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<CARD> CARD { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
