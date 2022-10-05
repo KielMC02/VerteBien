@@ -57,7 +57,7 @@
                             <div class="mt-2 text-center col-12">
                                 <input type="button" class="btn btn btn-outline-warning" id="volbtn" name="back" value="Atras" onclick="msf_btn_back()">
                                 <input type="button" class="btn btn btn-outline-warning" id="volbtn" name="next" value="Siguiente" onclick="msf_btn_next()">
-
+                              
                                 <div class="msf_bullet_o"></div>
                                 <div class="msf_line"></div>
                             </div>
@@ -385,7 +385,7 @@
                                     <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
                                 </div>
                             </div>
-                            <div class="mt-2 text-center col-12">
+                            <div class="mt-2 text-center col-12 ">
                                 <input type="button" class="btn btn btn-outline-warning volbtn" name="back" value="Atras" onclick="msf_btn_back()">
                                 <input type="button" class="btn btn btn-outline-warning volbtn" name="next" value="Siguiente" onclick="msf_btn_next()">
 
@@ -395,21 +395,25 @@
                         </fieldset>
                         <fieldset class="msf_hide" id="div-map">
                             <div class="row ">
-                                <div id="map" class="form-group col-12 my-1 text-center" style="width:100%; height: 350px;"></div>
+                                <div id="map" class="form-group col-12 my-1 text-center mb-5" style="width:100%; height: 350px;"></div>
 
                                 <div class="form-group col-12 col-md-6 my-1 formulario__grupo">
-                                    @Html.Label("Latitud", new { @class = "col-md-4 control-label", @style = "margin-left:3px;" })
-                                    <div class="col-md-10 formulario__grupo-input">
-                                        @Html.TextBoxFor(m => m.latitud, new { @class = "form-control", id = "latitud", @required = "required" })
+                                    <center>
+                                        @Html.Label("Latitud", new { @class = "col-md-4 control-label", @style = "margin-left:3px;" })
+                                        <div class="col-md-10 formulario__grupo-input" , data-bs-toggle="tooltip" , data-bs-placement="top" , title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
+                                            @Html.TextBoxFor(m => m.latitud, new { @class = "form-control", id = "latitud", @required = "required" })
 
-                                    </div>
+                                        </div>
+                                    </center>
                                 </div>
                                 <div class="form-group col-12 col-md-6  my-1 formulario__grupo">
-                                    @Html.Label("Longitud", new { @class = "col-md-4 control-label", @style = "margin-left:3px;" })
-                                    <div class="col-md-10 formulario__grupo-input">
-                                        @Html.TextBoxFor(m => m.longitud, new { @class = "form-control", id = "longitud", @required = "required" })
+                                    <center>
+                                        @Html.Label("Longitud", new { @class = "col-md-4 control-label", @style = "margin-left:3px;" })
+                                        <div class="col-md-10 formulario__grupo-input" , data-bs-toggle="tooltip" , data-bs-placement="top" , title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
+                                            @Html.TextBoxFor(m => m.longitud, new { @class = "form-control", id = "longitud", @required = "required" })
 
-                                    </div>
+                                        </div>
+                                    </center>
                                 </div>
                             </div>
                             <div class="mt-2 text-center col-12">
