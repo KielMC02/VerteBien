@@ -326,8 +326,9 @@ jQuery('input[type=file]').change(function (event) {
 ///* FIN query para poner el nombre del archivo que se sube*/
 
 $(document).on('change', 'input[type="file"]', function () {
-    // this.files[0].size recupera el tamaño del archivo
-    // alert(this.files[0].size);
+  
+    this.files[0].size //recupera el tamaño del archivo
+     alert(this.files[0].size);
 
     var fileName = this.files[0].name;
     var fileSize = this.files[0].size;
@@ -343,14 +344,14 @@ $(document).on('change', 'input[type="file"]', function () {
     } else {
 
 
-        // recuperamos la extensión del archivo
+         //recuperamos la extensión del archivo
         var ext = fileName.split('.').pop();
 
-        // Convertimos en minúscula porque 
-        // la extensión del archivo puede estar en mayúscula
+         //Convertimos en minúscula porque 
+         //la extensión del archivo puede estar en mayúscula
         ext = ext.toLowerCase();
 
-        // console.log(ext);
+         console.log(ext);
         switch (ext) {
             case 'jpg':
             case 'jpeg':
@@ -392,7 +393,8 @@ const expresiones = {
     iguser: /(?:www\.)?(?:instagram\.com|instagr\.am)@/,// Instgram User. 
     web: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})@/,//PAra paginas webz
     ciudadnombre: /[A-Z? a-z 0-9?]{10,25}$/,//Alfanumerico
-}
+};
+
 
 const campos = {
     usuario: false,
@@ -1001,7 +1003,7 @@ botonAceptarCookies.addEventListener('click', () => {
 
 
 });
-/*FIN de Coookiess*/
+///*FIN de Coookiess*/
 //* Carrusel*/
 
 window.addEventListener('load', function () {
@@ -2214,8 +2216,12 @@ $(document).ready(function () {
         });
 
     }
-
-
-
+    ///tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 
 });
+
+
