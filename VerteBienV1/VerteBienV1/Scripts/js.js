@@ -301,7 +301,7 @@ $(document).ready(function () {
         rating: 3,
         change: function (e, valor) {
 
-            alert(valor);
+           /* alert(valor);*/
 
         }
 
@@ -328,7 +328,7 @@ jQuery('input[type=file]').change(function (event) {
 $(document).on('change', 'input[type="file"]', function () {
   
     this.files[0].size //recupera el tamaño del archivo
-     alert(this.files[0].size);
+     //alert(this.files[0].size);
 
     var fileName = this.files[0].name;
     var fileSize = this.files[0].size;
@@ -351,7 +351,7 @@ $(document).on('change', 'input[type="file"]', function () {
          //la extensión del archivo puede estar en mayúscula
         ext = ext.toLowerCase();
 
-         console.log(ext);
+        
         switch (ext) {
             case 'jpg':
             case 'jpeg':
