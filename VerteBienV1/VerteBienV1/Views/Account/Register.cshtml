@@ -11,11 +11,11 @@
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "formulario" }))
     {
         @Html.AntiForgeryToken()
-    <center>
-        <img src="~/Imagenes/Verte Bien Transparente 2.png" alt="Logo" width="128" height="128" style="margin-top:2%" />
-        <h4>Registra tu negocio</h4>
-        <hr class="w-50" />
-    </center>
+        <center>
+            <img src="~/Imagenes/Verte Bien Transparente 2.png" alt="Logo" width="128" height="128" style="margin-top:2%" />
+            <h4>Registra tu negocio</h4>
+            <hr class="w-50" />
+        </center>
         <br />
         <div class="container w-auto form_wrapper">
             <div class="">
@@ -57,7 +57,7 @@
                             <div class="mt-2 text-center col-12">
                                 <input type="button" class="btn btn btn-outline-warning" id="volbtn" name="back" value="Atras" onclick="msf_btn_back()">
                                 <input type="button" class="btn btn btn-outline-warning" id="volbtn" name="next" value="Siguiente" onclick="msf_btn_next()">
-                              
+
                                 <div class="msf_bullet_o"></div>
                                 <div class="msf_line"></div>
                             </div>
@@ -294,7 +294,7 @@
                                             <option value="Zaruma">Zaruma</option>
                                         </select>
                                         @*@Html.TextBoxFor(m => m.ciudad, new { @class = "form-control formulario__input", @required = "required", id = "ciudad", name = "ciudad" })*@
-                                        
+
                                     </div>
                                     <p class="formulario__input-error">Elegir una ciudad valida</p>
                                 </div>
@@ -433,24 +433,26 @@
                     </div>
                 </div>
 
-                <div class="modal" tabindex="-1" id="modal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">
-                                    Verificar formulario
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Por favor verificar que los datos del formulario esten correcto.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+
+                @*<div class="modal" tabindex="-1" id="modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">
+                                        Verificar formulario
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Por favor verificar que los datos del formulario esten correcto.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>*@
                 <center>
                     <div class="col-md-offset-2 col-md-10 form-group">
                         <button type="submit" class="btn btn-lg text-white" style="background-color:#DBA312">Registrarse</button>
@@ -459,6 +461,30 @@
                 <br />
             </div>
         </div>
+
+
+        <!-- Modal -->
+        <div class="modal" tabindex="-1" id="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Verificar formulario
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Por favor verificar que los datos del formulario esten correcto.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     }
 </div>
 <br />
