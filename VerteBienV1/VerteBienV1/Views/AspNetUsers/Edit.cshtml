@@ -12,7 +12,7 @@
 </center>
 <br />
 
-<form action="~/AspNetUsers/Edit" role = "form" id = "formulario"  enctype="multipart/form-data" method="post">
+<form action="~/AspNetUsers/Edit" role="form" id="formulario" enctype="multipart/form-data" method="post">
     @Html.AntiForgeryToken()
 
     <div class="container">
@@ -102,7 +102,7 @@
 
 
 
-                         
+
                         <div class="form-group col-md-6 col-sm-12 formulario__grupo" id="grupo__ciudad">
                             @Html.Label("Ciudad ", htmlAttributes: new { @class = "control-label col-md-10" })
                             <div class="col-md-10  formulario__grupo-input">
@@ -112,7 +112,7 @@
                             </div>
                             <p class="formulario__input-error">Elegir una ciudad valida</p>
                         </div>
-                     
+
 
                         <span id="nombre-negocio" data-nombre="   @Html.DisplayFor(model => model.nombre_peluqueria)"></span>
                         <span id="latitud" data-latitud="@Html.DisplayFor(model => model.latitud)"></span>
@@ -156,9 +156,9 @@
                         }
 
                     <div class="row mt-4">
-                        <h4 class="my-3"> Fotos</h4>
+
                         @if (_list != null)
-                        {
+                        {<h4 class="my-3"> Fotos</h4>
                             foreach (var item in _list)
                             {
                                 ViewBag.contador = ViewBag.contador + 1;
@@ -193,31 +193,17 @@
                                 <span class="@("file"+@ViewBag.contador2)">
                                     <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
                                 </span>
-                                <label for="@("file"+@ViewBag.contador2)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Agregar Fotos</span></label>
+                                <label for="@("file"+@ViewBag.contador2)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn mb-2"> <i class="far fa-image"></i> &nbsp; <span> Agregar Fotos</span></label>
                             }
                         }
 
                         <div class="my-3">
                             @Html.ActionLink("Cambiar mi contraseña", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "btn text-white col-md-5", @style = "background-color:#DBA312;" })
                         </div>
-                        <div class="modal" tabindex="-1" id="modal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">
-                                            Verificar formulario
-                                        </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Por favor verificar que los datos del formulario esten correcto.</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
+
+
                         <center>
                             <div class="form-group col-md-12 col-sm-12">
                                 <div class="col-md-offset-2 col-md-10">
@@ -227,13 +213,30 @@
                         </center>
                     </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+<div class="modal" tabindex="-1" id="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Verificar formulario
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Por favor verificar que los datos del formulario esten correcto.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
-
-</form>
-
-
+</div>
 
 
 
@@ -253,7 +256,7 @@
 
 @*@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
 
-@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })*@
+    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })*@
 
 
 @Html.EditorFor(model => model.EmailConfirmed, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
@@ -307,7 +310,3 @@
 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
 
-
-@*<div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>*@
