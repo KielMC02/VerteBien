@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using VerteBienV1.Models;
@@ -19,7 +20,7 @@ namespace VerteBienV1.Controllers
     public class SUSCRIPCIONsController : Controller
     {
         private VERTEBIENEntities db = new VERTEBIENEntities();
-
+        //Clase que recibira la respuesta del SaveCARD
         public class CardResponse
         {
             public String status { get; set; }
@@ -28,6 +29,10 @@ namespace VerteBienV1.Controllers
             public String IdUser { get; set; }
             public string Membresia { get; set; }
             public String Email { get; set; }
+            public String number { get; set; }
+            public String expiry_month { get; set; }
+            public String expiry_year { get; set; }
+            public String message { get; set; }
 
         }
 
@@ -246,11 +251,40 @@ namespace VerteBienV1.Controllers
             AspNetUsers aspNetUsers = db.AspNetUsers.Find(respuesta.IdUser);
             if ( aspNetUsers.estado == "new") 
             {
+                //Esperamos respuesta del metodo debitar
                var respuestaDebit = await debit(respuesta);
-                return RedirectToAction("index", "SERVICIOS",new {resultado=respuestaDebit });
+                //Si es diferente de...
+                if( respuestaDebit != "transaccion_fallida")
+                {
+                    //Evaluamos la respuesta obtenida---
+                        //Limpiamos el contenido de la repsuesta y almacenamos en una lista
+                    respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
+                    List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
+                    if (contenidoRespuesta[0].Contains("success"))
+                    {
+                        //Instancia de una nueva tarjeta
+                        CARD nuevaTarjeta = new CARD();
+                        nuevaTarjeta.id_usuario = respuesta.IdUser;
+                        nuevaTarjeta.estatus = respuesta.status;
+                        nuevaTarjeta.token = respuesta.token;
+                        nuevaTarjeta.trasaction_reference = contenidoRespuesta[20];
+                        nuevaTarjeta.digitos = respuesta.number;
+                        nuevaTarjeta.fecha_expiracion = respuesta.expiry_month + "/" + respuesta.expiry_year;
+                        nuevaTarjeta.fecha_agregada = DateTime.Today;
+
+                        CARDController insertarTarjeta = new CARDController();
+
+                        insertarTarjeta.Create(nuevaTarjeta);
+
+                        return RedirectToAction("Index", "SERVICIOS");
+                    }
+                }
+
+               return RedirectToAction("index", "SERVICIOS");
             }
-            else
+            if (aspNetUsers.estado == "pendiente")
             {
+                var respuestaDebit = await debit(respuesta);
                 return RedirectToAction("");
             }
             return View();
@@ -260,7 +294,16 @@ namespace VerteBienV1.Controllers
             ViewBag.idUser = Id;
             ViewBag.Email = Email;
             ViewBag.membresia = membresiaSelec;
+
+            //String respuesta = "{\"transaction\": {\"status\": \"success\", \"authorization_code\": \"TEST00\", \"status_detail\": 3,\"message\": \"Response by mock\", \"id\": \"DF-243601\", \"payment_date\": \"2022-09-25T19:23:55.644\", \"payment_method_type\": \"0\", \"dev_reference\": \"debit\",\"carrier_code\": \"00\",\"product_description\": \"pago servicio Verte Bien\", \"current_status\": \"APPROVED\", \"amount\": 10.0,\"carrier\": \"DataFast\",\"installments\": 0,\"installments_type\": \"Revolving credit\"},\"card\": {\"bin\": \"450799\", \"status\": \"valid\", \"token\": \"5762035270905976501\", \"expiry_year\": \"2025\",\"expiry_month\": \"11\",\"transaction_reference\": \"DF-243601\",\"type\": \"vi\", \"number\": \"0010\",\"origin\": \"Paymentez\"}}";
+
+            //respuesta = Regex.Replace(respuesta, "[:\\{}@\n\"]", string.Empty);
+            //Console.WriteLine(respuesta);
+
+            //List<String> Contenido = (respuesta.Split(',')).ToList();
+
             return View();
+
         }
 
         //[EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -297,7 +340,7 @@ namespace VerteBienV1.Controllers
             }
             else
             {
-                return "oh oh esto esta nulo";
+                return "transaccion_fallida";
             }
 
         }
@@ -318,16 +361,10 @@ namespace VerteBienV1.Controllers
             {
                 monto = 40.00;
             }
-            //var info = new
-            //{
-            //    user = new { id = "uid123456", email = "jenn0417@gmail.com" },
-            //    order = new { amount = 3, description = "pago servicio Verte Bien", dev_reference = "debit", tax_percentage = 0, vat = 0 },
-            //    card = new { token = "13223813938152627183"}
-            //};
             var info = new
             {
                 user = new { id = respuesta.IdUser, email = respuesta.Email },
-                order = new { amount = 10, description = "pago servicio Verte Bien", dev_reference = "debit", tax_percentage = 0, vat = 0 },
+                order = new { amount = monto, description = "Pago servicio Verte Bien", dev_reference = "debit", tax_percentage = 0, vat = 0 },
                 card = new { token = respuesta.token }
             };
 

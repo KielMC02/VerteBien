@@ -1,0 +1,75 @@
+﻿@model IEnumerable<VerteBienV1.Models.CARD>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.estatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.token)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trasaction_reference)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.digitos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_expiracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_agregada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comentario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.estatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.token)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.trasaction_reference)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.digitos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_expiracion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_agregada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comentario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_card }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_card }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_card })
+        </td>
+    </tr>
+}
+
+</table>
