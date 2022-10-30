@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="my-5">Metotodos de pago</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+</p>*@
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.estatus)
@@ -38,38 +38,87 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.estatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.token)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.trasaction_reference)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.digitos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_expiracion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_agregada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.comentario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_card }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_card }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_card })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.estatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.token)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.trasaction_reference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.digitos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_expiracion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_agregada)
+            </td>
+            <td>
+            
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_card }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id_card }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_card })
+            </td>
+        </tr>
 
-</table>
+
+
+    }
+
+</table>*@
+
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+    <div class="card p-5">
+        <div>
+            <h4 class="heading">Informacion de pago</h4>
+            <p class="text" id="textpago">El metodo de pago marcado en azul, es el metodo de pago establecido como el principal.</p>
+        </div>
+
+        <span class="detail mt-5">Detalles </span>
+        <form id="form">
+            @{var contador = 0;}
+
+            @foreach (var item in Model)
+            {
+                contador++;
+
+                <span  id=@("estado"+contador)  data-estado="@Html.DisplayFor(modelItem => item.comentario)"> </span>
+                <div class="credit rounded mt-4 d-flex justify-content-between align-items-center">
+
+                    <div class="d-flex flex-row align-items-center">
+
+                        <img src="https://i.imgur.com/qHX7vY1.png" class="rounded" width="70">
+                        <div class="d-flex flex-column ml-3"> <span class="business">Tarjeta </span> <span class="plan">XXXX XXXX XXXX   @Html.DisplayFor(modelItem => item.digitos)</span> </div>
+
+                        <label class="label m-2">
+                            <input type="radio" id=@("radio"+contador) name="radio" value="" />
+                            <span id=@("elegir"+contador) name="elegir" class=""> </span>
+
+                        </label>
+                    </div>
+
+                    <div class="d-none">  @Html.DisplayFor(modelItem => item.comentario)</div>
+                    @*para guardar el cometnario cuando se eleige una tarjeta.*@
+
+                    <input type="button" id=@("comtarjeta"+contador) value="" class="btn">
+                    
+                </div>
+                
+            }
+        </form>
+      
+        <h6 class="mt-4 text-primary"> @Html.ActionLink("Agregar metodo de pago", "Create")</h6>
+
+    </div>
+</div>
