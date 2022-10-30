@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -43,96 +45,6 @@ namespace VerteBienV1.Controllers
             return View(sUSCRIPCION.ToList());
         }
 
-
-
-        //Recordatorio para mitad de mes
-        public ActionResult RecordatorioMitad() 
-        {
-            var today = DateTime.Today;
-            var mesactual = new DateTime(today.Year, today.Month, 1);
-            var mesanterior = mesactual.AddMonths(-1);
-            var quincena = mesanterior.AddDays(14);
-            AspNetUsers usuario = new AspNetUsers();
-            List<SUSCRIPCION> suscripciones = new List<SUSCRIPCION>();
-            suscripciones = (from busqueda in db.SUSCRIPCION where busqueda.fecha_suscripcion == quincena select busqueda).ToList();
-            if (suscripciones.Count > 0) 
-            { 
-            
-                foreach(var item in suscripciones) 
-                {
-                    usuario = db.AspNetUsers.Find(item.id_usuario);
-                    string from = "kielcuentas@gmail.com";
-                    MailMessage mailUser = new MailMessage(from, usuario.Email);
-                    {
-
-                        mailUser.Subject = "Recordatorio de Pago";
-                        mailUser.Body = "Hola " + usuario.nombre +" te recordamos que el 15 del mes en curso debes renovar tu suscripcion Verte Bien.";
-                        mailUser.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
-                        NetworkCredential networkCredential = new NetworkCredential(from, "20175376Octubre0210*");
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = networkCredential;
-                        smtp.Port = 587;
-                        smtp.Send(mailUser);
-                        ViewBag.Message = "Enviado con exito";
-                    }
-
-
-                }
-            
-            }
-
-            return RedirectToAction("Index", "AspNetUsers");
-        }
-
-        //Recordatorio para mitad de mes
-        public ActionResult RecordatorioFin()
-        {
-            ViewBag.notificacion = 4;
-            var today = DateTime.Today;
-            var mesactual = new DateTime(today.Year, today.Month, 1);
-            //var mesanterior = mesactual.AddMonths(-1);
-            var finMes = mesactual.AddDays(-1);
-            AspNetUsers usuario = new AspNetUsers();
-            List<SUSCRIPCION> suscripciones = new List<SUSCRIPCION>();
-            suscripciones = (from busqueda in db.SUSCRIPCION where busqueda.fecha_suscripcion == finMes select busqueda).ToList();
-            if (suscripciones.Count > 0)
-            {
-
-                foreach (var item in suscripciones)
-                {
-                    usuario = db.AspNetUsers.Find(item.id_usuario);
-                    string from = "kielcuentas@gmail.com";
-                    MailMessage mailUser = new MailMessage(from, usuario.Email);
-                    {
-
-                        mailUser.Subject = "Recordatorio de Pago";
-                        mailUser.Body = "Hola " + usuario.nombre + " te recordamos que el "+Convert.ToString(finMes.Day) +" del mes en curso debes renovar tu suscripcion Verte Bien.";
-                        mailUser.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
-                        NetworkCredential networkCredential = new NetworkCredential(from, "20175376Octubre0210*");
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = networkCredential;
-                        smtp.Port = 587;
-                        smtp.Send(mailUser);
-                        ViewBag.Message = "Enviado con exito";
-                    }
-
-
-                }
-                ViewBag.notificacion = 5;
-                return RedirectToAction("Index", "AspNetUsers");
-            }
-
-            return RedirectToAction("Index", "AspNetUsers");
-        }
-
-
-
         // GET: SUSCRIPCIONs/Details/5
         public ActionResult Details(int? id)
         {
@@ -166,6 +78,8 @@ namespace VerteBienV1.Controllers
             if (ModelState.IsValid)
             {
                 db.SUSCRIPCION.Add(sUSCRIPCION);
+                var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstado @id", new SqlParameter("@id", Convert.ToString(sUSCRIPCION.id_usuario)));
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -242,6 +156,286 @@ namespace VerteBienV1.Controllers
             base.Dispose(disposing);
         }
 
+        //Recordatorio para mitad de mes
+        public ActionResult RecordatorioMitad()
+        {
+            var today = DateTime.Today;
+            var mesactual = new DateTime(today.Year, today.Month, 1);
+            var mesanterior = mesactual.AddMonths(-1);
+            var quincena = mesanterior.AddDays(14);
+            AspNetUsers usuario = new AspNetUsers();
+            List<SUSCRIPCION> suscripciones = new List<SUSCRIPCION>();
+            suscripciones = (from busqueda in db.SUSCRIPCION where busqueda.fecha_suscripcion == quincena select busqueda).ToList();
+            if (suscripciones.Count > 0)
+            {
+
+                foreach (var item in suscripciones)
+                {
+                    usuario = db.AspNetUsers.Find(item.id_usuario);
+                    string from = "kielcuentas@gmail.com";
+                    MailMessage mailUser = new MailMessage(from, usuario.Email);
+                    {
+
+                        mailUser.Subject = "Recordatorio de Pago";
+                        mailUser.Body = "Hola " + usuario.nombre + " te recordamos que el 15 del mes en curso debes renovar tu suscripcion Verte Bien.";
+                        mailUser.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential networkCredential = new NetworkCredential(from, "20175376Octubre0210*");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = networkCredential;
+                        smtp.Port = 587;
+                        smtp.Send(mailUser);
+                        ViewBag.Message = "Enviado con exito";
+                    }
+
+
+                }
+
+            }
+
+            return RedirectToAction("Index", "AspNetUsers");
+        }
+
+        //Recordatorio para mitad de mes
+        public  ActionResult RecordatorioFin()
+        {
+            ViewBag.notificacion = 4;
+            var today = DateTime.Today;
+            var mesactual = new DateTime(today.Year, today.Month, 1);
+            //var mesanterior = mesactual.AddMonths(-1);
+            var finMes = mesactual.AddDays(-1);
+            AspNetUsers usuario = new AspNetUsers();
+            List<SUSCRIPCION> suscripciones = new List<SUSCRIPCION>();
+            suscripciones = (from busqueda in db.SUSCRIPCION where busqueda.fecha_suscripcion == finMes select busqueda).ToList();
+            if (suscripciones.Count > 0)
+            {
+
+                foreach (var item in suscripciones)
+                {
+                    usuario = db.AspNetUsers.Find(item.id_usuario);
+                    string from = "kielcuentas@gmail.com";
+                    MailMessage mailUser = new MailMessage(from, usuario.Email);
+                    {
+
+                        mailUser.Subject = "Recordatorio de Pago";
+                        mailUser.Body = "Hola " + usuario.nombre + " te recordamos que el " + Convert.ToString(finMes.Day) + " del mes en curso debes renovar tu suscripcion Verte Bien.";
+                        mailUser.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.EnableSsl = true;
+                        NetworkCredential networkCredential = new NetworkCredential(from, "20175376Octubre0210*");
+                        smtp.UseDefaultCredentials = true;
+                        smtp.Credentials = networkCredential;
+                        smtp.Port = 587;
+                        smtp.Send(mailUser);
+                        ViewBag.Message = "Enviado con exito";
+                    }
+
+
+                }
+                ViewBag.notificacion = 5;
+                return RedirectToAction("Index", "AspNetUsers");
+            }
+
+            return RedirectToAction("Index", "AspNetUsers");
+        }
+        //Metodo para debitar en masa a todos los usuarios.
+        public async Task<String> debitarUsers()
+        {
+            List<AspNetUsers> listaUsers = new List<AspNetUsers>();
+            CardResponse infoParaCobrar = new CardResponse();
+            listaUsers = (from buscarUsers in db.AspNetUsers where buscarUsers.fecha_creacion_.Day == DateTime.Today.Day select buscarUsers).ToList();
+            if (listaUsers.Count > 0)
+            {
+                foreach (var item in listaUsers)
+                {
+                    if (item.nombre_peluqueria != null && item.estado == "activo")
+                    {
+                        var resultadoBusqueda = db.Database.SqlQuery<string>("SP_SelectMembresia @id", new SqlParameter("@id", item.Id)).ToList();
+                        var token = (from buscaToken in db.CARD where buscaToken.id_usuario == item.Id && buscaToken.comentario == "activo" select buscaToken.token).ToList();
+                        infoParaCobrar.token = Convert.ToString(token[0]);
+                        infoParaCobrar.IdUser = item.Id;
+                        infoParaCobrar.Email = item.Email;
+                        if (resultadoBusqueda[0] == "2")
+                        {
+                            infoParaCobrar.Membresia = "expres";
+
+                        }
+                        if (resultadoBusqueda[0] == "4")
+                        {
+                            infoParaCobrar.Membresia = "preferencial";
+                        }
+                        if (resultadoBusqueda[0] == "5")
+                        {
+                            infoParaCobrar.Membresia = "vip";
+                        }
+                            
+                        var respuestaDebit = await debit(infoParaCobrar);
+                        if (respuestaDebit != "transaccion_fallida")
+                        {
+                            //Evaluamos la respuesta obtenida---
+                            //Limpiamos el contenido de la repsuesta y almacenamos en una lista
+                            respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
+                            List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
+                            if (contenidoRespuesta[0].Contains("success"))
+                            {
+                                //instancia nueva suscripcion
+                                SUSCRIPCION newSuscripcion = new SUSCRIPCION();
+                                newSuscripcion.id_usuario = infoParaCobrar.IdUser;
+                                newSuscripcion.estado = "OK";
+                                newSuscripcion.fecha_suscripcion = DateTime.Today;
+                                newSuscripcion.trasaction_reference = contenidoRespuesta[20];
+                                newSuscripcion.comentario = Convert.ToString(contenidoRespuesta);
+
+                                SUSCRIPCIONsController insertarSuscripcion = new SUSCRIPCIONsController();
+                                insertarSuscripcion.Create(newSuscripcion);
+                            }
+                            else
+                            {
+                                var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                            }
+                        }
+                        if (respuestaDebit == "transaccion_fallida")
+                        {
+                            var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                        }
+                    }
+
+                }
+            }
+            return "Debito realizado";
+
+        }
+
+        public async Task<String> debitarUsersPendientes()
+        {
+            List<AspNetUsers> listaUsers = new List<AspNetUsers>();
+            CardResponse infoParaCobrar = new CardResponse();
+            listaUsers = (from buscarUsers in db.AspNetUsers where buscarUsers.estado == "suspendido" select buscarUsers).ToList();
+            if (listaUsers.Count > 0)
+            {
+                foreach (var item in listaUsers)
+                {
+                    if (item.nombre_peluqueria != null && item.estado == "activo")
+                    {
+                        var resultadoBusqueda = db.Database.SqlQuery<string>("SP_SelectMembresia @id", new SqlParameter("@id", item.Id)).ToList();
+                        var token = (from buscaToken in db.CARD where buscaToken.id_usuario == item.Id && buscaToken.comentario == "activo" select buscaToken.token).ToList();
+                        infoParaCobrar.token = Convert.ToString(token[0]);
+                        infoParaCobrar.IdUser = item.Id;
+                        infoParaCobrar.Email = item.Email;
+                        if (resultadoBusqueda[0] == "2")
+                        {
+                            infoParaCobrar.Membresia = "expres";
+
+                        }
+                        if (resultadoBusqueda[0] == "4")
+                        {
+                            infoParaCobrar.Membresia = "preferencial";
+                        }
+                        if (resultadoBusqueda[0] == "5")
+                        {
+                            infoParaCobrar.Membresia = "vip";
+                        }
+
+                        var respuestaDebit = await debit(infoParaCobrar);
+                        if (respuestaDebit != "transaccion_fallida")
+                        {
+                            //Evaluamos la respuesta obtenida---
+                            //Limpiamos el contenido de la repsuesta y almacenamos en una lista
+                            respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
+                            List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
+                            if (contenidoRespuesta[0].Contains("success"))
+                            {
+                                //instancia nueva suscripcion
+                                SUSCRIPCION newSuscripcion = new SUSCRIPCION();
+                                newSuscripcion.id_usuario = infoParaCobrar.IdUser;
+                                newSuscripcion.estado = "OK";
+                                newSuscripcion.fecha_suscripcion = DateTime.Today;
+                                newSuscripcion.trasaction_reference = contenidoRespuesta[20];
+                                newSuscripcion.comentario = Convert.ToString(contenidoRespuesta);
+
+                                SUSCRIPCIONsController insertarSuscripcion = new SUSCRIPCIONsController();
+                                insertarSuscripcion.Create(newSuscripcion);
+                            }
+                            else
+                            {
+                                var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                            }
+                        }
+                        if (respuestaDebit == "transaccion_fallida")
+                        {
+                            var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                        }
+                    }
+
+                }
+            }
+            return "Debito realizado";
+
+        }
+        public async Task<String> debitarManualUser( )
+        {
+            var estaAutenticado = User.Identity.IsAuthenticated;
+            var id = "";
+            if (estaAutenticado)
+            {
+                id = User.Identity.GetUserId();
+                CardResponse infoParaCobrar = new CardResponse();
+                AspNetUsers usuario = db.AspNetUsers.Find(id);
+                var resultadoBusqueda = db.Database.SqlQuery<string>("SP_SelectMembresia @id", new SqlParameter("@id", id)).ToList();
+                var token = (from buscaToken in db.CARD where buscaToken.id_usuario == id && buscaToken.comentario == "activo" select buscaToken.token).ToList();
+                infoParaCobrar.token = Convert.ToString(token[0]);
+                infoParaCobrar.IdUser = id;
+                infoParaCobrar.Email = usuario.Email;
+                if (resultadoBusqueda[0] == "2")
+                {
+                    infoParaCobrar.Membresia = "expres";
+
+                }
+                if (resultadoBusqueda[0] == "4")
+                {
+                    infoParaCobrar.Membresia = "preferencial";
+                }
+                if (resultadoBusqueda[0] == "5")
+                {
+                    infoParaCobrar.Membresia = "vip";
+                }
+
+                var respuestaDebit = await debit(infoParaCobrar);
+                if (respuestaDebit != "transaccion_fallida")
+                {
+                    //Evaluamos la respuesta obtenida---
+                    //Limpiamos el contenido de la repsuesta y almacenamos en una lista
+                    respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
+                    List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
+                    if (contenidoRespuesta[0].Contains("success"))
+                    {
+                        //instancia nueva suscripcion
+                        SUSCRIPCION newSuscripcion = new SUSCRIPCION();
+                        newSuscripcion.id_usuario = infoParaCobrar.IdUser;
+                        newSuscripcion.estado = "OK";
+                        newSuscripcion.fecha_suscripcion = DateTime.Today;
+                        newSuscripcion.trasaction_reference = contenidoRespuesta[20];
+                        newSuscripcion.comentario = Convert.ToString(contenidoRespuesta);
+
+                        SUSCRIPCIONsController insertarSuscripcion = new SUSCRIPCIONsController();
+                        insertarSuscripcion.Create(newSuscripcion);
+                        return "Debito realizado";
+                    }
+                    else
+                    {
+                        var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                    }
+                }
+                if (respuestaDebit == "transaccion_fallida")
+                {
+                    var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                }
+            }
+            return "Algo ha fallado";
+        }
 
         //------------------------METODOS DE PAYMENTEZ-----------------
         [System.Web.Http.HttpPost]
@@ -256,7 +450,7 @@ namespace VerteBienV1.Controllers
                 //Si es diferente de...
                 if( respuestaDebit != "transaccion_fallida")
                 {
-                    //Evaluamos la respuesta obtenida---
+                        //Evaluamos la respuesta obtenida---
                         //Limpiamos el contenido de la repsuesta y almacenamos en una lista
                     respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
                     List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
@@ -271,6 +465,7 @@ namespace VerteBienV1.Controllers
                         nuevaTarjeta.digitos = respuesta.number;
                         nuevaTarjeta.fecha_expiracion = respuesta.expiry_month + "/" + respuesta.expiry_year;
                         nuevaTarjeta.fecha_agregada = DateTime.Today;
+                        nuevaTarjeta.comentario = "activo";
 
                         CARDController insertarTarjeta = new CARDController();
 
@@ -282,27 +477,58 @@ namespace VerteBienV1.Controllers
 
                return RedirectToAction("index", "SERVICIOS");
             }
-            if (aspNetUsers.estado == "pendiente")
+            if (aspNetUsers.estado == "activo")
             {
-                var respuestaDebit = await debit(respuesta);
-                return RedirectToAction("");
+
+                //Instancia de una nueva tarjeta
+                CARD nuevaTarjeta = new CARD();
+                nuevaTarjeta.id_usuario = respuesta.IdUser;
+                nuevaTarjeta.estatus = respuesta.status;
+                nuevaTarjeta.token = respuesta.token;
+                nuevaTarjeta.trasaction_reference = respuesta.transaction_reference;
+                nuevaTarjeta.digitos = respuesta.number;
+                nuevaTarjeta.fecha_expiracion = respuesta.expiry_month + "/" + respuesta.expiry_year;
+                nuevaTarjeta.fecha_agregada = DateTime.Today;
+                nuevaTarjeta.comentario = "activo";
+
+                CARDController insertarTarjeta = new CARDController();
+
+                insertarTarjeta.Create(nuevaTarjeta);
+                return RedirectToAction("index", "SERVICIOS");
             }
             return View();
         }
         public ActionResult SaveCard(string Id, string Email, string membresiaSelec) 
         {
-            ViewBag.idUser = Id;
-            ViewBag.Email = Email;
-            ViewBag.membresia = membresiaSelec;
+            if(Id != null && Email != null && membresiaSelec != null) 
+            { 
+                    ViewBag.idUser = Id;
+                    ViewBag.Email = Email;
+                    ViewBag.membresia = membresiaSelec;
+            }
+            var estaAutenticado = User.Identity.IsAuthenticated;
+            if (estaAutenticado)
+            {
+                var idUser = User.Identity.GetUserId();
+                AspNetUsers aspNetUsers = db.AspNetUsers.Find(idUser);
+                if (aspNetUsers.estado == "activo")
+                {
+                    ViewBag.idUser = aspNetUsers.Id;
+                    ViewBag.Email = aspNetUsers.Email;
+                    ViewBag.membresia = "n/a";
+                }
+            }
 
-            //String respuesta = "{\"transaction\": {\"status\": \"success\", \"authorization_code\": \"TEST00\", \"status_detail\": 3,\"message\": \"Response by mock\", \"id\": \"DF-243601\", \"payment_date\": \"2022-09-25T19:23:55.644\", \"payment_method_type\": \"0\", \"dev_reference\": \"debit\",\"carrier_code\": \"00\",\"product_description\": \"pago servicio Verte Bien\", \"current_status\": \"APPROVED\", \"amount\": 10.0,\"carrier\": \"DataFast\",\"installments\": 0,\"installments_type\": \"Revolving credit\"},\"card\": {\"bin\": \"450799\", \"status\": \"valid\", \"token\": \"5762035270905976501\", \"expiry_year\": \"2025\",\"expiry_month\": \"11\",\"transaction_reference\": \"DF-243601\",\"type\": \"vi\", \"number\": \"0010\",\"origin\": \"Paymentez\"}}";
 
-            //respuesta = Regex.Replace(respuesta, "[:\\{}@\n\"]", string.Empty);
-            //Console.WriteLine(respuesta);
 
-            //List<String> Contenido = (respuesta.Split(',')).ToList();
+                //String respuesta = "{\"transaction\": {\"status\": \"success\", \"authorization_code\": \"TEST00\", \"status_detail\": 3,\"message\": \"Response by mock\", \"id\": \"DF-243601\", \"payment_date\": \"2022-09-25T19:23:55.644\", \"payment_method_type\": \"0\", \"dev_reference\": \"debit\",\"carrier_code\": \"00\",\"product_description\": \"pago servicio Verte Bien\", \"current_status\": \"APPROVED\", \"amount\": 10.0,\"carrier\": \"DataFast\",\"installments\": 0,\"installments_type\": \"Revolving credit\"},\"card\": {\"bin\": \"450799\", \"status\": \"valid\", \"token\": \"5762035270905976501\", \"expiry_year\": \"2025\",\"expiry_month\": \"11\",\"transaction_reference\": \"DF-243601\",\"type\": \"vi\", \"number\": \"0010\",\"origin\": \"Paymentez\"}}";
 
-            return View();
+                //respuesta = Regex.Replace(respuesta, "[:\\{}@\n\"]", string.Empty);
+                //Console.WriteLine(respuesta);
+
+                //List<String> Contenido = (respuesta.Split(',')).ToList();
+
+                return View();
 
         }
 
@@ -391,7 +617,7 @@ namespace VerteBienV1.Controllers
             }
             else
             {
-                return "oh oh esto esta nulo";
+                return "transaccion_fallida";
             }
 
         }
@@ -475,8 +701,8 @@ namespace VerteBienV1.Controllers
 
         public async Task<string> getToken()
         {
-            var API_LOGIN_DEV = "TPP3-EC-SERVER";
-            var API_KEY_DEV = "JdXTDl2d0o0B8ANZ1heJOq7tf62PC6";
+            var API_LOGIN_DEV = "NUVEISTG-EC-SERVER";
+            var API_KEY_DEV = "Kn9v6ICvoRXQozQG2rK92WtjG6l08a";
 
             var server_application_code = API_LOGIN_DEV;
             var server_app_key = API_KEY_DEV;
