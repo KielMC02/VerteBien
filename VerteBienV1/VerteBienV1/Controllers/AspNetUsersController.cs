@@ -11,7 +11,7 @@ using VerteBienV1.Models;
 
 namespace VerteBienV1.Controllers
 {
-    [Authorize]
+
     public class AspNetUsersController : Controller
     {
         private VERTEBIENEntities db = new VERTEBIENEntities();
@@ -34,6 +34,7 @@ namespace VerteBienV1.Controllers
                return true;
             }             
         }
+ 
         public ActionResult CambiarEstado(string estado, string idusuario) 
         {
             AspNetUsers usuario = db.AspNetUsers.Find(idusuario);
@@ -98,7 +99,7 @@ namespace VerteBienV1.Controllers
             }
             return confirmado;
         }
-        //[Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador")]
         // GET: AspNetUsers
         public ActionResult Index(string email)
         {
@@ -135,7 +136,7 @@ namespace VerteBienV1.Controllers
 
             return View(aspNetUsers);
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: AspNetUsers/Create
         public ActionResult Create()
         {
@@ -145,6 +146,7 @@ namespace VerteBienV1.Controllers
         // POST: AspNetUsers/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,nombre,apellido,ciudad,sector,calle,telefono,latitud,longitud,nombre_peluqueria,estado,fecha_nacimiento_,fecha_creacion_,capacidad_simultanea_")] AspNetUsers aspNetUsers)
@@ -542,7 +544,7 @@ namespace VerteBienV1.Controllers
             }
             return View(aspNetUsers);
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: AspNetUsers/Delete/5
         public ActionResult Delete(string id)
         {
@@ -559,6 +561,7 @@ namespace VerteBienV1.Controllers
         }
 
         // POST: AspNetUsers/Delete/5
+        [Authorize(Roles = "administrador")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)

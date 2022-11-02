@@ -140,7 +140,7 @@ namespace VerteBienV1.Controllers
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", rEDES_SOCIALES.id_usuario);
             return View(rEDES_SOCIALES);
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: REDES_SOCIALES/Delete/5
         public ActionResult Delete(int? id)
         {

@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 
 namespace VerteBienV1.Controllers
 {
-    [Authorize(Roles = "cliente, expres,preferencial,vip,administrador")]
+    [Authorize]
     public class CITASController : Controller
     {
         public class disponible
@@ -71,6 +71,7 @@ namespace VerteBienV1.Controllers
             return View(citasUsuario);
         }
         //Modulo de Contabilidad
+        [Authorize(Roles = "preferencial,vip,administrador")]
         public ActionResult contabilidad(DateTime? desde, DateTime? hasta) 
         {
             //Lista de Citas
@@ -95,7 +96,7 @@ namespace VerteBienV1.Controllers
                                where citas.estado == "completado" && citas.SERVICIOS.id_usuario == id select citas).ToList();
             return View(citasPeluqueria);
         }
-
+        [Authorize]
         // GET: CITAS/Details/5
         public ActionResult Details(int? id)
         {
@@ -110,7 +111,7 @@ namespace VerteBienV1.Controllers
             }
             return View(cITAS);
         }
-
+        [Authorize]
         public String Disponibilidad(int idservicio, DateTime fecha, string dia)
         {
             int id_servicio = idservicio;
@@ -124,7 +125,7 @@ namespace VerteBienV1.Controllers
 
             return resultadoDisponibilidad;
         }
-
+        [Authorize]
         public String AgregarCita(int idservicio, DateTime fecha, decimal hora, string comentario_cliente, string comentario_peluqueria) 
         {
             var dia = "semanal";
@@ -145,9 +146,9 @@ namespace VerteBienV1.Controllers
 
         }
 
-
-    // GET: CITAS/Createx
-    public ActionResult Create(int idServicio)
+        [Authorize]
+        // GET: CITAS/Createx
+        public ActionResult Create(int idServicio)
         {
             SERVICIOS sERVICIOS = db.SERVICIOS.Find(idServicio);
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email");
@@ -163,6 +164,7 @@ namespace VerteBienV1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "id_cita,id_usuario,id_servicio,fecha_creacion,fecha_cita,estado")] CITAS cITAS)
         {
             var id = "vacio";
@@ -242,7 +244,7 @@ namespace VerteBienV1.Controllers
             ViewBag.id_servicio = new SelectList(db.SERVICIOS, "id_servicio", "id_usuario", cITAS.id_servicio);
             return View(cITAS);
         }
-
+        [Authorize]
         // GET: CITAS/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -267,6 +269,7 @@ namespace VerteBienV1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "id_cita,id_usuario,id_servicio,fecha_creacion,fecha_cita,estado")] CITAS cITAS)
         {
             if (ModelState.IsValid)
@@ -279,7 +282,7 @@ namespace VerteBienV1.Controllers
             ViewBag.id_servicio = new SelectList(db.SERVICIOS, "id_servicio", "id_usuario", cITAS.id_servicio);
             return View(cITAS);
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: CITAS/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -298,6 +301,7 @@ namespace VerteBienV1.Controllers
         // POST: CITAS/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador")]
         public ActionResult DeleteConfirmed(int id)
         {
             CITAS cITAS = db.CITAS.Find(id);

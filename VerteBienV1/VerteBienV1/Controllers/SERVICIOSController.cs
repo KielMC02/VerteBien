@@ -77,7 +77,7 @@ namespace VerteBienV1.Controllers
 
             return View(resultadoBusqueda);
         }
-
+       
         public ActionResult TodosLosServicios(string servicio)
         {
 
@@ -338,7 +338,7 @@ namespace VerteBienV1.Controllers
 
             return View(sERVICIOS);
         }
-
+        [Authorize(Roles = "expres,preferencial,vip,administrador")]
         // POST: SERVICIOS/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -565,7 +565,7 @@ namespace VerteBienV1.Controllers
             ViewBag.id_categoria = new SelectList(db.CATEGORIAS_SERVICIOS, "id_categoria_servicio", "nombre_categoria", sERVICIOS.id_categoria);
             return View(sERVICIOS);
         }
-        //[Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador")]
         // GET: SERVICIOS/Delete/5
         public ActionResult Delete(int? id)
         {

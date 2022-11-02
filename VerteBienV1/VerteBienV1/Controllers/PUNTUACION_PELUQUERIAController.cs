@@ -14,7 +14,7 @@ namespace VerteBienV1.Controllers
     public class PUNTUACION_PELUQUERIAController : Controller
     {
         private VERTEBIENEntities db = new VERTEBIENEntities();
-
+        [Authorize(Roles = "administrador")]
         // GET: PUNTUACION_PELUQUERIA
         public ActionResult Index()
         {
@@ -86,7 +86,7 @@ namespace VerteBienV1.Controllers
             ViewBag.id_cita = new SelectList(db.CITAS, "id_cita", "id_usuario", pUNTUACION_PELUQUERIA.id_cita);
             return View(pUNTUACION_PELUQUERIA);
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: PUNTUACION_PELUQUERIA/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -109,6 +109,7 @@ namespace VerteBienV1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador")]
         public ActionResult Edit([Bind(Include = "id_puntuacion_peluqueria,id_usuario,id_cita,comentario,estrellas,fecha_creacion,estado")] PUNTUACION_PELUQUERIA pUNTUACION_PELUQUERIA)
         {
             if (ModelState.IsValid)
@@ -121,7 +122,7 @@ namespace VerteBienV1.Controllers
             ViewBag.id_cita = new SelectList(db.CITAS, "id_cita", "id_usuario", pUNTUACION_PELUQUERIA.id_cita);
             return View(pUNTUACION_PELUQUERIA);
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: PUNTUACION_PELUQUERIA/Delete/5
         public ActionResult Delete(int? id)
         {

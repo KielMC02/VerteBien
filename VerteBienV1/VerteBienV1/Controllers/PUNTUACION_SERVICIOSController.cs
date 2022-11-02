@@ -14,7 +14,7 @@ namespace VerteBienV1.Controllers
     public class PUNTUACION_SERVICIOSController : Controller
     {
         private VERTEBIENEntities db = new VERTEBIENEntities();
-
+        [Authorize(Roles = "administrador")]
         // GET: PUNTUACION_SERVICIOS
         public ActionResult Index()
         {
@@ -90,6 +90,7 @@ namespace VerteBienV1.Controllers
         }
 
         // GET: PUNTUACION_SERVICIOS/Edit/5
+        [Authorize(Roles = "administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -112,6 +113,7 @@ namespace VerteBienV1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador")]
         public ActionResult Edit([Bind(Include = "id_puntuacion_servicio,id_usuario,id_servicio,id_cita,comentario,estrellas,fecha_creacion,estado")] PUNTUACION_SERVICIOS pUNTUACION_SERVICIOS)
         {
             if (ModelState.IsValid)
@@ -125,7 +127,7 @@ namespace VerteBienV1.Controllers
             ViewBag.id_servicio = new SelectList(db.SERVICIOS, "id_servicio", "id_usuario", pUNTUACION_SERVICIOS.id_servicio);
             return View(pUNTUACION_SERVICIOS);
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: PUNTUACION_SERVICIOS/Delete/5
         public ActionResult Delete(int? id)
         {

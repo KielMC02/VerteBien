@@ -37,14 +37,14 @@ namespace VerteBienV1.Controllers
             public String message { get; set; }
 
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: SUSCRIPCIONs
         public ActionResult Index()
         {
             var sUSCRIPCION = db.SUSCRIPCION.Include(s => s.AspNetUsers);
             return View(sUSCRIPCION.ToList());
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: SUSCRIPCIONs/Details/5
         public ActionResult Details(int? id)
         {

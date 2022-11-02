@@ -14,7 +14,7 @@ namespace VerteBienV1.Controllers
     public class CARDController : Controller
     {
         private VERTEBIENEntities db = new VERTEBIENEntities();
-
+        [Authorize(Roles = "expres,preferencial,vip,administrador")]
         // GET: CARD
         public ActionResult Index()
         {
@@ -36,7 +36,7 @@ namespace VerteBienV1.Controllers
             }
             return View(cARD);
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: CARD/Create
         public ActionResult Create()
         {
@@ -55,6 +55,7 @@ namespace VerteBienV1.Controllers
             {
                 db.CARD.Add(cARD);
                 db.SaveChanges();
+
                 AspNetUsers aspNetUsers = db.AspNetUsers.Find(cARD.id_usuario);
                 
                 if (aspNetUsers.estado == "new") 
@@ -68,7 +69,7 @@ namespace VerteBienV1.Controllers
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", cARD.id_usuario);
             return View(cARD);
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: CARD/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -90,6 +91,7 @@ namespace VerteBienV1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador")]
         public ActionResult Edit([Bind(Include = "id_card,id_usuario,estatus,token,trasaction_reference,digitos,fecha_expiracion,fecha_agregada,comentario")] CARD cARD)
         {
             if (ModelState.IsValid)
@@ -103,6 +105,7 @@ namespace VerteBienV1.Controllers
         }
 
         // GET: CARD/Delete/5
+        [Authorize(Roles = "administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

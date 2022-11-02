@@ -10,7 +10,7 @@ using VerteBienV1.Models;
 
 namespace VerteBienV1.Controllers
 {
-    //[Authorize(Roles = "administrador")]
+    [Authorize(Roles = "administrador")]
     public class CATEGORIAS_SERVICIOSController : Controller
     {
         private VERTEBIENEntities db = new VERTEBIENEntities();

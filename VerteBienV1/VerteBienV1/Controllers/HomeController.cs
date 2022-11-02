@@ -19,7 +19,7 @@ namespace VerteBienV1.Controllers
 
         //    return View();
         //}
-
+        [Authorize(Roles = "administrador")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -32,14 +32,14 @@ namespace VerteBienV1.Controllers
 
             return View();
         }
-
+        [Authorize(Roles = "administrador")]
         public ActionResult Pruebapagos()
         {
 
 
             return View();
         }
-
+        [Authorize(Roles = "administrador")]
         public ActionResult pruebaPago()
         {
 

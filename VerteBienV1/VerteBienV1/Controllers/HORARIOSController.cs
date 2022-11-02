@@ -30,7 +30,7 @@ namespace VerteBienV1.Controllers
             var hORARIOS = db.HORARIOS.Include(h => h.AspNetUsers);
             return View(hORARIOS.ToList());
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: HORARIOS/Details/5
         public ActionResult Details(int? id)
         {
@@ -145,7 +145,7 @@ namespace VerteBienV1.Controllers
 
             return View(hORARIOS);
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: HORARIOS/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -160,7 +160,7 @@ namespace VerteBienV1.Controllers
             }
             return View(hORARIOS);
         }
-
+        [Authorize(Roles = "administrador")]
         // POST: HORARIOS/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
