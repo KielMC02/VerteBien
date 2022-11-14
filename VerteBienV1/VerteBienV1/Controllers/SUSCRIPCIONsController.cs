@@ -492,8 +492,10 @@ namespace VerteBienV1.Controllers
                 nuevaTarjeta.comentario = "activo";
 
                 CARDController insertarTarjeta = new CARDController();
-
                 insertarTarjeta.Create(nuevaTarjeta);
+
+                var resultadoProc = db.Database.ExecuteSqlCommand("SP_NuevaTarjetaDefault @id, @digitos", new SqlParameter("@id", Convert.ToString(respuesta.IdUser)), new SqlParameter("@id", Convert.ToString(respuesta.number)));
+
                 return RedirectToAction("index", "SERVICIOS");
             }
             return View();

@@ -68,7 +68,7 @@
         </center>
         <div class="row">
             <div class="col-md-6 col-12 ">
-                
+
                 <div class="panel">
                     <center>
                         <img src="~/Imagenes/paymentezlogo.JPG" />
@@ -77,14 +77,13 @@
                     <form id="add-card-form">
                         <div class="payment-form" id="my-card" data-capture-name="true"></div>
                         <button class="btn">Save</button>
-                     
+
 
                         <br />
                         <div id="messages"></div>
                     </form>
 
                 </div>
-                @*@Html.ActionLink("debitar", "debit", "SUSCRIPCIONs")*@
             </div>
 
             <div class="col-md-6 col-12 ">
@@ -212,7 +211,7 @@
         console.log("@ViewBag.Email");
         $(function () {
 
-            Payment.init('stg', 'TPP3-EC-CLIENT', 'ZfapAKOk4QFXheRNvndVib9XU3szzg');
+            Payment.init('stg', 'NUVEISTG-EC-CLIENT', 'rvpKAv2tc49x6YL38fvtv5jJxRRiPs');
 
             let form = $("#add-card-form");
             let submitButton = form.find("button");
