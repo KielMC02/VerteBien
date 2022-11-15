@@ -59,13 +59,16 @@ namespace VerteBienV1.Controllers
         // GET: SERVICIOS
         public ActionResult Index(string canton, string sector, string servicio, string puntuacion)
         {
-            
+            //Variable a utilizar en caso de que uno de los parametros sea un string vacio
+            var nulo = DBNull.Value;     
             ////Lista que guarda el resultado de la Busqueda
             List<SERVICIOS> resultadoBusqueda = new List<SERVICIOS>();
-
-            if( canton != null || sector != null || servicio != null || puntuacion != null )
-            { 
-                resultadoBusqueda = db.Database.SqlQuery<SERVICIOS>("filtrar @ciudad, @sector, @puntuacion, @dato", new SqlParameter("@ciudad", Convert.ToString(canton)), new SqlParameter("@sector", sector), new SqlParameter("@puntuacion", puntuacion), new SqlParameter("@dato", servicio)).ToList();
+            if(canton != null) { 
+                    if( canton != "" || sector != "" || servicio != "" || puntuacion != "")
+                    {
+                    resultadoBusqueda = db.Database.SqlQuery<SERVICIOS>("filtrar @ciudad, @sector, @puntuacion, @dato", new SqlParameter("@ciudad", Convert.ToString(canton)), new SqlParameter("@sector", sector), new SqlParameter("@puntuacion", puntuacion == "" ? (object)nulo : puntuacion), new SqlParameter("@dato", servicio == ""? (object)nulo : servicio)).ToList();
+               
+                    }
             }
             //Lista completa de servicios sin filtrado
             //var sERVICIOS = db.SERVICIOS.Include(s => s.AspNetUsers).Include(s => s.CATEGORIAS_SERVICIOS);
