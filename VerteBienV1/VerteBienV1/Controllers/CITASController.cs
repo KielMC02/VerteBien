@@ -74,27 +74,36 @@ namespace VerteBienV1.Controllers
         [Authorize(Roles = "preferencial,vip,administrador")]
         public ActionResult contabilidad(DateTime? desde, DateTime? hasta) 
         {
-            //Lista de Citas
-            List<CITAS> citasPeluqueria = new List<CITAS>();
-            //Se obtiene el ID del usuairo logueado.
-            var id = "vacio";
-            var estaAutenticado = User.Identity.IsAuthenticated;
-            if (estaAutenticado)
-            {
-                id = User.Identity.GetUserId();
-            }
-            if (desde != null && hasta != null) {
-                citasPeluqueria = (from citas in db.CITAS
-                                   join servicios in db.SERVICIOS on citas.id_servicio equals servicios.id_servicio
-                                   where citas.fecha_cita >= desde && citas.fecha_cita <= hasta && citas.estado == "completado" && citas.SERVICIOS.id_usuario == id
-                                   select citas).ToList();
+            SERVICIOSController validar = new SERVICIOSController();
+            var estatus = validar.ValidarEstado();
+            if(estatus == "activo") 
+            { 
+                //Lista de Citas
+                List<CITAS> citasPeluqueria = new List<CITAS>();
+                //Se obtiene el ID del usuairo logueado.
+                var id = "vacio";
+                var estaAutenticado = User.Identity.IsAuthenticated;
+                if (estaAutenticado)
+                {
+                    id = User.Identity.GetUserId();
+                }
+                if (desde != null && hasta != null) {
+                    citasPeluqueria = (from citas in db.CITAS
+                                       join servicios in db.SERVICIOS on citas.id_servicio equals servicios.id_servicio
+                                       where citas.fecha_cita >= desde && citas.fecha_cita <= hasta && citas.estado == "completado" && citas.SERVICIOS.id_usuario == id
+                                       select citas).ToList();
+                    return View(citasPeluqueria);
+                }
+                //Se obtiene el listado de citas.
+
+                citasPeluqueria = (from citas in db.CITAS join servicios in db.SERVICIOS on citas.id_servicio equals servicios.id_servicio 
+                                   where citas.estado == "completado" && citas.SERVICIOS.id_usuario == id select citas).ToList();
                 return View(citasPeluqueria);
             }
-            //Se obtiene el listado de citas.
-
-            citasPeluqueria = (from citas in db.CITAS join servicios in db.SERVICIOS on citas.id_servicio equals servicios.id_servicio 
-                               where citas.estado == "completado" && citas.SERVICIOS.id_usuario == id select citas).ToList();
-            return View(citasPeluqueria);
+            else
+            {
+                return RedirectToAction("pagoRequerido", "SUSCRIPCIONs");
+            }
         }
         [Authorize]
         // GET: CITAS/Details/5

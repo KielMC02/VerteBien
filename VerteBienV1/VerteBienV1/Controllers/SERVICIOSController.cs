@@ -206,10 +206,18 @@ namespace VerteBienV1.Controllers
             {
                 return RedirectToAction("Create", "REDES_SOCIALES");
             }
-
-            ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email");
-            ViewBag.id_categoria = new SelectList(db.CATEGORIAS_SERVICIOS, "id_categoria_servicio", "nombre_categoria");
-            return View();
+            SERVICIOSController validar = new SERVICIOSController();
+            var estatus = validar.ValidarEstado();
+            if (estatus == "activo")
+            {
+                ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email");
+                ViewBag.id_categoria = new SelectList(db.CATEGORIAS_SERVICIOS, "id_categoria_servicio", "nombre_categoria");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("pagoRequerido", "SUSCRIPCIONs");
+            }
         }
 
         // POST: SERVICIOS/Create
@@ -335,31 +343,40 @@ namespace VerteBienV1.Controllers
         // GET: SERVICIOS/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            SERVICIOSController validar = new SERVICIOSController();
+            var estatus = validar.ValidarEstado();
+            if (estatus == "activo")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                var idPeluqueria = User.Identity.GetUserId();
+                SERVICIOS sERVICIOS = db.SERVICIOS.Find(id);
+                if (sERVICIOS == null || sERVICIOS.id_usuario != idPeluqueria)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", sERVICIOS.id_usuario);
+                ViewBag.id_categoria = new SelectList(db.CATEGORIAS_SERVICIOS, "id_categoria_servicio", "nombre_categoria", sERVICIOS.id_categoria);
+                //Estados del servicio
+                List<String> estado = new List<string>();
+                estado.Add("activo");
+                estado.Add("inactivo");
+
+                ViewBag.estados = new SelectList(estado, sERVICIOS.estado);
+                //Separamos los nombres de las imagenes y guardamos en una lista
+                List<String> imagenes = (sERVICIOS.imagenes.Split(';')).ToList();
+                //Enviamos la lista a la vista
+                ViewData["imagenes_s"] = imagenes;
+
+
+                return View(sERVICIOS);
             }
-            var idPeluqueria = User.Identity.GetUserId();
-            SERVICIOS sERVICIOS = db.SERVICIOS.Find(id);
-            if (sERVICIOS == null || sERVICIOS.id_usuario != idPeluqueria)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("pagoRequerido", "SUSCRIPCIONs");
             }
-            ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", sERVICIOS.id_usuario);
-            ViewBag.id_categoria = new SelectList(db.CATEGORIAS_SERVICIOS, "id_categoria_servicio", "nombre_categoria", sERVICIOS.id_categoria);
-            //Estados del servicio
-            List<String> estado = new List<string>();
-            estado.Add("activo");
-            estado.Add("inactivo");
-
-            ViewBag.estados = new SelectList(estado, sERVICIOS.estado);
-            //Separamos los nombres de las imagenes y guardamos en una lista
-            List<String> imagenes = (sERVICIOS.imagenes.Split(';')).ToList();
-            //Enviamos la lista a la vista
-            ViewData["imagenes_s"] = imagenes;
-
-
-            return View(sERVICIOS);
         }
         [Authorize(Roles = "expres,preferencial,vip,administrador")]
         // POST: SERVICIOS/Edit/5
