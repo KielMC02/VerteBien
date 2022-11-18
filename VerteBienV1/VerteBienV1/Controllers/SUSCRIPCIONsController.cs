@@ -241,6 +241,13 @@ namespace VerteBienV1.Controllers
 
             return RedirectToAction("Index", "AspNetUsers");
         }
+        //Redireccion de usuarios con estatus suspendido o new
+        public ActionResult pagoRequerido() 
+        {
+
+            return View();
+        }
+
         //Metodo para debitar en masa a todos los usuarios.
         public async Task<String> debitarUsers()
         {
@@ -294,12 +301,12 @@ namespace VerteBienV1.Controllers
                             }
                             else
                             {
-                                var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                                var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoSuspendido @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
                             }
                         }
                         if (respuestaDebit == "transaccion_fallida")
                         {
-                            var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                            var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoSuspendido @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
                         }
                     }
 
@@ -308,7 +315,7 @@ namespace VerteBienV1.Controllers
             return "Debito realizado";
 
         }
-
+        //Debitar usuarios pendientes de pago.
         public async Task<String> debitarUsersPendientes()
         {
             List<AspNetUsers> listaUsers = new List<AspNetUsers>();
@@ -361,12 +368,12 @@ namespace VerteBienV1.Controllers
                             }
                             else
                             {
-                                var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                                var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoSuspendido @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
                             }
                         }
                         if (respuestaDebit == "transaccion_fallida")
                         {
-                            var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                            var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoSuspendido @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
                         }
                     }
 
@@ -375,6 +382,7 @@ namespace VerteBienV1.Controllers
             return "Debito realizado";
 
         }
+        //Auto-Debitar por el usuario
         public async Task<String> debitarManualUser( )
         {
             var estaAutenticado = User.Identity.IsAuthenticated;
@@ -426,12 +434,12 @@ namespace VerteBienV1.Controllers
                     }
                     else
                     {
-                        var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                        var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoSuspendido @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
                     }
                 }
                 if (respuestaDebit == "transaccion_fallida")
                 {
-                    var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoPendiente @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
+                    var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstadoSuspendido @id", new SqlParameter("@id", Convert.ToString(infoParaCobrar.IdUser)));
                 }
             }
             return "Algo ha fallado";
@@ -474,9 +482,8 @@ namespace VerteBienV1.Controllers
                         return RedirectToAction("Index", "SERVICIOS");
                     }
                 }
-
-               return RedirectToAction("index", "SERVICIOS");
             }
+
             if (aspNetUsers.estado == "activo")
             {
 
@@ -498,7 +505,43 @@ namespace VerteBienV1.Controllers
 
                 return RedirectToAction("index", "SERVICIOS");
             }
-            return View();
+
+            if (aspNetUsers.estado == "suspendido")
+            {
+                //Esperamos respuesta del metodo debitar
+                var respuestaDebit = await debit(respuesta);
+                //Si es diferente de...
+                if (respuestaDebit != "transaccion_fallida")
+                {
+                    //Evaluamos la respuesta obtenida---
+                    //Limpiamos el contenido de la repsuesta y almacenamos en una lista
+                    respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
+                    List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
+                    if (contenidoRespuesta[0].Contains("success"))
+                    {
+                        //Instancia de una nueva tarjeta
+                        CARD nuevaTarjeta = new CARD();
+                        nuevaTarjeta.id_usuario = respuesta.IdUser;
+                        nuevaTarjeta.estatus = respuesta.status;
+                        nuevaTarjeta.token = respuesta.token;
+                        nuevaTarjeta.trasaction_reference = contenidoRespuesta[20];
+                        nuevaTarjeta.digitos = respuesta.number;
+                        nuevaTarjeta.fecha_expiracion = respuesta.expiry_month + "/" + respuesta.expiry_year;
+                        nuevaTarjeta.fecha_agregada = DateTime.Today;
+                        nuevaTarjeta.comentario = "activo";
+
+                        CARDController insertarTarjeta = new CARDController();
+
+                        insertarTarjeta.Create(nuevaTarjeta);
+                        var resultadoProc = db.Database.ExecuteSqlCommand("SP_NuevaTarjetaDefault @id, @digitos", new SqlParameter("@id", Convert.ToString(respuesta.IdUser)), new SqlParameter("@id", Convert.ToString(respuesta.number)));
+
+                        return RedirectToAction("Index", "SERVICIOS");
+                    }
+                }
+
+                
+            }
+            return RedirectToAction("index", "SERVICIOS");
         }
         public ActionResult SaveCard(string Id, string Email, string membresiaSelec) 
         {

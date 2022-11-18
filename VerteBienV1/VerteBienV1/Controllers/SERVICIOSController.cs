@@ -33,11 +33,35 @@ namespace VerteBienV1.Controllers
             }
             return confirmado;
         }
+        //Metodo que valida suspension del usuario
+        public string ValidarEstado()
+        {
+          
+            //var estaAutenticado = User.Identity.IsAuthenticated; 
+            AspNetUsers usuarioLogueado = new AspNetUsers();
+            var idUsuario = User.Identity.GetUserId();
+            usuarioLogueado = db.AspNetUsers.Find(idUsuario);
+            if (usuarioLogueado.estado == "suspendido")
+            {
 
-        //Metodo que valida si el usuario tienen horarios creados.
+                return "suspendido";
+            }
+            if (usuarioLogueado.estado == "new")
+            {
+               
+                return "new";
+            }
+            else 
+            {
+
+                return "activo";
+            }
+        }
+        //Metodo que valida si el usuario tienen horarios y redes creados.
         public string VerificarUser()
         {
             var idUser = User.Identity.GetUserId();
+
             //Horarios
             List<HORARIOS> verificarHorario = new List<HORARIOS>();
             verificarHorario = (from busqueda in db.HORARIOS where busqueda.id_usuario == idUser select busqueda).ToList();

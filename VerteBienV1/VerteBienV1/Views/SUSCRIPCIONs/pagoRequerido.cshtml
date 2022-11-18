@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Pago Requerido";
+}
+
+<br />
+<center>
+    <h1>Atencion Pago Requerido</h1>
+    <p>Su cuenta tiene un pago pendiente, puede que el metodo de pago registrado este fallando, puede intentar hacer un pago manual a continuacion: </p>
+    <br />
+    @Html.ActionLink("Realizar pago", "debitarManualUser", "SUSCRIPCIONs", htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+    <br />
+    @Html.ActionLink("Agregar metodo de pago", "SaveCard", "SUSCRIPCIONs", htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+    <br />
+    <p>Si su usuario es nuevo puede que aun no haya realizado el pago, si es asi dar clic a continuacion para agrega un metodo de pago y activar su cuenta.</p>
+    @Html.ActionLink("Agregar metodo de pago", "SaveCard", "SUSCRIPCIONs", htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+</center>
+<span>En caso de que esto sea un error comunicarse con nosotros por cualquiera de nuestras vias de comunicacion.<</span>
+<br />

@@ -58,7 +58,7 @@ namespace VerteBienV1.Controllers
 
                 AspNetUsers aspNetUsers = db.AspNetUsers.Find(cARD.id_usuario);
                 
-                if (aspNetUsers.estado == "new") 
+                if (aspNetUsers.estado == "new" || aspNetUsers.estado == "suspendido") 
                 { 
 
                    var resultadoProc = db.Database.ExecuteSqlCommand("SP_ActualizarEstado @id", new SqlParameter("@id", Convert.ToString(cARD.id_usuario)));

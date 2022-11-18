@@ -16,24 +16,7 @@ namespace VerteBienV1.Controllers
     {
         private VERTEBIENEntities db = new VERTEBIENEntities();
 
-        public bool ValidarEstado()
-        {
-            var resultado = "";
-            //var estaAutenticado = User.Identity.IsAuthenticated; 
-            AspNetUsers usuarioLogueado = new AspNetUsers();
-            var idUsuario = User.Identity.GetUserId();
-            usuarioLogueado = db.AspNetUsers.Find(idUsuario);
-            if (usuarioLogueado.estado == "no pago")
-            {
-               resultado = "no pago";
-               return false;
-            }
-            else
-            {
-               resultado = "pago";
-               return true;
-            }             
-        }
+
  
         public ActionResult CambiarEstado(string estado, string idusuario) 
         {
@@ -166,8 +149,10 @@ namespace VerteBienV1.Controllers
         // GET: AspNetUsers/Edit/5
         public ActionResult Edit()
         {
-            var estatus = ValidarEstado();
-            if(estatus == true) 
+            SERVICIOSController validar = new SERVICIOSController();
+            var estatus = validar.ValidarEstado();
+
+            if (estatus == "activo") 
             { 
                 var id = "vacio";
                 var estaAutenticado = User.Identity.IsAuthenticated;
@@ -289,7 +274,7 @@ namespace VerteBienV1.Controllers
             }
             else
             {
-                return RedirectToAction("PagoRequerido","SUSCRIPCION");
+                return RedirectToAction("pagoRequerido","SUSCRIPCIONs");
             }
         }
 
