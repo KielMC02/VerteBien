@@ -2301,6 +2301,25 @@ radios.forEach((radio) => {
    
 });
 
+/* Map para asp net user index */
+if (pathname === '/AspNetUsers/index') {
+    var latitud = $('#latitud').data('latitud');
+    var longitud = $('#longitud').data('longitud');
+    var nombre = $('#nombre-negocio').data('nombre');
+        var map = L.map('map').setView([latitud, longitud], 15);
+        L.marker([latitud, longitud]).addTo(map)
+            .bindPopup(nombre)
+            .openPopup();
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data & copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: 'your.mapbox.access.token'
+        }).addTo(map);
+  
    
 
 
+}
