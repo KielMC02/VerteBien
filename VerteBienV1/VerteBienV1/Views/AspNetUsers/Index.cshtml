@@ -23,204 +23,283 @@
         <hr class="w-50" />
     </center>
     <div>
-        @Html.ActionLink("debitar", "debitarUsers", "SUSCRIPCIONs", null, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6 float-right", @style = "background-color:#DBA312; margin-top:2%" })
-        @Html.ActionLink("Debitar Usuarios Pendientes", "debitarUsersPendientes", "SUSCRIPCIONs", null, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6 float-right", @style = "background-color:#DBA312; margin-top:2%" })
+        @Html.ActionLink("Debitar", "debitarUsers", "SUSCRIPCIONs", null, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6 float-right", @style = "background-color:#DBA312; margin-top:2%" })
+        @Html.ActionLink("Debitar Pendientes", "debitarUsersPendientes", "SUSCRIPCIONs", null, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6 float-right", @style = "background-color:#DBA312; margin-top:2%" })
     </div>
 
-    <form class="row row-cols-lg-12 row-cols-sm-12 g-2 align-content-center">
+    <form class="row row-cols-lg-12 col-12 col-md-8 g-2 align-content-center">
         <div class="col-md-8 col-sm-6">
-            <input type="text" id="Id" name="email" class="form-control col-sm-6 col-lg-12" placeholder="Buscar Usuario por Email" />
+            <input type="text" id="Id" name="email" class="form-control col-12" placeholder="Buscar usuario por Email" />
         </div>
-        <div class="col-md-2 col-sm-4">
-            <button type="submit" class="btn col-lg-12 col-sm-4 text-white" style="background-color:#DBA312">Buscar</button>
+        <div class="col-12 col-md-3">
+            <button type="submit" class="btn col-12 text-white" style="background-color:#DBA312">Buscar</button>
         </div>
     </form>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-12 col-xl-6 my-3">
+    <div class="card h-100 shadow-lg" style="margin-top:2%">
+        <div class="card-body">
+            <!--<h6 class="card-title float-left col-md-8 col-sm-12"><b>Id: </b>--> @*@Html.DisplayFor(modelItem => item.Id)*@
+            <!--</h6>
+            <h6 class="float-right col-md-4 col-sm-12"><b>Estado del usuario: </b>@Html.DisplayFor(modelItem => item.estado)</h6>
+            <h6 class="float-left col-md-8 col-sm-12"><b>Nombre completo: </b>@Html.DisplayFor(modelItem => item.nombre) @Html.DisplayFor(modelItem => item.apellido)</h6>
+            <h6 class="float-left col-md-8 col-sm-12"><b>Fecha de nacimiento: </b>@Html.DisplayFor(modelItem => item.fecha_nacimiento_) </h6>
+            <h6 class="float-left col-md-8 col-sm-12"><b>Teléfono: </b>@Html.DisplayFor(modelItem => item.telefono) </h6>
+            <h6 class="float-left col-md-8 col-sm-12"><b>Ciudad: </b>@Html.DisplayFor(modelItem => item.ciudad) </h6>
+            <h6 class="float-left col-md-8 col-sm-12"><b>Sector: </b>@Html.DisplayFor(modelItem => item.sector) </h6>
+            <h6 class="float-left col-md-8 col-sm-12"><b>Calle: </b>@Html.DisplayFor(modelItem => item.calle) </h6>
+            <h6 class="float-left col-md-8 col-sm-12"><b>Longitud: </b>@Html.DisplayFor(modelItem => item.longitud) </h6>
+            <h6 class="float-left col-md-8 col-sm-12"><b>Latitud: </b>@Html.DisplayFor(modelItem => item.latitud) </h6>
+            <h6 class="float-left col-md-8 col-sm-12"><b>Nombre del negocio: </b>@Html.DisplayFor(modelItem => item.nombre_peluqueria) </h6>-->
 
-    @foreach (var item in Model)
-    {
-        <div class="card h-100 shadow-lg" style="margin-top:2%">
-            <div class="card-body">
-                <h6 class="card-title float-left col-md-8 col-sm-12"><b>Id: </b> @Html.DisplayFor(modelItem => item.Id)</h6>
-                <h6 class="float-right col-md-4 col-sm-12"><b>Estado del usuario: </b>@Html.DisplayFor(modelItem => item.estado)</h6>
-                <h6 class="float-left col-md-8 col-sm-12"><b>Nombre completo: </b>@Html.DisplayFor(modelItem => item.nombre) @Html.DisplayFor(modelItem => item.apellido)</h6>
-                <h6 class="float-left col-md-8 col-sm-12"><b>Fecha de nacimiento: </b>@Html.DisplayFor(modelItem => item.fecha_nacimiento_) </h6>
-                <h6 class="float-left col-md-8 col-sm-12"><b>Teléfono: </b>@Html.DisplayFor(modelItem => item.telefono) </h6>
-                <h6 class="float-left col-md-8 col-sm-12"><b>Ciudad: </b>@Html.DisplayFor(modelItem => item.ciudad) </h6>
-                <h6 class="float-left col-md-8 col-sm-12"><b>Sector: </b>@Html.DisplayFor(modelItem => item.sector) </h6>
-                <h6 class="float-left col-md-8 col-sm-12"><b>Calle: </b>@Html.DisplayFor(modelItem => item.calle) </h6>
-                <h6 class="float-left col-md-8 col-sm-12"><b>Longitud: </b>@Html.DisplayFor(modelItem => item.longitud) </h6>
-                <h6 class="float-left col-md-8 col-sm-12"><b>Latitud: </b>@Html.DisplayFor(modelItem => item.latitud) </h6>
-                <h6 class="float-left col-md-8 col-sm-12"><b>Nombre del negocio: </b>@Html.DisplayFor(modelItem => item.nombre_peluqueria) </h6>
-                <div>
-                    @Html.ActionLink("Editar", "Edit", "Aspnetusers", new { id = item.Id }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6 float-right", @style = "background-color:#DBA312; margin-top:2%" })
-                    @Html.ActionLink("Activar", "CambiarEstado", "Aspnetusers", new { estado = "activo", idusuario = item.Id }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6 float-right", @style = "background-color:#DBA312; margin-top:2%" })
-                    @Html.ActionLink("Suspender", "CambiarEstado", "Aspnetusers", new { estado = "suspendido", idusuario = item.Id }, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6 float-right", @style = "background-color:#DBA312; margin-top:2%" })
+            <div class="card-body p-4 text-black">
+                <div class="mb-5">
+                    <p class="lead fw-normal mb-1"></p>
+                    <div class="p-4" style="background-color: #f8f9fa;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p class="mb-0">Nombre de la peluqueria</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="text-muted mb-0">@Html.DisplayFor(modelItem => item.nombre_peluqueria) </p>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p class="mb-0">Telefono:</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="text-muted mb-0">@Html.DisplayFor(modelItem => item.telefono) </p>
+                                </div>
+                            </div>
+                            <hr>
+
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p class="mb-0">Direccion</p>
+                                </div>
+                                <div class="col-sm-6">
+
+                                    <p class="text-muted mb-0">
+                                        @Html.DisplayFor(modelItem => item.sector),@Html.DisplayFor(modelItem => item.calle),@Html.DisplayFor(modelItem => item.ciudad)
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p class="mb-0">Capacidad:</p>
+                                </div>
+                                <div class="col-sm-6">
+
+                                    <p class="text-muted mb-0">
+                                        @Html.DisplayFor(modelItem => item.capacidad_simultanea_)
+                                    </p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p class="mb-0">Estado:</p>
+                                </div>
+                                <div class="col-sm-6">
+
+                                    <p class="text-muted mb-0">
+                                        @Html.DisplayFor(modelItem => item.estado)
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <center class="mt-1">
+                        @Html.ActionLink("Editar", "Edit", "Aspnetusers", new { id = item.Id }, htmlAttributes: new { @class = "btn text-white float-right", @style = "background-color:#DBA312; margin-top:2%" })
+                        @Html.ActionLink("Activar", "CambiarEstado", "Aspnetusers", new { estado = "activo", idusuario = item.Id }, htmlAttributes: new { @class = "btn text-white float-right", @style = "background-color:#DBA312; margin-top:2%" })
+                        @Html.ActionLink("Suspender", "CambiarEstado", "Aspnetusers", new { estado = "suspendido", idusuario = item.Id }, htmlAttributes: new { @class = "btn text-white  float-right", @style = "background-color:#DBA312; margin-top:2%" })
+                    </center>
                 </div>
-                <br />
             </div>
+
+            <div id="map" style="max-width:100%; height:350px;"></div>
+            <br />
         </div>
+    </div>
+    <span id="nombre-negocio" data-nombre="@Html.DisplayFor(modelItem => item.nombre_peluqueria)"></span>
+    <span id="latitud" data-latitud="@Html.DisplayFor(modelItem => item.latitud)"></span>
+    <span id="longitud" data-longitud="@Html.DisplayFor(modelItem => item.longitud)"></span>
 
 
-        @*<p>
-                @Html.ActionLink("Create New", "Create")
-            </p>*@
-        @*<table class="table">*@
-        @*<tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EmailConfirmed)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PasswordHash)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SecurityStamp)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LockoutEnabled)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AccessFailedCount)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UserName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.nombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.apellido)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ciudad)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.sector)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.calle)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.telefono)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.latitud)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.longitud)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.nombre_peluqueria)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.estado)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.fecha_nacimiento_)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.fecha_creacion_)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.capacidad_simultanea_)
-                </th>
-                <th></th>
-            </tr>*@
+    <p data-estado=" @Html.DisplayFor(modelItem => item.estado)"></p>
 
-        @*<tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmailConfirmed)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PasswordHash)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SecurityStamp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LockoutEnabled)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AccessFailedCount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.apellido)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ciudad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.sector)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.calle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.telefono)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.latitud)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.longitud)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombre_peluqueria)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.estado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fecha_nacimiento_)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fecha_creacion_)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.capacidad_simultanea_)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>*@
-    }
-    <br />
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+    @*<table class="table">*@
+    @*<tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailConfirmed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PasswordHash)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecurityStamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LockoutEnabled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccessFailedCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ciudad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.calle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.latitud)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.longitud)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_peluqueria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_nacimiento_)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_creacion_)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.capacidad_simultanea_)
+            </th>
+            <th></th>
+        </tr>*@
+
+    @*<tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailConfirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PasswordHash)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecurityStamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LockoutEnabled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessFailedCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ciudad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.calle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.latitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.longitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_peluqueria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_nacimiento_)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_creacion_)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.capacidad_simultanea_)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>*@
 </div>
+        }
+    </div>
+        <br />
+    </div>
 @*</table>*@
