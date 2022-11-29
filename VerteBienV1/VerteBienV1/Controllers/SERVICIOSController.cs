@@ -34,13 +34,61 @@ namespace VerteBienV1.Controllers
             return confirmado;
         }
         //Metodo que valida suspension del usuario
-        public string ValidarEstado()
+        //public string ValidarEstado()
+        //{
+
+        //    //var estaAutenticado = User.Identity.IsAuthenticated;
+        //    var idUsuario = User.Identity.GetUserId();
+
+
+        //    AspNetUsers usuarioLogueado = new AspNetUsers();
+        //    usuarioLogueado = db.AspNetUsers.Find(idUsuario);
+
+        //    if (usuarioLogueado.estado == "suspendido")
+        //    {
+
+        //        return "suspendido";
+        //    }
+        //    if (usuarioLogueado.estado == "new")
+        //    {
+               
+        //        return "new";
+        //    }
+        //    else 
+        //    {
+
+        //        return "activo";
+        //    }
+        //}
+        //Metodo que valida si el usuario tienen horarios y redes creados.
+        public string VerificarUser(string idUser)
         {
-          
-            //var estaAutenticado = User.Identity.IsAuthenticated; 
+            //var idUser = User.Identity.GetUserId();
+
+            //Horarios
+            List<HORARIOS> verificarHorario = new List<HORARIOS>();
+            verificarHorario = (from busqueda in db.HORARIOS where busqueda.id_usuario == idUser select busqueda).ToList();
+
+            //Redes sociales
+            List<REDES_SOCIALES> verificarRedes = new List<REDES_SOCIALES>();
+            verificarRedes = (from busqueda in db.REDES_SOCIALES where busqueda.id_usuario == idUser select busqueda).ToList();
+
             AspNetUsers usuarioLogueado = new AspNetUsers();
-            var idUsuario = User.Identity.GetUserId();
-            usuarioLogueado = db.AspNetUsers.Find(idUsuario);
+            usuarioLogueado = db.AspNetUsers.Find(idUser);
+
+            if (verificarHorario.Count == 0)
+            {
+                return "horario";
+            }
+            if (verificarRedes.Count == 0)
+            {
+                return "redes";
+            }
+            if (usuarioLogueado.fotos_local == null)
+            {
+                return "no fotos";
+            }
+
             if (usuarioLogueado.estado == "suspendido")
             {
 
@@ -48,35 +96,14 @@ namespace VerteBienV1.Controllers
             }
             if (usuarioLogueado.estado == "new")
             {
-               
+
                 return "new";
             }
-            else 
+            else
             {
 
                 return "activo";
             }
-        }
-        //Metodo que valida si el usuario tienen horarios y redes creados.
-        public string VerificarUser()
-        {
-            var idUser = User.Identity.GetUserId();
-
-            //Horarios
-            List<HORARIOS> verificarHorario = new List<HORARIOS>();
-            verificarHorario = (from busqueda in db.HORARIOS where busqueda.id_usuario == idUser select busqueda).ToList();
-            //Redes sociales
-            List<REDES_SOCIALES> verificarRedes = new List<REDES_SOCIALES>();
-            verificarRedes = (from busqueda in db.REDES_SOCIALES where busqueda.id_usuario == idUser select busqueda).ToList();
-            if (verificarHorario.Count == 0)
-            {
-                return ("horario");
-            }
-            if (verificarRedes.Count == 0)
-            {
-                return ("redes");
-            }
-            return ("ok");
         }
 
 
@@ -197,18 +224,24 @@ namespace VerteBienV1.Controllers
         // GET: SERVICIOS/Create
         public ActionResult Create()
         {
-            string respuesta = VerificarUser();
+            var idUser = User.Identity.GetUserId();
+            string respuesta = VerificarUser(idUser);
             if (respuesta == "horario") 
             {
+                ViewBag.respuesta = respuesta;
                 return RedirectToAction("Create", "HORARIOS");
             }
             if (respuesta == "redes")
             {
+                ViewBag.respuesta = respuesta;
                 return RedirectToAction("Create", "REDES_SOCIALES");
             }
-            SERVICIOSController validar = new SERVICIOSController();
-            var estatus = validar.ValidarEstado();
-            if (estatus == "activo")
+            if (respuesta == "no fotos")
+            {
+                ViewBag.respuesta = respuesta;
+                return RedirectToAction("Edit", "AspNetUsers");
+            }
+            if (respuesta == "activo")
             {
                 ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email");
                 ViewBag.id_categoria = new SelectList(db.CATEGORIAS_SERVICIOS, "id_categoria_servicio", "nombre_categoria");
@@ -343,9 +376,9 @@ namespace VerteBienV1.Controllers
         // GET: SERVICIOS/Edit/5
         public ActionResult Edit(int? id)
         {
-            SERVICIOSController validar = new SERVICIOSController();
-            var estatus = validar.ValidarEstado();
-            if (estatus == "activo")
+            var idUser = User.Identity.GetUserId();
+            var estatus = VerificarUser(idUser);
+            if (estatus == "activo" || estatus == "no fotos")
             {
                 if (id == null)
                 {
@@ -375,6 +408,7 @@ namespace VerteBienV1.Controllers
             }
             else
             {
+                ViewBag.respuesta = estatus;
                 return RedirectToAction("pagoRequerido", "SUSCRIPCIONs");
             }
         }

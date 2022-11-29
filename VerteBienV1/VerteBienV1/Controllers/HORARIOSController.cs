@@ -17,6 +17,7 @@ namespace VerteBienV1.Controllers
         private VERTEBIENEntities db = new VERTEBIENEntities();
 
         // GET: HORARIOS
+        [Authorize(Roles = "administrador")]
         public ActionResult Index()
         {
             var idUser = User.Identity.GetUserId();
@@ -91,7 +92,7 @@ namespace VerteBienV1.Controllers
             }
 
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", hORARIOS.id_usuario);
-            return View(hORARIOS);
+            return RedirectToAction("Index", "SERVICIOS");
         }
 
         // GET: HORARIOS/Edit/5

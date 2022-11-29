@@ -75,8 +75,9 @@ namespace VerteBienV1.Controllers
         public ActionResult contabilidad(DateTime? desde, DateTime? hasta) 
         {
             SERVICIOSController validar = new SERVICIOSController();
-            var estatus = validar.ValidarEstado();
-            if(estatus == "activo") 
+            var idUser = User.Identity.GetUserId();
+            var estatus = validar.VerificarUser(idUser);
+            if(estatus == "activo" || estatus=="no fotos") 
             { 
                 //Lista de Citas
                 List<CITAS> citasPeluqueria = new List<CITAS>();
@@ -102,6 +103,7 @@ namespace VerteBienV1.Controllers
             }
             else
             {
+                ViewBag.respuesta = estatus;
                 return RedirectToAction("pagoRequerido", "SUSCRIPCIONs");
             }
         }
@@ -137,22 +139,35 @@ namespace VerteBienV1.Controllers
         [Authorize]
         public String AgregarCita(int idservicio, DateTime fecha, decimal hora, string comentario_cliente, string comentario_peluqueria) 
         {
-            var dia = "semanal";
+            string estatus = "suspendido";
             string resultado = "no";
-            SERVICIOS sERVICIO = db.SERVICIOS.Find(idservicio);
-            var idcliente = User.Identity.GetUserId();
-            List<CITAS> agregarCita = new List<CITAS>();
-
-            agregarCita = db.Database.SqlQuery<CITAS>("addCita @usuario_peluqueria, @Fecha, @hora, @servicio, @dia, @usuario_cita", new SqlParameter("@usuario_peluqueria", sERVICIO.id_usuario), new SqlParameter("@Fecha", fecha), new SqlParameter("@hora", hora), new SqlParameter("@servicio", idservicio), new SqlParameter("@dia", dia), new SqlParameter("@usuario_cita", idcliente), new SqlParameter ("@comentario_cliente", comentario_cliente), new SqlParameter( "@comentario_peluqueria", comentario_peluqueria)).ToList();
-
-            if (agregarCita.Count > 0)
+            List<SERVICIOS> idPeluqueria = new List<SERVICIOS>();
+            idPeluqueria = (from busqueda in db.SERVICIOS where busqueda.id_servicio == idservicio select busqueda).ToList();
+            foreach(var item in idPeluqueria)
             {
-                resultado = "si";
-                return resultado;
+                SERVICIOSController validar = new SERVICIOSController();
+                estatus = validar.VerificarUser(item.id_usuario);
             }
+            if(estatus == "activo") 
+            { 
+                var dia = "semanal";
+                SERVICIOS sERVICIO = db.SERVICIOS.Find(idservicio);
+                var idcliente = User.Identity.GetUserId();
+                List<CITAS> agregarCita = new List<CITAS>();
 
+                agregarCita = db.Database.SqlQuery<CITAS>("addCita @usuario_peluqueria, @Fecha, @hora, @servicio, @dia, @usuario_cita", new SqlParameter("@usuario_peluqueria", sERVICIO.id_usuario), new SqlParameter("@Fecha", fecha), new SqlParameter("@hora", hora), new SqlParameter("@servicio", idservicio), new SqlParameter("@dia", dia), new SqlParameter("@usuario_cita", idcliente), new SqlParameter ("@comentario_cliente", comentario_cliente), new SqlParameter( "@comentario_peluqueria", comentario_peluqueria)).ToList();
+
+                if (agregarCita.Count > 0)
+                {
+                    resultado = "si";
+                    return resultado;
+                }
+            }
+            else
+            {
+                return estatus;
+            }
             return resultado;
-
         }
 
         [Authorize]

@@ -150,9 +150,10 @@ namespace VerteBienV1.Controllers
         public ActionResult Edit()
         {
             SERVICIOSController validar = new SERVICIOSController();
-            var estatus = validar.ValidarEstado();
+            string idUser = User.Identity.GetUserId();
+            var estatus = validar.VerificarUser(idUser);
 
-            if (estatus == "activo") 
+            if (estatus == "activo" || estatus == "no fotos") 
             { 
                 var id = "vacio";
                 var estaAutenticado = User.Identity.IsAuthenticated;
@@ -274,6 +275,7 @@ namespace VerteBienV1.Controllers
             }
             else
             {
+                ViewBag.respuesta = estatus;
                 return RedirectToAction("pagoRequerido","SUSCRIPCIONs");
             }
         }
