@@ -154,7 +154,8 @@ namespace VerteBienV1.Controllers
             var estatus = validar.VerificarUser(idUser);
 
             if (estatus == "activo" || estatus == "no fotos") 
-            { 
+            {
+                ViewBag.respuesta = estatus;
                 var id = "vacio";
                 var estaAutenticado = User.Identity.IsAuthenticated;
                 if (estaAutenticado)
