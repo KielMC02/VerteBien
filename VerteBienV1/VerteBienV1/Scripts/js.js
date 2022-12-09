@@ -782,6 +782,8 @@ if (frm) {
                     formulario.submit();
 
                 } else {
+                    var parrafo = $('#p-modal');
+                    parrafo.text('Por favor verificar que los datos del formulario esten correcto.');
                     $('#modal').modal('show'); // abrirr el modal de boostrap 
 
                 }
@@ -2303,6 +2305,7 @@ radios.forEach((radio) => {
 
 /* Map para asp net user index */
 if (pathname === '/AspNetUsers/index') {
+
     var latitud = $('#latitud').data('latitud');
     var longitud = $('#longitud').data('longitud');
     var nombre = $('#nombre-negocio').data('nombre');
@@ -2319,7 +2322,7 @@ if (pathname === '/AspNetUsers/index') {
             accessToken: 'your.mapbox.access.token'
         }).addTo(map);
   
-   
-
-
+  
+ 
 }
+
