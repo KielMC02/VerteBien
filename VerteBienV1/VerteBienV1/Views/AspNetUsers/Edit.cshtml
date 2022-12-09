@@ -11,7 +11,7 @@
     <hr class="w-50" />
 </center>
 <br />
-
+<p>@ViewBag.respuesta</p>
 <form action="~/AspNetUsers/Edit" role="form" id="formulario" enctype="multipart/form-data" method="post">
     @Html.AntiForgeryToken()
 
@@ -155,63 +155,63 @@
 
                         }
 
-                    <div class="row mt-4">
+                        <div class="row mt-4">
 
-                        @if (_list != null)
-                        {<h4 class="my-3"> Fotos</h4>
-                            foreach (var item in _list)
-                            {
-                                ViewBag.contador = ViewBag.contador + 1;
+                            @if (_list != null)
+                            {<h4 class="my-3"> Fotos</h4>
+                                foreach (var item in _list)
+                                {
+                                    ViewBag.contador = ViewBag.contador + 1;
 
-                                <div class="col-lg-4 mt-3">
-                                    <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; max-height:250px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
+                                    <div class="col-lg-4 mt-3">
+                                        <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; max-height:250px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
 
-                                    <div class="mt-3 row col-12">
+                                        <div class="mt-3 row col-12">
 
-                                        <span class="@("file"+@ViewBag.contador)">
-                                            <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
-                                        </span>
-                                        <label for="@("file"+@ViewBag.contador)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Subir foto</span></label>
+                                            <span class="@("file"+@ViewBag.contador)">
+                                                <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
+                                            </span>
+                                            <label for="@("file"+@ViewBag.contador)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Subir foto</span></label>
+
+                                        </div>
 
                                     </div>
-
-                                </div>
+                                }
                             }
-                        }
-                        @{
-                            inputsFaltantes = inputsFaltantes - ViewBag.contador;
-                        }
+                            @{
+                                inputsFaltantes = inputsFaltantes - ViewBag.contador;
+                            }
 
-                        @if (inputsFaltantes != 0)
-                        {
-                            ViewBag.contador2 = ViewBag.contador;
-                            <h2>Agregar Nuevas imagenes al servicio</h2>
-
-                            for (int i = 1; i <= inputsFaltantes; i++)
+                            @if (inputsFaltantes != 0)
                             {
-                                ViewBag.contador2 = ViewBag.contador2 + 1;
-                                <span class="@("file"+@ViewBag.contador2)">
-                                    <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
-                                </span>
-                                <label for="@("file"+@ViewBag.contador2)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn mb-2"> <i class="far fa-image"></i> &nbsp; <span> Agregar Fotos</span></label>
+                                ViewBag.contador2 = ViewBag.contador;
+                                <h2>Agregar Nuevas imagenes al servicio</h2>
+
+                                for (int i = 1; i <= inputsFaltantes; i++)
+                                {
+                                    ViewBag.contador2 = ViewBag.contador2 + 1;
+                                    <span class="@("file"+@ViewBag.contador2)">
+                                        <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
+                                    </span>
+                                    <label for="@("file"+@ViewBag.contador2)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn mb-2"> <i class="far fa-image"></i> &nbsp; <span> Agregar Fotos</span></label>
+                                }
                             }
-                        }
 
-                        <div class="my-3">
-                            @Html.ActionLink("Cambiar mi contraseña", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "btn text-white col-md-5", @style = "background-color:#DBA312;" })
-                        </div>
-
-
-
-
-                        <center>
-                            <div class="form-group col-md-12 col-sm-12">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <button type="submit" class="btn text-white col-md-5" style="background-color:#DBA312; margin-top:2%; margin-right:10%">Guardar cambios</button>
-                                </div>
+                            <div class="my-3">
+                                @Html.ActionLink("Cambiar mi contraseña", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "btn text-white col-md-5", @style = "background-color:#DBA312;" })
                             </div>
-                        </center>
-                    </div>
+
+
+
+
+                            <center>
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button type="submit" class="btn text-white col-md-5" style="background-color:#DBA312; margin-top:2%; margin-right:10%">Guardar cambios</button>
+                                    </div>
+                                </div>
+                            </center>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -229,7 +229,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Por favor verificar que los datos del formulario esten correcto.</p>
+                <p id="p-modal">Por favor verificar que los datos del formulario esten correcto. </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -237,7 +237,25 @@
         </div>
     </div>
 </div>
+<p class="d-none" id="p-respuesta" data-respuesta="@ViewBag.respuesta" ></p>
+<script>
+ 
 
+    window.onload = function () {
+     
+        var parrafo = $('#p-modal');
+        var respuesta = $('#p-respuesta').data('respuesta');
+        if (respuesta == "no fotos") {
+
+            parrafo.text('Por favor verificar que los datos del formulario esten correcto, no hay fotos registradas' );
+            $('#modal').modal('show');
+
+        }
+
+      
+      
+    }
+</script>
 
 
 @Html.EditorFor(model => model.fecha_creacion_, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
