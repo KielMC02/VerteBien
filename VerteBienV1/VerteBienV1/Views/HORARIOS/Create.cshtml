@@ -324,9 +324,53 @@
             </div>
         </div>
     </div>
-}
 
+
+
+
+
+}
 <br />
+<div class="modal" tabindex="-1" id="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Verificar formulario
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="p-modal">Por favor verificar que los datos del formulario esten correcto. </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@ViewBag.respuesta aqui 
+
+<p class="d-none" id="p-respuesta" data-respuesta="@ViewBag.respuesta"></p>
+<script>
+    console.log("Esto es una prueba y los rsultados son:" + "@ViewBag.respuesta");
+
+    window.onload = function () {
+
+        console.log("function called...");
+        var parrafo = $('#p-modal');
+        var respuesta = $('#p-respuesta').data('respuesta');
+        if (respuesta == "horario") {
+
+            parrafo.text('Por favor verificar que los datos del formulario esten correcto, no hay horario registrado' );
+            $('#modal').modal('show');
+
+        }
+
+
+
+    }
+</script>
 
 @*<div>
         @Html.ActionLink("Back to List", "Index")
