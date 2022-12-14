@@ -242,9 +242,12 @@ namespace VerteBienV1.Controllers
             return RedirectToAction("Index", "AspNetUsers");
         }
         //Redireccion de usuarios con estatus suspendido o new
-        public ActionResult pagoRequerido() 
+        public ActionResult pagoRequerido(string respuesta) 
         {
-
+            if(respuesta != null)
+            {
+                ViewBag.respuesta = respuesta;
+            }
             return View();
         }
 

@@ -276,8 +276,8 @@ namespace VerteBienV1.Controllers
             }
             else
             {
-                ViewBag.respuesta = estatus;
-                return RedirectToAction("pagoRequerido","SUSCRIPCIONs");
+                
+                return RedirectToAction("pagoRequerido","SUSCRIPCIONs", new { estatus });
             }
         }
 

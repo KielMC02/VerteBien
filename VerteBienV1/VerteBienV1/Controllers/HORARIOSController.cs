@@ -48,8 +48,12 @@ namespace VerteBienV1.Controllers
         }
 
         // GET: HORARIOS/Create
-        public ActionResult Create()
+        public ActionResult Create(string respuesta)
         {
+            if(respuesta != null) 
+            {
+                ViewBag.respuesta = respuesta;
+            }
             HORARIOS hORARIOS = new HORARIOS();
             var idUser = User.Identity.GetUserId();
             List<HORARIOS> verificar = new List<HORARIOS>();

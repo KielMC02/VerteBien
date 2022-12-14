@@ -77,7 +77,7 @@ namespace VerteBienV1.Controllers
             SERVICIOSController validar = new SERVICIOSController();
             var idUser = User.Identity.GetUserId();
             var estatus = validar.VerificarUser(idUser);
-            if(estatus == "activo" || estatus=="no fotos") 
+            if(estatus == "activo" || estatus == "no fotos" ||estatus == "redes" || estatus == "horario") 
             { 
                 //Lista de Citas
                 List<CITAS> citasPeluqueria = new List<CITAS>();
@@ -103,8 +103,8 @@ namespace VerteBienV1.Controllers
             }
             else
             {
-                ViewBag.respuesta = estatus;
-                return RedirectToAction("pagoRequerido", "SUSCRIPCIONs");
+                
+                return RedirectToAction("pagoRequerido", "SUSCRIPCIONs", new { estatus });
             }
         }
         [Authorize]

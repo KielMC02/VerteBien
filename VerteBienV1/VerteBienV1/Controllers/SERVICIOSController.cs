@@ -228,17 +228,17 @@ namespace VerteBienV1.Controllers
             string respuesta = VerificarUser(idUser);
             if (respuesta == "horario") 
             {
-                ViewBag.respuesta = respuesta;
-                return RedirectToAction("Create", "HORARIOS");
+               
+                return RedirectToAction("Create", "HORARIOS", new { respuesta });
             }
             if (respuesta == "redes")
             {
-                ViewBag.respuesta = respuesta;
-                return RedirectToAction("Create", "REDES_SOCIALES");
+              
+                return RedirectToAction("Create", "REDES_SOCIALES", new { respuesta });
             }
             if (respuesta == "no fotos")
             {
-                ViewBag.respuesta = respuesta;
+              
                 return RedirectToAction("Edit", "AspNetUsers");
             }
             if (respuesta == "activo")
@@ -249,7 +249,7 @@ namespace VerteBienV1.Controllers
             }
             else
             {
-                return RedirectToAction("pagoRequerido", "SUSCRIPCIONs");
+                return RedirectToAction("pagoRequerido", "SUSCRIPCIONs", new { respuesta });
             }
         }
 

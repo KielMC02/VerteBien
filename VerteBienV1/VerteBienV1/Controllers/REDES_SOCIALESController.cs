@@ -55,8 +55,12 @@ namespace VerteBienV1.Controllers
         }
 
         // GET: REDES_SOCIALES/Create
-        public ActionResult Create()
+        public ActionResult Create(string respuesta)
         {
+            if (respuesta != null)
+            {
+                ViewBag.respuesta = respuesta;
+            }
             var id = User.Identity.GetUserId();
             List<REDES_SOCIALES> verificar = new List<REDES_SOCIALES>();
             verificar = (from busqueda in db.REDES_SOCIALES where busqueda.id_usuario == id select busqueda).ToList();
