@@ -1066,6 +1066,7 @@ if (pathNa === '/SERVICIOS/Details/') {
     }).addTo(map);
 
 
+  
 }
 
 /* FIN MAPA*/
@@ -1834,8 +1835,8 @@ $(document).ready(function () {
     var Mira = [{ display: "Mira (Chontahuasi)", value: "Mira (Chontahuasi)" }, { display: "Concepción", value: "Concepción" }, { display: "Jijón Y Caamaño (Cab. En Río Blanco)", value: "Jijón Y Caamaño (Cab. En Río Blanco)" }, { display: "Juan Montalvo (San Ignacio De Quil)", value: "Juan Montalvo (San Ignacio De Quil)" }];
 
 
-    var Mejvar_Mejia = [{ display: "Mera", value: "Mera" }, { display: "Madre Tierra", value: "Madre Tierra" }, { display: "Shell", value: "Shell" }];
-    var Mejia = [{ display: "Mera", value: "Mera" }, { display: "Madre Tierra", value: "Madre Tierra" }, { display: "Shell", value: "Shell" }];
+
+    var Mejia = [{ display: "Alóag", value: "Alóag" }, { display: "Aloasi", value: "Aloasi" }, { display: "Cutuglahua", value: "Cutuglahua" }, { display: " El Chaupi", value: " El Chaupi" }, { display: "Manuel Cornejo Astorga", value: "Manuel Cornejo Astorga" }, { display: "Tambillo", value: "Tambillo" }, { display: "Uyumbicho", value: "Uyumbicho" }];
 
     var Mocha = [{ display: "Mocha", value: "Mocha" }, { display: "Pinguilí", value: "Pinguilí" }];
 
@@ -1846,6 +1847,8 @@ $(document).ready(function () {
 
     var Nabón = [{ display: "Nabón", value: "Nabón" }, { display: "Cochapata", value: "Cochapata" }, { display: "El Progreso (Cab.En Zhota)", value: "El Progreso (Cab.En Zhota)" }, { display: "Las Nieves (Chaya)", value: "Las Nieves (Chaya)" }, { display: "Oña", value: "Oña" }];
     var Nangaritza = [{ display: "Guayzimi", value: "Guayzimi" }, { display: "Zurmi", value: "Zurmi" }, { display: "Nuevo Paraíso", value: "Nuevo Paraíso" }];
+
+    var Santiago_Mendez = [{ display: "Copal", value: "Copal" }, { display: "Chupianza", value: "Chupianza" }, { display: "Patuca", value: "Patuca" }, { display: "San Luis de El Acho", value: "San Luis de El Acho" }, { display: "Tayuza", value: "Tayuza" }, { display: "San Francisco de Chinimbimi", value: "San Francisco de Chinimbimi" }];
 
 
 
@@ -1952,10 +1955,17 @@ $(document).ready(function () {
 
 
 
+ 
+    //data que viene selecccionada ya de la bd 
+    var sectores = $('#canton').data('sectores');
 
+    //obtener valor cambiado del select
+    $("#canton").change(function () {
+        console.log($(this).val());
 
-
-
+    });
+ 
+    console.log("Los sectores son" + sectores);
 
     var servicio_default = [
         { display: "Seleccione una...", value: "Seleccione una..." }];
@@ -1967,13 +1977,15 @@ $(document).ready(function () {
         var parent = $(this).val();
         switch (parent) {
             case 'Quito':
-                list(Quito);
+                list(Quito); break;
             case 'Antonio_Ante': list(Antonio_Ante); break;
+            case 'Antonio Ante': list(Antonio_Ante); break;
             case 'Arajuno': list(Arajuno); break;
             case 'Archidona': list(Archidona); break;
             case 'Ambato': list(Ambato); break;
             case 'Aguarico': list(Aguarico); break;
             case 'Arlos_Julio_Arosemena_Tol': list(Arlos_Julio_Arosemena_Tol); break;
+            case 'Carlos Julio Arosemena Tola': list(Arlos_Julio_Arosemena_Tol); break;
             case 'Cuenca': list(Cuenca); break;
             case 'Girón': list(Girón); break;
             case 'Gualaceo': list(Gualaceo); break;
@@ -1982,25 +1994,37 @@ $(document).ready(function () {
             case 'Pucará': list(Pucará); break;
             case 'San_Fernando': list(San_Fernando); break;
             case 'Santa_Isabel': list(Santa_Isabel); break;
+            case 'San Fernando': list(San_Fernando); break;
+            case 'Santa Isabel': list(Santa_Isabel); break;
             case 'Sigsig': list(Sigsig); break;
+            case 'Sígsig': list(Sigsig); break;
             case 'Oña': list(Oña); break;
             case 'Chordeleg': list(Chordeleg); break;
-            case 'El_Pan': list(El_Pan); break;
+            case 'El_Pan': list(El_Pan); break; 
+            case 'El Pan': list(El_Pan); break;
             case 'Sevilla_de_Oro': list(Sevilla_de_Oro); break;
+            case 'Sevilla de Oro': list(Sevilla_de_Oro); break;
+            case 'Santiago de Méndez': list(Santiago_Mendez); break;
+            case 'Santiago_de_Mendez': list(Santiago_Mendez); break;
             case 'Guachapala': list(Guachapala); break;
-            case 'Camilo_Ponce_Enríquez': list(Camilo_Ponce_Enríquez); break;
+            case 'Camilo_Ponce_Enríquez': list(Camilo_Ponce_Enriquez); break;
+            case 'Camilo Ponce Enríquez': list(Camilo_Ponce_Enriquez); break;
             case 'Guaranda': list(Guaranda); break;
             case 'Chillanes': list(Chillanes); break;
             case 'Chimbo': list(Chimbo); break;
             case 'Echeandía': list(Echeandía); break;
             case 'San_Miguel': list(San_Miguel); break;
+            case 'San Miguel': list(San_Miguel); break;
             case 'Caluma': list(Caluma); break;
             case 'Las_Naves': list(Las_Naves); break;
+            case 'Las Naves': list(Las_Naves); break;
             case 'Azogues': list(Azogues); break;
             case 'Biblián': list(Biblián); break;
             case 'Cañar': list(Cañar); break;
             case 'La_Troncal': list(La_Troncal); break;
             case 'El_Tambo': list(El_Tambo); break;
+            case 'La Troncal': list(La_Troncal); break;
+            case 'El Tambo': list(El_Tambo); break;
             case 'Déleg': list(Déleg); break;
             case 'Suscal': list(Suscal); break;
             case 'Tulcán': list(Tulcán); break;
@@ -2009,8 +2033,10 @@ $(document).ready(function () {
             case 'Mira': list(Mira); break;
             case 'Montúfar': list(Montúfar); break;
             case 'San_Pedro_De_Huaca': list(San_Pedro_De_Huaca); break;
+            case 'Huaca': list(San_Pedro_De_Huaca); break;
             case 'Latacunga': list(Latacunga); break;
             case 'La_Maná': list(La_Maná); break;
+            case 'La Maná': list(La_Maná); break;
             case 'Pangua': list(Pangua); break;
             case 'Pujilí': list(Pujilí); break;
             case 'Salcedo': list(Salcedo); break;
@@ -2032,48 +2058,62 @@ $(document).ready(function () {
             case 'Balsas': list(Balsas); break;
             case 'Chilla': list(Chilla); break;
             case 'El_Guabo': list(El_Guabo); break;
+            case 'El Guabo': list(El_Guabo); break;
             case 'Huaquillas': list(Huaquillas); break;
             case 'Marcabelí': list(Marcabelí); break;
             case 'Pasaje': list(Pasaje); break;
             case 'Piñas': list(Piñas); break;
             case 'Portovelo': list(Portovelo); break;
             case 'Santa_Rosa': list(Santa_Rosa); break;
+            case 'Santa Rosa': list(Santa_Rosa); break;
             case 'Zaruma': list(Zaruma); break;
             case 'Las_Lajas': list(Las_Lajas); break;
+            case 'Las Lajas': list(Las_Lajas); break;
             case 'Esmeraldas': list(Esmeraldas); break;
             case 'Eloy_Alfaro': list(Eloy_Alfaro); break;
+            case 'Eloy Alfaro': list(Eloy_Alfaro); break;
             case 'Muisne': list(Muisne); break;
             case 'Quinindé': list(Quinindé); break;
             case 'San_Lorenzo': list(San_Lorenzo); break;
+            case 'San Lorenzo': list(San_Lorenzo); break;
             case 'Atacames': list(Atacames); break;
             case 'Rioverde': list(Rioverde); break;
             case 'La_Concordia': list(La_Concordia); break;
+            case 'La Concordia': list(La_Concordia); break
             case 'Guayaquil': list(Guayaquil); break;
             case 'Do_Baquerizo_Moreno': list(Do_Baquerizo_Moreno); break;
+            case 'Alfredo Baquerizo': list(Do_Baquerizo_Moreno); break;
             case 'Balao': list(Balao); break;
             case 'Balzar': list(Balzar); break;
             case 'Colimes': list(Colimes); break;
             case 'Daule': list(Daule); break;
             case 'Duran': list(Duran); break;
+            case 'Durán': list(Duran); break;
             case 'El_Empalme': list(El_Empalme); break;
+            case 'El Empalme': list(El_Empalme); break;
             case 'El_Triunfo': list(El_Triunfo); break;
+            case 'El Triunfo': list(El_Triunfo); break;
             case 'Milagro': list(Milagro); break;
             case 'Naranjal': list(Naranjal); break;
             case 'Naranjito': list(Naranjito); break;
             case 'Palestina': list(Palestina); break;
             case 'Baba': list(Baba); break;
             case 'De_Mayo': list(De_Mayo); break;
+            case '24 de Mayo': list(De_Mayo); break;
             case 'Babahoyo': list(Babahoyo); break;
             case 'Baños_De_Agua_Santa': list(Baños_De_Agua_Santa); break;
+            case 'Baños': list(Baños_De_Agua_Santa); break;
             case 'Biblian': list(Biblian); break;
             case 'Bolivar': list(Bolivar); break;
             case 'Buena_Fe': list(Buena_Fe); break;
+            case 'Buena Fe': list(Buena_Fe); break;
             case 'Calvas': list(Calvas); break;
             case 'Cascales': list(Cascales); break;
             case 'Catamayo': list(Catamayo); break;
             case 'Cayambe': list(Cayambe); break;
             case 'Celica': list(Celica); break;
             case 'Centinela_Del_Cóndor': list(Centinela_Del_Cóndor); break;
+            case 'Centinela del Cóndor': list(Centinela_Del_Cóndor); break;
             case 'Cevallos': list(Cevallos); break;
             case 'Chaguarpamba': list(Chaguarpamba); break;
             case 'Chinchipe': list(Chinchipe); break;
@@ -2083,19 +2123,27 @@ $(document).ready(function () {
             case 'Cuyabeno': list(Cuyabeno); break;
             case 'Delég': list(Deleg); break;
             case 'El_Carmen': list(El_Carmen); break;
+            case 'El Carmen': list(El_Carmen); break;
             case 'El_Chaco': list(El_Chaco); break;
+            case 'El Chaco': list(El_Chaco); break;
             case 'El_Pangui': list(El_Pangui); break;
+            case 'El Pangui': list(El_Pangui); break;
             case 'El_Piedrero': list(El_Piedrero); break;
+            case 'El Piedrero': list(El_Piedrero); break
             case 'Espíndola': list(Espíndola); break;
             case 'Flavio_Alfaro': list(Flavio_Alfaro); break;
+            case 'Flavio Alfaro': list(Flavio_Alfaro); break;
             case 'General_Antonio_Elizalde': list(General_Antonio_Elizalde); break;
+            case 'General Antonio Elizale': list(General_Antonio_Elizalde); break;
             case 'Gonzalo_Pizarro': list(Gonzalo_Pizarro); break;
+            case 'Gonzalo Pizarro': list(Gonzalo_Pizarro); break;
             case 'Gonzanamá': list(Gonzanamá); break;
             case 'Gualaquiza': list(Gualaquiza); break;
             case 'Huamboya': list(Huamboya); break;
             case 'Ibarra': list(Ibarra); break;
             case 'Isabela': list(Isabela); break;
             case 'Isidro_Ayora': list(Isidro_Ayora); break;
+            case 'Isidro Ayora': list(Isidro_Ayora); break;
             case 'Jama': list(Jama); break;
             case 'Jaramijó': list(Jaramijó); break;
             case 'Jipijapa': list(Jipijapa); break;
@@ -2106,15 +2154,25 @@ $(document).ready(function () {
             case 'Lago_Agrio': list(Lago_Agrio); break;
             case 'Las_Golondrinas': list(Las_Golondrinas); break;
             case 'Limón_Indanza': list(Limón_Indanza); break;
+            case 'La Joya de los Sachas': list(La_Joya_De_Los_Sachas); break;
+            case 'La Libertad': list(La_Libertad); break;
+            case 'La Maná': list(La_Maná); break;
+            case 'Lago Agrio': list(Lago_Agrio); break;
+            case 'Las Golondrinas': list(Las_Golondrinas); break;
+            case 'Limón Indanza': list(Limón_Indanza); break;
             case 'Logroño': list(Logroño); break;
             case 'Loja': list(Loja); break;
             case 'Lomas_De_Sargentillo': list(Lomas_De_Sargentillo); break;
+            case 'Lomas de Sargentillo': list(Lomas_De_Sargentillo); break;
             case 'Loreto': list(Loreto); break;
             case 'Macará': list(Macará); break;
             case 'Manga_Del_Cura': list(Manga_Del_Cura); break;
+            case 'Manga Del Cura': list(Manga_Del_Cura); break;
             case 'Manta': list(Manta); break;
             case 'Mejvar_Mejia': list(Mejvar_Mejia); break;
+            case 'Mejvar Mejia': list(Mejvar_Mejia); break;
             case 'Mejia': list(Mejia); break;
+            case 'Mejía': list(Mejia); break;
             case 'Mocache': list(Mocache); break;
             case 'Mocha': list(Mocha); break;
             case 'Montalvo': list(Montalvo); break;
@@ -2124,9 +2182,12 @@ $(document).ready(function () {
             case 'Nobol': list(Nobol); break;
             case 'Olmedo': list(Olmedo); break;
             case 'Orellana': list(Orellana); break;
+            case 'Francisco de Orellana': list(Orellana); break;
             case 'Marcelino_Maridue': list(Marcelino_Maridue); break;
+            case 'Marcelino Maridueña': list(Marcelino_Maridue); break;
             case 'Otavalo': list(Otavalo); break;
             case 'Pablo_Sexto': list(Pablo_Sexto); break;
+            case 'Pablo Sexto': list(Pablo_Sexto); break;
             case 'Paján': list(Paján); break;
             case 'Palanda': list(Palanda); break;
             case 'Palenque': list(Palenque); break;
@@ -2139,6 +2200,9 @@ $(document).ready(function () {
             case 'Pedro_Carbo': list(Pedro_Carbo); break;
             case 'Pedro_Moncayo': list(Pedro_Moncayo); break;
             case 'Pedro_Vicente_Maldonado': list(Pedro_Vicente_Maldonado); break;
+            case 'Pedro Carbo': list(Pedro_Carbo); break;
+            case 'Pedro Moncayo': list(Pedro_Moncayo); break;
+            case 'Pedro Vicente Maldonado': list(Pedro_Vicente_Maldonado); break;
             case 'Pichincha': list(Pichincha); break;
             case 'Pimampiro': list(Pimampiro); break;
             case 'Pindal': list(Pindal); break;
@@ -2147,6 +2211,8 @@ $(document).ready(function () {
             case 'Puebloviejo': list(Puebloviejo); break;
             case 'Puerto_López': list(Puerto_López); break;
             case 'Puerto_Quito': list(Puerto_Quito); break;
+            case 'Puerto López': list(Puerto_López); break;
+            case 'Puerto Quito': list(Puerto_Quito); break;
             case 'Putumayo': list(Putumayo); break;
             case 'Puyango': list(Puyango); break;
             case 'Quero': list(Quero); break;
@@ -2171,12 +2237,27 @@ $(document).ready(function () {
             case 'Santa_Cruz': list(Santa_Cruz); break;
             case 'Santa_Elena': list(Santa_Elena); break;
             case 'Santa_Lucía': list(Santa_Lucía); break;
+            case 'San Cristóbal': list(San_Cristóbal); break;
+            case 'San Jacinto_De_Yaguachi': list(San_Jacinto_De_Yaguachi); break;
+            case 'San Juan Bosco': list(San_Juan_Bosco); break;
+            case 'San Miguel de los Bancos': list(San_Miguel_De_Los_Bancos); break;
+            case 'San Miguel de Urcuquí': list(San_Miguel_De_Urcuquí); break;
+            case 'San Pedro de Pelileo': list(San_Pedro_De_Pelileo); break;
+            case 'San Vicente': list(San_Vicente); break;
+            case 'Santa Ana': list(Santa_Ana); break;
+            case 'Santa Clara': list(Santa_Clara); break;
+            case 'Santa Cruz': list(Santa_Cruz); break;
+            case 'Santa Elena': list(Santa_Elena); break;
+            case 'Santa Lucía': list(Santa_Lucía); break;
             case 'Santiago': list(Santiago); break;
             case 'Santiago_De_Píllaro': list(Santiago_De_Píllaro); break;
             case 'Santo_Domingo': list(Santo_Domingo); break;
+            case 'Santiago de Píllaro': list(Santiago_De_Píllaro); break;
+            case 'Santo Domingo': list(Santo_Domingo); break;
             case 'Saraguro': list(Saraguro); break;
             case 'Shushufindi': list(Shushufindi); break;
             case 'Simón_Bolívar': list(Simón_Bolívar); break;
+            case 'Simón Bolívar': list(Simón_Bolívar); break;
             case 'Sozoranga': list(Sozoranga); break;
             case 'Sucre': list(Sucre); break;
             case 'Sucúa': list(Sucúa); break;
@@ -2190,6 +2271,7 @@ $(document).ready(function () {
             case 'Valencia': list(Valencia); break;
             case 'Ventanas': list(Ventanas); break;
             case 'Vínces': list(Vínces); break;
+            case 'Vinces': list(Vínces); break;
             case 'Yacuambi': list(Yacuambi); break;
             case 'Yantzaza': list(Yantzaza); break;
             case 'Zamora': list(Zamora); break;
