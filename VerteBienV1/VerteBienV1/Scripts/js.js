@@ -776,7 +776,7 @@ if (frm) {
                 break;
 
             case '/AspNetUsers/Edit': // ppara editar la info del que esta logueado
-                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.ciudad && campos.calle && campos.telefono) {
+                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.calle && campos.telefono) {
 
 
                     formulario.submit();
@@ -790,7 +790,7 @@ if (frm) {
 
                 break;
             case '/AspNetUsers/Edit/': // ppara editar la info del que esta logueado
-                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.ciudad && campos.calle && campos.telefono) {
+                if (campos.nombre && campos.apellido && campos.nombre_peluqueria  && campos.calle && campos.telefono) {
 
 
                     formulario.submit();
@@ -879,7 +879,7 @@ if (frm) {
                 }
                 break;
             case '/Aspnetusers/Edit/':
-                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.ciudad && campos.calle && campos.telefono) {
+                if (campos.nombre && campos.apellido && campos.nombre_peluqueria  && campos.calle && campos.telefono) {
 
 
                     formulario.submit();
@@ -891,7 +891,7 @@ if (frm) {
                 break;
 
             case '/AspNetUsers/Edit/':
-                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.ciudad && campos.calle && campos.telefono) {
+                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.calle && campos.telefono) {
 
 
                     formulario.submit();
