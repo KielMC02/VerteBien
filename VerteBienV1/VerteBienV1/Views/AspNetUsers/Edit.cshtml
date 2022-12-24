@@ -82,10 +82,10 @@
                         </div>
 
                         <div class="form-group col-md-6 col-sm-12 mb-2">
-                            @Html.Label("Sector ", htmlAttributes: new { @class = "control-label col-md-10" })
+                            @Html.Label("Canton", htmlAttributes: new { @class = "control-label col-md-10" })
                             <div class="col-md-10">
-                                @Html.DropDownList("sectores", null, htmlAttributes: new { @class = "form-control col-md-10", @id = "canton" })
-                                @Html.ValidationMessageFor(model => model.sector, "", new { @class = "text-danger" })
+                                @Html.DropDownList("cantones", null, htmlAttributes: new { @class = "form-control col-md-10", @id = "canton" })
+                                @Html.ValidationMessageFor(model => model.ciudad, "", new { @class = "text-danger" })
                                 <span id="sectore" data-sectores=""></span>
                             </div>
                         </div>
@@ -103,10 +103,10 @@
 
 
                         <div class="form-group col-md-6 col-sm-12 formulario__grupo" id="grupo__ciudad">
-                            @Html.Label("Ciudad", htmlAttributes: new { @class = "control-label col-md-10" })
+                            @Html.Label("Sector", htmlAttributes: new { @class = "control-label col-md-10" })
                             <div class="col-md-10  formulario__grupo-input">
-                                @Html.EditorFor(model => model.ciudad, new { htmlAttributes = new { @class = "form-control col-md-10 formulario__input", id = "ciudad", name = "ciudad" } })
-                                @Html.DropDownList("ciudades", null, htmlAttributes: new { @class = "form-control col-md-10", @id = "inlineFormSelectPref" })
+                                @*@Html.EditorFor(model => model.ciudad, new { htmlAttributes = new { @class = "form-control col-md-10 formulario__input", id = "ciudad", name = "ciudad" } })*@
+                                @Html.DropDownList("sectores", null, htmlAttributes: new { @class = "form-control col-md-10", @id = "inlineFormSelectPref", name = "ciudad" })
                                 @Html.ValidationMessageFor(model => model.ciudad, "", new { @class = "text-danger" })
                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
                             </div>
@@ -243,19 +243,20 @@
     </div>
 </div>
 <p class="d-none" id="p-respuesta" data-respuesta="@ViewBag.respuesta" ></p>
+
 <script>
  
 
     window.onload = function () {
      
-        var parrafo = $('#p-modal');
-        var respuesta = $('#p-respuesta').data('respuesta');
-        if (respuesta == "no fotos") {
+        //var parrafo = $('#p-modal');
+        //var respuesta = $('#p-respuesta').data('respuesta');
+        //if (respuesta == "no fotos") {
 
-            parrafo.text('Por favor verificar que los datos del formulario esten correcto, no hay fotos registradas' );
-            $('#modal').modal('show');
+        //    parrafo.text('Por favor verificar que los datos del formulario esten correcto, no hay fotos registradas' );
+        //    $('#modal').modal('show');
 
-        }
+        //}
 
       
       
