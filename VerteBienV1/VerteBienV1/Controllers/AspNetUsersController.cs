@@ -113,9 +113,9 @@ namespace VerteBienV1.Controllers
             }
 
             //Separamos los nombres de las imagenes y guardamos en una lista
-            //List<String> imagenes = (aspNetUsers.fotos_local.Split(';')).ToList();
-            ////Enviamos la lista a la vista
-            //ViewData["imagenes_s"] = imagenes;
+            List<String> imagenes = (aspNetUsers.fotos_local.Split(';')).ToList();
+            //Enviamos la lista a la vista
+            ViewData["imagenes_s"] = imagenes;
 
             return View(aspNetUsers);
         }

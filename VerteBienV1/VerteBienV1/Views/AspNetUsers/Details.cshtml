@@ -25,10 +25,13 @@
                 <div class="card">
                     <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:250px;">
                         <div class="ms-4 mt-5 d-flex flex-column" style="width: 250px;">
-                            <img src="~/Imagenes/pexels-cottonbro-3998429 (1).jpg"
+                            <img src="~/imagenes_local/@_list[0]"
                                  alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                                  style="width: 250px; z-index: 1; max-height: 220px; object-fit: cover;">
-                            @Html.ActionLink("Editar perfil", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-outline-dark btn-sm mx-1 rounded my-2", Style = "z-index: 1;" })
+                            @if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip")) 
+                            {
+                                @Html.ActionLink("Editar perfil", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-outline-dark btn-sm mx-1 rounded my-2", Style = "z-index: 1;" });
+                            }
                         </div>
 
                         <div class="ms-3 d-none d-md-block d-lg-block d-xl-block" style="margin-top: 138px;">
@@ -87,8 +90,8 @@
                                     foreach (var item in _list)
                                     {
                                         <div class="carousel__elemento">
-                                            <a href="~/Imagenes_local/@item" data-lightbox="Sgaleria" style="width:100%; height:100%;">
-                                                <img src="~/Imagenes_local/@item" alt="" style="height: 350px; width:450px;">
+                                            <a href="~/imagenes_local/@item" data-lightbox="Sgaleria" style="width:100%; height:100%;">
+                                                <img src="~/imagenes_local/@item" alt="" style="height: 350px; width:450px;">
                                             </a>
                                         </div>
                                     }

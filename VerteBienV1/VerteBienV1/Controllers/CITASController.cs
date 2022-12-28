@@ -149,15 +149,19 @@ namespace VerteBienV1.Controllers
                 estatus = validar.VerificarUser(item.id_usuario);
             }
             if(estatus == "activo") 
-            { 
+            {
+                //Variable a utilizar en caso de que uno de los parametros sea un string vacio
+                var nulo = DBNull.Value;
+                comentario_cliente = "comentario_cliente";
+                comentario_peluqueria = "comentario_peluqueria";
                 var dia = "semanal";
                 SERVICIOS sERVICIO = db.SERVICIOS.Find(idservicio);
                 var idcliente = User.Identity.GetUserId();
-                List<CITAS> agregarCita = new List<CITAS>();
+                //List<string> agregarCita = new List<string>();
 
-                agregarCita = db.Database.SqlQuery<CITAS>("addCita @usuario_peluqueria, @Fecha, @hora, @servicio, @dia, @usuario_cita", new SqlParameter("@usuario_peluqueria", sERVICIO.id_usuario), new SqlParameter("@Fecha", fecha), new SqlParameter("@hora", hora), new SqlParameter("@servicio", idservicio), new SqlParameter("@dia", dia), new SqlParameter("@usuario_cita", idcliente), new SqlParameter ("@comentario_cliente", comentario_cliente), new SqlParameter( "@comentario_peluqueria", comentario_peluqueria)).ToList();
+                var agregarCita = db.Database.ExecuteSqlCommand("addCita @usuario_peluqueria, @Fecha, @hora, @servicio, @dia, @usuario_cita, @comentario_cliente, @comentario_peluqueria", new SqlParameter("@usuario_peluqueria", sERVICIO.id_usuario), new SqlParameter("@Fecha", fecha), new SqlParameter("@hora", hora), new SqlParameter("@servicio", idservicio), new SqlParameter("@dia", dia), new SqlParameter("@usuario_cita", idcliente), new SqlParameter ("@comentario_cliente", comentario_cliente == "" ? (object)nulo : comentario_cliente), new SqlParameter( "@comentario_peluqueria", comentario_peluqueria == "" ? (object)nulo : comentario_peluqueria));
 
-                if (agregarCita.Count > 0)
+                if (agregarCita != null)
                 {
                     resultado = "si";
                     return resultado;
