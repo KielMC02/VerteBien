@@ -35,9 +35,9 @@
                             @Html.ValidationMessageFor(model => model.nombre_servicio, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group col-md-6 ">
-                        @Html.Label("Categoría del Servicio", htmlAttributes: new { @class = "control-label " })
-                        <div class="col-md-10">
+                    <div class="form-group col-md-6 my-2">
+                        @Html.Label("Categoría del Servicio", htmlAttributes: new { @class = "control-label mx-md-5" })
+                        <div class="col-md-10 mx-md-5">
                             @Html.DropDownList("id_categoria", null, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.id_categoria, "", new { @class = "text-danger" })
                         </div>
@@ -45,16 +45,16 @@
                     @*</div>*@
 
                     @*<div class="col-md-4">*@
-                    <div class="form-group col-md-6 ">
+                    <div class="form-group col-md-6 my-md-3">
                         @Html.Label("Precio del Servicio", htmlAttributes: new { @class = "control-label " })
                         <div class="col-md-10" >
                             @Html.EditorFor(model => model.precio_servicio, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.precio_servicio, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group col-md-6 ">
-                        @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label" })
-                        <div class="col-md-10">
+                    <div class="form-group col-md-6 my-md-3 my-2">
+                        @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label mx-md-5" })
+                        <div class="col-md-10 mx-md-5">
                             <select name="duracion" id="cars" class="form-control col-md-10">
                                 <option value="0,50" step="any">30 Minutos</option>
                                 <option value="1">1 Hora</option>
@@ -66,8 +66,9 @@
                     </div>
                     <div class="form-group col-md-12">
                         @Html.Label("Descripción", htmlAttributes: new { @class = "control-label col-md-8" })
-                        <div class="col-md-11">
-                            @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", @rows = "3" })
+                        <div class="col-md-12">
+                      
+                            @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control", @rows = "3" }) 
                             @*<textarea class="form-control col-md-11" id="exampleFormControlTextarea1" rows="3"></textarea>*@
                             @*@Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
@@ -76,7 +77,7 @@
                     </div>
 
                     @*<div class="col-md-4">*@
-                    <div class="form-group col-md-12 col-sm-12 my-4">
+                    <div class="form-group text-center col-md-12 col-sm-12 my-4">
                         @Html.Label("Imagenes del servicio", htmlAttributes: new { @class = "control-label col-md-10 col-sm-12 my-4 h2 text-center" })
                         <div class="col-md-12 col-sm-12">
                             <div class="row ">
