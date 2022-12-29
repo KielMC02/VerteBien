@@ -813,6 +813,18 @@ if (frm) {
                 }
 
                 break;
+            case '/Account/ForgotPassword': // para olvide la contraseña
+                if (campos.Email) {
+
+
+                    formulario.submit();
+
+                } else {
+                    $('#modal').modal('show'); // abrirr el modal de boostrap 
+
+                }
+
+                break;
 
 
 
@@ -1961,7 +1973,7 @@ $(document).ready(function () {
 
     //obtener valor cambiado del select
     $("#canton").change(function () {
-        console.log($(this).val());
+      
 
     });
  
