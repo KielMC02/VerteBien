@@ -24,24 +24,26 @@
             <div class="">
                 <div class="card">
                     <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:250px;">
-                        <div class="ms-4 mt-5 d-flex flex-column" style="width: 250px;">
+                        <div class="ms-4 mt-5  d-flex flex-column" style="width: 250px;">
                             <img src="~/imagenes_local/@_list[0]"
-                                 alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
-                                 style="width: 250px; z-index: 1; max-height: 220px; object-fit: cover;">
-                            @if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip")) 
-                            {
-                                @Html.ActionLink("Editar perfil", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-outline-dark btn-sm mx-1 rounded my-2", Style = "z-index: 1;" });
-                            }
+                                 alt="Foto de perfil" class="img-fluid img-thumbnail mt-4 mb-3"
+                                 style="width: 250px; z-index:1; max-height: 220px;height:210px; object-fit: cover;">
+                            <div class="mt-3 d-flex flex-column" Style = "z-index: 1; width: 250px; ">
+                                @if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip"))
+                                {
+                                    @Html.ActionLink("Editar perfil", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-outline-dark btn-sm mx-1 mt-2 rounded", Style = "z-index:1;" });
+                                }
+                            </div>
                         </div>
 
-                        <div class="ms-3 d-none d-md-block d-lg-block d-xl-block" style="margin-top: 138px;">
+                        <div class="ms-3 d-none d-md-block d-lg-block d-xl-block" style="margin-top: 138px; z-index:1;">
                             <h5 class="pl-3">@Html.DisplayFor(model => model.nombre_peluqueria)</h5>
                             <p>@Html.DisplayFor(model => model.ciudad)</p>
                         </div>
                     </div>
-                    <div class="p-4 text-black mb-3 " style="background-color: #f8f9fa; height: 190PX;">
+                    <div class="p-4 text-black mb-3" style="background-color: #f8f9fa; height: 200PX;">
                         <div class="d-flex justify-content-end text-center py-3">
-                            <div class="ms-3 d-block d-sm-block d-md-none " style="margin-top: 60px;">
+                            <div class="ms-3 d-block d-sm-block d-md-none " style="margin-top: 80px;">
                                 <h5 class="pl-3">@Html.DisplayFor(model => model.nombre_peluqueria)</h5>
                                 <p>@Html.DisplayFor(model => model.ciudad)</p>
                             </div>
