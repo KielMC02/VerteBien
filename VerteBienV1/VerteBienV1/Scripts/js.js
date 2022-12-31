@@ -156,6 +156,7 @@ $(document).ready(function () {
     /*   Cambiar numeros decimal a horas*/
 
     function decimalAHora(decimal) {
+        decimal = decimal.replace(/,/, '.');
         let horas = Math.floor(decimal), // Obtenemos la parte entera
             restoHoras = Math.floor(decimal % 1 * 100), // Obtenemos la parde decimal
             decimalMinutos = restoHoras * 60 / 100, // Obtenemos los minutos expresado en decimal
@@ -168,9 +169,8 @@ $(document).ready(function () {
     }
     /* FIN Cambiar numeros decimal a horas.*/
 
-
-
-
+   // obtener los datos 
+ 
     var Hsemanaini = $('#l-v').data('semanaini');
     var hsemanafin = $('#l-v').data('semanafin');
     var hsi = $('#sabado').data('findesemanaini');
@@ -178,28 +178,28 @@ $(document).ready(function () {
     var hdi = $('#domingo').data('domingoini');
     var hdf = $('#domingo').data('domingofin');
 
-
-    hini = decimalAHora(Hsemanaini);
+  
+    hini = decimalAHora(Hsemanaini.toString());
     h = hini.substr(0, 2);
     m = hini.substr(3, 3);
 
-    hfin = decimalAHora(hsemanafin);
+    hfin = decimalAHora(hsemanafin.toString());
     hcierre = hfin.substr(0, 2);
     mcierre = hfin.substr(3, 3);
 
-    hsabini = decimalAHora(hsi);
+    hsabini = decimalAHora(hsi.toString());
     hsabi = hsabini.substr(0, 2);
     msabi = hsabini.substr(3, 3);
 
-    hsabfin = decimalAHora(hsf);
+    hsabfin = decimalAHora(hsf.toString());
     hsabf = hsabfin.substr(0, 2);
     msabf = hsabfin.substr(3, 3);
 
-    hdomini = decimalAHora(hdi);
+    hdomini = decimalAHora(hdi.toString());
     hdomi = hdomini.substr(0, 2);
     mdomi = hdomini.substr(3, 3);
 
-    hdomfin = decimalAHora(hdf);
+    hdomfin = decimalAHora(hdf.toString());
     hdomf = hdomfin.substr(0, 2);
     mdomf = hdomfin.substr(3, 3);
 
