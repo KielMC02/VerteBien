@@ -171,89 +171,94 @@ $(document).ready(function () {
 
    // obtener los datos 
  
-    var Hsemanaini = $('#l-v').data('semanaini');
-    var hsemanafin = $('#l-v').data('semanafin');
-    var hsi = $('#sabado').data('findesemanaini');
-    var hsf = $('#sabado').data('findesemanafin');
-    var hdi = $('#domingo').data('domingoini');
-    var hdf = $('#domingo').data('domingofin');
+   
+    if ($("#l-v").length) {
+        var Hsemanaini = $('#l-v').data('semanaini');
+        var hsemanafin = $('#l-v').data('semanafin');
+        var hsi = $('#sabado').data('findesemanaini');
+        var hsf = $('#sabado').data('findesemanafin');
+        var hdi = $('#domingo').data('domingoini');
+        var hdf = $('#domingo').data('domingofin');
+
+
+        hini = decimalAHora(Hsemanaini.toString());
+        h = hini.substr(0, 2);
+        m = hini.substr(3, 3);
+
+        hfin = decimalAHora(hsemanafin.toString());
+        hcierre = hfin.substr(0, 2);
+        mcierre = hfin.substr(3, 3);
+
+        hsabini = decimalAHora(hsi.toString());
+        hsabi = hsabini.substr(0, 2);
+        msabi = hsabini.substr(3, 3);
+
+        hsabfin = decimalAHora(hsf.toString());
+        hsabf = hsabfin.substr(0, 2);
+        msabf = hsabfin.substr(3, 3);
+
+        hdomini = decimalAHora(hdi.toString());
+        hdomi = hdomini.substr(0, 2);
+        mdomi = hdomini.substr(3, 3);
+
+        hdomfin = decimalAHora(hdf.toString());
+        hdomf = hdomfin.substr(0, 2);
+        mdomf = hdomfin.substr(3, 3);
+
+
+        /*Evaluar si la hora es AM o PM */
+        var ampm = h >= 12 ? 'pm' : 'am';
+        var ampmcierre = hcierre >= 12 ? 'pm' : 'am';
+        var ampmsabini = hsabi >= 12 ? 'pm' : 'am';
+        var ampmcsabcie = hsabf >= 12 ? 'pm' : 'am';
+        var ampmcdomini = hdomi >= 12 ? 'pm' : 'am';
+        var ampmcdomfin = hdomf >= 12 ? 'pm' : 'am';
+
+
+        /*FIN Formatear fechas AM y PM */
+        const horas_semanales = {
+            '13': '1',
+            '14': '2',
+            '15': '3',
+            '16': '4',
+            '17': '5',
+            '18': '6',
+            '19': '7',
+            '20': '8',
+            '21': '9',
+            '22': '10',
+            '23': '11',
+            '24': '12'
+        }
+        const hsemini = horas_semanales[h] || h;
+        const hsemfin = horas_semanales[hcierre] || hcierre;
+        const hsabadoini = horas_semanales[hsabi] || hsabi;
+        const hsabadofin = horas_semanales[hsabf] || hsabf;
+        const hdomingoini = horas_semanales[hdomi] || hdomi;
+        const hsdomingofin = horas_semanales[hdomf] || hdomf;
+
+
+        /*para imprimir el formato*/
+        formatinicio = hsemini + ":" + m + "" + ampm;
+        formatcierre = hsemfin + ":" + mcierre + "" + ampmcierre;
+        formatiniciosab = hsabadoini + ":" + msabi + "" + ampmsabini;
+        formatcierresab = hsabadofin + ":" + msabf + "" + ampmcsabcie;
+        formatiniciodom = hdomingoini + ":" + mdomi + "" + ampmcdomini;
+        formatcierredom = hsdomingofin + ":" + mdomf + "" + ampmcdomfin;
+        /*Imprimir horas con formato*/
+        $('#l-v').text("Lunes a Viernes:" + " " + formatinicio + " " + "-" + " " + formatcierre);
+        $('#sabado').text("Sabado:" + " " + formatiniciosab + " " + "-" + " " + formatcierresab);
+        $('#domingo').text("Domingo:" + " " + formatiniciodom + " " + "-" + " " + formatcierredom);
+
+    }
+   
 
   
-    hini = decimalAHora(Hsemanaini.toString());
-    h = hini.substr(0, 2);
-    m = hini.substr(3, 3);
-
-    hfin = decimalAHora(hsemanafin.toString());
-    hcierre = hfin.substr(0, 2);
-    mcierre = hfin.substr(3, 3);
-
-    hsabini = decimalAHora(hsi.toString());
-    hsabi = hsabini.substr(0, 2);
-    msabi = hsabini.substr(3, 3);
-
-    hsabfin = decimalAHora(hsf.toString());
-    hsabf = hsabfin.substr(0, 2);
-    msabf = hsabfin.substr(3, 3);
-
-    hdomini = decimalAHora(hdi.toString());
-    hdomi = hdomini.substr(0, 2);
-    mdomi = hdomini.substr(3, 3);
-
-    hdomfin = decimalAHora(hdf.toString());
-    hdomf = hdomfin.substr(0, 2);
-    mdomf = hdomfin.substr(3, 3);
-
-
-    /*Evaluar si la hora es AM o PM */
-    var ampm = h >= 12 ? 'pm' : 'am';
-    var ampmcierre = hcierre >= 12 ? 'pm' : 'am';
-    var ampmsabini = hsabi >= 12 ? 'pm' : 'am';
-    var ampmcsabcie = hsabf >= 12 ? 'pm' : 'am';
-    var ampmcdomini = hdomi >= 12 ? 'pm' : 'am';
-    var ampmcdomfin = hdomf >= 12 ? 'pm' : 'am';
-
-
-    /*FIN Formatear fechas AM y PM */
-    const horas_semanales = {
-        '13': '1',
-        '14': '2',
-        '15': '3',
-        '16': '4',
-        '17': '5',
-        '18': '6',
-        '19': '7',
-        '20': '8',
-        '21': '9',
-        '22': '10',
-        '23': '11',
-        '24': '12'
-    }
-    const hsemini = horas_semanales[h] || h;
-    const hsemfin = horas_semanales[hcierre] || hcierre;
-    const hsabadoini = horas_semanales[hsabi] || hsabi;
-    const hsabadofin = horas_semanales[hsabf] || hsabf;
-    const hdomingoini = horas_semanales[hdomi] || hdomi;
-    const hsdomingofin = horas_semanales[hdomf] || hdomf;
-
-
-    /*para imprimir el formato*/
-    formatinicio = hsemini + ":" + m + "" + ampm;
-    formatcierre = hsemfin + ":" + mcierre + "" + ampmcierre;
-    formatiniciosab = hsabadoini + ":" + msabi + "" + ampmsabini;
-    formatcierresab = hsabadofin + ":" + msabf + "" + ampmcsabcie;
-    formatiniciodom = hdomingoini + ":" + mdomi + "" + ampmcdomini;
-    formatcierredom = hsdomingofin + ":" + mdomf + "" + ampmcdomfin;
-    /*Imprimir horas con formato*/
-    $('#l-v').text("Lunes a Viernes:" + " " + formatinicio + " " + "-" + " " + formatcierre);
-    $('#sabado').text("Sabado:" + " " + formatiniciosab + " " + "-" + " " + formatcierresab);
-    $('#domingo').text("Domingo:" + " " + formatiniciodom + " " + "-" + " " + formatcierredom);
 
 
     /*Activador de datos mas informacion detalles.*/
-
-    const det = document.getElementById(`more-information`);
-
-    if (det) {
+        if ($("#more-information").length) {
+            const det = document.getElementById(`more-information`);
         const pdetalles = document.getElementById(`pdetalles`).getAttribute("data-rating");
         function resolveAfter2Seconds() {
             return new Promise(resolve => {
@@ -268,9 +273,10 @@ $(document).ready(function () {
         }
     }
     /* Fin Activador de datos mas innformacion detalles.*/
-
-    tiempo = $('#tiempo').data('tiempo')
-    if (tiempo) {
+    if ($("#tiempo").length) {
+        tiempo = $('#tiempo').data('tiempo');
+        tiempo = tiempo.toString();
+        tiempo = tiempo.replace(/,/, '.');
         t = Math.trunc(tiempo)
         document.getElementById("tiempo").innerHTML = "<b>Tiempo:</b>" + " " + t + " " + "hora";
     }
@@ -1977,7 +1983,7 @@ $(document).ready(function () {
 
     });
  
-    console.log("Los sectores son" + sectores);
+  
 
     var servicio_default = [
         { display: "Seleccione una...", value: "Seleccione una..." }];
@@ -1996,7 +2002,7 @@ $(document).ready(function () {
             case 'Archidona': list(Archidona); break;
             case 'Ambato': list(Ambato); break;
             case 'Aguarico': list(Aguarico); break;
-            case 'Arlos_Julio_Arosemena_Tol': list(Arlos_Julio_Arosemena_Tol); break;
+            case 'Carlos_Julio_Arosemena_Tola': list(Arlos_Julio_Arosemena_Tol); break;
             case 'Carlos Julio Arosemena Tola': list(Arlos_Julio_Arosemena_Tol); break;
             case 'Cuenca': list(Cuenca); break;
             case 'Girón': list(Girón); break;
@@ -2094,7 +2100,7 @@ $(document).ready(function () {
             case 'La Concordia': list(La_Concordia); break
             case 'Guayaquil': list(Guayaquil); break;
             case 'Do_Baquerizo_Moreno': list(Do_Baquerizo_Moreno); break;
-            case 'Alfredo Baquerizo': list(Do_Baquerizo_Moreno); break;
+            case 'Alfredo_Baquerizo': list(Do_Baquerizo_Moreno); break;
             case 'Balao': list(Balao); break;
             case 'Balzar': list(Balzar); break;
             case 'Colimes': list(Colimes); break;
@@ -2289,8 +2295,6 @@ $(document).ready(function () {
             case 'Zamora': list(Zamora); break;
             case 'Zapotillo': list(Zapotillo); break;
             case 'Yaguachi': list(Yaguachi); break;
-
-                
 
             case '0':
                 list(servicio_default);
