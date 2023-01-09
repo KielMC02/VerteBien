@@ -108,6 +108,7 @@ namespace VerteBienV1.Controllers
 
 
         // GET: SERVICIOS
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult Index(string canton, string sector, string servicio, string puntuacion)
         {
             //Variable a utilizar en caso de que uno de los parametros sea un string vacio
@@ -127,7 +128,7 @@ namespace VerteBienV1.Controllers
 
             return View(resultadoBusqueda);
         }
-       
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult TodosLosServicios(string servicio)
         {
 
@@ -148,6 +149,7 @@ namespace VerteBienV1.Controllers
         }
 
         [Authorize(Roles = "expres,preferencial,vip,administrador")]
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         // GET: SERVICIOS POR USUARIOS
         public ActionResult misServicios()
         {

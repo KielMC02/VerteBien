@@ -27,7 +27,8 @@ namespace VerteBienV1.Controllers
 
         public class Mensaje
         {
-            public string menssage { get; set; }
+            public string mensaje { get; set; }
+            
         }
 
 
@@ -35,6 +36,7 @@ namespace VerteBienV1.Controllers
 
         // GET: CITAS
         [Authorize]
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult Index(string estatusCitasSelec)
         {
             //Se obtiene el ID del usuairo logueado.
@@ -72,6 +74,7 @@ namespace VerteBienV1.Controllers
         }
         //Modulo de Contabilidad
         [Authorize(Roles = "preferencial,vip,administrador")]
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult contabilidad(DateTime? desde, DateTime? hasta) 
         {
             SERVICIOSController validar = new SERVICIOSController();
@@ -141,6 +144,8 @@ namespace VerteBienV1.Controllers
         {
             string estatus = "suspendido";
             string resultado = "no";
+
+
             List<SERVICIOS> idPeluqueria = new List<SERVICIOS>();
             idPeluqueria = (from busqueda in db.SERVICIOS where busqueda.id_servicio == idservicio select busqueda).ToList();
             foreach(var item in idPeluqueria)
@@ -150,22 +155,65 @@ namespace VerteBienV1.Controllers
             }
             if(estatus == "activo") 
             {
+                //Obtenemos el dia de la fecha
+                var tipoDia = fecha.DayOfWeek;
+                string dia = "";
+                switch (tipoDia)
+                {
+                    case DayOfWeek.Saturday:
+                        dia = "sabado";
+                            break;
+                    case DayOfWeek.Sunday:
+                        dia = "domingo";
+                            break;
+                    default:
+                        dia = "semanal";
+                        break;
+                }
+
                 //Variable a utilizar en caso de que uno de los parametros sea un string vacio
                 var nulo = DBNull.Value;
-                comentario_cliente = "comentario_cliente";
-                comentario_peluqueria = "comentario_peluqueria";
-                var dia = "semanal";
+                //if(comentario_cliente == null)
+                //{
+                //    comentario_cliente = "Sin comentarios";
+                //}
+                //if(comentario_peluqueria == null)
+                //{
+                //    comentario_peluqueria = "Sin comentarios";
+                //}
+                
+
                 SERVICIOS sERVICIO = db.SERVICIOS.Find(idservicio);
                 var idcliente = User.Identity.GetUserId();
-                //List<string> agregarCita = new List<string>();
+                List<Mensaje> agregarCita = new List<Mensaje>();
 
-                var agregarCita = db.Database.ExecuteSqlCommand("addCita @usuario_peluqueria, @Fecha, @hora, @servicio, @dia, @usuario_cita, @comentario_cliente, @comentario_peluqueria", new SqlParameter("@usuario_peluqueria", sERVICIO.id_usuario), new SqlParameter("@Fecha", fecha), new SqlParameter("@hora", hora), new SqlParameter("@servicio", idservicio), new SqlParameter("@dia", dia), new SqlParameter("@usuario_cita", idcliente), new SqlParameter ("@comentario_cliente", comentario_cliente == "" ? (object)nulo : comentario_cliente), new SqlParameter( "@comentario_peluqueria", comentario_peluqueria == "" ? (object)nulo : comentario_peluqueria));
+                 agregarCita = db.Database.SqlQuery<Mensaje>("addCita @usuario_peluqueria, @Fecha, @hora, @servicio, @dia, @usuario_cita, @comentario_cliente, @comentario_peluqueria", new SqlParameter("@usuario_peluqueria", sERVICIO.id_usuario), new SqlParameter("@Fecha", fecha), new SqlParameter("@hora", hora), new SqlParameter("@servicio", idservicio), new SqlParameter("@dia", dia), new SqlParameter("@usuario_cita", idcliente), new SqlParameter("@comentario_cliente", comentario_cliente == null ? (object)nulo : comentario_cliente), new SqlParameter("@comentario_peluqueria", comentario_peluqueria == null ? (object)nulo : comentario_peluqueria)).ToList();
 
-                if (agregarCita != null)
+
+                foreach (var item in agregarCita)
                 {
-                    resultado = "si";
-                    return resultado;
+                    if (item.mensaje == "si")
+                    {
+                        resultado = "si";
+                        return resultado;
+                    }
+                    else
+                    {
+                        resultado = "no";
+                        return resultado;
+                    }
                 }
+
+                //if (agregarCita[0].Contains("si"))
+                //{
+                //    resultado = "si";
+                //    return resultado;
+                //}
+                //if (Convert.ToString(agregarCita[0]) == "no")
+                //{
+                //    resultado = "no";
+                //    return resultado;
+                //}
             }
             else
             {
