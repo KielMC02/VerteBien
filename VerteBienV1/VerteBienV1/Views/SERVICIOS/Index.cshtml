@@ -43,18 +43,13 @@
 <div class="container">
   
     <form class="row row-cols-lg-12 g-0 align-content-center">
-        <span id="" class="str"  data-rating="3"></span>
-        <div class="">
-            <select name="puntuacion" id="resstrella" class="form-select col-12">
-                <option value="">Seleccione puntuacion</option>
-                <option value="1"> 1</option>
-                <option value="2"> 2</option>
-                <option value="3"> 3</option>
-                <option value="4"> 4</option>
-                <option value="5"> 5</option>
-            </select>
-
+        <div class=" row w-100">
+            <div class="col-6 w-auto">
+                <span id="" class="str" data-rating="3"></span>
+                <span id="resstrella" name="puntuacion" class="text-muted">(3)</span>
+            </div>
         </div>
+      
 
 
         @using (Html.BeginForm("Index", "SERVICIOS", FormMethod.Get))
@@ -297,13 +292,13 @@
                 <label class="visually-hidden" for="inlineFormSelectPref">Sector</label>
                 <select name="sector" class="form-select col-12" id="inlineFormSelectPref">
                     <option>Seleccione una...</option>
-                  
+
                 </select>
             </div>
             <div class="col-12  col-lg-6">
                 <input type="text" id="servicio" name="servicio" class="form-control col-12" placeholder="Buscar por nombre de servicio" />
             </div>
-            <div class="col-12 col-lg-2">
+            <div class="col-12 col-lg-2 mt-2 mt-lg-0">
                 <button type="submit" class="btn col-12 text-white" style="background-color:#DBA312">Buscar</button>
             </div>
         }
