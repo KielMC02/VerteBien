@@ -36,7 +36,7 @@ namespace VerteBienV1.Controllers
 
         // GET: CITAS
         [Authorize]
-        [OutputCache(Duration = 3600, VaryByParam = "none")]
+        //[OutputCache(Duration = 3600, VaryByParam = "estatusCitasSelec")]
         public ActionResult Index(string estatusCitasSelec)
         {
             //Se obtiene el ID del usuairo logueado.
@@ -74,7 +74,7 @@ namespace VerteBienV1.Controllers
         }
         //Modulo de Contabilidad
         [Authorize(Roles = "preferencial,vip,administrador")]
-        [OutputCache(Duration = 3600, VaryByParam = "none")]
+        //[OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult contabilidad(DateTime? desde, DateTime? hasta) 
         {
             SERVICIOSController validar = new SERVICIOSController();

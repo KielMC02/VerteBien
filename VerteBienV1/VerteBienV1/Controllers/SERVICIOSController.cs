@@ -51,7 +51,7 @@ namespace VerteBienV1.Controllers
         //    }
         //    if (usuarioLogueado.estado == "new")
         //    {
-               
+
         //        return "new";
         //    }
         //    else 
@@ -61,6 +61,7 @@ namespace VerteBienV1.Controllers
         //    }
         //}
         //Metodo que valida si el usuario tienen horarios y redes creados.
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public string VerificarUser(string idUser)
         {
             //var idUser = User.Identity.GetUserId();
@@ -108,7 +109,7 @@ namespace VerteBienV1.Controllers
 
 
         // GET: SERVICIOS
-        [OutputCache(Duration = 3600, VaryByParam = "none")]
+        //[OutputCache(Duration = 3600, VaryByParam = canton)]
         public ActionResult Index(string canton, string sector, string servicio, string puntuacion)
         {
             //Variable a utilizar en caso de que uno de los parametros sea un string vacio
@@ -150,7 +151,7 @@ namespace VerteBienV1.Controllers
         }
 
         [Authorize(Roles = "expres,preferencial,vip,administrador")]
-        [OutputCache(Duration = 3600, VaryByParam = "none")]
+        //[OutputCache(Duration = 3600, VaryByParam = "none")]
         // GET: SERVICIOS POR USUARIOS
         public ActionResult misServicios()
         {
