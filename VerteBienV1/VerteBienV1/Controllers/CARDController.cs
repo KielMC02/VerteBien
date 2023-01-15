@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -18,8 +19,11 @@ namespace VerteBienV1.Controllers
         // GET: CARD
         public ActionResult Index()
         {
-            var cARD = db.CARD.Include(c => c.AspNetUsers);
-            return View(cARD.ToList());
+            //var cARD = db.CARD.Include(c => c.AspNetUsers);
+            var idUser = User.Identity.GetUserId();
+            List<CARD> listadoCard = new List<CARD>();
+            listadoCard = (from busqueda in db.CARD where busqueda.id_usuario == idUser select busqueda).ToList();
+            return View(listadoCard);
         }
 
         // GET: CARD/Details/5
