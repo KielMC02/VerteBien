@@ -482,7 +482,7 @@ namespace VerteBienV1.Controllers
 
                         insertarTarjeta.Create(nuevaTarjeta);
 
-                        return RedirectToAction("Index", "SERVICIOS");
+                        return RedirectToAction("Login", "Account");
                     }
                 }
             }
@@ -504,9 +504,9 @@ namespace VerteBienV1.Controllers
                 CARDController insertarTarjeta = new CARDController();
                 insertarTarjeta.Create(nuevaTarjeta);
 
-                var resultadoProc = db.Database.ExecuteSqlCommand("SP_NuevaTarjetaDefault @id, @digitos", new SqlParameter("@id", Convert.ToString(respuesta.IdUser)), new SqlParameter("@id", Convert.ToString(respuesta.number)));
+                var resultadoProc = db.Database.ExecuteSqlCommand("SP_NuevaTarjetaDefault @id, @digitos", new SqlParameter("@id", Convert.ToString(respuesta.IdUser)), new SqlParameter("@digitos", Convert.ToString(respuesta.number)));
 
-                return RedirectToAction("index", "SERVICIOS");
+                return RedirectToAction("Login", "Account");
             }
 
             if (aspNetUsers.estado == "suspendido")
@@ -536,15 +536,15 @@ namespace VerteBienV1.Controllers
                         CARDController insertarTarjeta = new CARDController();
 
                         insertarTarjeta.Create(nuevaTarjeta);
-                        var resultadoProc = db.Database.ExecuteSqlCommand("SP_NuevaTarjetaDefault @id, @digitos", new SqlParameter("@id", Convert.ToString(respuesta.IdUser)), new SqlParameter("@id", Convert.ToString(respuesta.number)));
+                        var resultadoProc = db.Database.ExecuteSqlCommand("SP_NuevaTarjetaDefault @id, @digitos", new SqlParameter("@id", Convert.ToString(respuesta.IdUser)), new SqlParameter("@digitos", Convert.ToString(respuesta.number)));
 
-                        return RedirectToAction("Index", "SERVICIOS");
+                        return RedirectToAction("Login", "Account");
                     }
                 }
 
                 
             }
-            return RedirectToAction("index", "SERVICIOS");
+            return RedirectToAction("Login", "Account");
         }
         public ActionResult SaveCard(string Id, string Email, string membresiaSelec) 
         {

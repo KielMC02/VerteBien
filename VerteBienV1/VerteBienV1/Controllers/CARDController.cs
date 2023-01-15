@@ -73,6 +73,25 @@ namespace VerteBienV1.Controllers
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", cARD.id_usuario);
             return View(cARD);
         }
+        public ActionResult CambiarTarjeta(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            CARD cARD = db.CARD.Find(id);
+            var resultadoProc = db.Database.ExecuteSqlCommand("SP_NuevaTarjetaDefault @id, @digitos", new SqlParameter("@id", cARD.id_usuario), new SqlParameter("@digitos", cARD.digitos));
+
+            if (cARD == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            return RedirectToAction("index");
+        }
+
         [Authorize(Roles = "administrador")]
         // GET: CARD/Edit/5
         public ActionResult Edit(int? id)

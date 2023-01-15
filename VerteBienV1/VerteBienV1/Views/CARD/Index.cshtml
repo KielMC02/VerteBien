@@ -111,8 +111,8 @@
                     <div class="d-none">  @Html.DisplayFor(modelItem => item.comentario)</div>
                     @*para guardar el cometnario cuando se eleige una tarjeta.*@
 
-                    <input type="button" id=@("comtarjeta"+contador) value="" class="btn">
-                    
+                  @*<input type="submit" id=@("comtarjeta"+contador) value="" class="btn">*@
+                    @Html.ActionLink("Guardar Cambios", "CambiarTarjeta", "CARD", new { id = item.id_card }, htmlAttributes: new { @class = "btn text-white btn-sm rounded ", style = "background-color:#DBA312", id ="comtarjeta"+Convert.ToString(contador)})
                 </div>
                 
             }
