@@ -128,10 +128,10 @@ $(document).ready(function () {
             rating: rating[a].getAttribute("data-rating"),
 
             change: function (e, valor) {
-
-                //   alert(valor);
                 reltado.value = valor;
-
+                if (valor !=undefined) { 
+                reltado.innerHTML = '('+valor+')';
+                }
 
             }
         })
@@ -252,27 +252,29 @@ $(document).ready(function () {
 
     }
    
-
   
 
 
-    /*Activador de datos mas informacion detalles.*/
-        if ($("#more-information").length) {
-            const det = document.getElementById(`more-information`);
-        const pdetalles = document.getElementById(`pdetalles`).getAttribute("data-rating");
-        function resolveAfter2Seconds() {
-            return new Promise(resolve => {
+    ///*Activador de datos mas informacion detalles.*/
+    //    if ($("#more-information").length) {
+    //        const det = document.getElementById(`more-information`);
+    //    const pdetalles = document.getElementById(`pdetalles`).getAttribute("data-rating");
+    //    function resolveAfter2Seconds() {
+    //        return new Promise(resolve => {
 
-                resolve('resolved');
-                if (pdetalles !== "") {
-                    det.classList.add('show');
+    //            resolve('resolved');
+    //            if (pdetalles !== "") {
+    //                det.classList.add('show');
 
-                }
+    //            }
 
-            });
-        }
-    }
-    /* Fin Activador de datos mas innformacion detalles.*/
+    //        });
+    //    }
+    //}
+
+
+
+    /////* Fin Activador de datos mas innformacion detalles.*/
     if ($("#tiempo").length) {
         tiempo = $('#tiempo').data('tiempo');
         tiempo = tiempo.toString();
@@ -323,7 +325,10 @@ jQuery('input[type=file]').change(function (event) {
     var res = filename.substring(0, 15);
     var fname = res + "...";
     jQuery('span.' + idname).next().find('span').html(fname);
-    /*   $('span.' + id).html(fname);*/
+    if (pathname == '/SERVICIOS/Create') {
+        $('span.' + id).html(fname);
+    }
+       
 
 
 });
@@ -387,6 +392,7 @@ const inputs = document.querySelectorAll('#formulario input');
 const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-\@]{4,16}$/, // Letras, numeros, guion y guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
+    nombreservicio: /[A-Z? a-z 0-9?]{4,25}$/, //Alfanumerico
     password: /^.{4,12}$/, // 4 a 12 digitos.
     correo: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
     telefono: /^\d{9,10}$/, // 9 a 10 numeros.
@@ -470,14 +476,14 @@ const validarFormulario = (e) => {
             validarCampo(expresiones.precio, e.target, 'precio_servicio');
             break;
         case "nombre_servicio":
-            validarCampo(expresiones.nombre, e.target, 'nombre_servicio');
+            validarCampo(expresiones.nombreservicio, e.target, 'nombre_servicio');
             break;
         case "tiempo":
             validarCampo(expresiones.precio, e.target, 'tiempo');
             break;
         case "descripcion":
             validarCampo(expresiones.alphanumerico, e.target, 'descripcion');
-            Validate();
+            validate();
             break;
         case "calle":
             validarCampo(expresiones.callenumero, e.target, 'calle');
@@ -652,10 +658,26 @@ const validarPassword2 = () => {
         campos['ConfirmPassword'] = true;
     }
 }
-var usernamecheck = /[A-Z? a-z 0-9?]{10,250}$/;
+var usernamecheck = /[A-Z? a-z 0-9?]{10,150}$/;
+// pendiente terminar funcion para el validar textarea
+//$('#descripcion').keyup(function () {
+//    let textareatext = document.getElementById('descripcion').value
+//    if (textareatext.match(usernamecheck)) {
+//        document.getElementById(`grupo__descripcion`).classList.add('formulario__grupo-incorrecto');
+//        document.getElementById(`grupo__descripcion`).classList.remove('formulario__grupo-correcto');
+//        document.querySelector(`#grupo__descripcion`).classList.add('fa-times-circle');
+//        document.querySelector(`#grupo__descripcion`).classList.remove('fa-check-circle');
+//        document.querySelector(`#grupo__descripcion .formulario__input-error`).classList.add('formulario__input-error-activo');
+//        campos['descripcion'] = false;}
 
-const Validate = (e) => {
+//    console.log()
+
+//})
+
+const validate = (e) => {
+  
     var val = document.getElementById('descripcion').value;
+    
     var lines = val.split('\n');
 
     for (var i = 0; i < lines.length; i++) {
@@ -928,9 +950,8 @@ if (frm) {
 
 
 
-
-// comentarios asincronos.
-if (document.getElementById(`pdetalles`)) {
+    // comentarios asincronos.
+    if ($('#pdetalles').length) {
     $(function () {
         var $h3s = $('li.opcion-detalles').click(function () {
             $h3s.removeClass('active');
@@ -959,7 +980,7 @@ if (document.getElementById(`pdetalles`)) {
     async function asyncCall() {
 
         const result = await resolveAfter2Seconds();
-        // expected output: "resolved"
+      
     }
 
     asyncCall();
@@ -1035,7 +1056,7 @@ window.addEventListener('load', function () {
             slidesToShow: 1,
             slidesToScroll: 1,
             dots: '.carousel__indicadores',
-            draggable: 'true',
+            draggable: true,
             arrows: {
                 prev: '.carousel__anterior',
                 next: '.carousel__siguiente'
@@ -1048,6 +1069,7 @@ window.addEventListener('load', function () {
                         // Set to `auto` and provide item width to adjust to viewport
                         slidesToShow: 1,
                         slidesToScroll: 1
+                       
                     }
                 }, {
                     // screens greater than >= 1024px
@@ -1055,6 +1077,7 @@ window.addEventListener('load', function () {
                     settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1
+                       
                     }
                 }
             ]
@@ -1088,14 +1111,13 @@ if (pathNa === '/SERVICIOS/Details/') {
 }
 
 /* FIN MAPA*/
+var msf_getFsTag = document.getElementsByTagName("fieldset");
+/*let eml = document.getElementById("Email");*/
+if (msf_getFsTag.length) {
+   
+    //// dom variables
 
-let eml = document.getElementById("Email");
-if (eml) {
-    console.log("Reloaded");
-
-    // dom variables
-
-    var msf_getFsTag = document.getElementsByTagName("fieldset");
+    //var msf_getFsTag = document.getElementsByTagName("fieldset");
 
 
     // declaring the active fieldset & the total fieldset count
@@ -1382,25 +1404,7 @@ $('#sabado').text("Sabado:" + " " + formatiniciosab + " " + "-" + " " + formatci
 $('#domingo').text("Domingo:" + " " + formatiniciodom + " " + "-" + " " + formatcierredom);
 
 
-/*Activador de datos mas informacion detalles.*/
 
-const det = document.getElementById(`more-information`);
-
-if (det) {
-    const pdetalles = document.getElementById(`pdetalles`).getAttribute("data-rating");
-    function resolveAfter2Seconds() {
-        return new Promise(resolve => {
-
-            resolve('resolved');
-            if (pdetalles !== "") {
-                det.classList.add('show');
-
-            }
-
-        });
-    }
-}
-/* Fin Activador de datos mas innformacion detalles.*/
 
 tiempo = $('#tiempo').data('tiempo')
 if (tiempo) {
@@ -2423,4 +2427,27 @@ if (pathname === '/AspNetUsers/index') {
   
  
 }
+/*Fin estado cita*/
+// Verifiicar aceptados no estan cumpliendo las reglas 
+let x = document.querySelectorAll("#estadocita");
+for (var i = 0; i < x.length; i++) {
 
+  let estado = x[i].getAttribute('data-estadocita');
+
+    if (estado == 'aceptado') {
+        x[i].classList.add('text-success');
+        x[i].classList.remove('text-warning');
+        x[i].classList.remove('text-danger');
+    } if (estado == 'pendiente') {
+        x[i].classList.add('text-warning');
+        x[i].classList.remove('text-success');
+        x[i].classList.remove('text-danger');
+    } if (estado == 'cancelado') {
+        x[i].classList.add('text-danger');
+        x[i].classList.remove('text-success');
+        x[i].classList.remove('text-warning');
+    }
+    
+  
+}
+/*Fin estado cita*/
