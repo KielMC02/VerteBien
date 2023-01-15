@@ -10,8 +10,8 @@
 
     @*Titulo de la pagina con el nombredel servicio*@
     <div class="text-left">
-        <h1 class=" dtext container">@Html.DisplayFor(model => model.AspNetUsers.nombre_peluqueria)</h1>
-        <span>@Html.ActionLink("Ver peluqueria", "Details", "AspNetUsers", new { id = ViewBag.id }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm mx-1 rounded ", id = "volbtn" })</span>
+        <h1 class="dtext container">@Html.DisplayFor(model => model.AspNetUsers.nombre_peluqueria)</h1>
+        <span>@Html.ActionLink("Ver peluqueria", "Details", "AspNetUsers", new { id = ViewBag.id }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm mx-1 rounded mx-3", id = "volbtn" })</span>
     </div>
     @*FIN Titulo de la pagina con el nombredel servicio*@
 
@@ -98,7 +98,7 @@
                                     {
                                         <div class="card p-3 my-2" id="comentarios-conteo">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <div class="user d-flex flex-row align-items-center"> <i class="fas fa-user user-img rounded-circle mr-2" width="30"></i> <span><small class="font-weight-bold " style="color: #DBA312;"> @item.AspNetUsers.nombre </small> <small class="font-weight-bold"> @item.comentario</small></span> </div> <small></small>
+                                                <div class="user d-flex flex-row align-items-center"> <i class="fas fa-user user-img rounded-circle mr-2" width="30"></i> <span><small class="font-weight-bold" style="color:#DBA312"> @item.AspNetUsers.nombre </small> <small class="font-weight-bold"> @item.comentario</small></span> </div> <small></small>
                                             </div>
                                             <div class="action d-flex justify-content-between mt-2 align-items-center">
                                                 <div class="reply px-4"> <small>@item.fecha_creacion</small>  </div>
@@ -176,7 +176,7 @@
                     <p><b>@Html.LabelFor(model => model.estado, "Estado"): </b> @Html.DisplayFor(model => model.estado)</p>
                     <p><b>Capacidad: </b>@Html.DisplayFor(model => model.AspNetUsers.capacidad_simultanea_)</p>
                     <p><b>Categoria:</b> @Html.DisplayFor(model => model.CATEGORIAS_SERVICIOS.nombre_categoria)</p>
-                    <p><b> @Html.DisplayNameFor(model => model.AspNetUsers.Email):</b>@Html.DisplayFor(model => model.AspNetUsers.Email)</p>
+                    <p style=" white-space:; overflow-wrap: break-word; text-overflow:; "><b> @Html.DisplayNameFor(model => model.AspNetUsers.Email):</b>@Html.DisplayFor(model => model.AspNetUsers.Email)</p>
                     <p class="mb-0"><b>Telefono: </b>@Html.DisplayFor(model => model.AspNetUsers.telefono)</p>
                 </div><!-- / project-info-box -->
 
@@ -184,14 +184,16 @@
             </div><!-- / column MAPA -->
 
             <div class="col-md-7">
-                <div class="mx-md-3" style="max-width:650px; height:350px;">
-                    <div id="map" style="max-width:650px; height:350px;"></div>
-                    <div id="map" class="rounded" alt="Mapa" style="max-width:650px; height:350px;"></div>
+                <div class="mx-md-3 rounded" style="max-width:650px; height:350px;">
+                    <div id="map" class="rounded" style="max-width:650px; height:350px;"></div>
+                    @*<div id="map" class="rounded" alt="Mapa" style="max-width:650px; height:350px;"></div>*@
                 </div>
                 <!-- / project-info-box -->
                 <div class="project-info-box mx-md-3" id="info-map">
-                    <p><b>Dirección: </b>@Html.DisplayFor(model => model.AspNetUsers.sector),
-                    #@Html.DisplayFor(model => model.AspNetUsers.calle),@Html.DisplayFor(model => model.AspNetUsers.ciudad)</p>
+                    <p>
+                        <b>Dirección: </b>@Html.DisplayFor(model => model.AspNetUsers.sector),
+                        #@Html.DisplayFor(model => model.AspNetUsers.calle),@Html.DisplayFor(model => model.AspNetUsers.ciudad)
+                    </p>
 
 
 
@@ -200,7 +202,9 @@
             </div><!-- /FIN column MAPA -->
         </div>
 
-
+        <center>
+            @Html.ActionLink("Volver", "index", new { }, htmlAttributes: new { @class = "btn btn-outline-warning  rounded my-5", id = "volbtn" })
+        </center>
     </div>
 
 
