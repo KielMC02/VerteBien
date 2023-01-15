@@ -44,7 +44,7 @@
                  <div class="card shadow my-4  cf">
                      <div class="card-header row" style="margin-left: 1px;">
                          <h4 class="card-title col-8 text-capitalize col-7"> @Html.DisplayFor(modelItem => item.SERVICIOS.nombre_servicio)</h4>
-                         <h6 class="card-title col-4"><b>Estado de la cita: </b> <span class="text-success">@Html.DisplayFor(modelItem => item.estado)</span></h6>
+                         <h6 class="card-title col-4"><b>Estado de la cita: </b> <span class="text-success estadocita" id="estadocita" data-estadocita="@Html.DisplayFor(modelItem => item.estado)">@Html.DisplayFor(modelItem => item.estado)</span></h6>
                      </div>
                      <div class="card-body col-12 p-4 ">
                          <ul class="list-group list-group-flush">
