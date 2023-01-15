@@ -118,8 +118,9 @@ namespace VerteBienV1.Controllers
             if(canton != null) { 
                     if( canton != "" || sector != "" || servicio != "" || puntuacion != "")
                     {
-                    resultadoBusqueda = db.Database.SqlQuery<SERVICIOS>("filtrar @ciudad, @sector, @puntuacion, @dato", new SqlParameter("@ciudad", Convert.ToString(canton)), new SqlParameter("@sector", sector), new SqlParameter("@puntuacion", puntuacion == "" ? (object)nulo : puntuacion), new SqlParameter("@dato", servicio == ""? (object)nulo : servicio)).ToList();
-               
+                    resultadoBusqueda = db.Database.SqlQuery<SERVICIOS>("filtrar @ciudad, @sector, @puntuacion, @dato", new SqlParameter("@ciudad", Convert.ToString(canton)), new SqlParameter("@sector", sector), new SqlParameter("@puntuacion", puntuacion == null ? (object)nulo : puntuacion), new SqlParameter("@dato", servicio ==null? (object)nulo : servicio)).ToList();
+
+
                     }
             }
             //Lista completa de servicios sin filtrado
