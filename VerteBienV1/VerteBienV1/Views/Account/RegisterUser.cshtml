@@ -25,40 +25,43 @@
 </center>
     <br />
     <div class="container">
-        <center>
+     
             <div class="container  w-auto form_wrapper">
 
                 <div class="card-body">
-                    <div class="form row">
-                        <fieldset class="msf_hide text-center">
+                    <div class="form" style=" display: flex; justify-content: center;" >
+                        <fieldset class="msf_hide" style=" width: 70% !important;">
 
-                            <div class="form-group col-12  formulario__grupo " id="grupo__Email">
-                                @Html.LabelFor(m => m.Email, new { @class = " control-label col-md-6" })
-                                <div class="col-md-8 formulario__grupo-input">
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control text-center", id = "Email", name = "Email", placeholder = "Correo@dominio.com" })
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                            <div class="form-group col-12 formulario__grupo " id="grupo__Email">
+                                @Html.LabelFor(m => m.Email, new { @class = " control-label col-12" })
+                                <div class=" formulario__grupo-input">
+                                    <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control control-form col-12", id = "Email", name = "Email", placeholder = "Correo@dominio.com" })
+                                    
                                 </div>
-                                <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo. (ejemplo@dominio.com o ejemplo@dominio.com.do)</p>
+                                <p class="formulario__input-error text-center">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo. (ejemplo@dominio.com o ejemplo@dominio.com.do)</p>
                             </div>
-                            <div class="form-group col-12 formulario__grupo my-4t" id="grupo__Password">
+                            <div class="form-group col-12 formulario__grupo my-4" id="grupo__Password">
                                 @Html.LabelFor(m => m.Password, new { @class = "col-md-6 control-label" })
-                                <div class="col-md-8 formulario__grupo-input">
-                                    @Html.TextBoxFor(m => m.Password, new { @class = " form-control formulario__input text-center", type = "password", id = "Password", name = "Password" })
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                <div class=" formulario__grupo-input">
+                                    <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
+                                    @Html.TextBoxFor(m => m.Password, new { @class = " form-control control-form formulario__input ", type = "password", id = "Password", name = "Password" })
+                                  
                                 </div>
-                                <p class="formulario__input-error">La contraseña tiene que ser de 4 a 12 dígitos.</p>
+                                <p class="formulario__input-error text-center">La contraseña tiene que ser de 4 a 12 dígitos.</p>
                             </div>
 
                             <div class="form-group col-12 formulario__grupo" id="grupo__ConfirmPassword">
                                 @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-6 control-label" })
-                                <div class="col-md-8 formulario__grupo-input">
-                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control formulario__input  text-center", id = "ConfirmPassword", name = "ConfirmPassword" })
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                <div class=" formulario__grupo-input">
+                                    <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control control-form formulario__input", id = "ConfirmPassword", name = "ConfirmPassword" })
+                                   
                                 </div>
-                                <p class="formulario__input-error">Ambas contraseñas deben ser iguales.</p>
+                                <p class="formulario__input-error text-center">Ambas contraseñas deben ser iguales.</p>
                             </div>
-
-                            <div class="mt-2">
+                             
+                            <div class="mt-4 text-center">
                                 <input type="button" class="btn btn btn-outline-warning volbtn" name="back" value="Atras" onclick="msf_btn_back()">
                                 <input type="button" class="btn btn btn-outline-warning volbtn" name="next" value="Siguiente" onclick="msf_btn_next()">
 
@@ -68,37 +71,40 @@
 
                         </fieldset>
 
-                        <fieldset class="msf_hide text-center">
+                        <fieldset class="msf_hide" style=" width: 70% !important; ">
                             <div class="form-group col-md-12 formulario__grupo" id="grupo__nombre">
                                 @Html.LabelFor(m => m.nombre, "Nombre", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10 formulario__grupo-input">
-                                    @Html.TextBoxFor(m => m.nombre, new { @class = "form-control formulario__input text-center", id = "nombre", name = "nombre" })
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                <div class=" formulario__grupo-input">
+                                    <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
+                                    @Html.TextBoxFor(m => m.nombre, new { @class = "form-control control-form formulario__input ", id = "nombre", name = "nombre" })
+                                   
                                 </div>
-                                <p class="formulario__input-error">El nombre tiene que ser letras espacion y pueden llevar acento.</p>
+                                <p class="formulario__input-error text-center">El nombre tiene que ser letras espacion y pueden llevar acento.</p>
                             </div>
 
 
                             <div class="form-group col-md-12 formulario__grupo my-4" id="grupo__apellido">
                                 @Html.LabelFor(m => m.apellido, "Apellido", new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10 formulario__grupo-input">
-                                    @Html.TextBoxFor(m => m.apellido, new { @class = "form-control formulario__input text-center", id = "apellido", name = "apellido" })
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                <div class=" formulario__grupo-input">
+                                    <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
+                                    @Html.TextBoxFor(m => m.apellido, new { @class = "form-control control-form formulario__input ", id = "apellido", name = "apellido" })
+                                 
                                 </div>
-                                <p class="formulario__input-error" id="imgerror">El apellido tiene que ser letras espacion y pueden llevar acento.</p>
+                                <p class="formulario__input-error text-center" id="imgerror">El apellido tiene que ser letras espacion y pueden llevar acento.</p>
                             </div>
 
 
                             <div class="form-group col-md-12 formulario__grupo" id="grupo__fecha_nacimiento_">
                                 @Html.LabelFor(m => m.fecha_nacimiento_, "Fecha de nacimiento", new { @class = "col-md-6  control-label" })
-                                <div class="col-md-10 formulario__grupo-input">
-                                    @Html.TextBoxFor(m => m.fecha_nacimiento_, new { @class = "form-control formulario__input text-center", id = "fecha_nacimiento_", name = "fecha_nacimiento_", @type = "date" })
-                                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                                <div class="formulario__grupo-input">
+                                    <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
+                                    @Html.TextBoxFor(m => m.fecha_nacimiento_, new { @class = "form-control control-form formulario__input ", id = "fecha_nacimiento_", name = "fecha_nacimiento_", @type = "date" })
+                                   
                                 </div>
-                                <p class="formulario__input-error">La fecha tiene que ser día/mes/años</p>
-                                <p class="formulario__input-errorr">Tiene que tener al menos 15 años de edad</p>
+                                <p class="formulario__input-error text-center">La fecha tiene que ser día/mes/años</p>
+                                <p class="formulario__input-errorr text-center">Tiene que tener al menos 15 años de edad</p>
                             </div>
-                            <div class="mt-2">
+                            <div class="mt-4 text-center">
                                 <input type="button" class="btn btn btn-outline-warning volbtn" name="back" value="Atras" onclick="msf_btn_back()">
                                 <input type="button" class="btn btn btn-outline-warning volbtn" name="next" value="Siguiente" onclick="msf_btn_next()">
 
@@ -109,21 +115,21 @@
                         @*<div class="form-group">
                                 @Html.LabelFor(m => m.fecha_creacion_, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.fecha_creacion_, new { @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.fecha_creacion_, new { @class = "form-control control-form" })
                                 </div>
                             </div>*@
 
                         @*<div class="form-group">
                                 @Html.LabelFor(m => m.capacidad_simultanea_, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.capacidad_simultanea_, new { @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.capacidad_simultanea_, new { @class = "form-control control-form" })
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 @Html.LabelFor(m => m.estado, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
-                                    @Html.TextBoxFor(m => m.estado, new { @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.estado, new { @class = "form-control control-form" })
                                 </div>
                             </div>*@
                     </div>
@@ -131,7 +137,7 @@
                 </div>
 
             </div>
-        </center>
+        
     </div>
 
 
