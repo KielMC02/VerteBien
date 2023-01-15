@@ -125,7 +125,7 @@
 }
 @media only screen and (min-width: 992px) {
     .card-text{
-        font-size: 0.9vw !important;
+        font-size: 1.5vw !important;
     }
 }
 @media only screen and (min-width:992px) {
@@ -295,8 +295,8 @@
     text-align: center;
     background: none;
     color: #DBA312;
-    opacity: 20%;
-    font-size:25px;
+ /*   opacity: 20%;*/
+    font-size:40px;
     z-index:3;
 }
 
@@ -326,29 +326,28 @@
     width: 30px;
     height: 4px;
     background: #DBA312;
-    opacity: .2;
+    opacity: 1;
     border-radius: 0;
 }
 .glider-dot.active {
     background: #DBA312 !important;
 }
 
-    .carousel__indicadores .glider-dot:hover {
-        opacity: .5;
-    }
+.carousel__indicadores .glider-dot:hover {
+    opacity: .5 !important;
+}
 
-    .carousel__indicadores .glider-dot.active {
-        opacity: 1;
+.carousel__indicadores .glider-dot.active {
+    opacity: 1 !important;
+}
 
-    }
-
-@media screen and (max-width: 800px) {
+/*@media screen and (max-width: 800px) {
     body {
         padding: 40px 0;
     }
 
 
-}
+}*/
 /*FIN DEL CARUSEL De DETALLES DE SERVICIO*/
     /*fin Detalle producto nueva modificaciones */
 
@@ -974,6 +973,19 @@ a {
             height: 600px !important;
         }
 
+@media only screen and (min-device-width: 320px) and (max-device-width: 736px) {
+    /* inserta aquí tu código */
+    .lb-outerContainer {
+        width: 400px !important;
+        height: 400px !important;
+    }
+
+    .lb-image {
+        width: 400px !important;
+        height: 400px !important;
+    }
+
+}
         /* FIN LIGHT BOX TAMAño*/
 
 
@@ -2244,9 +2256,15 @@ body {
 }
 
 
+.control-form-feedback {
+    position: absolute;
+    padding: 12px;
+    pointer-events: none;
+}
 
-
-
+.control-form {
+    padding-left: 32px !important;
+}
 
 
 
