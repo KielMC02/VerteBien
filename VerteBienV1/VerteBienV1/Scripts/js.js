@@ -753,7 +753,7 @@ if (frm) {
         switch (pathname) {
             case '/SERVICIOS/Create':  // para registrar negocios o peluqueria 
 
-                if (campos.tiempo && campos.precio_servicio && campos.nombre_servicio && campos.descripcion) {
+                if (campos.precio_servicio && campos.nombre_servicio && campos.descripcion) {
 
 
                     formulario.submit();
