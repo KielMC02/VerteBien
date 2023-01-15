@@ -8,7 +8,7 @@
 
 <section class="" id="loginForm">
 
-    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form" }))
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "", role = "form", id = "formulariologin" }))
     {@Html.AntiForgeryToken()
 
 
@@ -66,7 +66,7 @@
                 @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
-                        Login
+                        Iniciar sesión
                     </button>
                 </div>
 
@@ -80,7 +80,7 @@
                     </span>
 
                 </div>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger ", @id = "txt-loginerror" })
                 <div class="text-center p-t-136 regis mt-5">
 
                     @Html.ActionLink("Registrarse", "Register")
@@ -94,8 +94,8 @@
 
     </div>
 }
-</section>
 
+</section>
 
 @*
         <div class="row container">
