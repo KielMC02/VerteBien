@@ -317,21 +317,21 @@ $(document).ready(function () {
 
 
 });
-/* query para poner el nombre del archivo que se sube*/
-jQuery('input[type=file]').change(function (event) {
-    var filename = jQuery(this).val().split('\\').pop();
-    var idname = jQuery(this).attr('id');
-    let id = this.id;
-    var res = filename.substring(0, 15);
-    var fname = res + "...";
-    jQuery('span.' + idname).next().find('span').html(fname);
-    if (pathname == '/SERVICIOS/Create') {
-        $('span.' + id).html(fname);
-    }
+///* query para poner el nombre del archivo que se sube*/
+//jQuery('input[type=file]').change(function (event) {
+//    var filename = jQuery(this).val().split('\\').pop();
+//    var idname = jQuery(this).attr('id');
+//    let id = this.id;
+//    var res = filename.substring(0, 15);
+//    var fname = res + "...";
+//    jQuery('span.' + idname).next().find('span').html(fname);
+//    if (pathname == '/SERVICIOS/Create') {
+//        $('span.' + id).html(fname);
+//    }
        
 
 
-});
+//});
 
 
 ///* FIN query para poner el nombre del archivo que se sube*/
