@@ -59,7 +59,7 @@
                         <div class="form-group col-md-6 my-md-3 my-2">
                             @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label mx-md-5" })
                             <div class="col-md-10 mx-md-5">
-                                <select name="duracion" id="cars" class="form-control col-md-10">
+                                <select name="duracion" class="form-control col-md-10">
                                     <option value="0,50" step="any">30 Minutos</option>
                                     <option value="1">1 Hora</option>
                                     <option value="1,50">1 Hora y 30 Minutos</option>
@@ -90,9 +90,9 @@
                                 @if (User.IsInRole("expres"))
                                 {
 
-                                    <label for="img1" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
-                                    <label for="img2" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
-                                    <label for="img3" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
+                                    <label for="img1" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img1"> Subir imagen</span> </label>
+                                    <label for="img2" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img2"> Subir imagen</span> </label>
+                                    <label for="img3" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img3"> Subir imagen</span> </label>
 
                                     <input type="file" name="img1" id="img1" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
                                     <input type="file" name="img2" id="img2" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
@@ -102,12 +102,13 @@
                             <div class="row ">
                                 @if (User.IsInRole("preferencial"))
                                 {
-                                    <label for="img1" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
-                                    <label for="img2" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
-                                    <label for="img3" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
-                                    <label for="img4" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
-                                    <label for="img5" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
-                                    <label for="img6" class="cfile col-xl-4  col-12 m-1  imgsubir"> <span class="m-1 mr-1"><i class="far fa-upload"></i></span> Subir imagen</label>
+                                    <label for="img1" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img1"> Subir imagen</span> </label>
+                                    <label for="img2" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img2"> Subir imagen</span> </label>
+                                    <label for="img3" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img3"> Subir imagen</span> </label>
+                                    <label for="img4" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img4"> Subir imagen</span> </label>
+                                    <label for="img5" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img5"> Subir imagen</span> </label>
+                                    <label for="img6" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img6"> Subir imagen</span> </label>
+
 
                                     <input type="file" name="img1" id="img1" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
                                     <input type="file" name="img2" id="img2" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
