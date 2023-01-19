@@ -169,8 +169,34 @@ $(document).ready(function () {
     }
     /* FIN Cambiar numeros decimal a horas.*/
 
+
+
+    tiempo = $('#tiempo').data('tiempo')
+    if (tiempo) {
+        t = Math.trunc(tiempo)
+        document.getElementById("tiempo").innerHTML = "<b>Tiempo:</b>" + " " + t + " " + "hora";
+    }
+
+    // tiempo mis siervicios
+
+    let servicio = document.querySelectorAll('#tiempo-servicio');
+    for (let i = 0; i < servicio.length; i++) {
+        let servicioTiempo = servicio[i].getAttribute('data-tiempo').toString();
+        servicioTiempo = servicioTiempo.replace(/,/, '.');
+        servicioTiempo = servicioTiempo == 0.50 ? '30 minutos' : servicioTiempo;
+        servicioTiempo = servicioTiempo == 1.50 ? '1 hora y 30 minutos' : servicioTiempo;
+        servicioTiempo = servicioTiempo == 2.00 ? '2 horas' : servicioTiempo;
+        servicioTiempo = servicioTiempo == 1.00 ? '1 hora' : servicioTiempo;
+
+        servicio[i].innerHTML = '<b>Tiempo: </b>' + servicioTiempo;
+
+      
+
+    }
+      // fin tiempo mis siervicios
+
+
    // obtener los datos 
- 
    
     if ($("#l-v").length) {
         var Hsemanaini = $('#l-v').data('semanaini');
@@ -1405,14 +1431,6 @@ $('#l-v').text("Lunes a Viernes:" + " " + formatinicio + " " + "-" + " " + forma
 $('#sabado').text("Sabado:" + " " + formatiniciosab + " " + "-" + " " + formatcierresab);
 $('#domingo').text("Domingo:" + " " + formatiniciodom + " " + "-" + " " + formatcierredom);
 
-
-
-
-tiempo = $('#tiempo').data('tiempo')
-if (tiempo) {
-    t = Math.trunc(tiempo)
-    document.getElementById("tiempo").innerHTML = "<b>Tiempo:</b>" + " " + t + " " + "hora";
-}
 
 
 
