@@ -19,7 +19,7 @@
                         <div class="card-body col-12 p-4 ">
                             <h1 class="card-title h4"> @Html.DisplayFor(modelItem => item.nombre_servicio)</h1>
                             <p class="card-subtitle mb-2 text-muted"> <b>Estado:</b> @Html.DisplayFor(modelItem => item.estado)</p>
-                            <p class="card-subtitle mb-2 text-muted">  <b>Tiempo:</b> @Html.DisplayFor(modelItem => item.tiempo)</p>
+                            <p class="card-subtitle mb-2 text-muted" id="tiempo-servicio" data-tiempo="@Html.DisplayFor(modelItem => item.tiempo)">  <b>Tiempo:</b> @Html.DisplayFor(modelItem => item.tiempo)</p>
                             <p class="card-subtitle mb-2 text-muted"> <b>Precio:</b> $@Html.DisplayFor(modelItem => item.precio_servicio)</p>
                             <p class="card-text mb-5">@Html.DisplayFor(modelItem => item.descripcion)</p>
                         </div>
