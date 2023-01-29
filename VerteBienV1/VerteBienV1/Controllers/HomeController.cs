@@ -32,6 +32,12 @@ namespace VerteBienV1.Controllers
 
             return View();
         }
+        public ActionResult Tendencias()
+        {
+
+
+            return View();
+        }
         [Authorize(Roles = "administrador")]
         public ActionResult Pruebapagos()
         {
