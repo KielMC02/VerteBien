@@ -3,17 +3,35 @@
     ViewBag.Title = "Pago Requerido";
 }
 
-<br />
-<center>
-    <h1>Atencion Pago Requerido</h1>
-    <p>Su cuenta tiene un pago pendiente, puede que el metodo de pago registrado este fallando, puede intentar hacer un pago manual a continuacion: </p>
-    <br />
-    @Html.ActionLink("Realizar pago", "debitarManualUser", "SUSCRIPCIONs", htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
-    <br />
-    @Html.ActionLink("Agregar metodo de pago", "SaveCard", "SUSCRIPCIONs", htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
-    <br />
-    <p>Si su usuario es nuevo puede que aun no haya realizado el pago, si es asi dar clic a continuacion para agrega un metodo de pago y activar su cuenta.</p>
-    @Html.ActionLink("Agregar metodo de pago", "SaveCard", "SUSCRIPCIONs", htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
-</center>
-<span>En caso de que esto sea un error comunicarse con nosotros por cualquiera de nuestras vias de comunicacion.<</span>
-<br />
+
+
+<div class="container text-center w-75">
+    <center>
+        <h1 class="my-4"></h1>
+        <div class="card text-center my-5" style="max-width:450px;">
+            <div class="card-header h5 text-white" style="background-color:#DBA312;">Atención pago requerido</div>
+            <div class="card-body ">
+                <p class="card-text py-2 px-2">
+                    Su cuenta tiene un pago pendiente, puede que el metodo de pago registrado este fallando, puede intentar hacer un pago manual a continuacion:
+                </p>
+                
+            </div>
+            <div class="text-center">
+                @Html.ActionLink("Realizar pago", "debitarManualUser", "SUSCRIPCIONs", htmlAttributes: new { @class = "btn text-white my-3", @style = "background-color:#DBA312;" })
+            </div>
+            <div class="p-2">
+                <p class="p-2 my-2 text-muted">
+                    Si su usuario es nuevo puede que aun no haya realizado el pago, si es asi dar clic a continuacion para agrega un metodo de pago y activar su cuenta.
+
+                </p>
+                @Html.ActionLink("Agregar metodo de pago", "SaveCard", "SUSCRIPCIONs", htmlAttributes: new { @class = "", @style = "" })
+            </div>
+        </div>
+    </center>
+</div>
+
+
+
+
+
+<p class="my-4 text-warning container">En caso de que esto sea un error comunicarse con nosotros por cualquiera de nuestras vias de comunicacion.</p>
