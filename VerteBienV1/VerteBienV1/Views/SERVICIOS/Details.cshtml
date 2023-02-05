@@ -5,7 +5,6 @@
 
 
 
-
 <div class="container mt-5">
 
     @*Titulo de la pagina con el nombredel servicio*@
@@ -120,8 +119,7 @@
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="row col-12 text-center my-3">
                                 <div class="col-sm-12 col-md-12 col-lg-12">
-                                 
-                                    <span>@Html.ActionLink("Agendar Cita", "Create", "CITAS", new { idServicio = ViewBag.idservicio }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm mx-1 rounded ", id = "volbtn" })</span>
+                                    <span>@Html.ActionLink("Agendar cita", "Create", "CITAS", new { idServicio = ViewBag.idservicio }, htmlAttributes: new { @class = "btn btn-lg text-white mx-1 rounded ", @style = "background:#DBA312;" })</span>
                                 </div>
 
                             </div>
@@ -202,8 +200,8 @@
             </div><!-- /FIN column MAPA -->
         </div>
 
-        <center>
-            @Html.ActionLink("Volver", "index", new { }, htmlAttributes: new { @class = "btn btn-outline-warning  rounded my-5", id = "volbtn" })
+        <center >
+            @Html.ActionLink("Volver", "index", new { }, htmlAttributes: new { @class = "btn  btn-outline-warning btn-lg rounded my-5", id = "volbtn" })
         </center>
     </div>
 
