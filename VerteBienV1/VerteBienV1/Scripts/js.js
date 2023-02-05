@@ -171,12 +171,6 @@ $(document).ready(function () {
 
 
 
-    tiempo = $('#tiempo').data('tiempo')
-    if (tiempo) {
-        t = Math.trunc(tiempo)
-        document.getElementById("tiempo").innerHTML = "<b>Tiempo:</b>" + " " + t + " " + "hora";
-    }
-
     // tiempo mis siervicios
 
     let servicio = document.querySelectorAll('#tiempo-servicio');
@@ -271,10 +265,10 @@ $(document).ready(function () {
         formatcierresab = hsabadofin + ":" + msabf + "" + ampmcsabcie;
         formatiniciodom = hdomingoini + ":" + mdomi + "" + ampmcdomini;
         formatcierredom = hsdomingofin + ":" + mdomf + "" + ampmcdomfin;
-        /*Imprimir horas con formato*/
-        $('#l-v').text("Lunes a Viernes:" + " " + formatinicio + " " + "-" + " " + formatcierre);
-        $('#sabado').text("Sabado:" + " " + formatiniciosab + " " + "-" + " " + formatcierresab);
-        $('#domingo').text("Domingo:" + " " + formatiniciodom + " " + "-" + " " + formatcierredom);
+        /*Imprimir horas con formato y se valida si esta cerrado*/
+        formatinicio == '07:00:am' && formatcierre == '07:00:am' ? $('#l-v').text("Lunes a Viernes:" + " " + 'Cerrado' + " " + "-" + " " + 'Cerrado') : $('#l-v').text("Lunes a Viernes:" + " " + formatinicio + " " + "-" + " " + formatcierre),
+        formatiniciosab == '07:00:am' && formatcierresab == '07:00:am' ? $('#sabado').text("Sabado:" + " " + 'Cerrado' + " " + "-" + " " + 'Cerrado') : $('#sabado').text("Sabado:" + " " + formatiniciosab + " " + "-" + " " + formatcierresab),
+        formatiniciodom == '07:00:am' && formatcierredom == '07:00:am' ? $('#domingo').text("Domingo:" + " " + 'Cerrado' + " " + "-" + " " + 'Cerrado') : $('#domingo').text("Domingo:" + " " + formatiniciodom + " " + "-" + " " + formatcierredom)
 
     }
    
@@ -298,16 +292,30 @@ $(document).ready(function () {
     //    }
     //}
 
-
-
     /////* Fin Activador de datos mas innformacion detalles.*/
-    if ($("#tiempo").length) {
-        tiempo = $('#tiempo').data('tiempo');
-        tiempo = tiempo.toString();
-        tiempo = tiempo.replace(/,/, '.');
-        t = Math.trunc(tiempo)
-        document.getElementById("tiempo").innerHTML = "<b>Tiempo:</b>" + " " + t + " " + "hora";
+
+    if (pathNa == '/SERVICIOS/Details/') {
+        if ($("#tiempo").length) {
+            tiempo = $('#tiempo').data('tiempo');
+            tiempo = tiempo.toString();
+            tiempo = tiempo.replace(/,/, '.');
+            tiempo = tiempo == 0.50 ? '30 minutos' : tiempo;
+            tiempo = tiempo == 1.50 ? '1 hora y 30 minutos' : tiempo;
+            tiempo = tiempo == 2.00 ? '2 horas' : tiempo;
+            tiempo = tiempo == 1.00 ? '1 hora' : tiempo;
+
+            document.getElementById("tiempo").innerHTML = "<b>Tiempo:</b>" + " " + tiempo;
+         /*   $('#tiempo').text = "<b>Tiempo:</b>" + " " + tiempo + " " + "hora";*/
+
+         
+            tiempo = tiempo.replace(/,/, '.');
+          /*  t = Math.trunc(tiempo)*/
+          
+        }
+
+
     }
+  
 
     /*pequeño Js para enseñar las estrellas este es para la parte de  para mostrar edicion*/
     var rating = document.getElementsByClassName("str");
@@ -351,10 +359,10 @@ jQuery('input[type=file]').change(function (event) {
     var res = filename.substring(0, 15);
     var fname = res + "...";
     jQuery('span.' + idname).next().find('span').html(fname);
-    console.log(fname)
+    /*console.log(fname)*/
     if (pathname == '/SERVICIOS/Create') {
         $('span.' + id).html(fname);
-        console.log(fname)
+       /* console.log(fname)*/
     }
        
 
@@ -426,12 +434,12 @@ const expresiones = {
     telefono: /^\d{9,10}$/, // 9 a 10 numeros.
     fecha: /^(?:0?[1-9]|1[1-2])([\-/.])(3[01]|[12][0-9]|0?[1-9])\1\d{4}$/, //pra fechas mes/dia/año
     numero: /^[0-9]{1,4}$/, //numeros de 1 a 4 digios
-    alphanumerico: /[A-Z? a-z 0-9?]{10,150}$/,//Alfanumerico
-    callenumero: /^[a-zA-ZÀ-ÿ\s  0-9?]{2,15}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
+    alphanumerico: /[A-Z? a-z 0-9 À-ÿ .,]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*){10,150}$/,//Alfanumerico
+    callenumero: /^[a-zA-ZÀ-ÿ\s  0-9?]{1,15}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
     precio: /^\d{1,4}(\.\d{1,2})?$/, //número decimal o flotante
-    fbuser: /(?: (?: http | https): \/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?@/, //Fb user 
-    iguser: /(?:www\.)?(?:instagram\.com|instagr\.am)@/,// Instgram User. 
-    web: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})@/,//PAra paginas webz
+    fbuser: /[a-zA-Z0-9\_\-\@]/, //Fb user
+    iguser: /[a-zA-Z0-9\_\-\@]/,// Instgram User.
+    web: /[a-zA-Z0-9\_\-\@]/,
     ciudadnombre: /[A-Z? a-z 0-9?]{10,25}$/,//Alfanumerico
 };
 
@@ -467,6 +475,7 @@ const campos = {
 
 }
 const validarFormulario = (e) => {
+    /*console.log(e);*/
     switch (e.target.name) {
         case "usuario":
             validarCampo(expresiones.usuario, e.target, 'usuario');
@@ -511,7 +520,6 @@ const validarFormulario = (e) => {
             break;
         case "descripcion":
             validarCampo(expresiones.alphanumerico, e.target, 'descripcion');
-            validate();
             break;
         case "calle":
             validarCampo(expresiones.callenumero, e.target, 'calle');
@@ -545,8 +553,9 @@ const validarFormulario = (e) => {
     }
 }
 
-const validarCampo = (expresion, input, campo) => {
 
+const validarCampo = (expresion, input, campo) => {
+   
     if (expresion.test(input.value)) {
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
@@ -686,61 +695,6 @@ const validarPassword2 = () => {
         campos['ConfirmPassword'] = true;
     }
 }
-var usernamecheck = /[A-Z? a-z 0-9?]{10,150}$/;
-// pendiente terminar funcion para el validar textarea
-//$('#descripcion').keyup(function () {
-//    let textareatext = document.getElementById('descripcion').value
-//    if (textareatext.match(usernamecheck)) {
-//        document.getElementById(`grupo__descripcion`).classList.add('formulario__grupo-incorrecto');
-//        document.getElementById(`grupo__descripcion`).classList.remove('formulario__grupo-correcto');
-//        document.querySelector(`#grupo__descripcion`).classList.add('fa-times-circle');
-//        document.querySelector(`#grupo__descripcion`).classList.remove('fa-check-circle');
-//        document.querySelector(`#grupo__descripcion .formulario__input-error`).classList.add('formulario__input-error-activo');
-//        campos['descripcion'] = false;}
-
-//    console.log()
-
-//})
-
-const validate = (e) => {
-  
-    var val = document.getElementById('descripcion').value;
-    
-    var lines = val.split('\n');
-
-    for (var i = 0; i < lines.length; i++) {
-        if (!val.trim() == "") {
-
-            if (!lines[i].match(usernamecheck)) {
-
-                document.getElementById(`grupo__descripcion`).classList.add('formulario__grupo-incorrecto');
-                document.getElementById(`grupo__descripcion`).classList.remove('formulario__grupo-correcto');
-                document.querySelector(`#grupo__descripcion i`).classList.add('fa-times-circle');
-                document.querySelector(`#grupo__descripcion i`).classList.remove('fa-check-circle');
-                document.querySelector(`#grupo__descripcion .formulario__input-error`).classList.add('formulario__input-error-activo');
-                campos['descripcion'] = false;
-
-            } else {
-                document.getElementById(`grupo__descripcion`).classList.remove('formulario__grupo-incorrecto');
-                document.getElementById(`grupo__descripcion`).classList.add('formulario__grupo-correcto');
-                document.querySelector(`#grupo__descripcion i`).classList.remove('fa-times-circle');
-                document.querySelector(`#grupo__descripcion i`).classList.add('fa-check-circle');
-                document.querySelector(`#grupo__descripcion .formulario__input-error`).classList.remove('formulario__input-error-activo');
-                campos['descripcion'] = true;
-
-            }
-        } else {
-            document.getElementById(`grupo__descripcion`).classList.add('formulario__grupo-incorrecto');
-            document.getElementById(`grupo__descripcion`).classList.remove('formulario__grupo-correcto');
-            document.querySelector(`#grupo__descripcion i`).classList.add('fa-times-circle');
-            document.querySelector(`#grupo__descripcion i`).classList.remove('fa-check-circle');
-            document.querySelector(`#grupo__descripcion .formulario__input-error`).classList.add('formulario__input-error-activo');
-            campos['descripcion'] = false;
-        }
-
-
-    }
-}
 
 
 
@@ -796,7 +750,7 @@ if (frm) {
             // para registrar negocios o peluqueria 
             case '/Account/Register':
 
-                if (campos.Email && campos.nombre && campos.apellido && campos.nombre_peluqueria  && campos.Password && campos.ConfirmPassword && campos.calle) {
+                if (campos.Email && campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.Password && campos.ConfirmPassword && campos.calle) {
 
 
                     formulario.submit();
@@ -831,7 +785,9 @@ if (frm) {
 
                 break;
 
-            case '/AspNetUsers/Edit': // ppara editar la info del que esta logueado
+            case '/AspNetUsers/Edit': // para editar la info del que esta logueado
+              
+
                 if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.calle && campos.telefono) {
 
 
@@ -845,7 +801,8 @@ if (frm) {
                 }
 
                 break;
-            case '/AspNetUsers/Edit/': // ppara editar la info del que esta logueado
+            case '/AspNetUsers/Edit/': // para editar la info del que esta logueado
+              
                 if (campos.nombre && campos.apellido && campos.nombre_peluqueria  && campos.calle && campos.telefono) {
 
 
@@ -858,6 +815,7 @@ if (frm) {
 
                 break;
             case '/Aspnetusers/Edit/': // ppara editar la info del que esta logueado
+              
                 if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.ciudad && campos.calle && campos.telefono) {
 
 
@@ -881,7 +839,29 @@ if (frm) {
                 }
 
                 break;
+           
+            case '/REDES_SOCIALES/Edit':
+                if (campos.whatsapp) {
 
+
+                    formulario.submit();
+
+                } else {
+                    $('#modal').modal('show'); // abrirr el modal de boostrap 
+
+                }
+                break;
+            case '/REDES_SOCIALES/Create':
+                if (campos.whatsapp) {
+
+
+                    formulario.submit();
+
+                } else {
+                    $('#modal').modal('show'); // abrirr el modal de boostrap 
+
+                }
+                break;
 
 
 
@@ -891,7 +871,7 @@ if (frm) {
         switch (pathNa) {
 
             case '/REDES_SOCIALES/Edit/':
-                if (campos.whatsapp && campos.instagram && campos.facebook && campos.web_app) {
+                if (campos.whatsapp) {
 
 
                     formulario.submit();
@@ -947,6 +927,7 @@ if (frm) {
                 }
                 break;
             case '/Aspnetusers/Edit/':
+             
                 if (campos.nombre && campos.apellido && campos.nombre_peluqueria  && campos.calle && campos.telefono) {
 
 
@@ -959,6 +940,7 @@ if (frm) {
                 break;
 
             case '/AspNetUsers/Edit/':
+           
                 if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.calle && campos.telefono) {
 
 
@@ -975,6 +957,50 @@ if (frm) {
 
     });
 }
+
+if (pathname === '/REDES_SOCIALES/Edit') {
+    let inputs = document.querySelectorAll('input[type=text]');
+    for (var i = 0; i < inputs.length ; i++) {
+
+        document.getElementById(`grupo__${inputs[i].name}`).classList.remove('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__${inputs[i].name}`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${inputs[i].name} i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__${inputs[i].name} i`).classList.remove('fa-times-circle');
+        document.querySelector(`#grupo__${inputs[i].name} .formulario__input-error`).classList.remove('formulario__input-error-activo')
+        campos[inputs[i].name] = true;
+
+    }
+
+
+}
+
+if (pathNa === '/AspNetUsers/Edit/') {
+    let inputs = document.querySelectorAll('input[type=text]');
+    for (var i = 0; i < inputs.length -2; i++) {
+
+        document.getElementById(`grupo__${inputs[i].name}`).classList.remove('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__${inputs[i].name}`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${inputs[i].name} i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__${inputs[i].name} i`).classList.remove('fa-times-circle');
+        document.querySelector(`#grupo__${inputs[i].name} .formulario__input-error`).classList.remove('formulario__input-error-activo')
+        campos[inputs[i].name] = true;
+
+    }
+    document.getElementById(`grupo__fecha_nacimiento_`).classList.remove('formulario__grupo-incorrecto');
+    document.getElementById(`grupo__fecha_nacimiento_`).classList.add('formulario__grupo-correcto');
+    document.querySelector(`#grupo__fecha_nacimiento_ i`).classList.add('fa-check-circle');
+    document.querySelector(`#grupo__fecha_nacimiento_ i`).classList.remove('fa-times-circle');
+    document.querySelector(`#grupo__fecha_nacimiento_ .formulario__input-error`).classList.remove('formulario__input-error-activo')
+    document.querySelector(`#grupo__fecha_nacimiento_ .formulario__input-errorr`).classList.remove('formulario__input-error-activo');
+    campos[fecha_nacimiento_] = true;
+}
+
+
+
+
+
+
+
 
 
 
@@ -1083,6 +1109,7 @@ window.addEventListener('load', function () {
         new Glider(document.querySelector('.carousel__lista'), {
             slidesToShow: 1,
             slidesToScroll: 1,
+            scrollLock: false,
             dots: '.carousel__indicadores',
             draggable: true,
             arrows: {
@@ -1279,6 +1306,7 @@ window.addEventListener('load', function () {
             slidesToScroll: 1,
             dots: '.carousel__indicadores',
             draggable: 'true',
+            scrollLock: true,
             arrows: {
                 prev: '.carousel__anterior',
                 next: '.carousel__siguiente'
@@ -1464,6 +1492,7 @@ if (pathNa === '/AspNetUsers/Details/') {
 
 if (pathNa === '/AspNetUsers/Edit/') {
 
+
     var latitud = $('#latitud').data('latitud');
     var longitud = $('#longitud').data('longitud');
     var nombre = $('#nombre-negocio').data('nombre');
@@ -1493,16 +1522,53 @@ if (pathNa === '/AspNetUsers/Edit/') {
 
     marker.on('dragend', function (e) {
         document.getElementById('Latitud').text = marker.getLatLng().lat;
-        console.log(document.getElementById('Latitud').value = marker.getLatLng().lat)
         document.getElementById('Longitud').value = marker.getLatLng().lng;
-        console.log(document.getElementById('Longitud').text = marker.getLatLng().lng)
+      
     });
 
     /* FIN MAPA*/
 
 
 }
+
+if (pathNa == '/SERVICIOS/Edit/') {
+    let inputs = document.querySelectorAll('input[type=text]');
+    for (var i = 0; i < inputs.length; i++) {
+     
+        document.getElementById(`grupo__${inputs[i].name}`).classList.remove('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__${inputs[i].name}`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${inputs[i].name} i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__${inputs[i].name} i`).classList.remove('fa-times-circle');
+        document.querySelector(`#grupo__${inputs[i].name} .formulario__input-error`).classList.remove('formulario__input-error-activo')
+        campos[inputs[i].name] = true;
+
+    }
+}
 if (pathname === '/AspNetUsers/Edit') {
+
+    let inputs = document.querySelectorAll('input[type=text]');
+    for (var i = 0; i < inputs.length - 2; i++) {
+       
+        document.getElementById(`grupo__${inputs[i].name}`).classList.remove('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__${inputs[i].name}`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${inputs[i].name} i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__${inputs[i].name} i`).classList.remove('fa-times-circle');
+        document.querySelector(`#grupo__${inputs[i].name} .formulario__input-error`).classList.remove('formulario__input-error-activo')
+        campos[inputs[i].name] = true;
+       
+    }
+    document.getElementById(`grupo__fecha_nacimiento_`).classList.remove('formulario__grupo-incorrecto');
+    document.getElementById(`grupo__fecha_nacimiento_`).classList.add('formulario__grupo-correcto');
+    document.querySelector(`#grupo__fecha_nacimiento_ i`).classList.add('fa-check-circle');
+    document.querySelector(`#grupo__fecha_nacimiento_ i`).classList.remove('fa-times-circle');
+    document.querySelector(`#grupo__fecha_nacimiento_ .formulario__input-error`).classList.remove('formulario__input-error-activo')
+    document.querySelector(`#grupo__fecha_nacimiento_ .formulario__input-errorr`).classList.remove('formulario__input-error-activo');
+    campos[fecha_nacimiento_] = true;
+    
+  /*  validarFormulario*/
+
+
+    //Mapa
 
     var latitud = $('#latitud').data('latitud');
     var longitud = $('#longitud').data('longitud');
@@ -1533,9 +1599,8 @@ if (pathname === '/AspNetUsers/Edit') {
 
     marker.on('dragend', function (e) {
         document.getElementById('Latitud').text = marker.getLatLng().lat;
-        console.log(document.getElementById('Latitud').value = marker.getLatLng().lat)
         document.getElementById('Longitud').value = marker.getLatLng().lng;
-        console.log(document.getElementById('Longitud').text = marker.getLatLng().lng)
+  
     });
 
     /* FIN MAPA*/
@@ -1575,9 +1640,9 @@ if (pathNa === '/Aspnetusers/Edit/') {
 
     marker.on('dragend', function (e) {
         document.getElementById('Latitud').text = marker.getLatLng().lat;
-        console.log(document.getElementById('Latitud').value = marker.getLatLng().lat)
+       /* console.log(document.getElementById('Latitud').value = marker.getLatLng().lat)*/
         document.getElementById('Longitud').value = marker.getLatLng().lng;
-        console.log(document.getElementById('Longitud').text = marker.getLatLng().lng)
+      /*  console.log(document.getElementById('Longitud').text = marker.getLatLng().lng)*/
     });
 
     /* FIN MAPA*/
@@ -2471,3 +2536,35 @@ for (var i = 0; i < x.length; i++) {
   
 }
 /*Fin estado cita*/
+
+
+
+/* Tendecias js*/
+
+if (pathname =='/Home/Tendencias' ) {
+
+
+    $(".toggle").click(function () {
+        $(this).text(function (i, text) {
+            console.log('funciona' + this);
+            return text === "+ Información" ? "- Información" : "+ Información";
+
+        })
+    });
+    // textos saber mas tendencias.
+    let tendenciasText = document.querySelectorAll('.card-text-trend');
+
+    for (i = 0; i < tendenciasText.length; i++) {
+        let readtext = tendenciasText[i].textContent.substr(0, 76) + '...'
+        
+        tendenciasText[i].innerHTML = readtext;
+     
+
+        
+
+
+    }
+
+
+}
+
