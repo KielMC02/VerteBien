@@ -12,74 +12,113 @@
     }
 
 
-    <center>
+    <center class="my-4">
       
-        <h4 class=" my-4">Perfil  de @Html.DisplayFor(model => model.nombre_peluqueria)</h4>
+        <h4 class="my-5">Perfil de @Html.DisplayFor(model => model.nombre_peluqueria)</h4>
         <hr class="w-50" />
     </center>
 
 
-    <div class="container py-5 h-100">
+    <div class="container  h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="">
                 <div class="card">
-                    <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:250px;">
-                        <div class="ms-4 mt-5  d-flex flex-column" style="width: 250px;">
+                    <div class="rounded-top text-white d-flex flex-column flex-md-row" style="background-color: #000; height:250px;">
+
+
+                        <div class="ms-4 pt-3 pb-1 d-block d-sm-block d-md-none " style="margin-top: 10px;">
+                            <h3 class="pl-3 pt-2 ">@Html.DisplayFor(model => model.nombre_peluqueria)</h3>
+                            <p class="pl-3 m-0 h5">@Html.DisplayFor(model => model.ciudad)</p>
+                        </div>
+
+                        <div class="ms-4 mt-md-5  d-flex flex-column" style="width: 250px;">
                             <img src="~/imagenes_local/@_list[0]"
                                  alt="Foto de perfil" class="img-fluid img-thumbnail mt-4 mb-3"
-                                 style="width: 250px; z-index:1; max-height: 220px;height:210px; object-fit: cover;">
-                            <div class="mt-3 d-flex flex-column" Style = "z-index: 1; width: 250px; ">
+                                 style="width: 250px; z-index:1; max-height: 250px;height:240px; object-fit: cover;">
+
+                            <div class=" d-flex flex-column d-md-none" Style="z-index: 1; width: 250px; ">
                                 @if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip"))
                                 {
-                                    @Html.ActionLink("Editar perfil", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-outline-dark btn-sm mx-1 mt-2 rounded", Style = "z-index:1;" });
+                                    @Html.ActionLink("Editar perfil", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-outline-dark  mx-1 mt-2 rounded", Style = "z-index:1;" });
                                 }
                             </div>
                         </div>
 
                         <div class="ms-3 d-none d-md-block d-lg-block d-xl-block" style="margin-top: 138px; z-index:1;">
-                            <h5 class="pl-3">@Html.DisplayFor(model => model.nombre_peluqueria)</h5>
-                            <p>@Html.DisplayFor(model => model.ciudad)</p>
+                            <h3 class="pl-3">@Html.DisplayFor(model => model.nombre_peluqueria)</h3>
+                            <p class="m-0 h4">@Html.DisplayFor(model => model.ciudad)</p>
                         </div>
+
                     </div>
-                    <div class="p-4 text-black mb-3" style="background-color: #f8f9fa; height: 200PX;">
-                        <div class="d-flex justify-content-end text-center py-3">
-                            <div class="ms-3 d-block d-sm-block d-md-none " style="margin-top: 80px;">
-                                <h5 class="pl-3">@Html.DisplayFor(model => model.nombre_peluqueria)</h5>
-                                <p>@Html.DisplayFor(model => model.ciudad)</p>
+                    <div class="p-4 pb-0 text-black d-none d-md-flex" style="background-color: #f8f9fa; height: auto;">
+                        @if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip"))
+                        {
+                            @Html.ActionLink("Editar perfil", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-outline-dark mx-1 mt-2 rounded", Style = "z-index:1;width: 35%;max-width: 235px;" });
+                        }
+                    </div>
+
+                    <div class="p-4 pb-0 text-black mb-md-3 " style="background-color: #f8f9fa; height: auto;">
+                        <div class="d-flex justify-content-between py-3">
+                            <p class="m-0 btn-youtube-link d-none d-md-block"data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Instagram" ><i class="fab fa-instagram"></i>  Instagram </p>
+                            <p class="m-0 btn-facebook-link d-none d-md-block"data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Facebook" ><i class="fab fa-facebook"></i> Facebook </p>
+                            <p class="m-0 btn-google-link d-none d-md-block"data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Pagina web"><i class="fas fa-pager"></i> Pagina web </p>
+                            <p class="m-0 btn-dribbble-link d-none d-md-block" style="color:#00BB2D !important;"data-bs-toggle="tooltip" data-bs-placement="top" title="ir al whatsapp">  <i class="fab fa-whatsapp"></i> Whatsapp </p>
+
+                        </div>
+
+                      
+                    </div>
+                    <div class="p-4 pb-0  text-black d-md-none" style="background-color: #f8f9fa; height: 100px;">
+
+                    </div>
+
+                    <div class="p-4 pb-0 text-black d-md-none " style="background-color: #f8f9fa; height: 150px;">
+                        <div class="d-flex  align-bottom py-3 d-md-none mt-3">
+                            <div class="w-50">
+                                <p class="m-0 btn-youtube-link "data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Instagram"><i class="fab fa-instagram"></i> Instagram </p>
+                                <p class="m-0 btn-facebook-link "data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Facebook"><i class="fab fa-facebook"></i> Facebook </p>
                             </div>
+                            <div class="w-50">
+                                <p class="m-0 btn-google-link "data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Pagina web"><i class="fas fa-pager"></i> Pagina web</p>
+                                <p class="m-0 btn-dribbble-link" style="color:#00BB2D !important;"data-bs-toggle="tooltip" data-bs-placement="top" title="ir al whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp </p>
+                            </div>
+                                @*    <span class="" data-toggle="tooltip" data-placement="top" title="Ir a Inragram"> <i class="fas fa-chevron-right"></i></span><p class="m-0"> Inragram </p>
 
+            <span class="" data-toggle="tooltip" data-placement="top" title="Ir a Inragram"> <i class="fas fa-chevron-right"></i></span><p class="m-0"> Facebook </p>
 
+            <span class="flex-shrink-1" data-toggle="tooltip" data-placement="top" title="Ir a Inragram">  <i class="fas fa-chevron-right"></i></span><p class="m-0"> Pagina web </p>
 
+            <span class="" data-toggle="tooltip" data-placement="top" title="Ir a Inragram"> <i class="fas fa-chevron-right"></i></span><p class="m-0"> whatsapp </p>*@
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <p class="lead fw-normal mb-0 ml-2 my-2">Galeria de fotos</p>
+                    <div class="d-flex justify-content-between align-items-center  p-3 my-2 mb-3 mt-5 mt-md-3">
+                        <p class="lead fw-normal mb-0 mt-5 mt-md-3">Galeria de fotos</p>
                         @*<p class="mb-0"><a href="#!" class="text-muted">Show all</a></p>*@
                     </div>
 
                     @*<div class="row g-2">
 
-                            @if (_list != null)
-                            {
-                                foreach (var item in _list)
-                                {
-                                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+            @if (_list != null)
+            {
+                foreach (var item in _list)
+                {
+                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
 
-                                        <a href="~/Imagenes_local/@item" data-lightbox="Sgaleria" style="width:100%; height:100%; ">
-                                            <img src="~/Imagenes_local/@item" class="w-100 rounded-3" alt="image 1" style=" ">
+                        <a href="~/Imagenes_local/@item" data-lightbox="Sgaleria" style="width:100%; height:100%; ">
+                            <img src="~/Imagenes_local/@item" class="w-100 rounded-3" alt="image 1" style=" ">
 
-                                        </a>
-                                    </div>
+                        </a>
+                    </div>
 
-                                }
+                }
 
-                            }
+            }
 
-                        </div>*@
+        </div>*@
 
-
+                <div class="container">
                     <div class="carousel">
                         <div class="carousel__contenedor">
                             <button aria-label="Anterior" class="carousel__anterior" style="margin-left:10%">
@@ -106,7 +145,7 @@
                             <div role="tablist" class="carousel__indicadores"></div>
                         </div>
                     </div>
-
+                </div>
 
 
                     <div class="card-body p-4 text-black mt-5">
@@ -185,7 +224,7 @@
 
 
                 </div>
-            </div>
+                </div>
         </div>
     </div>
     <center>
