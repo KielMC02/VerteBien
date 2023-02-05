@@ -11,7 +11,7 @@
     }
 </style>
 <div class="container">
-    <form action="/SERVICIOS/Edit" enctype="multipart/form-data" method="post">
+    <form action="/SERVICIOS/Edit" enctype="multipart/form-data" method="post" id="formulario">
 
         @Html.AntiForgeryToken()
         <div class="card-body ml-5 mt-5">
@@ -39,14 +39,17 @@
                                 <div class="form-row">
                                     <div class="row">
                                         @*<div class="col-md-4">*@
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6 formulario__grupo my-2" id="grupo__nombre_servicio">
                                             @Html.Label("Nombre del servicio", htmlAttributes: new { @class = "control-label col-md-10" })
-                                            <div class="col-md-12">
-                                                @Html.EditorFor(model => model.nombre_servicio, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                                            <div class="col-md-12  formulario__grupo-input">
+                                                <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
+                                                @Html.EditorFor(model => model.nombre_servicio, new { htmlAttributes = new { @class = "form-control control-form col-md-10" } })
                                                 @Html.ValidationMessageFor(model => model.nombre_servicio, "", new { @class = "text-danger" })
                                             </div>
+                                            <p class="formulario__input-error">El nombre del srevicio tiene que ser letras espacion y pueden llevar acento. </p>
                                         </div>
-                                        <div class="form-group col-md-6">
+
+                                        <div class="form-group col-md-6 my-2">
                                             @Html.Label("Categoría del Servicio", htmlAttributes: new { @class = "control-label col-md-12" })
                                             <div class="col-md-12">
                                                 @Html.DropDownList("id_categoria", null, htmlAttributes: new { @class = "form-control col-md-10" })
@@ -56,14 +59,16 @@
                                         @*</div>*@
 
                                         @*<div class="col-md-4">*@
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6 formulario__grupo my-2" id="grupo__precio_servicio">
                                             @Html.Label("Precio del Servicio", htmlAttributes: new { @class = "control-label col-md-10" })
-                                            <div class="col-md-12">
-                                                @Html.EditorFor(model => model.precio_servicio, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                                            <div class="col-md-12 formulario__grupo-input">
+                                                <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
+                                                @Html.EditorFor(model => model.precio_servicio, new { htmlAttributes = new { @class = "form-control control-form col -md-10" } })
                                                 @Html.ValidationMessageFor(model => model.precio_servicio, "", new { @class = "text-danger" })
                                             </div>
+                                            <p class="formulario__input-error">Por favor, introducir un precio valido </p>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6 my-2">
                                             @Html.Label("Estado del Servicio", htmlAttributes: new { @class = "control-label col-md-8" })
                                             <div class="col-md-12">
                                                 @Html.DropDownList("estados", null, htmlAttributes: new { @class = "form-control col-md-10" })
@@ -72,23 +77,27 @@
                                         </div>
 
 
-                                        <div class="form-group col-md-6 ">
+                                        <div class="form-group col-md-6 my-2">
                                             @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label col-md-8" })
                                             <div class="col-md-12">
-                                                @Html.EditorFor(model => model.tiempo, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                                                @Html.EditorFor(model => model.tiempo, new { htmlAttributes = new { @class = "form-control col-md-10", @type="number" } })
                                                 @Html.ValidationMessageFor(model => model.tiempo, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-md-12">
+                                        <div class="form-group col-md-12 formulario__grupo my-2" id="grupo__descripcion">
                                             @Html.Label("Descripción", htmlAttributes: new { @class = "control-label col-md-8" })
-                                            <div class="col-md-12">
-                                                @Html.TextAreaFor(model => model.descripcion, new { @class = "form-control col-md-11", @rows = "3" })
+                                            <div class="col-md-12 formulario__grupo-input">
+                                                <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
+                                                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control  control-form ", id = "descripcion" } })
+                                                @*@Html.TextAreaFor(model => model.descripcion, new { @class = "form-control col-md-11", @rows = "3" })*@
                                                 @*<textarea class="form-control col-md-11" id="exampleFormControlTextarea1" rows="3"></textarea>*@
                                                 @*@Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })*@
                                                 @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
                                             </div>
+                                            <p class="formulario__input-error">Por favor, introducir una descripcion valida  </p>
                                         </div>
+                                       
 
                                         @{
                                             var inputsFaltantes = 0;
@@ -219,7 +228,7 @@
                                 <div class="form-group my-5">
 
                                     <div class="col-12 text-center ">
-                                        @Html.ActionLink("Volver", "misServicios", null, htmlAttributes: new { @class = "btn text-white col-md-2 col-sm-6", @style = "background-color:#DBA312" })
+                                        @Html.ActionLink("Volver", "misServicios", null, htmlAttributes: new { @class = "btn btn-outline-warning col-md-2 col-sm-6",@id= "volbtn" })
                                         <input type="submit" value="Guardar" class="btn text-white col-md-2 col-sm-6 m-sm-2" style="background-color:#DBA312;" />
                                     </div>
 
