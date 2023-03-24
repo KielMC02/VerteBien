@@ -905,7 +905,7 @@ if (frm) {
                 }
                 break;
             case '/SERVICIOS/Edit/':
-                if (campos.nombre_servicio && precio_servicio && campos.tiempo && campos.descripcion) {
+                if (campos.nombre_servicio && precio_servicio  && campos.descripcion) {
 
 
                     formulario.submit();
