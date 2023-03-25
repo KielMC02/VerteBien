@@ -2,64 +2,72 @@
 
 @{
     ViewBag.Title = "Agregar redes sociales";
+
 }
 
 
-<h4 class="text-center my-3">@ViewBag.Title</h4>
+<h4 class="text-center mt-4 my-3">@ViewBag.Title</h4>
 @using (Html.BeginForm())
 
 {
     @Html.AntiForgeryToken()
 
-    <div class="card shadow container p-4 my-4 edi rounded">
+    <div class="card shadow container p-4 my-5 edi rounded">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.id_usuario, "id_usuario", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("id_usuario", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
 
-        <div class="form-group my-1 ">
+        <span>
             <i class="fab fa-whatsapp sn"></i>
-            @Html.LabelFor(model => model.whatsapp, "whatsapp", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.whatsapp, "Whatsapp", htmlAttributes: new { @class = "control-label " })
+        </span>
+        <div class="form-group my-1 formulario__grupo mb-4" id="grupo__whatsapp">
+            <div class="col-md-10 formulario__grupo-input">
+                <i class="formulario__validacion-estado control-form-feedback  fas fa-times-circle"></i>
+                @Html.EditorFor(model => model.whatsapp, new { htmlAttributes = new { @class = "form-control control-form formulario__input", id = "whatsapp", name = "whatsapp" } })
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.whatsapp, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.whatsapp, "", new { @class = "text-danger" })
             </div>
+            <p class="formulario__input-error">Número de whatsapp no valido.</p>
         </div>
 
-        <div class="form-group my-1">
+        <span>
             <i class="fab fa-instagram sn"></i>
-            @Html.LabelFor(model => model.instagram, "Instragram", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.instagram, "Instagram", htmlAttributes: new { @class = "control-label " })
+        </span>
+        <div class="form-group my-1 mb-4" id="grupo__instagram">
+            <div class="col-md-10 formulario__grupo-input">
+                <i class="formulario__validacion-estado control-form-feedback  fas fa-times-circle"></i>
+                @Html.EditorFor(model => model.instagram, new { htmlAttributes = new { @class = "form-control control-form", id = "instagram", name = "instagram" } })
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.instagram, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.instagram, "", new { @class = "text-danger" })
             </div>
+            <p class="formulario__input-error">por favor, introducir link del perfil valido.</p>
         </div>
 
-        <div class="form-group my-1">
+
+        <span>
             <i class="fab fa-facebook-f sn"></i>
             @Html.LabelFor(model => model.facebook, "Facebook", htmlAttributes: new { @class = "control-label " })
+        </span>
+        <div class="form-group my-1 mb-4" id="grupo__facebook">
+            <div class="col-md-10 formulario__grupo-input">
+                <i class="formulario__validacion-estado control-form-feedback  fas fa-times-circle"></i>
+                @Html.EditorFor(model => model.facebook, new { htmlAttributes = new { @class = "form-control control-form", id = "facebook", name = "facebook" } })
 
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.facebook, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.facebook, "", new { @class = "text-danger" })
             </div>
+            <p class="formulario__input-error">por favor, introducir link del perfil valido.</p>
         </div>
 
 
-        <div class="form-group my-1">
+        <span>
             <i class="fas fa-browser sn"></i>
-            @Html.LabelFor(model => model.web_app, "Web app", htmlAttributes: new { @class = "control-label " })
+            @Html.LabelFor(model => model.web_app, "Pagina web", htmlAttributes: new { @class = "control-label " })
+        </span>
+        <div class="form-group my-1" id="grupo__web_app">
             <div class="col-md-10">
-                @Html.EditorFor(model => model.web_app, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.web_app, "", new { @class = "text-danger" })
+                <i class="formulario__validacion-estado control-form-feedback  fas fa-times-circle"></i>
+                @Html.EditorFor(model => model.web_app, new { htmlAttributes = new { @class = "form-control control-form", id = "web_app", name = "web_app" } })
+
             </div>
+            <p class="formulario__input-error">por favor, introducir link correcto.</p>
         </div>
 
         @*<div class="form-group">
@@ -74,9 +82,45 @@
             <div class="col-md-offset-2 col-md-10  text-center">
                 <input type="submit" value="Guardar" class="btn text-white rounded my-4" style="background-color:#DBA312" />
 
-                @Html.ActionLink("Volver", "Index", new { }, htmlAttributes: new { @class = "btn btn-outline-warning  rounded my-2", id = "volbtn" })
+                @Html.ActionLink("Volver", "Index","SERVICIOS",new { }, htmlAttributes: new { @class = "btn btn-outline-warning  rounded my-2", id = "volbtn" })
             </div>
         </div>
     </div>
+    <div class="modal" tabindex="-1" id="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Verificar formulario
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="p-modal">Por favor verificar que los datos del formulario esten correcto. </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="d-none" id="p-respuesta" data-respuesta="@ViewBag.respuesta"></p>
+    <script>
+    console.log("Esto es una prueba y los rsultados son:" + "@ViewBag.respuesta");
+
+    window.onload = function () {
+        var parrafo = $('#p-modal');
+        var respuesta = $('#p-respuesta').data('respuesta');
+        if (respuesta == "redes") {
+            parrafo.text('Por favor verificar que los datos del formulario esten correcto, debe registrar sus redes sociales' );
+            $('#modal').modal('show');
+
+        }
+
+
+
+    }
+    </script>
+
 }
 
