@@ -92,7 +92,7 @@ namespace VerteBienV1.Controllers
             {
                 db.HORARIOS.Add(hORARIOS);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "SERVICIOS");
             }
 
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", hORARIOS.id_usuario);
@@ -117,6 +117,7 @@ namespace VerteBienV1.Controllers
                     return HttpNotFound();
                 }
                 ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", hORARIOS.id_usuario);
+
                 return View(hORARIOS);
             }
             else
