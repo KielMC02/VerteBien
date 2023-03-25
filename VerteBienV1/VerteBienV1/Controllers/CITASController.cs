@@ -194,6 +194,7 @@ namespace VerteBienV1.Controllers
                 {
                     if (item.mensaje == "si")
                     {
+
                         resultado = "si";
                         return resultado;
                     }
@@ -267,10 +268,10 @@ namespace VerteBienV1.Controllers
                 db.CITAS.Add(cITAS);
                 db.SaveChanges();
                 //Correo para el usuario
-                string from = "kielcuentas@gmail.com"; //example:- sourabh9303@gmail.com
+                string from = "informaciones@vertebien.net"; //example:- sourabh9303@gmail.com
                 
                 //Inserta la imagen
-                LinkedResource theEmailImage = new LinkedResource("~/Imagenes/Verte Bien Transparente 2.png");
+                LinkedResource theEmailImage = new LinkedResource("~/Imagenes/Verte Bien negro.png");
                 theEmailImage.ContentId = "myImageID";
 
                 MailMessage mailUser = new MailMessage(from, emailUsuario);
@@ -286,11 +287,11 @@ namespace VerteBienV1.Controllers
                     mailUser.IsBodyHtml = true;
                     SmtpClient smtp = new SmtpClient();
                     smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = true;
-                    NetworkCredential networkCredential = new NetworkCredential(from, "20175376Octubre0210*");
-                    smtp.UseDefaultCredentials = true;
+                    smtp.EnableSsl = false;
+                    NetworkCredential networkCredential = new NetworkCredential(from, "Octubre0210*");
+                    smtp.UseDefaultCredentials = false;
                     smtp.Credentials = networkCredential;
-                    smtp.Port = 587;
+                    smtp.Port = 889;
                     smtp.Send(mailUser);
                     ViewBag.Message = "Enviado con exito";
 
@@ -301,14 +302,14 @@ namespace VerteBienV1.Controllers
 
                     mailNegocio.Subject = "Nueva Solicitud de Cita";
                     mailNegocio.Body = "Un usuario ha creado una nueva cita, por favor verificar y proceder a aceptar o cancelar la misma.";
-                    mailNegocio.IsBodyHtml = false;
+                    mailNegocio.IsBodyHtml = true;
                     SmtpClient smtp = new SmtpClient();
                     smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = true;
-                    NetworkCredential networkCredential = new NetworkCredential(from, "20175376Octubre0210*");
-                    smtp.UseDefaultCredentials = true;
+                    smtp.EnableSsl = false;
+                    NetworkCredential networkCredential = new NetworkCredential(from, "Octubre0210*");
+                    smtp.UseDefaultCredentials = false;
                     smtp.Credentials = networkCredential;
-                    smtp.Port = 587;
+                    smtp.Port = 889;
                     smtp.Send(mailNegocio);
                     ViewBag.Message = "Enviado con exito";
 
@@ -407,27 +408,22 @@ namespace VerteBienV1.Controllers
             if (estatus == "aceptado")
             {
                 cITAS.estado = "aceptado";
-                ////Correo para el usuario
-                //string from = "kielcuentas@gmail.com"; //example:- sourabh9303@gmail.com
                 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
                 MailMessage mailUser = new MailMessage();
-
-                    mailUser.From = new MailAddress("postmaster@vertebien.net");
-                    mailUser.To.Add(emailUsuario.Email);
-                    mailUser.Subject = "Su Cita ha sido Aceptada";
-                    mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido aceptada, puede ir al establecimiento en la fecha establecida, le recomendamos llegar 5 minutos antes para no surfir el riesgo de perder la misma.";
-                    mailUser.IsBodyHtml = false;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "mail5002.site4now.net";
-                    
-                    NetworkCredential networkCredential = new NetworkCredential("postmaster@vertebien.net", "VerteBien2021*"); 
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = networkCredential;
-                    smtp.Port = 465;
-                    smtp.EnableSsl = true;
-                    smtp.Send(mailUser);
-                    ViewBag.Message = "Enviado con exito";
-
+                mailUser.From = new MailAddress("informaciones@vertebien.net");
+                mailUser.To.Add("20175376@itla.edu.do");
+                mailUser.Subject = "Su Cita ha sido Aceptada";
+                mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido aceptada, puede ir al establecimiento en la fecha establecida, le recomendamos llegar 5 minutos antes para no surfir el riesgo de perder la misma.";
+                mailUser.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("mail5009.site4now.net");
+                //smtp.Host = "mail5009.site4now.net";
+                NetworkCredential networkCredential = new NetworkCredential("informaciones@vertebien.net", "Octubre0210*");
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = networkCredential;
+                smtp.Port = 8889;
+                smtp.EnableSsl = false;
+                smtp.Send(mailUser);
+                ViewBag.Message = "Enviado con exito";
             }
             if (estatus == "cancelado")
             {
@@ -435,47 +431,44 @@ namespace VerteBienV1.Controllers
                 if (User.IsInRole("Cliente"))
                 {
                     //Correo para la peluqueria
-                    string from = "kielcuentas@gmail.com"; //example:- sourabh9303@gmail.com
-                    MailMessage mailUser = new MailMessage(from, usuarioNegocio.Email);
-                    {
+                    System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+                    MailMessage mailUser = new MailMessage();
+                    mailUser.From = new MailAddress("informaciones@vertebien.net");
+                    mailUser.To.Add(usuarioNegocio.Email);
+                    mailUser.Subject = "Una cita ha sido cancelado";
+                    mailUser.Body = "Lamentamos informarle que el usuario: " + emailUsuario.nombre + " " + emailUsuario.apellido + " ha cancelado su cita programada para; " + cITAS.fecha_cita + ".";
+                    mailUser.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient("mail5009.site4now.net");
+                    //smtp.Host = "mail5009.site4now.net";
+                    NetworkCredential networkCredential = new NetworkCredential("informaciones@vertebien.net", "Octubre0210*");
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = networkCredential;
+                    smtp.Port = 8889;
+                    smtp.EnableSsl = false;
+                    smtp.Send(mailUser);
+                    ViewBag.Message = "Enviado con exito";
 
-                        mailUser.Subject = "Cita  Cancelada";
-                        mailUser.Body = "Lamentamos informarle que el usuario: " + emailUsuario.nombre + " " + emailUsuario.apellido + " ha cancelado su cita programada " + cITAS.fecha_cita + ".";
-                        mailUser.IsBodyHtml = false;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
-                        NetworkCredential networkCredential = new NetworkCredential(from, "20175376Octubre0210*");
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = networkCredential;
-                        smtp.Port = 587;
-                        smtp.Send(mailUser);
-                        ViewBag.Message = "Enviado con exito";
 
-
-
-                    }
                 }
                 else
                 {
-                    //Correo para el usuario
-                    string from = "kielcuentas@gmail.com"; //example:- sourabh9303@gmail.com
-                    MailMessage mailUser = new MailMessage(from, emailUsuario.Email);
-                    {
-                        mailUser.Subject = "Su Cita ha sido Cancelada";
-                        mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido cancelada, lamentablemente el lugar no puede atenderle en ese horario, disculpe los incovenientes causados, puede reagendar otra cita cuando cuando usted desee.";
-                        mailUser.IsBodyHtml = false;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
-                        NetworkCredential networkCredential = new NetworkCredential(from, "20175376Octubre0210*");
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = networkCredential;
-                        smtp.Port = 587;
-                        smtp.Send(mailUser);
-                        ViewBag.Message = "Enviado con exito";
-
-                    }
+                    //Correo Cancelar Usuario
+                    System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+                    MailMessage mailUser = new MailMessage();
+                    mailUser.From = new MailAddress("informaciones@vertebien.net");
+                    mailUser.To.Add(usuarioNegocio.Email);
+                    mailUser.Subject = "Una cita ha sido cancelado";
+                    mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido cancelada, lamentablemente el lugar no puede atenderle en ese horario, disculpe los incovenientes causados, puede reagendar otra cita en la fecha que usted desee.";
+                    mailUser.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient("mail5009.site4now.net");
+                    //smtp.Host = "mail5009.site4now.net";
+                    NetworkCredential networkCredential = new NetworkCredential("informaciones@vertebien.net", "Octubre0210*");
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = networkCredential;
+                    smtp.Port = 8889;
+                    smtp.EnableSsl = false;
+                    smtp.Send(mailUser);
+                    ViewBag.Message = "Enviado con exito";
                 }
             }
             if (estatus == "completado")
@@ -483,25 +476,24 @@ namespace VerteBienV1.Controllers
                 var linkPuntuacionServicio = Url.Action("Create", "PUNTUACION_SERVICIOS", new {cITAS.id_cita}, protocol: Request.Url.Scheme);
                 var linkPuntuacionPeluqueria = Url.Action("Create", "PUNTUACION_PELUQUERIA", new { cITAS.id_cita }, protocol: Request.Url.Scheme);
                 cITAS.estado = "completado";
-                //Correo para el usuario
-                string from = "kielcuentas@gmail.com"; //example:- sourabh9303@gmail.com
-                MailMessage mailUser = new MailMessage(from, emailUsuario.Email);
-                {
+                //Correo para el usuario            
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+                MailMessage mailUser = new MailMessage();
+                mailUser.From = new MailAddress("informaciones@vertebien.net");
+                mailUser.To.Add("20175376@itla.edu.do"/*usuarioNegocio.Email*/);
+                mailUser.Subject = "Su cita ha sido completada";
+                mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido completada. Por Favor cuentenos que tal su experiencia llenando este formulario. Para Puntuacion del Servicio: <a href=\"" + linkPuntuacionServicio + "\">Click Aqui</a> Para Puntuacion de la peluqueria: <a href=\"" + linkPuntuacionPeluqueria + "\">Click Aqui</a>";
+                mailUser.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("mail5009.site4now.net");
+                //smtp.Host = "mail5009.site4now.net";
+                NetworkCredential networkCredential = new NetworkCredential("informaciones@vertebien.net", "Octubre0210*");
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = networkCredential;
+                smtp.Port = 8889;
+                smtp.EnableSsl = false;
+                smtp.Send(mailUser);
+                ViewBag.Message = "Enviado con exito";
 
-                    mailUser.Subject = "Su Cita ha sido completado";
-                    mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido completada. Por Favor cuentenos que tal su experiencia llenando este formulario. Para Puntuacion del Servicio: <a href=\"" + linkPuntuacionServicio + "\">Click Aqui</a> Para Puntuacion de la peluqueria: <a href=\"" + linkPuntuacionPeluqueria + "\">Click Aqui</a>";
-                    mailUser.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = true;
-                    NetworkCredential networkCredential = new NetworkCredential(from, "20175376Octubre0210*");
-                    smtp.UseDefaultCredentials = true;
-                    smtp.Credentials = networkCredential;
-                    smtp.Port = 587;
-                    smtp.Send(mailUser);
-                    ViewBag.Message = "Enviado con exito";
-
-                }
             }
 
             db.Entry(cITAS).State = EntityState.Modified;
