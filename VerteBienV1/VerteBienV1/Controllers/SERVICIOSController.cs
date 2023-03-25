@@ -61,7 +61,6 @@ namespace VerteBienV1.Controllers
         //    }
         //}
         //Metodo que valida si el usuario tienen horarios y redes creados.
-        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public string VerificarUser(string idUser)
         {
             //var idUser = User.Identity.GetUserId();
@@ -130,7 +129,6 @@ namespace VerteBienV1.Controllers
 
             return View(resultadoBusqueda);
         }
-        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult TodosLosServicios(string servicio)
         {
 
@@ -232,17 +230,17 @@ namespace VerteBienV1.Controllers
             string respuesta = VerificarUser(idUser);
             if (respuesta == "horario") 
             {
-               
-                return RedirectToAction("Create", "HORARIOS", new { respuesta });
+                ViewBag.respuesta = respuesta;
+                return RedirectToAction("Create", "HORARIOS");
             }
             if (respuesta == "redes")
             {
-              
-                return RedirectToAction("Create", "REDES_SOCIALES", new { respuesta });
+                ViewBag.respuesta = respuesta;
+                return RedirectToAction("Create", "REDES_SOCIALES");
             }
             if (respuesta == "no fotos")
             {
-              
+                ViewBag.respuesta = respuesta;
                 return RedirectToAction("Edit", "AspNetUsers");
             }
             if (respuesta == "activo")
@@ -264,7 +262,9 @@ namespace VerteBienV1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(HttpPostedFileBase img1, HttpPostedFileBase img2, HttpPostedFileBase img3, HttpPostedFileBase img4, HttpPostedFileBase img5, HttpPostedFileBase img6, HttpPostedFileBase img7,HttpPostedFileBase img8, HttpPostedFileBase img9,[Bind(Include = "id_servicio,id_usuario,id_categoria,nombre_servicio,descripcion,precio_servicio,tiempo,imagenes,estado")] SERVICIOS sERVICIOS, decimal duracion)
         {
-            sERVICIOS.tiempo = duracion;
+            var decimaConvertido = Convert.ToDecimal(duracion);
+
+            sERVICIOS.tiempo = decimaConvertido;
             //Variable para generar numeros ramdon para el nombre de las imagenes.
             Random rnd = new Random();
 
@@ -400,7 +400,14 @@ namespace VerteBienV1.Controllers
                 List<String> estado = new List<string>();
                 estado.Add("activo");
                 estado.Add("inactivo");
+                //Duracion Servicio
+                List<decimal> duracion = new List<decimal>();
+                duracion.Add(Convert.ToDecimal(0.50));
+                duracion.Add(Convert.ToDecimal(1.00));
+                duracion.Add(Convert.ToDecimal(1.50));
+                duracion.Add(Convert.ToDecimal(2.00));
 
+                ViewBag.duraciones = new SelectList(duracion, sERVICIOS.tiempo); 
                 ViewBag.estados = new SelectList(estado, sERVICIOS.estado);
                 //Separamos los nombres de las imagenes y guardamos en una lista
                 List<String> imagenes = (sERVICIOS.imagenes.Split(';')).ToList();
@@ -422,12 +429,13 @@ namespace VerteBienV1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_servicio,id_usuario,id_categoria,nombre_servicio,descripcion,precio_servicio,tiempo,imagenes,estado")] SERVICIOS sERVICIOS,HttpPostedFileBase img1, HttpPostedFileBase img2, HttpPostedFileBase img3, HttpPostedFileBase img4, HttpPostedFileBase img5, HttpPostedFileBase img6, HttpPostedFileBase img7, HttpPostedFileBase img8, HttpPostedFileBase img9, string estados)
+        public ActionResult Edit([Bind(Include = "id_servicio,id_usuario,id_categoria,nombre_servicio,descripcion,precio_servicio,tiempo,imagenes,estado")] SERVICIOS sERVICIOS,HttpPostedFileBase img1, HttpPostedFileBase img2, HttpPostedFileBase img3, HttpPostedFileBase img4, HttpPostedFileBase img5, HttpPostedFileBase img6, HttpPostedFileBase img7, HttpPostedFileBase img8, HttpPostedFileBase img9, string estados, decimal duraciones)
         {
             //Datos Adicionales
             var id = User.Identity.GetUserId();
             sERVICIOS.id_usuario = id;
             sERVICIOS.estado = estados;
+            sERVICIOS.tiempo = duraciones;
 
             //Variable para generar numeros ramdon para el nombre de las imagenes.
             Random rnd = new Random();
