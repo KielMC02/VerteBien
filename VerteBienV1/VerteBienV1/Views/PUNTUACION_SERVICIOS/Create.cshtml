@@ -19,7 +19,7 @@ else
 
         <center>
             <img src="~/Imagenes/Verte Bien Transparente 2.png" width="128" height="128" style="margin-top:2%" />
-            <h4>Puntuación del Servicio</h4>
+            <h4 class="my-4">Puntuación del Servicio</h4>
             <hr class="w-50" />
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -71,9 +71,11 @@ else
                             <div class="form-group col-md-12">
                                 @Html.Label("Cantidad de estrellas", htmlAttributes: new { @class = "control-label col-md-6" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.estrellas, new { htmlAttributes = new { @class = "form-control" } })
-                                    <span id="st" class=""></span>
+                                    @Html.EditorFor(model => model.estrellas, new { htmlAttributes = new { @class = "form-control d-none", @id = "resstrella" } })
+                                    <span id="" class="str"></span>
                                     @Html.ValidationMessageFor(model => model.estrellas, "", new { @class = "text-danger" })
+
+                                   
                                 </div>
                             </div>
 
