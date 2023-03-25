@@ -9,6 +9,7 @@
 <div>
     @{
         List<String> _list = ViewData["imagenes_s"] as List<String>;
+        List<String> redes = ViewData["redes"] as List<String>;
     }
 
 
@@ -56,17 +57,16 @@
                             @Html.ActionLink("Editar perfil", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "btn btn-outline-dark mx-1 mt-2 rounded", Style = "z-index:1;width: 35%;max-width: 235px;" });
                         }
                     </div>
-
                     <div class="p-4 pb-0 text-black mb-md-3 " style="background-color: #f8f9fa; height: auto;">
                         <div class="d-flex justify-content-between py-3">
-                            <p class="m-0 btn-youtube-link d-none d-md-block"data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Instagram" ><i class="fab fa-instagram"></i>  Instagram </p>
-                            <p class="m-0 btn-facebook-link d-none d-md-block"data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Facebook" ><i class="fab fa-facebook"></i> Facebook </p>
-                            <p class="m-0 btn-google-link d-none d-md-block"data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Pagina web"><i class="fas fa-pager"></i> Pagina web </p>
-                            <p class="m-0 btn-dribbble-link d-none d-md-block" style="color:#00BB2D !important;"data-bs-toggle="tooltip" data-bs-placement="top" title="ir al whatsapp">  <i class="fab fa-whatsapp"></i> Whatsapp </p>
+                            <p class="m-0 btn-youtube-link d-none d-md-block" data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Instagram"><i class="fab fa-instagram"></i> @ViewBag.instagram  </p>
+                            <p class="m-0 btn-facebook-link d-none d-md-block" data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Facebook"><i class="fab fa-facebook"></i> @ViewBag.facebook </p>
+                            <p class="m-0 btn-google-link d-none d-md-block" data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Pagina web"><i class="fas fa-pager"></i>@ViewBag.web_app </p>
+                            <p class="m-0 btn-dribbble-link d-none d-md-block" style="color:#00BB2D !important;" data-bs-toggle="tooltip" data-bs-placement="top" title="ir al whatsapp">  <i class="fab fa-whatsapp"></i> @ViewBag.whatsapp  </p>
 
                         </div>
 
-                      
+
                     </div>
                     <div class="p-4 pb-0  text-black d-md-none" style="background-color: #f8f9fa; height: 100px;">
 
@@ -74,23 +74,25 @@
 
                     <div class="p-4 pb-0 text-black d-md-none " style="background-color: #f8f9fa; height: 150px;">
                         <div class="d-flex  align-bottom py-3 d-md-none mt-3">
+
                             <div class="w-50">
-                                <p class="m-0 btn-youtube-link "data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Instagram"><i class="fab fa-instagram"></i> Instagram </p>
-                                <p class="m-0 btn-facebook-link "data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Facebook"><i class="fab fa-facebook"></i> Facebook </p>
+                                <p class="m-0 btn-youtube-link " data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Instagram"><i class="fab fa-instagram"></i>  </p>
+                                <p class="m-0 btn-facebook-link " data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Facebook"><i class="fab fa-facebook"></i>  </p>
                             </div>
                             <div class="w-50">
-                                <p class="m-0 btn-google-link "data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Pagina web"><i class="fas fa-pager"></i> Pagina web</p>
-                                <p class="m-0 btn-dribbble-link" style="color:#00BB2D !important;"data-bs-toggle="tooltip" data-bs-placement="top" title="ir al whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp </p>
+                                <p class="m-0 btn-google-link " data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Pagina web"><i class="fas fa-pager"></i> Pagina web</p>
+                                <p class="m-0 btn-dribbble-link" style="color:#00BB2D !important;" data-bs-toggle="tooltip" data-bs-placement="top" title="ir al whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp </p>
                             </div>
-                                @*    <span class="" data-toggle="tooltip" data-placement="top" title="Ir a Inragram"> <i class="fas fa-chevron-right"></i></span><p class="m-0"> Inragram </p>
 
-            <span class="" data-toggle="tooltip" data-placement="top" title="Ir a Inragram"> <i class="fas fa-chevron-right"></i></span><p class="m-0"> Facebook </p>
+                            @*    <span class="" data-toggle="tooltip" data-placement="top" title="Ir a Inragram"> <i class="fas fa-chevron-right"></i></span><p class="m-0"> Inragram </p>
 
-            <span class="flex-shrink-1" data-toggle="tooltip" data-placement="top" title="Ir a Inragram">  <i class="fas fa-chevron-right"></i></span><p class="m-0"> Pagina web </p>
+                <span class="" data-toggle="tooltip" data-placement="top" title="Ir a Inragram"> <i class="fas fa-chevron-right"></i></span><p class="m-0"> Facebook </p>
 
-            <span class="" data-toggle="tooltip" data-placement="top" title="Ir a Inragram"> <i class="fas fa-chevron-right"></i></span><p class="m-0"> whatsapp </p>*@
-                            </div>
+                <span class="flex-shrink-1" data-toggle="tooltip" data-placement="top" title="Ir a Inragram">  <i class="fas fa-chevron-right"></i></span><p class="m-0"> Pagina web </p>
+
+                <span class="" data-toggle="tooltip" data-placement="top" title="Ir a Inragram"> <i class="fas fa-chevron-right"></i></span><p class="m-0"> whatsapp </p>*@
                         </div>
+                    </div>
 
 
                     <div class="d-flex justify-content-between align-items-center  p-3 my-2 mb-3 mt-5 mt-md-3">
@@ -118,34 +120,34 @@
 
         </div>*@
 
-                <div class="container">
-                    <div class="carousel">
-                        <div class="carousel__contenedor">
-                            <button aria-label="Anterior" class="carousel__anterior" style="margin-left:10%">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
+                    <div class="container">
+                        <div class="carousel">
+                            <div class="carousel__contenedor">
+                                <button aria-label="Anterior" class="carousel__anterior" style="margin-left:10%">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
 
-                            <div class="carousel__lista">
-                                @if (_list != null)
-                                {
-                                    foreach (var item in _list)
+                                <div class="carousel__lista">
+                                    @if (_list != null)
                                     {
-                                        <div class="carousel__elemento">
-                                            <a href="~/imagenes_local/@item" data-lightbox="Sgaleria" style="width:100%; height:100%;">
-                                                <img src="~/imagenes_local/@item" alt="" style="height: 350px; width:450px;">
-                                            </a>
-                                        </div>
+                                        foreach (var item in _list)
+                                        {
+                                            <div class="carousel__elemento">
+                                                <a href="~/imagenes_local/@item" data-lightbox="Sgaleria" style="width:100%; height:100%;">
+                                                    <img src="~/imagenes_local/@item" alt="" style="height: 350px; width:450px;">
+                                                </a>
+                                            </div>
+                                        }
                                     }
-                                }
-                            </div>
-                            <button aria-label="Siguiente" class="carousel__siguiente" style="margin-right:10%">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                                </div>
+                                <button aria-label="Siguiente" class="carousel__siguiente" style="margin-right:10%">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
 
-                            <div role="tablist" class="carousel__indicadores"></div>
+                                <div role="tablist" class="carousel__indicadores"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
 
                     <div class="card-body p-4 text-black mt-5">
@@ -228,7 +230,9 @@
         </div>
     </div>
     <center>
-        @Html.ActionLink("Volver", "index", new { }, htmlAttributes: new { @class = "btn btn-outline-warning  rounded my-5", id = "volbtn" })
+        @Html.ActionLink("Volver","Details","SERVICIOS", new { id = ViewBag.idServicio}, htmlAttributes: new { @class = "btn btn-outline-warning  rounded my-5", id = "volbtn" })
+     
+
     </center>
 </div>
 
