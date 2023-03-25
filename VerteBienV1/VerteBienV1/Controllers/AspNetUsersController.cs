@@ -15,9 +15,6 @@ namespace VerteBienV1.Controllers
     public class AspNetUsersController : Controller
     {
         private VERTEBIENEntities db = new VERTEBIENEntities();
-
-
- 
         public ActionResult CambiarEstado(string estado, string idusuario) 
         {
             AspNetUsers usuario = db.AspNetUsers.Find(idusuario);
@@ -100,8 +97,9 @@ namespace VerteBienV1.Controllers
         }
 
         // GET: AspNetUsers/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(string id, int? idServicio)
         {
+ 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -117,6 +115,25 @@ namespace VerteBienV1.Controllers
             //Enviamos la lista a la vista
             ViewData["imagenes_s"] = imagenes;
 
+            List<REDES_SOCIALES> redes = new List<REDES_SOCIALES>();
+            redes = (from busqueda in db.REDES_SOCIALES where busqueda.id_usuario == id select busqueda).ToList();
+            ViewBag.whatsapp = "";
+            ViewBag.instagram = "";
+            ViewBag.facebook = "";
+            ViewBag.web_app="";
+            if (redes.Count != 0)
+            {
+                foreach(var item in redes)
+                {
+                    ViewBag.whatsapp = item.whatsapp;
+                    ViewBag.instagram = item.instagram;
+                    ViewBag.facebook = item.facebook;
+                    ViewBag.web_app = item.web_app;
+
+                }
+
+            }
+            ViewBag.idServicio = idServicio;
             return View(aspNetUsers);
         }
         [Authorize(Roles = "administrador")]
@@ -2025,7 +2042,7 @@ namespace VerteBienV1.Controllers
 
                 //db.Entry(aspNetUsers).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "SERVICIOS");
             }
             return View(aspNetUsers);
         }
