@@ -80,7 +80,7 @@ namespace VerteBienV1.Controllers
             {
                 db.PUNTUACION_SERVICIOS.Add(pUNTUACION_SERVICIOS);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "SERVICIOS");
             }
 
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", pUNTUACION_SERVICIOS.id_usuario);
