@@ -426,7 +426,7 @@ function countChars(obj) {
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-    usuario: /^[a-zA-Z0-9\_\-\@]{4,16}$/, // Letras, numeros, guion y guion_bajo
+    usuario: /^[a-zA-Z0-9\_\-\@\s]{4,16}$/, // Letras, numeros, guion y guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
     nombreservicio: /[A-Z? a-z 0-9?]{4,25}$/, //Alfanumerico
     password: /^.{4,12}$/, // 4 a 12 digitos.
@@ -525,7 +525,7 @@ const validarFormulario = (e) => {
             validarCampo(expresiones.callenumero, e.target, 'calle');
             break;
         case "nombre_peluqueria":
-            validarCampo(expresiones.nombre, e.target, 'nombre_peluqueria');
+            validarCampo(expresiones.usuario, e.target, 'nombre_peluqueria');
             break;
         case "id_usuario":
             validarCampo(expresiones.correo, e.target, 'id_usuario');
