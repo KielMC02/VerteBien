@@ -451,8 +451,9 @@ namespace VerteBienV1.Controllers
         //------------------------METODOS DE PAYMENTEZ-----------------
         [System.Web.Http.HttpPost]
         [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
-        public async Task<ActionResult> CanalAsync(CardResponse respuesta) 
+        public async Task<JsonResult> CanalAsync(CardResponse respuesta) 
         {
+            var res = "False";
             AspNetUsers aspNetUsers = db.AspNetUsers.Find(respuesta.IdUser);
             if ( aspNetUsers.estado == "new") 
             {
@@ -481,8 +482,10 @@ namespace VerteBienV1.Controllers
                         CARDController insertarTarjeta = new CARDController();
 
                         insertarTarjeta.Create(nuevaTarjeta);
-
-                        return RedirectToAction("Login", "Account");
+                        TempData["mensaje"] = "La operación se completó exitosamente.";
+                        //return RedirectToAction("Login", "Account");
+                        res = "NEW";
+                        return Json(res);
                     }
                 }
             }
@@ -505,8 +508,9 @@ namespace VerteBienV1.Controllers
                 insertarTarjeta.Create(nuevaTarjeta);
 
                 var resultadoProc = db.Database.ExecuteSqlCommand("SP_NuevaTarjetaDefault @id, @digitos", new SqlParameter("@id", Convert.ToString(respuesta.IdUser)), new SqlParameter("@digitos", Convert.ToString(respuesta.number)));
+                res = "Ok";
+                return Json(res);
 
-                return RedirectToAction("Login", "Account");
             }
 
             if (aspNetUsers.estado == "suspendido")
@@ -538,13 +542,15 @@ namespace VerteBienV1.Controllers
                         insertarTarjeta.Create(nuevaTarjeta);
                         var resultadoProc = db.Database.ExecuteSqlCommand("SP_NuevaTarjetaDefault @id, @digitos", new SqlParameter("@id", Convert.ToString(respuesta.IdUser)), new SqlParameter("@digitos", Convert.ToString(respuesta.number)));
 
-                        return RedirectToAction("Login", "Account");
+                        res = "Ok";
+                        return Json(res);
                     }
                 }
 
                 
             }
-            return RedirectToAction("Login", "Account");
+            
+            return Json(res);
         }
         public ActionResult SaveCard(string Id, string Email, string membresiaSelec) 
         {
