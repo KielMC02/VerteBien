@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<VerteBienV1.Models.SERVICIOS>
 @{
     ViewBag.Title = "Tendencias";
 }
@@ -322,175 +322,179 @@
     <div class="col-12 col-md-7 col-lg-9 d-none d-md-block">
 
         <div class="">
-            <h3 class="text-center my-4 my-md-1">Servicios más recomendados</h3>
+            <h3 class="text-center my-4 my-md-1">Ultimos Servicios Agregados</h3>
         </div>
         <div class="row ">
+            @foreach (var item in Model)
+            {
+                //Separamos los nombres de las imagenes y guardamos en una lista
+                List<String> imagenes = (item.imagenes.Split(';')).ToList();
 
-            <div class="col-12 col-md-12 col-lg-6 col-xl-4 d-flex">
+                <div class="col-12 col-md-12 col-lg-6 col-xl-4 d-flex">
 
-                <div class="card shadow my-2 cf contenedor" style="position:relative">
+                    <div class="card shadow my-2 cf contenedor" style="position:relative">
 
-                    <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
+                        <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
 
-                    <img class="card-img-top " src="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" alt="Card image cap" style="height: 265px; object-fit: cover;">
+                        <img class="card-img-top " src="~/imagenes_servicios/@imagenes[0]" alt="Card image cap" style="height: 265px; object-fit: cover;">
 
-                    <a href="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 265px; text-decoration:none;">
-                        <div class="">
-                            <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar </p>
+                        <a href="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 265px; text-decoration:none;">
+                            <div class="">
+                                <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar </p>
 
+                            </div>
+                        </a>
+
+                        <div class="row">
+                            <div class=" col-12">
+
+                            </div>
+                            <div class="card-body col-12 p-4 ">
+                                <div class="col-6 w-auto">
+                                    <h1 class="card-title h4">@Html.DisplayFor(modelItem => item.nombre_servicio) <span class="fa fa-star"></span><span class="text-muted text-small">(3)</span></h1>
+                                </div>
+
+
+                                <p class="card-subtitle text-muted"> <b>Precio:</b> @Html.DisplayFor(modelItem => item.precio_servicio)</p>
+                                <p class="card-text card-text-trend mb-4">@Html.DisplayFor(modelItem => item.descripcion)</p>
+                            </div>
                         </div>
-                    </a>
-
-                    <div class="row">
-                        <div class=" col-12">
-
-                        </div>
-                        <div class="card-body col-12 p-4 ">
-                            <div class="col-6 w-auto">
-                                <h1 class="card-title h4">Nombre del servicio <span class="fa fa-star"></span><span class="text-muted text-small">(3)</span></h1>
+                        <div>
+                            <div class="justify-content-center p-3" style="position:absolute; bottom:0px;">
+                                @Html.ActionLink("Más detalles", "Details","SERVICIOS", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn text-white btn-sm rounded text-wrap col-12 my-2 my-md-0", style = "background-color:#DBA312" })
                             </div>
 
-
-                            <p class="card-subtitle text-muted"> <b>Precio:</b> $ 250</p>
-                            <p class="card-text card-text-trend mb-4">LSte etexto va aqui y binguno puede tenrelo este es el Primero </p>
                         </div>
-                    </div>
-                    <div>
-                        <div class="justify-content-center p-3" style="position:absolute; bottom:0px;">
-                            <a href="#" class="btn text-white  rounded " style="background-color:#DBA312"> Opcion</a>
-                            <a href="#" class="btn text-white  rounded " id="volbtn"> Mas informacion</a>
-                        </div>
-
                     </div>
                 </div>
-            </div>
+            }
 
-            <div class="col-12 col-md-12 col-lg-6 col-xl-4 d-flex">
+                @*<div class="col-12 col-md-12 col-lg-6 col-xl-4 d-flex">
 
-                <div class="card shadow my-2 cf contenedor" style="position:relative">
+                    <div class="card shadow my-2 cf contenedor" style="position:relative">
 
-                    <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
+                        <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
 
-                    <img class="card-img-top " src="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" alt="Card image cap" style="height: 265px; object-fit: cover;">
+                        <img class="card-img-top " src="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" alt="Card image cap" style="height: 265px; object-fit: cover;">
 
-                    <a href="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 265px; text-decoration:none;">
-                        <div class="">
-                            <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar </p>
+                        <a href="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 265px; text-decoration:none;">
+                            <div class="">
+                                <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar </p>
 
+                            </div>
+                        </a>
+
+                        <div class="row">
+                            <div class=" col-12">
+
+                            </div>
+                            <div class="card-body col-12 p-4 ">
+                                <div class="col-6 w-auto">
+                                    <h1 class="card-title h4">Nombre del servicio <span class="fa fa-star"></span><span class="text-muted text-small">(3)</span></h1>
+                                </div>
+
+
+                                <p class="card-subtitle text-muted"> <b>Precio:</b> $ 250</p>
+                                <p class="card-text card-text-trend mb-4">LSte etexto va aqui y binguno puede tenrelo este es el Primero </p>
+                            </div>
                         </div>
-                    </a>
-
-                    <div class="row">
-                        <div class=" col-12">
-
-                        </div>
-                        <div class="card-body col-12 p-4 ">
-                            <div class="col-6 w-auto">
-                                <h1 class="card-title h4">Nombre del servicio <span class="fa fa-star"></span><span class="text-muted text-small">(3)</span></h1>
+                        <div>
+                            <div class="justify-content-center p-3" style="position:absolute; bottom:0px;">
+                                <a href="#" class="btn text-white  rounded " style="background-color:#DBA312"> Opcion</a>
+                                <a href="#" class="btn text-white  rounded " id="volbtn"> Mas informacion</a>
                             </div>
 
-
-                            <p class="card-subtitle text-muted"> <b>Precio:</b> $ 250</p>
-                            <p class="card-text card-text-trend mb-4">LSte etexto va aqui y binguno puede tenrelo este es el Primero </p>
                         </div>
-                    </div>
-                    <div>
-                        <div class="justify-content-center p-3" style="position:absolute; bottom:0px;">
-                            <a href="#" class="btn text-white  rounded " style="background-color:#DBA312"> Opcion</a>
-                            <a href="#" class="btn text-white  rounded " id="volbtn"> Mas informacion</a>
-                        </div>
-
                     </div>
                 </div>
-            </div>
 
-            <div class="col-12 col-md-12 col-lg-6 col-xl-4 d-flex">
+                <div class="col-12 col-md-12 col-lg-6 col-xl-4 d-flex">
 
-                <div class="card shadow my-2 cf contenedor" style="position:relative">
+                    <div class="card shadow my-2 cf contenedor" style="position:relative">
 
-                    <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
+                        <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
 
-                    <img class="card-img-top " src="~/Imagenes/banner-2.jpg" alt="Card image cap" style="height: 265px; object-fit: cover;">
+                        <img class="card-img-top " src="~/Imagenes/banner-2.jpg" alt="Card image cap" style="height: 265px; object-fit: cover;">
 
-                    <a href="~/Imagenes/banner-2.jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 265px; text-decoration:none;">
-                        <div class="">
-                            <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar </p>
+                        <a href="~/Imagenes/banner-2.jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 265px; text-decoration:none;">
+                            <div class="">
+                                <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar </p>
 
+                            </div>
+                        </a>
+
+                        <div class="row">
+                            <div class=" col-12">
+
+                            </div>
+                            <div class="card-body col-12 p-4 ">
+                                <div class="col-6 w-auto">
+                                    <h1 class="card-title h4">Nombre del servicio <span class="fa fa-star"></span><span class="text-muted text-small">(3)</span></h1>
+                                </div>
+
+
+                                <p class="card-subtitle text-muted"> <b>Precio:</b> $ 250</p>
+                                <p class="card-text card-text-trend mb-4">LSte etexto va aqui y binguno puede tenrelo este es el Primero </p>
+                            </div>
                         </div>
-                    </a>
-
-                    <div class="row">
-                        <div class=" col-12">
-
-                        </div>
-                        <div class="card-body col-12 p-4 ">
-                            <div class="col-6 w-auto">
-                                <h1 class="card-title h4">Nombre del servicio <span class="fa fa-star"></span><span class="text-muted text-small">(3)</span></h1>
+                        <div>
+                            <div class="justify-content-center p-3" style="position:absolute; bottom:0px;">
+                                <a href="#" class="btn text-white  rounded " style="background-color:#DBA312"> Opcion</a>
+                                <a href="#" class="btn text-white  rounded " id="volbtn"> Mas informacion</a>
                             </div>
 
-
-                            <p class="card-subtitle text-muted"> <b>Precio:</b> $ 250</p>
-                            <p class="card-text card-text-trend mb-4">LSte etexto va aqui y binguno puede tenrelo este es el Primero </p>
                         </div>
-                    </div>
-                    <div>
-                        <div class="justify-content-center p-3" style="position:absolute; bottom:0px;">
-                            <a href="#" class="btn text-white  rounded " style="background-color:#DBA312"> Opcion</a>
-                            <a href="#" class="btn text-white  rounded " id="volbtn"> Mas informacion</a>
-                        </div>
-
                     </div>
                 </div>
-            </div>
 
-            <div class="col-12 col-md-12 col-lg-6 col-xl-4 d-flex">
+                <div class="col-12 col-md-12 col-lg-6 col-xl-4 d-flex">
 
-                <div class="card shadow my-2 cf contenedor" style="position:relative">
+                    <div class="card shadow my-2 cf contenedor" style="position:relative">
 
-                    <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
+                        <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
 
-                    <img class="card-img-top " src="~/Imagenes/img-01.jpg" alt="Card image cap" style="height: 265px; object-fit: cover;">
+                        <img class="card-img-top " src="~/Imagenes/img-01.jpg" alt="Card image cap" style="height: 265px; object-fit: cover;">
 
-                    <a href="~/Imagenes/img-01.jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 265px; text-decoration:none;">
-                        <div class="">
-                            <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar </p>
+                        <a href="~/Imagenes/img-01.jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 265px; text-decoration:none;">
+                            <div class="">
+                                <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar </p>
 
+                            </div>
+                        </a>
+
+                        <div class="row">
+                            <div class=" col-12">
+
+                            </div>
+                            <div class="card-body col-12 p-4 ">
+                                <div class="col-6 w-auto">
+                                    <h1 class="card-title h4">Nombre del servicio <span class="fa fa-star"></span><span class="text-muted text-small">(3)</span></h1>
+                                </div>
+
+
+                                <p class="card-subtitle text-muted"> <b>Precio:</b> $ 250</p>
+                                <p class="card-text card-text-trend mb-4">Texto totalmente diferente de los demas con una longitud sin igual y jas visto</p>
+                            </div>
                         </div>
-                    </a>
-
-                    <div class="row">
-                        <div class=" col-12">
-
-                        </div>
-                        <div class="card-body col-12 p-4 ">
-                            <div class="col-6 w-auto">
-                                <h1 class="card-title h4">Nombre del servicio <span class="fa fa-star"></span><span class="text-muted text-small">(3)</span></h1>
+                        <div>
+                            <div class="justify-content-center p-3" style="position:absolute; bottom:0px;">
+                                <a href="#" class="btn text-white  rounded " style="background-color:#DBA312"> Opcion</a>
+                                <a href="#" class="btn text-white  rounded " id="volbtn"> Mas informacion</a>
                             </div>
 
-
-                            <p class="card-subtitle text-muted"> <b>Precio:</b> $ 250</p>
-                            <p class="card-text card-text-trend mb-4">Texto totalmente diferente de los demas con una longitud sin igual y jas visto</p>
                         </div>
                     </div>
-                    <div>
-                        <div class="justify-content-center p-3" style="position:absolute; bottom:0px;">
-                            <a href="#" class="btn text-white  rounded " style="background-color:#DBA312"> Opcion</a>
-                            <a href="#" class="btn text-white  rounded " id="volbtn"> Mas informacion</a>
-                        </div>
+                </div>*@
 
-                    </div>
-                </div>
             </div>
-
-        </div>
     </div>
 
 
     <div id="carouselExampleCaptions" class="carousel planes-container slide col-12 col-md-8  d-md-none h-100" data-bs-ride="carousel" style="max-width: 615px">
         <h3 class="text-center my-4 my-md-1">Servicios más recomendados</h3>
 
-        <div class="carousel" >
-            <div class="carousel__contenedor style="height:450px"">
+        <div class="carousel">
+            <div class="carousel__contenedor style=" height:450px"">
                 <button aria-label="Anterior" class="carousel__anterior" style=" left: 9px;">
                     <i class="fas fa-chevron-left"></i>
                 </button>
@@ -499,17 +503,17 @@
 
                     @*    <div class="carousel__elemento" style="width:100%">
 
-            <a href="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" data-lightbox="Sgaleria" style="width:100%; height:100%;">
+                            <a href="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" data-lightbox="Sgaleria" style="width:100%; height:100%;">
 
-                <img src="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" alt="" style="height: 350px; width: 350px; object-fit: fill;">
-            </a>
-        </div>*@
+                                <img src="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" alt="" style="height: 350px; width: 350px; object-fit: fill;">
+                            </a>
+                        </div>*@
 
 
                     <div class="carousel__elemento" style="height:450px;">
                         <div class="card shadow my-2 cf contenedor" style="position:relative">
                             <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
-                            <img class="card-img-top " src="~/Imagenes/img-01.jpg" alt="Card image cap" style="height: 465px;" >
+                            <img class="card-img-top " src="~/Imagenes/img-01.jpg" alt="Card image cap" style="height: 465px;">
 
                             <a href="~/Imagenes/img-01.jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 465px; text-decoration:none;">
                                 <div class="">
@@ -567,12 +571,12 @@
 
                 <div role="tablist" class="carousel__indicadores"></div>
             </div>
-       
-          </div>
+
+        </div>
 
 
 
 
 
-      </div>
- </div>
+    </div>
+</div>
