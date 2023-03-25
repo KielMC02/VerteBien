@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using VerteBienV1.Models;
 
 namespace VerteBienV1.Controllers
 {
@@ -34,9 +35,13 @@ namespace VerteBienV1.Controllers
         }
         public ActionResult Tendencias()
         {
+             VERTEBIENEntities db = new VERTEBIENEntities();
+        ////Lista que guarda el resultado de la Busqueda
+        List<SERVICIOS> tendencias = new List<SERVICIOS>();
+            tendencias = db.SERVICIOS.OrderByDescending(x => x.id_servicio).Take(10).ToList();
 
 
-            return View();
+            return View(tendencias);
         }
         [Authorize(Roles = "administrador")]
         public ActionResult Pruebapagos()
