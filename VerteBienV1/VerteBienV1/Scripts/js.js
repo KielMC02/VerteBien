@@ -1533,7 +1533,7 @@ if (pathNa === '/AspNetUsers/Edit/') {
 
 if (pathNa == '/SERVICIOS/Edit/') {
     let inputs = document.querySelectorAll('input[type=text]');
-    for (var i = 0; i < inputs.length; i++) {
+    for (var i = 0; i < inputs.length -1; i++) {
      
         document.getElementById(`grupo__${inputs[i].name}`).classList.remove('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${inputs[i].name}`).classList.add('formulario__grupo-correcto');
@@ -1543,6 +1543,24 @@ if (pathNa == '/SERVICIOS/Edit/') {
         campos[inputs[i].name] = true;
 
     }
+
+
+    //data que viene selecccionada ya de la bd 
+  
+    
+    $("#select").val($("#duraciones").val())
+    //obtener valor cambiado del select
+    $("#select").change(function () {
+        console.log($('#select').val()
+        )
+        let selected = $('#select').val()
+        $("#duraciones").val(selected)
+    });
+
+
+
+
+
 }
 if (pathname === '/AspNetUsers/Edit') {
 
