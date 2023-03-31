@@ -426,7 +426,7 @@ function countChars(obj) {
 const inputs = document.querySelectorAll('#formulario input');
 
 const expresiones = {
-    usuario: /^[a-zA-Z0-9\_\-\@\s]{4,16}$/, // Letras, numeros, guion y guion_bajo
+    usuario: /^[a-zA-Z0-9\_\-\@\s]{4,45}$/, // Letras, numeros, guion y guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
     nombreservicio: /[A-Z? a-z 0-9?]{4,25}$/, //Alfanumerico
     password: /^.{4,12}$/, // 4 a 12 digitos.
@@ -1120,6 +1120,7 @@ window.addEventListener('load', function () {
                 {
                     // screens greater than >= 775px
                     breakpoint: 450,
+                    draggable: true,
                     settings: {
                         // Set to `auto` and provide item width to adjust to viewport
                         slidesToShow: 1,
@@ -1129,6 +1130,7 @@ window.addEventListener('load', function () {
                 }, {
                     // screens greater than >= 1024px
                     breakpoint: 800,
+                    draggable: true,
                     settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1
@@ -1137,8 +1139,56 @@ window.addEventListener('load', function () {
                 }
             ]
         });
+
+
+
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var touchEndX = 0;
+        var touchEndY = 0;
+        var elementosTouch = document.querySelectorAll(".galeria");
+
+        for (let i = 0; i < elementosTouch.length; i++) {
+            elementosTouch[i].addEventListener('touchstart', function (event) {
+                touchStartX = event.changedTouches[0].screenX;
+                touchStartY = event.changedTouches[0].screenY;
+            });
+
+            elementosTouch[i].addEventListener('touchend', function (event) {
+                touchEndX = event.changedTouches[0].screenX;
+                touchEndY = event.changedTouches[0].screenY;
+                slideG();
+            });
+        }
+
+        function slideG() {
+            if (touchEndX < touchStartX) {
+                $(".carousel__siguiente").trigger("click");
+              
+            } else if (touchEndX > touchStartX) {
+                $(".carousel__anterior").trigger("click");
+               
+            }
+
+            if (touchEndY < touchStartY) {
+              
+            } else if (touchEndY > touchStartY) {
+             
+            }
+
+            if (touchEndY == touchStartY && touchEndX == touchStartX) {
+               
+            }
+        }
+
+
+
+
+
+
     }
 });
+
 
 
 
@@ -2533,27 +2583,39 @@ if (pathname === '/AspNetUsers/index') {
 /*Fin estado cita*/
 // Verifiicar aceptados no estan cumpliendo las reglas 
 let x = document.querySelectorAll("#estadocita");
+
 for (var i = 0; i < x.length; i++) {
 
-  let estado = x[i].getAttribute('data-estadocita');
-
-    if (estado == 'aceptado') {
+    let estado = x[i].getAttribute('data-estadocita').toUpperCase();
+   
+    if (estado == 'ACEPTADO' ) {
         x[i].classList.add('text-success');
         x[i].classList.remove('text-warning');
         x[i].classList.remove('text-danger');
-    } if (estado == 'pendiente') {
+    } if (estado == 'PENDIENTE') {
         x[i].classList.add('text-warning');
         x[i].classList.remove('text-success');
         x[i].classList.remove('text-danger');
-    } if (estado == 'cancelado') {
+    } if (estado == 'CANCELADO') {
         x[i].classList.add('text-danger');
         x[i].classList.remove('text-success');
         x[i].classList.remove('text-warning');
+    } if (estado == 'COMPLETADO') {
+        x[i].classList.add('text-success');
+        x[i].classList.remove('text-warning');
+        x[i].classList.remove('text-danger');
+       
     }
+
     
   
 }
 /*Fin estado cita*/
+
+// botones dependiento estado
+
+
+
 
 
 
