@@ -76,12 +76,12 @@
                         <div class="d-flex  align-bottom py-3 d-md-none mt-3">
 
                             <div class="w-50">
-                                <p class="m-0 btn-youtube-link " data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Instagram"><i class="fab fa-instagram"></i>  </p>
-                                <p class="m-0 btn-facebook-link " data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Facebook"><i class="fab fa-facebook"></i>  </p>
+                                <p class="m-0 btn-youtube-link " data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Instagram"><i class="fab fa-instagram"></i>@ViewBag.instagram   </p>
+                                <p class="m-0 btn-facebook-link " data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Facebook"><i class="fab fa-facebook"></i>  @ViewBag.facebook  </p>
                             </div>
                             <div class="w-50">
-                                <p class="m-0 btn-google-link " data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Pagina web"><i class="fas fa-pager"></i> Pagina web</p>
-                                <p class="m-0 btn-dribbble-link" style="color:#00BB2D !important;" data-bs-toggle="tooltip" data-bs-placement="top" title="ir al whatsapp"><i class="fab fa-whatsapp"></i> Whatsapp </p>
+                                <p class="m-0 btn-google-link " data-bs-toggle="tooltip" data-bs-placement="top" title="ir a Pagina web"><i class="fas fa-pager"></i> @ViewBag.web_app </p>
+                                <p class="m-0 btn-dribbble-link" style="color:#00BB2D !important;" data-bs-toggle="tooltip" data-bs-placement="top" title="ir al whatsapp"><i class="fab fa-whatsapp"></i> @ViewBag.whatsapp  </p>
                             </div>
 
                             @*    <span class="" data-toggle="tooltip" data-placement="top" title="Ir a Inragram"> <i class="fas fa-chevron-right"></i></span><p class="m-0"> Inragram </p>
@@ -133,7 +133,7 @@
                                         foreach (var item in _list)
                                         {
                                             <div class="carousel__elemento">
-                                                <a href="~/imagenes_local/@item" data-lightbox="Sgaleria" style="width:100%; height:100%; display:block;">
+                                                <a href="~/imagenes_local/@item" data-lightbox="Sgaleria"class="galeria" style="width:100%; height:100%; display:block;">
                                                     <img src="~/imagenes_local/@item" alt="" style="height: 350px; width:450px;">
                                                 </a>
                                             </div>
@@ -221,7 +221,7 @@
                     </div>
                     <p class="lead fw-normal mb-1">Ubicacion:</p>
 
-                    <div class="rounded-bottom" id="map" style="max-width:100%; height:350px;"></div>
+                    <div class="rounded-bottom " id="map" style="max-width:100%; height:350px;"></div>
 
 
 
@@ -230,7 +230,7 @@
         </div>
     </div>
     <center>
-        @Html.ActionLink("Volver","Details","SERVICIOS", new { id = ViewBag.idServicio}, htmlAttributes: new { @class = "btn btn-outline-warning  rounded my-5", id = "volbtn" })
+        @Html.ActionLink("Volver","Details","SERVICIOS", new { id = ViewBag.idServicio}, htmlAttributes: new { @class = "btn btn-outline-warning btn-lg  rounded my-5", id = "volbtn" })
      
 
     </center>
