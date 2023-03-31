@@ -411,7 +411,7 @@ namespace VerteBienV1.Controllers
                 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
                 MailMessage mailUser = new MailMessage();
                 mailUser.From = new MailAddress("informaciones@vertebien.net");
-                mailUser.To.Add("20175376@itla.edu.do");
+                mailUser.To.Add(emailUsuario.Email);
                 mailUser.Subject = "Su Cita ha sido Aceptada";
                 mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido aceptada, puede ir al establecimiento en la fecha establecida, le recomendamos llegar 5 minutos antes para no surfir el riesgo de perder la misma.";
                 mailUser.IsBodyHtml = true;
@@ -480,7 +480,7 @@ namespace VerteBienV1.Controllers
                 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
                 MailMessage mailUser = new MailMessage();
                 mailUser.From = new MailAddress("informaciones@vertebien.net");
-                mailUser.To.Add("20175376@itla.edu.do"/*usuarioNegocio.Email*/);
+                mailUser.To.Add(emailUsuario.Email);
                 mailUser.Subject = "Su cita ha sido completada";
                 mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido completada. Por Favor cuentenos que tal su experiencia llenando este formulario. Para Puntuacion del Servicio: <a href=\"" + linkPuntuacionServicio + "\">Click Aqui</a> Para Puntuacion de la peluqueria: <a href=\"" + linkPuntuacionPeluqueria + "\">Click Aqui</a>";
                 mailUser.IsBodyHtml = true;
