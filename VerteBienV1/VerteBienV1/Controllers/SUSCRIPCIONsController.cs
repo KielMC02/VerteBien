@@ -199,7 +199,7 @@ namespace VerteBienV1.Controllers
         }
 
         //Recordatorio para mitad de mes
-        public  ActionResult RecordatorioFin()
+        public ActionResult RecordatorioFin()
         {
             ViewBag.notificacion = 4;
             var today = DateTime.Today;
@@ -242,9 +242,9 @@ namespace VerteBienV1.Controllers
             return RedirectToAction("Index", "AspNetUsers");
         }
         //Redireccion de usuarios con estatus suspendido o new
-        public ActionResult pagoRequerido(string respuesta) 
+        public ActionResult pagoRequerido(string respuesta)
         {
-            if(respuesta != null)
+            if (respuesta != null)
             {
                 ViewBag.respuesta = respuesta;
             }
@@ -281,7 +281,7 @@ namespace VerteBienV1.Controllers
                         {
                             infoParaCobrar.Membresia = "vip";
                         }
-                            
+
                         var respuestaDebit = await debit(infoParaCobrar);
                         if (respuestaDebit != "transaccion_fallida")
                         {
@@ -386,7 +386,7 @@ namespace VerteBienV1.Controllers
 
         }
         //Auto-Debitar por el usuario
-        public async Task<String> debitarManualUser( )
+        public async Task<String> debitarManualUser()
         {
             var estaAutenticado = User.Identity.IsAuthenticated;
             var id = "";
@@ -451,19 +451,33 @@ namespace VerteBienV1.Controllers
         //------------------------METODOS DE PAYMENTEZ-----------------
         [System.Web.Http.HttpPost]
         [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
-        public async Task<JsonResult> CanalAsync(CardResponse respuesta) 
+        public async Task<JsonResult> CanalAsync(CardResponse respuesta)
         {
             var res = "False";
             AspNetUsers aspNetUsers = db.AspNetUsers.Find(respuesta.IdUser);
-            if ( aspNetUsers.estado == "new") 
+            if (aspNetUsers.estado == "new")
             {
-                //Esperamos respuesta del metodo debitar
-               var respuestaDebit = await debit(respuesta);
-                //Si es diferente de...
-                if( respuestaDebit != "transaccion_fallida")
+                var resultadoBusqueda = db.Database.SqlQuery<string>("SP_SelectMembresia @id", new SqlParameter("@id", respuesta.IdUser)).ToList();
+                if (resultadoBusqueda[0] == "2")
                 {
-                        //Evaluamos la respuesta obtenida---
-                        //Limpiamos el contenido de la repsuesta y almacenamos en una lista
+                    respuesta.Membresia = "expres";
+
+                }
+                if (resultadoBusqueda[0] == "3")
+                {
+                    respuesta.Membresia = "preferencial";
+                }
+                if (resultadoBusqueda[0] == "4")
+                {
+                    respuesta.Membresia = "vip";
+                }
+                //Esperamos respuesta del metodo debitar
+                var respuestaDebit = await debit(respuesta);
+                //Si es diferente de...
+                if (respuestaDebit != "transaccion_fallida")
+                {
+                    //Evaluamos la respuesta obtenida---
+                    //Limpiamos el contenido de la repsuesta y almacenamos en una lista
                     respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
                     List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
                     if (contenidoRespuesta[0].Contains("success"))
@@ -547,25 +561,25 @@ namespace VerteBienV1.Controllers
                     }
                 }
 
-                
+
             }
-            
+
             return Json(res);
         }
-        public ActionResult SaveCard(string Id, string Email, string membresiaSelec) 
+        public ActionResult SaveCard(string Id, string Email, string membresiaSelec)
         {
-            if(Id != null && Email != null && membresiaSelec != null) 
-            { 
-                    ViewBag.idUser = Id;
-                    ViewBag.Email = Email;
-                    ViewBag.membresia = membresiaSelec;
+            if (Id != null && Email != null && membresiaSelec != null)
+            {
+                ViewBag.idUser = Id;
+                ViewBag.Email = Email;
+                ViewBag.membresia = membresiaSelec;
             }
             var estaAutenticado = User.Identity.IsAuthenticated;
             if (estaAutenticado)
             {
                 var idUser = User.Identity.GetUserId();
                 AspNetUsers aspNetUsers = db.AspNetUsers.Find(idUser);
-                if (aspNetUsers.estado == "activo")
+                if (aspNetUsers.nombre_peluqueria != null)
                 {
                     ViewBag.idUser = aspNetUsers.Id;
                     ViewBag.Email = aspNetUsers.Email;
@@ -575,14 +589,14 @@ namespace VerteBienV1.Controllers
 
 
 
-                //String respuesta = "{\"transaction\": {\"status\": \"success\", \"authorization_code\": \"TEST00\", \"status_detail\": 3,\"message\": \"Response by mock\", \"id\": \"DF-243601\", \"payment_date\": \"2022-09-25T19:23:55.644\", \"payment_method_type\": \"0\", \"dev_reference\": \"debit\",\"carrier_code\": \"00\",\"product_description\": \"pago servicio Verte Bien\", \"current_status\": \"APPROVED\", \"amount\": 10.0,\"carrier\": \"DataFast\",\"installments\": 0,\"installments_type\": \"Revolving credit\"},\"card\": {\"bin\": \"450799\", \"status\": \"valid\", \"token\": \"5762035270905976501\", \"expiry_year\": \"2025\",\"expiry_month\": \"11\",\"transaction_reference\": \"DF-243601\",\"type\": \"vi\", \"number\": \"0010\",\"origin\": \"Paymentez\"}}";
+            //String respuesta = "{\"transaction\": {\"status\": \"success\", \"authorization_code\": \"TEST00\", \"status_detail\": 3,\"message\": \"Response by mock\", \"id\": \"DF-243601\", \"payment_date\": \"2022-09-25T19:23:55.644\", \"payment_method_type\": \"0\", \"dev_reference\": \"debit\",\"carrier_code\": \"00\",\"product_description\": \"pago servicio Verte Bien\", \"current_status\": \"APPROVED\", \"amount\": 10.0,\"carrier\": \"DataFast\",\"installments\": 0,\"installments_type\": \"Revolving credit\"},\"card\": {\"bin\": \"450799\", \"status\": \"valid\", \"token\": \"5762035270905976501\", \"expiry_year\": \"2025\",\"expiry_month\": \"11\",\"transaction_reference\": \"DF-243601\",\"type\": \"vi\", \"number\": \"0010\",\"origin\": \"Paymentez\"}}";
 
-                //respuesta = Regex.Replace(respuesta, "[:\\{}@\n\"]", string.Empty);
-                //Console.WriteLine(respuesta);
+            //respuesta = Regex.Replace(respuesta, "[:\\{}@\n\"]", string.Empty);
+            //Console.WriteLine(respuesta);
 
-                //List<String> Contenido = (respuesta.Split(',')).ToList();
+            //List<String> Contenido = (respuesta.Split(',')).ToList();
 
-                return View();
+            return View();
 
         }
 
@@ -629,17 +643,20 @@ namespace VerteBienV1.Controllers
         {
             var obtainedToken = await getToken();
             double monto = 0;
-            if (respuesta.Membresia == "expres")
+            if (respuesta.Membresia != null)
             {
-                monto = 8.00;
-            }
-            if (respuesta.Membresia == "preferencial")
-            {
-                monto = 20.00;
-            }
-            if (respuesta.Membresia == "vip")
-            {
-                monto = 40.00;
+                if (respuesta.Membresia == "expres")
+                {
+                    monto = 8.00;
+                }
+                if (respuesta.Membresia == "preferencial")
+                {
+                    monto = 20.00;
+                }
+                if (respuesta.Membresia == "vip")
+                {
+                    monto = 40.00;
+                }
             }
             var info = new
             {
