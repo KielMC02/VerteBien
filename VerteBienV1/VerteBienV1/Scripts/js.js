@@ -370,12 +370,60 @@ jQuery('input[type=file]').change(function (event) {
 });
 
 
-///* FIN query para poner el nombre del archivo que se sube*/
+/////* FIN query para poner el nombre del archivo que se sube*/
+
+//$(document).on('change', 'input[type="file"]', function () {
+  
+//    this.files[0].size //recupera el tamaño del archivo
+//     //alert(this.files[0].size);
+
+//    var fileName = this.files[0].name;
+//    var fileSize = this.files[0].size;
+
+
+//    if (fileSize > 5000000) {
+
+
+//        alert('El archivo no debe superar los 5MB');
+
+//        this.value = '';
+//        this.files[0].name = '';
+//    } else {
+
+
+//         //recuperamos la extensión del archivo
+//        var ext = fileName.split('.').pop();
+
+//         //Convertimos en minúscula porque 
+//         //la extensión del archivo puede estar en mayúscula
+//        ext = ext.toLowerCase();
+
+        
+//        switch (ext) {
+//            case 'jpg':
+//            case 'jpeg':
+//            case 'png':
+//            case 'pdf': break;
+//            default:
+//                alert('El archivo no tiene la extensión adecuada');
+//                this.value = ''; // reset del valor
+//                this.files[0].name = '';
+
+//        }
+
+//    }
+//});
+/////* fin query para poner el nombre del archivo que se sube*/
+/* Pequeño query para poner el nombre del archivo que se sube*/
+jQuery('input[type=file]').change(function () {
+    var filename = jQuery(this).val().split('\\').pop();
+    var idname = jQuery(this).attr('id');
+    jQuery('span.' + idname).next().find('span').html(filename);
+});
 
 $(document).on('change', 'input[type="file"]', function () {
-  
-    this.files[0].size //recupera el tamaño del archivo
-     //alert(this.files[0].size);
+    // this.files[0].size recupera el tamaño del archivo
+    // alert(this.files[0].size);
 
     var fileName = this.files[0].name;
     var fileSize = this.files[0].size;
@@ -391,14 +439,14 @@ $(document).on('change', 'input[type="file"]', function () {
     } else {
 
 
-         //recuperamos la extensión del archivo
+        // recuperamos la extensión del archivo
         var ext = fileName.split('.').pop();
 
-         //Convertimos en minúscula porque 
-         //la extensión del archivo puede estar en mayúscula
+        // Convertimos en minúscula porque 
+        // la extensión del archivo puede estar en mayúscula
         ext = ext.toLowerCase();
 
-        
+        // console.log(ext);
         switch (ext) {
             case 'jpg':
             case 'jpeg':
@@ -413,7 +461,98 @@ $(document).on('change', 'input[type="file"]', function () {
 
     }
 });
-///* fin query para poner el nombre del archivo que se sube*/
+
+function validarImagen(input) {
+    var file = input.files[0];
+    var maxSize = 8 * 1024 * 1024; // 8MB en bytes
+    var minWidth = 540;
+    var minHeight = 540;
+    var maxWidth = 1080;
+    var maxHeight = 1080;
+
+    // Validar el tamaño del archivo
+    if (file.size > maxSize) {
+        $('#modalFileSize').modal('show');
+        input.value = "";
+        return;
+    }
+
+    // Crear una nueva imagen para obtener sus dimensiones
+    var img = new Image();
+    img.onload = function () {
+        // Validar la resolución mínima y máxima de la imagen
+        if (img.width < minWidth || img.height < minHeight) {
+            $('#modalFileMin').modal('show');
+            input.value = "";
+        } else if (img.width > maxWidth || img.height > maxHeight) {
+            $('#modalFileMax').modal('show');
+            input.value = "";
+        } else {
+            // Mostrar el nombre del archivo seleccionado si pasa la validación
+            var filename = input.value.split('\\').pop();
+            var idname = input.id;
+            var res = filename.substring(0, 15);
+            var fname = res + "...";
+            jQuery('span.' + idname).next().find('span').html(fname);
+
+            if (pathname == '/SERVICIOS/Create') {
+                $('span.' + idname).html(fname);
+            }
+        }
+    };
+    img.src = URL.createObjectURL(file);
+}
+
+// FIN Función para validar el tamaño y la resolución de las imágenes
+
+
+//// Función para validar el tamaño y la resolución de las imágenes
+//function validarImagen(input) {
+//    var file = input.files[0];
+//    var maxSize = 8 * 1024 * 1024; // 8MB en bytes
+//    var minWidth = 540;
+//    var minHeight = 540;
+
+//    // Validar el tamaño del archivo
+//    if (file.size > maxSize) {
+//        $('#modalFileSize').modal('show'); // abrirr el modal de boostrap
+//        /*    alert("El tamaño máximo permitido para la imagen es de 8MB.");*/
+//        input.value = "";
+//        return;
+//    }
+
+//    // Crear una nueva imagen para obtener sus dimensiones
+//    var img = new Image();
+//    img.onload = function () {
+//        // Validar la resolución mínima de la imagen
+//        if (img.width < minWidth || img.height < minHeight) {
+//            $('#modalFile').modal('show'); // abrirr el modal de boostrap
+//            /*    alert("La resolución mínima permitida para la imagen es de 540x540 píxeles.");*/
+//            input.value = "";
+//        } else {
+//            // Mostrar el nombre del archivo seleccionado si pasa la validación
+//            var filename = input.value.split('\\').pop();
+//            var idname = input.id;
+//            var res = filename.substring(0, 15);
+//            var fname = res + "...";
+//            jQuery('span.' + idname).next().find('span').html(fname);
+//            /*console.log(fname)*/
+//            if (pathname == '/SERVICIOS/Create') {
+//                $('span.' + idname).html(fname);
+//                /* console.log(fname)*/
+//            }
+//        }
+//    };
+//    img.src = URL.createObjectURL(file);
+//}
+
+////// FIN Función para validar el tamaño y la resolución de las imágenes
+
+//// Asociar la función de validación al evento onchange de los elementos input[type=file]
+//jQuery('input[type=file]').change(function (event) {
+//    validarImagen(this);
+//});
+
 
 
 /*Inicio de validacion */
