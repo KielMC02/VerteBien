@@ -168,14 +168,32 @@
 
                         }
 
-                        <div class="row mt-4">
+                    <div class="row mt-4">
 
-                            @if (_list != null)
-                            {<h4 class="my-3"> Galeria de fotos</h4>
-                                foreach (var item in _list)
+                        @if (_list != null)
+                        {<h4 class="my-3"> Galeria de fotos</h4>
+                            foreach (var item in _list)
+                            {
+                                ViewBag.contador = ViewBag.contador + 1;
+                                //Si el contador es igual a 1 ese input va tener el atributo required
+                                if (ViewBag.contador == 1)
                                 {
-                                    ViewBag.contador = ViewBag.contador + 1;
+                                    <div class="col-lg-4 mt-3">
+                                        <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; max-height:250px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
 
+                                        <div class="mt-3 row col-12">
+
+                                            <span class="@("file"+@ViewBag.contador)">
+                                                <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" required/>
+                                            </span>
+                                            <label for="@("file"+@ViewBag.contador)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Cambiar foto</span></label>
+
+                                        </div>
+
+                                    </div>
+                                }
+                                else
+                                {
                                     <div class="col-lg-4 mt-3">
                                         <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; max-height:250px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
 
@@ -191,33 +209,43 @@
                                     </div>
                                 }
                             }
-                            @{
-                                inputsFaltantes = inputsFaltantes - ViewBag.contador;
-                            }
+                        }
+                        @{
+                            inputsFaltantes = inputsFaltantes - ViewBag.contador;
+                        }
 
-                            @if (inputsFaltantes != 0)
+                        @if (inputsFaltantes != 0)
+                        {
+                            ViewBag.contador2 = ViewBag.contador;
+                            <h2 class="my-4">Agregar nuevas imagenes a la galería</h2>
+
+                            for (int i = 1; i <= inputsFaltantes; i++)
                             {
-                                ViewBag.contador2 = ViewBag.contador;
-                                <h2 class="my-4">Agregar nuevas imagenes a la galería</h2>
-
-                                for (int i = 1; i <= inputsFaltantes; i++)
+                                ViewBag.contador2 = ViewBag.contador2 + 1;
+                                //Si el contador es igual a 1 ese input va tener el atributo required
+                                if (ViewBag.contador2 == 1)
                                 {
-                                    ViewBag.contador2 = ViewBag.contador2 + 1;
                                     <span class="@("file"+@ViewBag.contador2)">
-                                        <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
+                                        <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" required />
                                     </span>
-                                    <label for="@("file"+@ViewBag.contador2)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn mb-2"> <i class="far fa-image"></i> &nbsp; <span> Agregar foto</span></label>
                                 }
+                                else { 
+                                <span class="@("file"+@ViewBag.contador2)">
+                                    <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;"/>
+                                </span>
+                                }
+                                <label for="@("file"+@ViewBag.contador2)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn mb-2"> <i class="far fa-image"></i> &nbsp; <span> Agregar foto</span></label>
                             }
+                        }
 
-                            
-                                <div class="form-group my-5 d-grid justify-content-center">
-                                    <div class=" ">
-                                        <button type="submit" class="btn text-white w-100" style="background-color:#DBA312;">Guardar cambios</button>
-                                    </div>
-                                </div>
-                           
+
+                        <div class="form-group my-5 d-grid justify-content-center">
+                            <div class=" ">
+                                <button type="submit" class="btn text-white w-100" style="background-color:#DBA312;">Guardar cambios</button>
+                            </div>
                         </div>
+
+                    </div>
                     </div>
                 </div>
             </div>
@@ -235,7 +263,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p id="p-modal">Por favor verificar que los datos del formulario esten correcto. </p>
+                <p id="p-modal">Por favor verificar que los datos del formulario esten correctos. </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -250,14 +278,14 @@
 
     window.onload = function () {
      
-        //var parrafo = $('#p-modal');
-        //var respuesta = $('#p-respuesta').data('respuesta');
-        //if (respuesta == "no fotos") {
+        var parrafo = $('#p-modal');
+        var respuesta = $('#p-respuesta').data('respuesta');
+        if (respuesta == "no fotos") {
 
-        //    parrafo.text('Por favor verificar que los datos del formulario esten correcto, no hay fotos registradas' );
-        //    $('#modal').modal('show');
+            parrafo.text('Para registrar tus servicios debes primero registrar las fotos de tu peluquería. Llena el formulario a continuación por favor.' );
+            $('#modal').modal('show');
 
-        //}
+        }
 
       
       

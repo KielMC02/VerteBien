@@ -231,17 +231,17 @@ namespace VerteBienV1.Controllers
             if (respuesta == "horario") 
             {
                 ViewBag.respuesta = respuesta;
-                return RedirectToAction("Create", "HORARIOS");
+                return RedirectToAction("Create", "HORARIOS",new { respuesta });
             }
             if (respuesta == "redes")
             {
                 ViewBag.respuesta = respuesta;
-                return RedirectToAction("Create", "REDES_SOCIALES");
+                return RedirectToAction("Create", "REDES_SOCIALES", new { respuesta });
             }
             if (respuesta == "no fotos")
             {
                 ViewBag.respuesta = respuesta;
-                return RedirectToAction("Edit", "AspNetUsers");
+                return RedirectToAction("Edit", "AspNetUsers", new { respuesta });
             }
             if (respuesta == "activo")
             {
