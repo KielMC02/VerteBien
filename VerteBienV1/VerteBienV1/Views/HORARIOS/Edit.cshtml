@@ -283,121 +283,8 @@
 
                     </div>
 
-                    
 
 
-
-
-                    <script>
-
-
-                        function actualizarEstado(entrada, salida, selector, status) {
-                            if (entrada === "7" && salida === "7") {
-                                $(selector).removeClass("switchOn");
-                                $(status).css('opacity', '1');
-                            } else {
-                                $(selector).addClass("switchOn");
-                                $(status).css('opacity', '0');
-                            }
-                        }
-
-                        var semanalesInicio = $('select[name="semanales_inicio"]').val();
-                        var semanalesCierre = $('select[name="semanales_cierre"]').val();
-                        var sabadoInicio = $('select[name="sabados_inicio"]').val();
-                        var sabadoCierre = $('select[name="sabados_cierre"]').val();
-                        var domingoInicio = $('select[name="domingo_inicio"]').val();
-                        var domingoCierre = $('select[name="domingo_cierre"]').val();
-
-                        actualizarEstado(semanalesInicio, semanalesCierre, '.switch_1', '#status1');
-                        actualizarEstado(sabadoInicio, sabadoCierre, '.switch_2', '#status2');
-                        actualizarEstado(domingoInicio, domingoCierre, '.switch_3', '#status3');
-
-                        $('select[name="semanales_inicio"], select[name="semanales_cierre"]').change(function () {
-                            semanalesInicio = $('select[name="semanales_inicio"]').val();
-                            semanalesCierre = $('select[name="semanales_cierre"]').val();
-                            actualizarEstado(semanalesInicio, semanalesCierre, '.switch_1', '#status1');
-                        });
-
-                        $('select[name="sabados_inicio"], select[name="sabados_cierre"]').change(function () {
-                            sabadoInicio = $('select[name="sabados_inicio"]').val();
-                            sabadoCierre = $('select[name="sabados_cierre"]').val();
-                            actualizarEstado(sabadoInicio, sabadoCierre, '.switch_2', '#status2');
-                        });
-
-                        $('select[name="domingo_inicio"], select[name="domingo_cierre"]').change(function () {
-                            domingoInicio = $('select[name="domingo_inicio"]').val();
-                            domingoCierre = $('select[name="domingo_cierre"]').val();
-                            actualizarEstado(domingoInicio, domingoCierre, '.switch_3', '#status3');
-                        });
-
-                        $('.switch_1').click(function () {
-                            var semanalesInicio = $('select[name="semanales_inicio"]').val();
-                            var semanalesCierre = $('select[name="semanales_cierre"]').val();
-
-                            if (semanalesInicio === "7" && semanalesCierre === "7") {
-                                $('#modalStatus').modal('show'); // abrirr el modal de boostrap
-                            } else {
-                                $(this).toggleClass("switchOn");
-
-                                if ($(this).hasClass("switchOn")) {
-
-                                    $('#status1').css('opacity', '0');
-                                } else {
-                                    $('select[name="semanales_inicio"]').val("7");
-                                    $('select[name="semanales_cierre"]').val("7");
-                                    $('#status1').css('opacity', '1');
-
-                                }
-                            }
-                        });
-
-                        $('.switch_2').click(function () {
-                            var sabadoInicio = $('select[name="sabados_inicio"]').val();
-                            var sabadoCierre = $('select[name="sabados_cierre"]').val();
-
-                            if (sabadoInicio === "7" && sabadoCierre === "7") {
-                                $('#modalStatus').modal('show'); // abrirr el modal de boostrap
-                            } else {
-                                $(this).toggleClass("switchOn");
-
-                                if ($(this).hasClass("switchOn")) {
-
-                                    $('#status2').css('opacity', '0');
-                                } else {
-                                    $('select[name="sabados_inicio"]').val("7");
-                                    $('select[name="sabados_cierre"]').val("7");
-                                    $('#status2').css('opacity', '1');
-
-                                }
-                            }
-                        });
-
-                        $('.switch_3').click(function () {
-                            var domingoInicio = $('select[name="domingo_inicio"]').val();
-                            var domingoCierre = $('select[name="domingo_cierre"]').val();
-
-                            if (domingoInicio === "7" && domingoCierre === "7") {
-
-                                $('#modalStatus').modal('show'); // abrirr el modal de boostrap
-                            } else {
-                                $(this).toggleClass("switchOn");
-
-                                if ($(this).hasClass("switchOn")) {
-
-                                    $('#status3').css('opacity', '0');
-                                } else {
-                                    $('select[name="domingo_inicio"]').val("7");
-                                    $('select[name="domingo_cierre"]').val("7");
-                                    $('#status3').css('opacity', '1');
-
-                                }
-                            }
-                        });
-
-
-
-
-                    </script>
 
 
                     <center>
@@ -408,7 +295,111 @@
                         </div>
                     </center>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
 }
+
+<script>
+    window.onload = function () {
+        function verificarHorarios() {
+            var semanalesInicio = $('select[name="semanales_inicio"]').val();
+            var semanalesCierre = $('select[name="semanales_cierre"]').val();
+            var sabadoInicio = $('select[name="sabados_inicio"]').val();
+            var sabadoCierre = $('select[name="sabados_cierre"]').val();
+            var domingoInicio = $('select[name="domingo_inicio"]').val();
+            var domingoCierre = $('select[name="domingo_cierre"]').val();
+
+            if (semanalesInicio !== "7" && semanalesCierre !== "7" && parseInt(semanalesCierre) < parseInt(semanalesInicio)) {
+                $('select[name="semanales_cierre"]').val(parseInt(semanalesInicio) + 1);
+            }
+
+            if (sabadoInicio !== "7" && sabadoCierre !== "7" && parseInt(sabadoCierre) < parseInt(sabadoInicio)) {
+                $('select[name="sabados_cierre"]').val(parseInt(sabadoInicio) + 1);
+            }
+
+            if (domingoInicio !== "7" && domingoCierre !== "7" && parseInt(domingoCierre) < parseInt(domingoInicio)) {
+                $('select[name="domingo_cierre"]').val(parseInt(domingoInicio) + 1);
+            }
+        }
+
+        function actualizarEstado(entrada, salida, selector, status) {
+            if (entrada === "7" && salida === "7") {
+                $(selector).removeClass("switchOn");
+                $(status).css('opacity', '1');
+            } else {
+                $(selector).addClass("switchOn");
+                $(status).css('opacity', '0');
+            }
+        }
+
+        function handleClickSwitch(selector, inicio, cierre, status) {
+            var inicioValue = $('select[name="' + inicio + '"]').val();
+            var cierreValue = $('select[name="' + cierre + '"]').val();
+
+            if (inicioValue === "7" && cierreValue === "7") {
+                $('#modalStatus').modal('show'); // abrir el modal de Bootstrap
+            } else {
+                $(selector).toggleClass("switchOn");
+
+                if ($(selector).hasClass("switchOn")) {
+                    $(status).css('opacity', '0');
+                } else {
+                    $('select[name="' + inicio + '"]').val("7");
+                    $('select[name="' + cierre + '"]').val("7");
+                    $(status).css('opacity', '1');
+                }
+            }
+        }
+
+        $('select[name="semanales_inicio"], select[name="semanales_cierre"]').change(function () {
+            verificarHorarios();
+            actualizarEstado(
+                $('select[name="semanales_inicio"]').val(),
+                $('select[name="semanales_cierre"]').val(),
+                '.switch_1',
+                '#status1'
+            );
+        });
+
+        $('select[name="sabados_inicio"], select[name="sabados_cierre"]').change(function () {
+            verificarHorarios();
+            actualizarEstado(
+                $('select[name="sabados_inicio"]').val(),
+                $('select[name="sabados_cierre"]').val(),
+                '.switch_2',
+                '#status2'
+            );
+        });
+
+        $('select[name="domingo_inicio"], select[name="domingo_cierre"]').change(function () {
+            verificarHorarios();
+            actualizarEstado(
+                $('select[name="domingo_inicio"]').val(),
+                $('select[name="domingo_cierre"]').val(),
+                '.switch_3',
+                '#status3'
+            );
+        });
+
+        $('.switch_1').click(function () {
+            handleClickSwitch('.switch_1', 'semanales_inicio', 'semanales_cierre', '#status1');
+        });
+
+        $('.switch_2').click(function () {
+            handleClickSwitch('.switch_2', 'sabados_inicio', 'sabados_cierre', '#status2');
+        });
+
+        $('.switch_3').click(function () {
+            handleClickSwitch('.switch_3', 'domingo_inicio', 'domingo_cierre', '#status3');
+        });
+
+
+
+    }
+   
+   
+
+
+
+</script>
