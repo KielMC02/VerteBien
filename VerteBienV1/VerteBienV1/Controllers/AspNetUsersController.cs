@@ -1799,7 +1799,7 @@ namespace VerteBienV1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(HttpPostedFileBase img1, HttpPostedFileBase img2, HttpPostedFileBase img3, HttpPostedFileBase img4, HttpPostedFileBase img5, HttpPostedFileBase img6,[Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,nombre,apellido,ciudad,sector,calle,telefono,latitud,longitud,nombre_peluqueria,estado,fecha_nacimiento_,fecha_creacion_,capacidad_simultanea_")] AspNetUsers aspNetUsers, string sectores, string cantones)
+        public ActionResult Edit(HttpPostedFileBase img1, HttpPostedFileBase img2, HttpPostedFileBase img3, HttpPostedFileBase img4, HttpPostedFileBase img5, HttpPostedFileBase img6, [Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,nombre,apellido,ciudad,sector,calle,telefono,latitud,longitud,nombre_peluqueria,estado,fecha_nacimiento_,fecha_creacion_,capacidad_simultanea_")] AspNetUsers aspNetUsers, string sectores, string cantones)
         {
             AspNetUsers usuarioEdit = db.AspNetUsers.Find(aspNetUsers.Id);
 
@@ -1836,11 +1836,11 @@ namespace VerteBienV1.Controllers
             //Variable para generar numeros ramdon para el nombre de las imagenes.
             Random rnd = new Random();
 
-        if(usuarioEdit.fotos_local == null) 
-        { 
-            //Establecemos la ruta donde se guardaran las imagenes
-            if (img1 != null)
+            if (usuarioEdit.fotos_local == null)
             {
+                //Establecemos la ruta donde se guardaran las imagenes
+                if (img1 != null)
+                {
 
                     int numero = rnd.Next(52);
                     Convert.ToString(numero).Trim();
@@ -1898,7 +1898,7 @@ namespace VerteBienV1.Controllers
                 //Rellenar campo Fotos
                 usuarioEdit.fotos_local = aspNetUsers.fotos_local;
             }
-            else 
+            else
             {
                 //Separamos los nombres de las imagenes y guardamos en una lista
                 List<String> imagenes = (usuarioEdit.fotos_local.Split(';')).ToList();
@@ -1989,23 +1989,23 @@ namespace VerteBienV1.Controllers
                     if (imagenes.Count < 5)
 
                     {
-                            int numero = rnd.Next(52);
-                            Convert.ToString(numero).Trim();
-                            var nuevaImagen = numero + aspNetUsers.Id + img5.FileName;
-                            String ruta_img5 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
-                            img5.SaveAs(ruta_img5);
-                            usuarioEdit.fotos_local += ";" + nuevaImagen;
+                        int numero = rnd.Next(52);
+                        Convert.ToString(numero).Trim();
+                        var nuevaImagen = numero + aspNetUsers.Id + img5.FileName;
+                        String ruta_img5 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                        img5.SaveAs(ruta_img5);
+                        usuarioEdit.fotos_local += ";" + nuevaImagen;
                     }
                     else
                     {
-                            int numero = rnd.Next(52);
-                            Convert.ToString(numero).Trim();
-                            var nuevaImagen = numero + aspNetUsers.Id + img5.FileName;
-                            usuarioEdit.fotos_local = usuarioEdit.fotos_local.Replace(imagenes[4], nuevaImagen);
-                            ViewBag.comprobar = usuarioEdit.fotos_local;
-                            String ruta_img5 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
-                            img5.SaveAs(ruta_img5);
-                            var borrar = borrarImagen(imagenes[4]);
+                        int numero = rnd.Next(52);
+                        Convert.ToString(numero).Trim();
+                        var nuevaImagen = numero + aspNetUsers.Id + img5.FileName;
+                        usuarioEdit.fotos_local = usuarioEdit.fotos_local.Replace(imagenes[4], nuevaImagen);
+                        ViewBag.comprobar = usuarioEdit.fotos_local;
+                        String ruta_img5 = Server.MapPath("~/imagenes_local/") + nuevaImagen;
+                        img5.SaveAs(ruta_img5);
+                        var borrar = borrarImagen(imagenes[4]);
                     }
                 }
                 if (img6 != null)
@@ -2046,6 +2046,72 @@ namespace VerteBienV1.Controllers
             }
             return View(aspNetUsers);
         }
+
+        [Authorize]
+        // GET: AspNetUsers/Edit/5
+        public ActionResult EditUserCliente()
+        {
+                var id = "vacio";
+                var estaAutenticado = User.Identity.IsAuthenticated;
+                if (estaAutenticado)
+                {
+                    id = User.Identity.GetUserId();
+                }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+                if (aspNetUsers == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ViewBag.fecha_nacimiento = aspNetUsers.fecha_nacimiento_;
+                return View(aspNetUsers);
+            
+        }
+
+    // POST: AspNetUsers/Edit/5
+    // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+    // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditUserCliente([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,nombre,apellido,ciudad,sector,calle,telefono,latitud,longitud,nombre_peluqueria,estado,fecha_nacimiento_,fecha_creacion_,capacidad_simultanea_")] AspNetUsers aspNetUsers){
+            AspNetUsers usuarioEdit = db.AspNetUsers.Find(aspNetUsers.Id);
+
+            ////Aqui se rellenan los datos no modificables desde el lado del Backend por seguridad
+            usuarioEdit.Email = usuarioEdit.Email;
+            usuarioEdit.EmailConfirmed = usuarioEdit.EmailConfirmed;
+            usuarioEdit.PasswordHash = usuarioEdit.PasswordHash;
+            usuarioEdit.SecurityStamp = usuarioEdit.SecurityStamp;
+            usuarioEdit.PhoneNumber = usuarioEdit.PhoneNumber;
+            usuarioEdit.PhoneNumberConfirmed = usuarioEdit.PhoneNumberConfirmed;
+            usuarioEdit.TwoFactorEnabled = usuarioEdit.TwoFactorEnabled;
+            usuarioEdit.LockoutEnabled = usuarioEdit.LockoutEnabled;
+            usuarioEdit.AccessFailedCount = usuarioEdit.AccessFailedCount;
+            usuarioEdit.UserName = usuarioEdit.UserName;
+            usuarioEdit.estado = usuarioEdit.estado;
+            usuarioEdit.fecha_creacion_ = usuarioEdit.fecha_creacion_;
+            usuarioEdit.capacidad_simultanea_ = usuarioEdit.capacidad_simultanea_;
+            //////---FIN DATOS NO MODIFICABLES
+            ///
+            ///Datos si modificables
+            usuarioEdit.nombre = aspNetUsers.nombre;
+            usuarioEdit.apellido = aspNetUsers.apellido;
+            usuarioEdit.telefono = aspNetUsers.telefono;
+            usuarioEdit.fecha_nacimiento_ = aspNetUsers.fecha_nacimiento_;
+
+            if (ModelState.IsValid)
+            {
+                //db.Entry(aspNetUsers).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "SERVICIOS");
+            }
+            return View(aspNetUsers);
+        }
+
         [Authorize(Roles = "administrador")]
         // GET: AspNetUsers/Delete/5
         public ActionResult Delete(string id)
@@ -2084,3 +2150,4 @@ namespace VerteBienV1.Controllers
         }
     }
 }
+
