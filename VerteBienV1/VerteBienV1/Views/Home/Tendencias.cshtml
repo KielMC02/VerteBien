@@ -324,27 +324,26 @@
         <div class="">
             <h3 class="text-center my-4 my-md-1">Ultimos Servicios Agregados</h3>
         </div>
-        <div class="row ">
+        <div class="row " style="justify-content: center;">
             @foreach (var item in Model)
             {
                 //Separamos los nombres de las imagenes y guardamos en una lista
                 List<String> imagenes = (item.imagenes.Split(';')).ToList();
-
-                <div class="col-12 col-md-12 col-lg-6 col-xl-4 d-flex">
-
+                // Tamaño grande
+                <div class="col-12 col-md-12 col-lg-6 col-xl-4 d-flex" style="max-width:400px">
                     <div class="card shadow my-2 cf contenedor" style="position:relative">
-
                         <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
+                        <div class="contenedor-imagen">
 
-                        <img class="card-img-top " src="~/imagenes_servicios/@imagenes[0]" alt="Card image cap" style="height: 265px; object-fit: cover;">
+                            <img class="card-img-top" src="~/imagenes_servicios/@imagenes[0]" alt="Card image cap">
+                            <a href="~/imagenes_servicios/@imagenes[0]" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 290px; text-decoration:none;">
 
-                        <a href="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 265px; text-decoration:none;">
-                            <div class="">
-                                <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar </p>
+                                <div class="">
+                                    <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar</p>
 
-                            </div>
-                        </a>
-
+                                </div>
+                            </a>
+                        </div>
                         <div class="row">
                             <div class=" col-12">
 
@@ -503,19 +502,21 @@
 
                     @*    <div class="carousel__elemento" style="width:100%">
 
-                            <a href="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" data-lightbox="Sgaleria" style="width:100%; height:100%;">
+            <a href="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" data-lightbox="Sgaleria" style="width:100%; height:100%;">
 
-                                <img src="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" alt="" style="height: 350px; width: 350px; object-fit: fill;">
-                            </a>
-                        </div>*@
+                <img src="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" alt="" style="height: 350px; width: 350px; object-fit: fill;">
+            </a>
+        </div>*@
 
-
+                    @foreach (var item in Model)
+                    {
+                        List<String> imagenes = (item.imagenes.Split(';')).ToList();
                     <div class="carousel__elemento" style="height:450px;">
                         <div class="card shadow my-2 cf contenedor" style="position:relative">
                             <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
-                            <img class="card-img-top " src="~/Imagenes/img-01.jpg" alt="Card image cap" style="height: 465px;">
+                            <img class="card-img-top " src="~/imagenes_servicios/@imagenes[0]" alt="Card image cap" style="height: 465px;">
 
-                            <a href="~/Imagenes/img-01.jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 465px; text-decoration:none;">
+                            <a href="~/imagenes_servicios/@imagenes[0]" data-lightbox="Sgaleria" class="capa" style="width: 100%; height:465px; text-decoration:none;">
                                 <div class="">
                                     <h1 class="card-title h4 text-decoration-none text-white">Nombre del servicio <span class="fa fa-star"></span><span class="text-white text-small">(3)</span></h1>
 
@@ -536,33 +537,8 @@
 
 
                     </div>
-                    <div class="carousel__elemento" style="height: 450px;">
-                        <div class="card shadow my-2 cf contenedor" style="position:relative">
-                            <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
-                            <img class="card-img-top " src="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" alt="Card image cap" style="height: 465px; object-fit: fill;">
 
-                            <a href="~/Imagenes/pexels-cottonbro-3998429 (1).jpg" data-lightbox="Sgaleria" class="capa" style="width: 100%; height: 465px; text-decoration:none;">
-                                <div class="">
-                                    <h1 class="card-title h4 text-decoration-none text-white">Nombre del servicio <span class="fa fa-star"></span><span class="text-white text-small">(3)</span></h1>
-
-                                    <p class="card-subtitle"> <b>Precio:</b> $ 250</p>
-                                    <p class="card-text card-text-trend ">Texto totalmente diferente de los demas con una longitud sin igual y jas visto  jas visto jas visto jas visto</p>
-                                    <p class="card-subtitle text-center"><i class="fas fa-search-plus"></i> Ampliar </p>
-
-                                </div>
-                            </a>
-                            <div>
-                                <div class="justify-content-center p-3 " style="position:absolute; bottom:0px; z-index:99;">
-                                    <a href="#" class="btn text-white  rounded abtn" style="background-color:#DBA312"> Opcion</a>
-                                    <a href="#" class="btn text-white  rounded abtn" id="volbtn"> Mas informacion</a>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                    </div>
-
+                    }
 
                 </div>
                 <button aria-label="Siguiente" class="carousel__siguiente" style="right:9px;">
