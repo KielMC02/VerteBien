@@ -927,7 +927,7 @@ if (frm) {
             case '/AspNetUsers/Edit': // para editar la info del que esta logueado
               
 
-                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.calle && campos.telefono) {
+                if (campos.nombre && campos.apellido && campos.nombre_peluqueria && campos.calle && campos.telefono && campos.fecha_nacimiento_) {
 
 
                     formulario.submit();
@@ -940,6 +940,23 @@ if (frm) {
                 }
 
                 break;
+            case '/AspNetUsers/EditUserCliente': // para editar la info del que esta logueado usario cliente
+
+
+                if (campos.nombre && campos.apellido && campos.telefono && campos.fecha_nacimiento_) {
+
+
+                    formulario.submit();
+
+                } else {
+                    var parrafo = $('#p-modal');
+                    parrafo.text('Por favor verificar que los datos del formulario esten correcto antes de editar.');
+                    $('#modal').modal('show'); // abrirr el modal de boostrap 
+
+                }
+
+                break;
+
             case '/AspNetUsers/Edit/': // para editar la info del que esta logueado
               
                 if (campos.nombre && campos.apellido && campos.nombre_peluqueria  && campos.calle && campos.telefono) {
@@ -1133,7 +1150,26 @@ if (pathNa === '/AspNetUsers/Edit/') {
     document.querySelector(`#grupo__fecha_nacimiento_ .formulario__input-errorr`).classList.remove('formulario__input-error-activo');
     campos[fecha_nacimiento_] = true;
 }
+if (pathname === '/AspNetUsers/EditUserCliente') {
+    let inputs = document.querySelectorAll('input[type=text]');
+    for (var i = 0; i < inputs.length; i++) {
 
+        document.getElementById(`grupo__${inputs[i].name}`).classList.remove('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__${inputs[i].name}`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${inputs[i].name} i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__${inputs[i].name} i`).classList.remove('fa-times-circle');
+        document.querySelector(`#grupo__${inputs[i].name} .formulario__input-error`).classList.remove('formulario__input-error-activo')
+        campos[inputs[i].name] = true;
+
+    }
+    document.getElementById(`grupo__fecha_nacimiento_`).classList.remove('formulario__grupo-incorrecto');
+    document.getElementById(`grupo__fecha_nacimiento_`).classList.add('formulario__grupo-correcto');
+    document.querySelector(`#grupo__fecha_nacimiento_ i`).classList.add('fa-check-circle');
+    document.querySelector(`#grupo__fecha_nacimiento_ i`).classList.remove('fa-times-circle');
+    document.querySelector(`#grupo__fecha_nacimiento_ .formulario__input-error`).classList.remove('formulario__input-error-activo')
+    document.querySelector(`#grupo__fecha_nacimiento_ .formulario__input-errorr`).classList.remove('formulario__input-error-activo');
+    campos['fecha_nacimiento_'] = true;
+}
 
 
 
@@ -1770,7 +1806,7 @@ if (pathname === '/AspNetUsers/Edit') {
     document.querySelector(`#grupo__fecha_nacimiento_ i`).classList.remove('fa-times-circle');
     document.querySelector(`#grupo__fecha_nacimiento_ .formulario__input-error`).classList.remove('formulario__input-error-activo')
     document.querySelector(`#grupo__fecha_nacimiento_ .formulario__input-errorr`).classList.remove('formulario__input-error-activo');
-    campos[fecha_nacimiento_] = true;
+    campos['fecha_nacimiento_'] = true;
     
   /*  validarFormulario*/
 

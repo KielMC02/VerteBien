@@ -2314,7 +2314,7 @@ body {
 }
 
 .contenedor-imagen {
-    width: 400px;
+    width: 100%;
     height: 290px;
     display: flex;
     justify-content: center;
@@ -2354,7 +2354,21 @@ body {
         /*transform: scale(1.1);*/
     }
 
-    
+
+.layer {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Ajusta el valor de la opacidad aquí */
+    z-index: 99;
+}
+
+.glider-slide.active:hover .layer {
+    display: block;
+}
 
     .contenedor .capa p {
         color: #fff;
