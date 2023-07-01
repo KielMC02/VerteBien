@@ -66,19 +66,16 @@
                 @Html.ValidationMessageFor(model => model.fecha_cita, "", new { @class = "text-danger" })
             </div>
         </div>*@
-
-
-
                         <div class="container">
                             <div id="Reservacion">
                                 <div class="contenedor">
-                                    <input class="form-control col-md-10" type="date" name="fecha" v-model="fecha">
+                                    <input class="form-control col-md-10" type="date" name="fecha" v-model="fecha" :min="minFecha">
                                 </div>
                                 <div class="contenedor">
                                     <slot v-if="horarios.length">
                                         <div class="card">
                                             <div class="horarios card-body overflow-auto">
-                                                <h5 class="card-title ">Horarios Disponibles</h5>
+                                                <h5 class="card-title">Horarios Disponibles</h5>
                                                 <div v-for="item in horarios">
                                                     <button v-on:click="reservarCita(item.hora)" style="width:95px; margin-top:5px;" v-if="item.disponibilidad == 'si'" type="button" class="btn btn-outline-primary horario">
                                                         <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
@@ -93,6 +90,33 @@
                                 </div>
                             </div>
                         </div>
+
+
+
+                        @*<div class="container">
+            <div id="Reservacion">
+                <div class="contenedor">
+                    <input class="form-control col-md-10" type="date" name="fecha" v-model="fecha">
+                </div>
+                <div class="contenedor">
+                    <slot v-if="horarios.length">
+                        <div class="card">
+                            <div class="horarios card-body overflow-auto">
+                                <h5 class="card-title ">Horarios Disponibles</h5>
+                                <div v-for="item in horarios">
+                                    <button v-on:click="reservarCita(item.hora)" style="width:95px; margin-top:5px;" v-if="item.disponibilidad == 'si'" type="button" class="btn btn-outline-primary horario">
+                                        <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
+                                    </button>
+                                    <button style="width:95px; margin-top:5px;" v-else disabled type="button" class="btn btn-outline-secondary horario">
+                                        <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </slot>
+                </div>
+            </div>
+        </div>*@
                         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
                         <script>
@@ -153,7 +177,15 @@
                         { hora: '22.30', formateada: '10:30 PM'},
                         { hora: '23.00', formateada: '11:00 PM'},
                         { hora: '23.30', formateada: '11:30 PM'},
-                    ]
+                    ],
+                    minFecha: ''
+                },
+                mounted() {
+                    const currentDate = new Date();
+                    const year = currentDate.getFullYear();
+                    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+                    const day = String(currentDate.getDate()).padStart(2, '0');
+                    this.minFecha = `${year}-${month}-${day}`;
                 },
                 watch:{
                     fecha: function(){
