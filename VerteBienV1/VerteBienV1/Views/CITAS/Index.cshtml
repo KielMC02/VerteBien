@@ -49,7 +49,8 @@
                     <div class="card-body col-12 p-4 ">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>Cliente: </strong>@Html.DisplayFor(modelItem => item.AspNetUsers.Email) </li>
-                            <li class="list-group-item"><b>Fecha de la cita: </b>@Html.DisplayFor(modelItem => item.fecha_cita) </li>
+                            <li class="list-group-item"><b>Fecha de la cita: </b>@Html.TextBoxFor(modelItem => item.fecha_cita, "{0:yyyy-MM-dd}",new { @type = "date", @readonly="readonly", @disabled="disabled" })</li>
+                            <li class="list-group-item"><b>Horla de la cita: </b>@Html.DisplayFor(modelItem => item.hora) </li>
                             <li class="list-group-item mb-2"><b>Comentario: </b>@Html.DisplayFor(modelItem => item.comentario_cliente) </li>
                         </ul>
                         <br />
