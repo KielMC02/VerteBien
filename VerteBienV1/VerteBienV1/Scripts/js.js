@@ -2759,7 +2759,7 @@ if (pathname === '/AspNetUsers/index') {
 // Verifiicar aceptados no estan cumpliendo las reglas 
 let x = document.querySelectorAll("#estadocita");
 
-for (var i = 0; i < x.length; i++) {
+for (let i = 0; i < x.length; i++) {
 
     let estado = x[i].getAttribute('data-estadocita').toUpperCase();
    
@@ -2798,28 +2798,53 @@ for (var i = 0; i < x.length; i++) {
 
 if (pathname =='/Home/Tendencias' ) {
 
+    $(document).ready(function () {
+        // Toggle de informacion max o menos segun el click 
 
-    $(".toggle").click(function () {
-        $(this).text(function (i, text) {
-            console.log('funciona' + this);
-            return text === "+ Información" ? "- Información" : "+ Información";
+        $(".toggle").click(function () {
+            $(this).text(function (i, text) {
+                console.log('funciona' + this);
+                return text === "+ Información" ? "- Información" : "+ Información";
 
-        })
+            })
+        });
+
+
+        // textos saber mas tendencias.
+        let tendenciasText = document.querySelectorAll('.card-text-trend');
+
+        for (i = 0; i < tendenciasText.length; i++) {
+            let readtext = tendenciasText[i].textContent.substr(0, 76) + '...'
+
+            tendenciasText[i].innerHTML = readtext;
+
+        }
+      
+        // Mostrar Lightbox al hacer clic en una imagen
+        $(".lightbox-link").on("click", function (e) {
+            e.preventDefault();
+            let imageUrl = $(this).attr("href");
+            let detailsUrl = $(this).siblings(".lightbox-details").attr("href");
+            $("#lightbox img").attr("src", imageUrl);
+            let completUrl = '/SERVICIOS/Details/' + detailsUrl
+            $("#lightbox a").attr("href", completUrl);
+            $("#lightbox").fadeIn();
+        });
+
+        // Obtener el elemento de cierre del Lightbox
+        var lightboxClose = $('.lightbox-close');
+
+
+        $(".lightbox-close").on("click", function (event) {
+            event.preventDefault();
+            $(".lightbox-tendencia").fadeOut();
+        });
+
+        
+ 
+
     });
-    // textos saber mas tendencias.
-    let tendenciasText = document.querySelectorAll('.card-text-trend');
-
-    for (i = 0; i < tendenciasText.length; i++) {
-        let readtext = tendenciasText[i].textContent.substr(0, 76) + '...'
-        
-        tendenciasText[i].innerHTML = readtext;
-     
-
-        
-
-
-    }
-
+ 
 
 }
 
