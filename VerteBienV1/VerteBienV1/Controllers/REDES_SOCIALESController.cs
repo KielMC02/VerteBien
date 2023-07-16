@@ -88,7 +88,22 @@ namespace VerteBienV1.Controllers
             {
                 db.REDES_SOCIALES.Add(rEDES_SOCIALES);
                 db.SaveChanges();
-                return RedirectToAction("Index", "SERVICIOS");
+                SERVICIOSController validar = new SERVICIOSController();
+                string idUser = User.Identity.GetUserId();
+                var estatus = validar.VerificarUser(idUser);
+                if (estatus == "horario")
+                {
+                    return RedirectToAction("Create", "HORARIOS", new { estatus });
+                }
+                if (estatus == "no fotos")
+                {
+                    return RedirectToAction("Edit", "AspNetUsers", new { estatus });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "SERVICIOS");
+                }
+
             }
 
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", rEDES_SOCIALES.id_usuario);

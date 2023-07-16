@@ -2042,7 +2042,22 @@ namespace VerteBienV1.Controllers
 
                 //db.Entry(aspNetUsers).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "SERVICIOS");
+                SERVICIOSController validar = new SERVICIOSController();
+                string idUser = User.Identity.GetUserId();
+                var estatus = validar.VerificarUser(idUser);
+                if(estatus == "redes")
+                {
+                    return RedirectToAction("Create", "REDES_SOCIALES", new { estatus });
+                }
+                if (estatus == "horario")
+                {
+                    return RedirectToAction("Create", "HORARIOS", new { estatus });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "SERVICIOS");
+                }
+
             }
             return View(aspNetUsers);
         }

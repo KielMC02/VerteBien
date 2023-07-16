@@ -92,6 +92,17 @@ namespace VerteBienV1.Controllers
             {
                 db.HORARIOS.Add(hORARIOS);
                 db.SaveChanges();
+                SERVICIOSController validar = new SERVICIOSController();
+                string idUser = User.Identity.GetUserId();
+                var estatus = validar.VerificarUser(idUser);
+                if (estatus == "redes")
+                {
+                    return RedirectToAction("Create", "REDES_SOCIALES", new { estatus });
+                }
+                if (estatus == "no fotos")
+                {
+                    return RedirectToAction("Edit", "AspNetUsers", new { estatus });
+                }
                 return RedirectToAction("Index", "SERVICIOS");
             }
 
