@@ -37,7 +37,7 @@ namespace VerteBienV1.Controllers
         // GET: CITAS
         [Authorize]
         //[OutputCache(Duration = 3600, VaryByParam = "estatusCitasSelec")]
-        public ActionResult Index(string estatusCitasSelec)
+        public ActionResult Index(string estatusCitasSelec, DateTime? desde, DateTime? hasta)
         {
             //Se obtiene el ID del usuairo logueado.
             var id = "vacio";
@@ -56,21 +56,45 @@ namespace VerteBienV1.Controllers
             }
             else
             {
-                if(estatusCitasSelec != null) { 
+                //Si el usuario filtra solo por estado
+                if (estatusCitasSelec != null && desde == null && hasta == null) 
+                { 
                 citasUsuario = (from citas in db.CITAS 
                                 join servicios in db.SERVICIOS on citas.id_servicio equals servicios.id_servicio  
                                 where servicios.id_usuario == id && citas.estado == estatusCitasSelec
                                 select citas).ToList();
+                    return View(citasUsuario);
                 }
-                else
+                //Si el usuario filtra solo por fechas
+                if ((estatusCitasSelec == "" || estatusCitasSelec == null) && desde != null && hasta != null)
                 {
                     citasUsuario = (from citas in db.CITAS
                                     join servicios in db.SERVICIOS on citas.id_servicio equals servicios.id_servicio
-                                    where servicios.id_usuario == id select citas).ToList();
+                                    where citas.fecha_cita >= desde && citas.fecha_cita <= hasta && citas.SERVICIOS.id_usuario == id
+                                    select citas).ToList();
+                    return View(citasUsuario);
+                }
+                //Si el usuario filtra por estado y fechas
+                if (estatusCitasSelec != null && desde != null && hasta != null) 
+                {
+                    citasUsuario = (from citas in db.CITAS
+                                    join servicios in db.SERVICIOS on citas.id_servicio equals servicios.id_servicio
+                                    where citas.fecha_cita >= desde && citas.fecha_cita <= hasta && citas.estado == estatusCitasSelec && citas.SERVICIOS.id_usuario == id
+                                    select citas).ToList();
+                    return View(citasUsuario);
+                }
+                //Si el usuario no filtra nada
+                if((estatusCitasSelec == null || estatusCitasSelec == "") && desde == null && hasta == null)
+                {
+                    citasUsuario = (from citas in db.CITAS
+                                    join servicios in db.SERVICIOS on citas.id_servicio equals servicios.id_servicio
+                                    where servicios.id_usuario == id
+                                    select citas).ToList();
+                    return View(citasUsuario);
                 }
             }
-
             return View(citasUsuario);
+
         }
         //Modulo de Contabilidad
         [Authorize(Roles = "preferencial,vip,administrador")]
