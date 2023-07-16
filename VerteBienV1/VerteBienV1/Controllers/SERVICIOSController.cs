@@ -151,7 +151,7 @@ namespace VerteBienV1.Controllers
         [Authorize(Roles = "expres,preferencial,vip,administrador")]
         //[OutputCache(Duration = 3600, VaryByParam = "none")]
         // GET: SERVICIOS POR USUARIOS
-        public ActionResult misServicios()
+        public ActionResult misServicios(string servicio)
         {
             var id = "vacio";
             var estaAutenticado = User.Identity.IsAuthenticated;
@@ -159,11 +159,17 @@ namespace VerteBienV1.Controllers
             {
                 id = User.Identity.GetUserId();
             }
-
-            //Lista que guarda el resultado de la Busqueda
             List<SERVICIOS> resultadoBusqueda = new List<SERVICIOS>();
-
+            if (servicio != "" || servicio != null)
+            {
+                resultadoBusqueda = (from Nbusqueda in db.SERVICIOS where Nbusqueda.id_usuario == id && Nbusqueda.nombre_servicio.Contains(servicio) select Nbusqueda).ToList();
+            }
+            if((servicio == "" || servicio == null)) 
+            {
+                //Lista que guarda el resultado de la Busqueda
                 resultadoBusqueda = (from Nbusqueda in db.SERVICIOS where Nbusqueda.id_usuario == id select Nbusqueda).ToList();
+            }
+
 
 
 

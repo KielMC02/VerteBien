@@ -84,14 +84,11 @@
                                                 @Html.ValidationMessageFor(model => model.tiempo, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-
-
-
                                         <!-- Selection para modificar duracion -->
                                         <div class="form-group col-md-6 my-2">
-                                           
-                                            <select  name="select" id="select" class="form-control col-md-10">
-                                                <option value="0.5" selected>30 Minutos</option>
+                                            @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label col-md-8" })
+                                            <select name="select" id="select" class="form-control col-md-10">
+                                                <option value="0,5" selected>30 Minutos</option>
                                                 <option value="1">1 hora</option>
                                                 <option value="1,5">1 hora y media</option>
                                                 <option value="2">2 horas</option>
