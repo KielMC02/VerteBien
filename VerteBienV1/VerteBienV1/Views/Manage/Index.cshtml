@@ -6,9 +6,9 @@
 <br />
 <p class="text-success">@ViewBag.StatusMessage</p>
 
-    <div class="container shadow">
-        <h2>Si desea cambiar la Contraseña de clic en el boton a continuacion.</h2>
-        <div>
+    <div class="container shadow text-center p-2">
+        <h4 class="my-2">Si desea cambiar la contraseña de click en el boton a continuacion.</h4>
+        <div class="">
             
             @if (Model.HasPassword)
             {
@@ -16,7 +16,9 @@
             }
             else
             {
-                @Html.ActionLink("Crear", "SetPassword")
+            <div class="col-5">
+                @Html.ActionLink("Crear contraseña", "SetPassword", null, htmlAttributes: new { @class = "col-5", @style = "" })
+            </div>
             }
             
         </div>
