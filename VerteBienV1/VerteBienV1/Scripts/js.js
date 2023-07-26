@@ -1897,753 +1897,274 @@ $(document).ready(function () {
 
     // Creamos el array con las parroquias de los cantones
 
-
-    var Cuenca = [{ display: "Cumbe", value: "Cumbe" }, { display: "Chaucha", value: "Chaucha" }, { display: "Checa", value: "Checa" }, { display: "Chiquintad", value: "Chiquintad" }, { display: "Llacao", value: "Llacao" }, { display: "Molleturo", value: "Molleturo" }, { display: "Nulti", value: "Nulti" }, { display: "Octavio Cordero Palacios", value: "Octavio Cordero Palacios" }, { display: "Paccha", value: "Paccha" }, { display: "Quingeo", value: "Quingeo" }, { display: "Ricaurte", value: "Ricaurte" }, { display: "San Joaquín", value: "San Joaquín" }, { display: "Santa Ana", value: "Santa Ana" }, { display: "Sayausí", value: "Sayausí" }, { display: "Sidcay", value: "Sidcay" }, { display: "Sinincay", value: "Sinincay" }, { display: "Tarqui", value: "Tarqui" }, { display: "Turi", value: "Turi" }, { display: "Valle", value: "Valle" }, { display: "Victoria del Portete", value: "Victoria del Portete" }, { display: "Bellavista", value: "Bellavista" }, { display: "Cañaribamba", value: "Cañaribamba" }, { display: "El Batán", value: "El Batán" }, { display: "El Sagrario", value: "El Sagrario" }, { display: "El Vecino", value: "El Vecino" }, { display: "Gil Ramírez Dávalos", value: "Gil Ramírez Dávalos" }, { display: "Hermano Miguel", value: "Hermano Miguel" }, { display: "Huayna Cápac", value: "Huayna Cápac" }, { display: "Machángara", value: "Machángara" }, { display: "Monay", value: "Monay" }, { display: "San Blas", value: "San Blas" }, { display: "San Sebastián", value: "San Sebastián" }, { display: "Sucre", value: "Sucre" }, { display: "Totoracocha", value: "Totoracocha" }, { display: "Yanuncay", value: "Yanuncay" }];
-    var Camilo_Ponce_Enríquez = [{ display: "El Carmen de Pijilí", value: "El Carmen de Pijilí" }];
-    var Chordeleg = [{ display: "Principal", value: "Principal" }, { display: " La Unión", value: " La Unión" }, { display: " Luis Galarza Orellana", value: " Luis Galarza Orellana" }, { display: " San Martín de Puzhio", value: " San Martín de Puzhio" }];
-    var El_Pan = [{ display: "San Vicente", value: "San Vicente" }];
-    var Girón = [{ display: " Asunción", value: " Asunción" }, { display: " San Gerardo", value: " San Gerardo" }];
-    var Guachapala = [{ display: "La Cabecera", value: "La Cabecera" }];
-    var Gualaceo = [{ display: "Daniel Córdova Toral", value: "Daniel Córdova Toral" }, { display: " Jadán", value: " Jadán" }, { display: " Luis Cordero Vega", value: " Luis Cordero Vega" }, { display: " Mariano Moreno", value: " Mariano Moreno" }, { display: " Remigio Crespo Toral", value: " Remigio Crespo Toral" }, { display: " San Juan", value: " San Juan" }, { display: " Simón Bolívar", value: " Simón Bolívar" }, { display: " Zhidmad", value: " Zhidmad" }];
-    var Nabón = [{ display: "Cochapata", value: "Cochapata" }, { display: " El Progreso", value: " El Progreso" }, { display: " Las Nieves", value: " Las Nieves" }];
-    var Oña = [{ display: "Susudel", value: "Susudel" }];
-    var Paute = [{ display: "Bulán", value: "Bulán" }, { display: " Chicán", value: " Chicán" }, { display: " Dug", value: " Dug" }, { display: "Tomebamba)", value: "Tomebamba)" }, { display: " El Cabo", value: " El Cabo" }, { display: " Guarainag", value: " Guarainag" }, { display: " San Cristóbal", value: " San Cristóbal" }, { display: " Tomebamba", value: " Tomebamba" }];
-    var Pucará = [{ display: "San Rafael de Sharug ", value: "San Rafael de Sharug " }];
-    var San_Fernando = [{ display: "(Chumblín", value: "(Chumblín" }];
-    var Santa_Isabel = [{ display: "Abdón Calderón", value: "Abdón Calderón" }, { display: " San Salvador de Cañaribamba", value: " San Salvador de Cañaribamba" }, { display: " Zhaglli", value: " Zhaglli" }];
-    var Sevilla_de_Oro = [{ display: "Amaluza", value: "Amaluza" }, { display: " Palmas", value: " Palmas" }];
-    var Sígsig = [{ display: "Cuchil", value: "Cuchil" }, { display: " Gima", value: " Gima" }, { display: " Güel", value: " Güel" }, { display: " Ludo", value: " Ludo" }, { display: " San Bartolomé", value: " San Bartolomé" }, { display: " San José de Raranga", value: " San José de Raranga" }];
-    var Guaranda = [{ display: "Guaranda son Facundo Vela", value: "Guaranda son Facundo Vela" }, { display: " Julio E. Moreno", value: " Julio E. Moreno" }, { display: " Salinas", value: " Salinas" }, { display: " San Lorenzo", value: " San Lorenzo" }, { display: " San Luis de Pambil", value: " San Luis de Pambil" }, { display: " San Simón", value: " San Simón" }, { display: " Santafé", value: " Santafé" }, { display: " Simiátug", value: " Simiátug" }, { display: " Ángel Polibio Chaves", value: " Ángel Polibio Chaves" }, { display: " Gabriel Ignacio Veintimilla", value: " Gabriel Ignacio Veintimilla" }, { display: " Guanujo. Guaranda es la Cabecera Cantonal", value: " Guanujo. Guaranda es la Cabecera Cantonal" }];
-    var Caluma = [{ display: "Caluma", value: "Caluma" }];
-    var Chillanes = [{ display: "San José del Tambo", value: "San José del Tambo" }];
-    var Chimbo = [{ display: "Asunción", value: "Asunción" }, { display: " Magdalena", value: " Magdalena" }, { display: " San Sebastián", value: " San Sebastián" }, { display: " Telimbela", value: " Telimbela" }];
-    var Echeandía = [{ display: "Echeandía", value: "Echeandía" }];
-    var Las_Naves = [{ display: "Mercedes", value: "Mercedes" }, { display: " Las Naves", value: " Las Naves" }];
-    var San_Miguel = [{ display: "Balsapamba", value: "Balsapamba" }, { display: " Bilován", value: " Bilován" }, { display: " Régulo de Mora", value: " Régulo de Mora" }, { display: " San Pablo", value: " San Pablo" }, { display: " San Vicente", value: " San Vicente" }, { display: " Santiago", value: " Santiago" }];
-    var Azogues = [{ display: "Cojitambo", value: "Cojitambo" }, { display: "Guapán", value: "Guapán" }, { display: "Javier Loyola", value: "Javier Loyola" }, { display: "Luis Cordero", value: "Luis Cordero" }, { display: "Pindilig", value: "Pindilig" }, { display: "Rivera", value: "Rivera" }, { display: "San Miguel", value: "San Miguel" }, { display: "Taday", value: "Taday" }, { display: "Azogues", value: "Azogues" }, { display: "Borrero", value: "Borrero" }, { display: "San Francisco", value: "San Francisco" }, { display: "Azogues", value: "Azogues" }, { display: "Aurelio Bayas Martínez", value: "Aurelio Bayas Martínez" }];
-    var Biblián = [{ display: "Jerusalén", value: "Jerusalén" }, { display: "Nazón", value: "Nazón" }, { display: "San Francisco de Sageo", value: "San Francisco de Sageo" }, { display: "Turupamba)", value: "Turupamba)" }];
-    var Cañar = [{ display: "Chontamarca", value: "Chontamarca" }, { display: "Chorocopte", value: "Chorocopte" }, { display: "Ducur", value: "Ducur" }, { display: "General Morales", value: "General Morales" }, { display: "Gualleturo", value: "Gualleturo" }, { display: "Honorato Vásquez", value: "Honorato Vásquez" }, { display: "Ingapirca", value: "Ingapirca" }, { display: "Juncal", value: "Juncal" }, { display: "San Antonio", value: "San Antonio" }, { display: "Ventura", value: "Ventura" }, { display: "Zhud", value: "Zhud" }];
-    var Déleg = [{ display: "Solano", value: "Solano" }];
-    var El_Tambo = [{ display: "El Tambo", value: "El Tambo" }];
-    var La_Troncal = [{ display: "J. Calle", value: "J. Calle" }, { display: "Pancho Negro", value: "Pancho Negro" }];
-    var Suscal = [{ display: "Suscal", value: "Suscal" }];
-    var Tulcán = [{ display: "El Carmelo", value: "El Carmelo" }, { display: " El Chical", value: " El Chical" }, { display: " Julio Andrade", value: " Julio Andrade" }, { display: " Maldonado", value: " Maldonado" }, { display: " Pioter", value: " Pioter" }, { display: " Santa Martha de Cuba", value: " Santa Martha de Cuba" }, { display: " Tobar Donoso", value: " Tobar Donoso" }, { display: " Tufiño", value: " Tufiño" }, { display: " Urbina. Tulcán es la Cabecera cantonal. González Suárez es una Parroquia urbana del Cantón Tulcán)", value: " Urbina. Tulcán es la Cabecera cantonal. González Suárez es una Parroquia urbana del Cantón Tulcán)" }];
-    var Bolívar = [{ display: "García Moreno", value: "García Moreno" }, { display: "Los Andes", value: "Los Andes" }, { display: "Monte Olivo", value: "Monte Olivo" }, { display: "San Vicente de Pusir", value: "San Vicente de Pusir" }, { display: "San Rafael", value: "San Rafael" }];
-    var Espejo = [{ display: "El Goaltal", value: "El Goaltal" }, { display: "La libertad", value: "La libertad" }, { display: "San Isidro.", value: "San Isidro." }, { display: "27 de Septiembre", value: "27 de Septiembre" }, { display: "El Ángel", value: "El Ángel" }];
-    var Mira = [{ display: "Concepción", value: "Concepción" }, { display: " Jijón y Caamaño", value: " Jijón y Caamaño" }, { display: " Juan Montalvo", value: " Juan Montalvo" }];
-    var Montúfar = [{ display: "Cristóbal Colón", value: "Cristóbal Colón" }, { display: "Chitán de Navarrete", value: "Chitán de Navarrete" }, { display: "Fernández Salvador", value: "Fernández Salvador" }, { display: "La Paz", value: "La Paz" }, { display: "Piartal. Parroquias urbanas del Cantón Montufar son González Suárez", value: "Piartal. Parroquias urbanas del Cantón Montufar son González Suárez" }, { display: "San José", value: "San José" }];
-    var San_Pedro_De_Huaca = [{ display: "Mariscal Sucre", value: "Mariscal Sucre" }];
-    var Riobamba = [{ display: "Calpi", value: "Calpi" }, { display: "Cubijíes", value: "Cubijíes" }, { display: "Flores", value: "Flores" }, { display: "Licán", value: "Licán" }, { display: "Licto", value: "Licto" }, { display: "Pungala", value: "Pungala" }, { display: "Punín", value: "Punín" }, { display: "Quimiag", value: "Quimiag" }, { display: "San Juan", value: "San Juan" }, { display: "San Luis", value: "San Luis" }, { display: "Maldonado", value: "Maldonado" }, { display: "Velasco", value: "Velasco" }, { display: "Veloz", value: "Veloz" }, { display: "Yaruquíes", value: "Yaruquíes" }, { display: "Lizarzaburu", value: "Lizarzaburu" }];
-    var Alausí = [{ display: "Achupallas", value: "Achupallas" }, { display: " Guasuntos", value: " Guasuntos" }, { display: " Huigra", value: " Huigra" }, { display: " Multitud", value: " Multitud" }, { display: " PistishÍ", value: " PistishÍ" }, { display: " Pumallacta", value: " Pumallacta" }, { display: " Sevilla", value: " Sevilla" }, { display: " Sibambe", value: " Sibambe" }, { display: " Tixán)", value: " Tixán)" }];
-    var Chambo = [{ display: "Chambo", value: "Chambo" }];
-    var Chunchi = [{ display: "Capzol", value: "Capzol" }, { display: "Comud", value: "Comud" }, { display: "Gonzol", value: "Gonzol" }, { display: "Llagos", value: "Llagos" }];
-    var Colta = [{ display: "Columbe", value: "Columbe" }, { display: "Juan de Velasco", value: "Juan de Velasco" }, { display: "Santiago de Quito", value: "Santiago de Quito" }, { display: "Cajabamba", value: "Cajabamba" }, { display: "Cañi", value: "Cañi" }];
-    var Cumandá = [{ display: "Cumandá", value: "Cumandá" }];
-    var Guamote = [{ display: "Cebadas", value: "Cebadas" }, { display: "Palmira", value: "Palmira" }];
-    var Guano = [{ display: "Guanando", value: "Guanando" }, { display: "Ilapo", value: "Ilapo" }, { display: "La Providencia", value: "La Providencia" }, { display: "San Andrés", value: "San Andrés" }, { display: "San Gerardo de Pacaicaguán", value: "San Gerardo de Pacaicaguán" }, { display: "San Isidro de Patulú", value: "San Isidro de Patulú" }, { display: "San José del Chazo", value: "San José del Chazo" }, { display: "Santa Fe de Galán", value: "Santa Fe de Galán" }, { display: "Valparaíso", value: "Valparaíso" }, { display: "El Rosario", value: "El Rosario" }];
-    var Pallatanga = [{ display: "(Pallatanga", value: "(Pallatanga" }];
-    var Penipe = [{ display: "Bilbao", value: "Bilbao" }, { display: "La Candelaria", value: "La Candelaria" }, { display: "Matus", value: "Matus" }, { display: "Puela", value: "Puela" }, { display: "San Antonio de Bayushig", value: "San Antonio de Bayushig" }];
-    var Latacunga = [{ display: "11 de Noviembre", value: "11 de Noviembre" }, { display: "Alaques", value: "Alaques" }, { display: "Belisario Quevedo", value: "Belisario Quevedo" }, { display: "Guaitacama", value: "Guaitacama" }, { display: "Joseguango Bajo", value: "Joseguango Bajo" }, { display: "Mulaló", value: "Mulaló" }, { display: "Poaló", value: "Poaló" }, { display: "San Juan de Pastocalle", value: "San Juan de Pastocalle" }, { display: "Tanicuchí", value: "Tanicuchí" }, { display: "Toacaso", value: "Toacaso" }, { display: "Ignacio Flores", value: "Ignacio Flores" }, { display: "Juan Montalvo", value: "Juan Montalvo" }, { display: "La Matriz", value: "La Matriz" }, { display: "San Buenaventura", value: "San Buenaventura" }, { display: "Eloy Alfaro", value: "Eloy Alfaro" }];
-    var La_Maná = [{ display: "Guasaganda", value: "Guasaganda" }, { display: "Pucayacu", value: "Pucayacu" }, { display: "La Maná", value: "La Maná" }, { display: "El Triunfo", value: "El Triunfo" }, { display: "El Carmen", value: "El Carmen" }];
-    var Pangua = [{ display: "Moraspungo", value: "Moraspungo" }, { display: "Pinllopata", value: "Pinllopata" }, { display: "Ramón Campaña", value: "Ramón Campaña" }, { display: "El Corazón", value: "El Corazón" }];
-    var Pujilí = [{ display: "Angamarca", value: "Angamarca" }, { display: "Guangaje", value: "Guangaje" }, { display: "La Victoria", value: "La Victoria" }, { display: "Pilaló", value: "Pilaló" }, { display: "Tingo", value: "Tingo" }, { display: "Zumbahua", value: "Zumbahua" }];
-    var Salcedo = [{ display: "Antonio José Holguín", value: "Antonio José Holguín" }, { display: "Cusubamba", value: "Cusubamba" }, { display: "Mulalillo", value: "Mulalillo" }, { display: "Mulliquindil", value: "Mulliquindil" }, { display: "Pansaleo", value: "Pansaleo" }, { display: "San Miguel", value: "San Miguel" }];
-    var Saquisilí = [{ display: " Chantilín", value: " Chantilín" }, { display: " Cochapamba", value: " Cochapamba" }];
-    var Sigchos = [{ display: "Chugchillán", value: "Chugchillán" }, { display: "Isinlivi", value: "Isinlivi" }, { display: "Las Pamppas", value: "Las Pamppas" }, { display: "Palo Quemado", value: "Palo Quemado" }];
-    var Machala = [{ display: "El Cambio", value: "El Cambio" }, { display: "La Providencia", value: "La Providencia" }, { display: "Machala", value: "Machala" }, { display: "Puerto Bolívar", value: "Puerto Bolívar" }, { display: "Nueve de Mayo", value: "Nueve de Mayo" }];
-    var Chilla = [{ display: "Chilla", value: "Chilla" }, { display: "Carabota", value: "Carabota" }, { display: "Casacay", value: "Casacay" }, { display: "Challiguro", value: "Challiguro" }, { display: "Chucacay", value: "Chucacay" }, { display: "Cune", value: "Cune" }, { display: "Dumari", value: "Dumari" }, { display: "El Cedro", value: "El Cedro" }, { display: "Gallo Cantana", value: "Gallo Cantana" }, { display: "Luz de América", value: "Luz de América" }, { display: "Nudillo", value: "Nudillo" }, { display: "Pacay", value: "Pacay" }, { display: "Pacayunga", value: "Pacayunga" }, { display: "Pano", value: "Pano" }, { display: "Pejeyacu", value: "Pejeyacu" }, { display: "Playas de Daucay", value: "Playas de Daucay" }, { display: "Playas de San Tin Tin", value: "Playas de San Tin Tin" }, { display: "Pueblo Viejo", value: "Pueblo Viejo" }, { display: "Quera Alto", value: "Quera Alto" }, { display: "Shiguil", value: "Shiguil" }, { display: "Shiquil", value: "Shiquil" }];
-    var El_Guabo = [{ display: "El Guabo", value: "El Guabo" }, { display: "Barbones (Sucre)", value: "Barbones (Sucre)" }, { display: "La Iberia", value: "La Iberia" }, { display: "Tendales", value: "Tendales" }, { display: "Río Bonito", value: "Río Bonito" }];
-    var Huaquillas = [{ display: "El Paraíso", value: "El Paraíso" }, { display: "Hualtaco", value: "Hualtaco" }, { display: "Milton Reyes", value: "Milton Reyes" }, { display: "Unión Lojana", value: "Unión Lojana" }, { display: "Huaquillas", value: "Huaquillas" }, { display: "Marcabelí", value: "Marcabelí" }];
-    var Las_Lajas = [{ display: "La Victoria", value: "La Victoria" }, { display: "Platanillos", value: "Platanillos" }, { display: "Valle Hermoso", value: "Valle Hermoso" }, { display: "La Victoria", value: "La Victoria" }, { display: "La Libertad", value: "La Libertad" }, { display: "El Paraíso", value: "El Paraíso" }, { display: "San Isidro", value: "San Isidro" }];
-    var Marcabelí = [{ display: "El Ingenio", value: "El Ingenio" }];
-    var Pasaje = [{ display: "Buenavista", value: "Buenavista" }, { display: "Cañaquemada", value: "Cañaquemada" }, { display: "Casacay", value: "Casacay" }, { display: "La Peaña", value: "La Peaña" }, { display: "Progreso", value: "Progreso" }, { display: "Uzhcurrumi", value: "Uzhcurrumi" }, { display: "Loma de Franco", value: "Loma de Franco" }, { display: "Ochoa León", value: "Ochoa León" }, { display: "Tres Cerritos", value: "Tres Cerritos" }, { display: "Bolivar", value: "Bolivar" }];
-    var Piñas = [{ display: "Capiro", value: "Capiro" }, { display: "La Bocana", value: "La Bocana" }, { display: "Moromoro", value: "Moromoro" }, { display: "Piedras", value: "Piedras" }, { display: "San Roque", value: "San Roque" }, { display: "Saracay. Parroquias urbanas del Cantón Piñas son", value: "Saracay. Parroquias urbanas del Cantón Piñas son" }, { display: "La Susaya", value: "La Susaya" }, { display: "Piñas Grande", value: "Piñas Grande" }, { display: "La Matriz", value: "La Matriz" }];
-    var Portovelo = [{ display: "Curtincapa", value: "Curtincapa" }, { display: "Morales", value: "Morales" }, { display: "Salatí", value: "Salatí" }];
-    var Santa_Rosa = [{ display: "Bellamaría", value: "Bellamaría" }, { display: "Bellavista", value: "Bellavista" }, { display: "Jambelí", value: "Jambelí" }, { display: "La Avanzada", value: "La Avanzada" }, { display: "San Antonio", value: "San Antonio" }, { display: "Torata", value: "Torata" }, { display: "Victoria", value: "Victoria" }, { display: "Jumón", value: "Jumón" }, { display: "Nuevo Santa Rosa", value: "Nuevo Santa Rosa" }, { display: "Puerto Jelí", value: "Puerto Jelí" }, { display: "Santa Rosa", value: "Santa Rosa" }, { display: "Balneario Jambelí", value: "Balneario Jambelí" }];
-    var Esmeraldas = [{ display: "Camarones", value: "Camarones" }, { display: "Coronel Carlos Concha Torres", value: "Coronel Carlos Concha Torres" }, { display: "Chinca", value: "Chinca" }, { display: "Majua", value: "Majua" }, { display: "San Mateo", value: "San Mateo" }, { display: "Tabiazo", value: "Tabiazo" }, { display: "Tachina", value: "Tachina" }, { display: "Vuelta Larga", value: "Vuelta Larga" }, { display: "Bartolomé Ruiz", value: "Bartolomé Ruiz" }, { display: "Esmeraldas", value: "Esmeraldas" }, { display: "Luis Tello", value: "Luis Tello" }, { display: "Simón Plata Torres", value: "Simón Plata Torres" }, { display: "5 de Agosto", value: "5 de Agosto" }];
-    var Atacames = [{ display: "La Unión", value: "La Unión" }, { display: "Súa", value: "Súa" }, { display: "Tonchigüe", value: "Tonchigüe" }, { display: "Tonsupa", value: "Tonsupa" }];
-    var Eloy_Alfaro = [{ display: "Anchayacu", value: "Anchayacu" }, { display: "Atahualpa", value: "Atahualpa" }, { display: "Borbón", value: "Borbón" }, { display: "Colón Eloy del María", value: "Colón Eloy del María" }, { display: "La Tola", value: "La Tola" }, { display: "Luis Vargas Torres", value: "Luis Vargas Torres" }, { display: "Maldonado", value: "Maldonado" }, { display: "Pampanal de Bolívar", value: "Pampanal de Bolívar" }, { display: "San Francisco de Onzole", value: "San Francisco de Onzole" }, { display: "San José de Cayapas", value: "San José de Cayapas" }, { display: "Santo Domingo de Onzole", value: "Santo Domingo de Onzole" }, { display: "Santa Lucía de las Peñas", value: "Santa Lucía de las Peñas" }, { display: "Selva Alegre", value: "Selva Alegre" }, { display: "Telembí", value: "Telembí" }, { display: "Timbiré", value: "Timbiré" }, { display: "Valdez", value: "Valdez" }];
-    var Muisne = [{ display: "Bolívar", value: "Bolívar" }, { display: "Daule", value: "Daule" }, { display: "Galera", value: "Galera" }, { display: "Quingue", value: "Quingue" }, { display: "Salima", value: "Salima" }, { display: "San Francisco", value: "San Francisco" }, { display: "San Gregorio", value: "San Gregorio" }, { display: "San Jose de Chamanga", value: "San Jose de Chamanga" }];
-    var Quinindé = [{ display: "Cube", value: "Cube" }, { display: "Chura", value: "Chura" }, { display: "La Unión", value: "La Unión" }, { display: "Malimpia", value: "Malimpia" }, { display: "Viche", value: "Viche" }, { display: "Rosa Zárate", value: "Rosa Zárate" }];
-    var Rioverde = [{ display: "Chontaduro", value: "Chontaduro" }, { display: "Chumundé", value: "Chumundé" }, { display: "Lagarto", value: "Lagarto" }, { display: "Montalvo", value: "Montalvo" }, { display: "Rocafuerte", value: "Rocafuerte" }];
-    var San_Lorenzo = [{ display: "Alto Tambo", value: "Alto Tambo" }, { display: "Ancón", value: "Ancón" }, { display: "Calderón", value: "Calderón" }, { display: "Carondelet", value: "Carondelet" }, { display: "5 De Junio", value: "5 De Junio" }, { display: "Concepción", value: "Concepción" }, { display: "Mataje", value: "Mataje" }, { display: "San Javier De Cachaví", value: "San Javier De Cachaví" }, { display: "Santa Rita", value: "Santa Rita" }, { display: "Tambillo", value: "Tambillo" }, { display: "Tululbí", value: "Tululbí" }, { display: "Urbina", value: "Urbina" }];
-    var San_Cristóbal = [{ display: "Puerto Baquerizo Moreno", value: "Puerto Baquerizo Moreno" }, { display: "Floreana", value: "Floreana" }, { display: "El Progreso", value: "El Progreso" }, { display: "A Santa María", value: "A Santa María" }];
-    var Isabela = [{ display: "Tomás De Berlanga", value: "Tomás De Berlanga" }, { display: "Puerto Villamil", value: "Puerto Villamil" }];
-    var Santa_Cruz = [{ display: "Puerto Ayora", value: "Puerto Ayora" }, { display: "Bellavista", value: "Bellavista" }, { display: "Santa Rosa (Incluye La Isla Baltra)", value: "Santa Rosa (Incluye La Isla Baltra)" }];
-    var Rocafuerte = [{ display: "Rocafuerte", value: "Rocafuerte" }];
-    var Guayaquil = [{ display: "Juan Gómez Rendón", value: "Juan Gómez Rendón" }, { display: "Morro", value: "Morro" }, { display: "Posorja", value: "Posorja" }, { display: "Puná", value: "Puná" }, { display: "Tenguel", value: "Tenguel" }, { display: "Bolívar", value: "Bolívar" }, { display: "Carbo", value: "Carbo" }, { display: "Febres Cordero", value: "Febres Cordero" }, { display: "García Moreno", value: "García Moreno" }, { display: "Letamendi", value: "Letamendi" }, { display: "Nueve de Octubre", value: "Nueve de Octubre" }, { display: "Olmedo", value: "Olmedo" }, { display: "Roca", value: "Roca" }, { display: "Rocafuerte", value: "Rocafuerte" }, { display: "Sucre", value: "Sucre" }, { display: "Tarqui", value: "Tarqui" }, { display: "Urdaneta", value: "Urdaneta" }, { display: "Ximena", value: "Ximena" }, { display: "Pascuales", value: "Pascuales" }, { display: "Guayaquil", value: "Guayaquil" }, { display: "Ayacucho", value: "Ayacucho" },];
-    var Do_Baquerizo_Moreno = [{ display: "Alfredo Baquerizo Moreno", value: "Alfredo Baquerizo Moreno" }];
-    var Balao = [{ display: "Balao", value: "Balao" }];
-    var Balzar = [{ display: "Balzar", value: "Balzar" }];
-    var Colimes = [{ display: "Colimes", value: "Colimes" }, { display: "San Jacinto", value: "San Jacinto" }];
-    var Daule = [{ display: "Juan Bautista Aguirre", value: "Juan Bautista Aguirre" }, { display: "Laurel", value: "Laurel" }, { display: "Limonal", value: "Limonal" }, { display: "Los Lojas", value: "Los Lojas" }, { display: "La Aurora", value: "La Aurora" }, { display: "Banife", value: "Banife" }, { display: "Emiliano Caicedo Marcos", value: "Emiliano Caicedo Marcos" }, { display: "Magro", value: "Magro" }, { display: "Padre Juan Bautista Aguirre", value: "Padre Juan Bautista Aguirre" }, { display: "Santa Clara", value: "Santa Clara" }, { display: "Vicente Piedrahita", value: "Vicente Piedrahita" }, { display: "Olmedo", value: "Olmedo" }, { display: "Roca", value: "Roca" }, { display: "Rocafuerte", value: "Rocafuerte" }, { display: "Sucre", value: "Sucre" }, { display: "Tarqui", value: "Tarqui" }, { display: "Urdaneta", value: "Urdaneta" }, { display: "Ximena", value: "Ximena" }, { display: "Pascuales", value: "Pascuales" }, { display: "Daule", value: "Daule" },];
-    var Duran = [{ display: "Eloy Alfaro", value: "Eloy Alfaro " }, { display: "El Recreo", value: "El Recreo" }];
-    var El_Empalme = [{ display: "Velasco Ibarra", value: "Velasco Ibarra" }, { display: "Guayas", value: "Guayas" }, { display: "El Rosario", value: "El Rosario" }];
-    var El_Triunfo = [{ display: "El Triunfo", value: "El Triunfo" }];
-    var General_Antonio_Elizalde = [{ display: "General Antonio Elizalde (Bucay)", value: "General Antonio Elizalde (Bucay)" }];
-    var Isidro_Ayora = [{ display: "Isidro Ayora", value: "Isidro Ayora" }];
-    var Lomas_De_Sargentillo = [{ display: "Lomas De Sargentillo", value: "Lomas De Sargentillo" }];
-    var Marcelino_Maridue = [{ display: "Marcelino Maridueña", value: "Marcelino Maridueña" }];
-    var Milagro = [{ display: "Milagro", value: "Milagro" }, { display: "Chobo", value: "Chobo" }, { display: "Mariscal Sucre", value: "Mariscal Sucre" }, { display: "Roberto Astudillo", value: "Roberto Astudillo" }];
-    var Naranjal = [{ display: "Naranjal", value: "Naranjal" }, { display: "Jesús María", value: "Jesús María" }, { display: "San Carlos", value: "San Carlos" }, { display: "Santa Rosa De Flandes", value: "Santa Rosa De Flandes" }, { display: "Taura", value: "Taura" }];
-    var Naranjito = [{ display: "Naranjito", value: "Naranjito" }];
-    var Nobol = [{ display: "Narcisa De Jesús", value: "Narcisa De Jesús" }];
-    var Palestina = [{ display: "Palestina", value: "Palestina" }];
-    var Pedro_Carbo = [{ display: "Pedro Carbo", value: "Pedro Carbo" }, { display: "Valle De La Virgen", value: "Valle De La Virgen" }, { display: "Sabanilla", value: "Sabanilla" }];
-    var Playas = [{ display: "General Villamil", value: "General Villamil" }];
-    var Salitre = [{ display: "Bocana", value: "Bocana" }, { display: "Candilejos", value: "Candilejos" }, { display: "Central", value: "Central" }, { display: "Paraíso", value: "Paraíso" }, { display: "San Mateo", value: "San Mateo" }, { display: "El Salitre", value: "El Salitre" }, { display: "Gral. Vernaza", value: "Gral. Vernaza" }, { display: "La Victoria", value: "La Victoria" }, { display: "Junquillal", value: "Junquillal" }];
-    var Samborondón = [{ display: "Samborondón", value: "Samborondón" }, { display: "La Puntilla", value: "La Puntilla" }, { display: "Tarifa", value: "Tarifa" }];
-    var Santa_Lucía = [{ display: "Santa Lucía", value: "Santa Lucía" }];
-    var Simón_Bolívar = [{ display: "Simón Bolívar", value: "Simón Bolívar" }, { display: "Coronel Lorenzo de Garaicoa", value: "Coronel Lorenzo de Garaicoa" }];
-    var Yaguachi = [{ display: "General Pedro J. Montero", value: "General Pedro J. Montero" }, { display: "Yaguachi Viejo", value: "Yaguachi Viejo" }, { display: "Virgen de Fátima", value: "Virgen de Fátima" },];
-    var San_Miguel_De_Urcuquí = [{ display: "Cahuasquí", value: "Cahuasquí" }, { display: "La Merced De Buenos Aires", value: "La Merced De Buenos Aires" }, { display: "Pablo Arenas", value: "Pablo Arenas" }, { display: "San Blas", value: "San Blas" }, { display: "Tumbabiro", value: "Tumbabiro" }];
-    var Ibarra = [{ display: "Ambuqui", value: "Ambuqui" }, { display: "Angochagua", value: "Angochagua" }, { display: "Carolina", value: "Carolina" }, { display: "La Esperanza", value: "La Esperanza" }, { display: "Lita", value: "Lita" }, { display: "Salinas", value: "Salinas" }, { display: "San Antonio", value: "San Antonio" }, { display: "Guayaquil de Alpachaca", value: "Guayaquil de Alpachaca" }, { display: "Sagrario", value: "Sagrario" }, { display: "San Francisco", value: "San Francisco" }, { display: "La Dolorosa del Priorato", value: "La Dolorosa del Priorato" }, { display: "Olmedo", value: "Olmedo" }, { display: "Roca", value: "Roca" }, { display: "Rocafuerte", value: "Rocafuerte" }, { display: "Sucre", value: "Sucre" }, { display: "Tarqui", value: "Tarqui" }, { display: "Urdaneta", value: "Urdaneta" }, { display: "Ximena", value: "Ximena" }, { display: "Pascuales", value: "Pascuales" }, { display: "Garanqui", value: "Garanqui" }, { display: "San Miguel de Ibarra", value: "San Miguel de Ibarra" },];
-    var Antonio_Ante = [{ display: "Andrade Marín", value: "Andrade Marín" }, { display: "Atuntaqui", value: "Atuntaqui" }, { display: "Imbaya", value: "Imbaya" }, { display: "San Francisco De Natabuela", value: "San Francisco De Natabuela" }, { display: "San José De Chaltura", value: "San José De Chaltura" }, { display: "San Roque", value: "San Roque" }];
-    var Cotacachi = [{ display: "Sagrario", value: "Sagrario" }, { display: "San Francisco", value: "San Francisco" }, { display: "Cotacachi", value: "Cotacachi" }, { display: "Apuela", value: "Apuela" }, { display: "García Moreno", value: "García Moreno" }, { display: "Imantag", value: "Imantag" }, { display: "Peñaherrera", value: "Peñaherrera" }, { display: "Plaza Gutiérrez (Calvario)", value: "Plaza Gutiérrez (Calvario)" }, { display: "Quiroga", value: "Quiroga" }, { display: "6 De Julio De Cuellaje", value: "6 De Julio De Cuellaje" }, { display: "Vacas Galindo (El Churo) (Cab.En San Miguel Alto", value: "Vacas Galindo (El Churo) (Cab.En San Miguel Alto" }];
-    var Otavalo = [{ display: "Jordán", value: "Jordán" }, { display: "San Luis", value: "San Luis" }, { display: "Otavalo", value: "Otavalo" }, { display: "Dr. Miguel Egas Cabezas (Peguche)", value: "Dr. Miguel Egas Cabezas (Peguche)" }, { display: "Eugenio Espejo (Calpaquí)", value: "Eugenio Espejo (Calpaquí)" }, { display: "González Suárez", value: "González Suárez" }, { display: "Pataquí", value: "Pataquí" }, { display: "San José De Quichinche", value: "San José De Quichinche" }, { display: "San Juan De Ilumán", value: "San Juan De Ilumán" }, { display: "San Pablo", value: "San Pablo" }, { display: "San Rafael", value: "San Rafael" }, { display: "Selva Alegre", value: "Selva Alegre" }];
-    var Pimampiro = [{ display: "Pimampiro", value: "Pimampiro" }, { display: "Chugá", value: "Chugá" }, { display: "Mariano Acosta", value: "Mariano Acosta" }, { display: "San Francisco De Sigsipamba", value: "San Francisco De Sigsipamba" }];
-    var Loja = [{ display: "El Sagrario", value: "El Sagrario" }, { display: "San Sebastián", value: "San Sebastián" }, { display: "Sucre", value: "Sucre" }, { display: "Valle", value: "Valle" }, { display: "Loja", value: "Loja" }, { display: "Chantaco", value: "Chantaco" }, { display: "Chuquiribamba", value: "Chuquiribamba" }, { display: "El Cisne", value: "El Cisne" }, { display: "Gualel", value: "Gualel" }, { display: "Jimbilla", value: "Jimbilla" }, { display: "Malacatos (Valladolid)", value: "Malacatos (Valladolid)" }, { display: "San Lucas", value: "San Lucas" }, { display: "San Pedro De Vilcabamba", value: "San Pedro De Vilcabamba" }, { display: "Santiago", value: "Santiago" }, { display: "Taquil (Miguel Riofrío)", value: "Taquil (Miguel Riofrío)" }, { display: "Vilcabamba (Victoria)", value: "Vilcabamba (Victoria)" }, { display: "Yangana (Arsenio Castillo)", value: "Yangana (Arsenio Castillo)" }, { display: "Quinara", value: "Quinara" }];
-    var Calvas = [{ display: "Colaisaca", value: "Colaisaca" }, { display: "El Lucero", value: "El Lucero" }, { display: "Utuana", value: "Utuana" }, { display: "Sanguillín", value: "Sanguillín" }, { display: "Chile", value: "Chile" }, { display: "San Vicente", value: "San Vicente" }, { display: "Cariamanga", value: "Cariamanga" },];
-    var Catamayo = [{ display: "Tambo", value: "Tambo" }, { display: "Guayquichuma", value: "Guayquichuma" }, { display: "San Pedro de la Bendita", value: "San Pedro de la Bendita" }, { display: "Zambi", value: "Zambi" }, { display: "San José", value: "San José" }, { display: "Catamayo", value: "Catamayo" },];
-    var Celica = [{ display: "Cruzpamba", value: "Cruzpamba" }, { display: "Pozul", value: "Pozul" }, { display: "Sabanilla", value: "Sabanilla" }, { display: "Teniente Maximiliano Rodríguez Loaiza", value: "Teniente Maximiliano Rodríguez Loaiza" },];
-    var Chaguarpamba = [{ display: "Chaguarpamba", value: "Chaguarpamba" }, { display: "Buenavista", value: "Buenavista" }, { display: "El Rosario", value: "El Rosario" }, { display: "Santa Rufina", value: "Santa Rufina" }, { display: "Amarillos", value: "Amarillos" }];
-    var Espíndola = [{ display: "Amaluza", value: "Amaluza" }, { display: "Bellavista", value: "Bellavista" }, { display: "Jimbura", value: "Jimbura" }, { display: "Santa Teresita", value: "Santa Teresita" }, { display: "27 De Abril", value: "27 De Abril" }, { display: "El Ingenio", value: "El Ingenio" }, { display: "El Airo", value: "El Airo" }];
-    var Gonzanamá = [{ display: "Changaimina", value: "Changaimina" }, { display: "Nambacola", value: "Nambacola" }, { display: "Purunuma", value: "Purunuma" }, { display: "Sacapalca", value: "Sacapalca" },];
-    var Macará = [{ display: "General Eloy Alfaro", value: "General Eloy Alfaro" }, { display: "Larama", value: "Larama" }, { display: "La Victoria", value: "La Victoria" }, { display: "Sabiango", value: "Sabiango" }, { display: "Macará", value: "Macará" },];
-    var Olmedo = [{ display: "Olmedo", value: "Olmedo" }];
-    var Paltas = [{ display: "Cangonamá", value: "Cangonamá" }, { display: "Guachanamá", value: "Guachanamá" }, { display: "Lauro Guerrero", value: "Lauro Guerrero" }, { display: "Orianga", value: "Orianga" }, { display: "San Antonio", value: "San Antonio" }, { display: "Casanga", value: "Casanga" }, { display: "Yamana", value: "Yamana" }, { display: "Lourdes", value: "Lourdes" }, { display: "Catacocha", value: "Catacocha" },];
-    var Pindal = [{ display: "Pindal", value: "Pindal" }, { display: "Chaquinal", value: "Chaquinal" }, { display: "12 De Diciembre (Cab.En Achiotes)", value: "12 De Diciembre (Cab.En Achiotes)" }, { display: "Milagros", value: "Milagros" }];
-    var Puyango = [{ display: "Ciano", value: "Ciano" }, { display: "El Arenal", value: "El Arenal" }, { display: "El Limo", value: "El Limo" }, { display: "Mercadillo", value: "Mercadillo" }, { display: "Vicentino", value: "Vicentino" }, { display: "Alamor)", value: "Alamor)" },];
-    var Babahoyo = [{ display: "Clemente Baquerizo", value: "Clemente Baquerizo" }, { display: "Dr. Camilo Ponce", value: "Dr. Camilo Ponce" }, { display: "Barreiro", value: "Barreiro" }, { display: "El Salto", value: "El Salto" }, { display: "Babahoyo", value: "Babahoyo" }, { display: "Barreiro (Santa Rita)", value: "Barreiro (Santa Rita)" }, { display: "Caracol", value: "Caracol" }, { display: "Febres Cordero (Las Juntas)", value: "Febres Cordero (Las Juntas)" }, { display: "Pimocha", value: "Pimocha" }, { display: "La Unión", value: "La Unión" }];
-    var Baba = [{ display: "Baba", value: "Baba" }, { display: "Guare", value: "Guare" }, { display: "Isla De Bejucal", value: "Isla De Bejucal" }];
-    var Buena_Fe = [{ display: "San Jacinto De Buena Fé", value: "San Jacinto De Buena Fé" }, { display: "7 De Agosto", value: "7 De Agosto" }, { display: "11 De Octubre", value: "11 De Octubre" }, { display: "San Jacinto De Buena Fé", value: "San Jacinto De Buena Fé" }, { display: "Patricia Pilar", value: "Patricia Pilar" }];
-    var Mocache = [{ display: "Mocache", value: "Mocache" }];
-    var Montalvo = [{ display: "Montalvo", value: "Montalvo" }];
-    var Palenque = [{ display: "Palenque", value: "Palenque" }];
-    var Puebloviejo = [{ display: "Puerto Pechiche", value: "Puerto Pechiche" }, { display: "San Juan", value: "San Juan" }];
-    var Quevedo = [{ display: "Quevedo", value: "Quevedo" }, { display: "San Camilo", value: "San Camilo" }, { display: "San José", value: "San José" }, { display: "Guayacán", value: "Guayacán" }, { display: "Nicolás Infante Díaz", value: "Nicolás Infante Díaz" }, { display: "San Cristóbal", value: "San Cristóbal" }, { display: "7 De Octubre", value: "7 De Octubre" }, { display: "24 De Mayo", value: "24 De Mayo" }, { display: "Venus Del Río Quevedo", value: "Venus Del Río Quevedo" }, { display: "Viva Alfaro", value: "Viva Alfaro" }, { display: "San Carlos", value: "San Carlos" }, { display: "La Esperanza", value: "La Esperanza" }];
-    var Quinsaloma = [{ display: "Quinsaloma", value: "Quinsaloma" }];
-    var Urdaneta = [{ display: "Catarama", value: "Catarama" }, { display: "Ricaurte", value: "Ricaurte" }];
-    var Valencia = [{ display: "Valencia", value: "Valencia" }];
-    var Ventanas = [{ display: "Chacarita", value: "Chacarita" }, { display: "Los Ángeles", value: "Los Ángeles" }, { display: "Zapotal", value: "Zapotal" }, { display: "10 de Noviembre", value: "10 de Noviembre" },];
-    var Vínces = [{ display: "Vinces", value: "Vinces" }, { display: "Antonio Sotomayor", value: "Antonio Sotomayor" }];
-    var Santo_Domingo = [{ display: "Abraham Calazacón", value: "Abraham Calazacón" }, { display: "Bombolí", value: "Bombolí" }, { display: "Chiguilpe", value: "Chiguilpe" }, { display: "Río Toachi", value: "Río Toachi" }, { display: "Río Verde", value: "Río Verde" }, { display: "Santo Domingo De Los Colorados", value: "Santo Domingo De Los Colorados" }, { display: "Zaracay", value: "Zaracay" }, { display: "Santo Domingo De Los Colorados", value: "Santo Domingo De Los Colorados" }, { display: "Alluriquín", value: "Alluriquín" }, { display: "Puerto Limón", value: "Puerto Limón" }, { display: "Luz De América", value: "Luz De América" }, { display: "San Jacinto Del Búa", value: "San Jacinto Del Búa" }, { display: "Valle Hermoso", value: "Valle Hermoso" }, { display: "El Esfuerzo", value: "El Esfuerzo" }, { display: "Santa María Del Toachi", value: "Santa María Del Toachi" }];
-    var Quito = [{ display: "Alangasí", value: "Alangasí" }, { display: " Amaguaña", value: " Amaguaña" }, { display: " Atahualpa", value: " Atahualpa" }, { display: " Calacalí", value: " Calacalí" }, { display: " Calderón", value: " Calderón" }, { display: " Conocoto", value: " Conocoto" }, { display: " Cumbayá", value: " Cumbayá" }, { display: " Chavezpamba", value: " Chavezpamba" }, { display: " Checa", value: " Checa" }, { display: " El Quinche", value: " El Quinche" }, { display: " Gualea", value: " Gualea" }, { display: " Guangopolo", value: " Guangopolo" }, { display: " Guayllabamba", value: " Guayllabamba" }, { display: " La Merced", value: " La Merced" }, { display: " Llano Chico", value: " Llano Chico" }, { display: " Lloa", value: " Lloa" }, { display: " Nanegal", value: " Nanegal" }, { display: " Nanegalito", value: " Nanegalito" }, { display: " Nayón", value: " Nayón" }, { display: " Nono", value: " Nono" }, { display: " Pacto", value: " Pacto" }, { display: " Perucho", value: " Perucho" }, { display: " Pifo", value: " Pifo" }, { display: " Píntag", value: " Píntag" }, { display: " Pomasqui", value: " Pomasqui" }, { display: " Puéllaro", value: " Puéllaro" }, { display: " Puembo", value: " Puembo" }, { display: " San Antonio", value: " San Antonio" }, { display: " San José de Minas", value: " San José de Minas" }, { display: " Tababela", value: " Tababela" }, { display: " Tumbaco", value: " Tumbaco" }, { display: " Yaruquí", value: " Yaruquí" }, { display: " Zámbiza. Parroquias Metropolitanas centrales son Belisario Quevedo", value: " Zámbiza. Parroquias Metropolitanas centrales son Belisario Quevedo" }, { display: " Carcelén", value: " Carcelén" }, { display: " Centro Histórico", value: " Centro Histórico" }, { display: " Cochapamba", value: " Cochapamba" }, { display: " Comité del Pueblo", value: " Comité del Pueblo" }, { display: " Cotocollao", value: " Cotocollao" }, { display: " Chilibulo", value: " Chilibulo" }, { display: " Chillogallo", value: " Chillogallo" }, { display: " Chimbacalle", value: " Chimbacalle" }, { display: " El Condado", value: " El Condado" }, { display: " Guamaní", value: " Guamaní" }, { display: " Iñaquito", value: " Iñaquito" }, { display: " Jipijapa", value: " Jipijapa" }, { display: " Itchimbia", value: " Itchimbia" }, { display: " Kennedy", value: " Kennedy" }, { display: " La Argelia", value: " La Argelia" }, { display: " La Concepción", value: " La Concepción" }, { display: " La Ecuatoriana", value: " La Ecuatoriana" }, { display: " La Ferroviaria", value: " La Ferroviaria" }, { display: " La Libertad", value: " La Libertad" }, { display: " La Magdalena", value: " La Magdalena" }, { display: " La Mena", value: " La Mena" }, { display: " Mariscal Sucre", value: " Mariscal Sucre" }, { display: " Ponceano", value: " Ponceano" }, { display: " Puengasí", value: " Puengasí" }, { display: " Quitumbe", value: " Quitumbe" }, { display: " Rumipamba", value: " Rumipamba" }, { display: " San Bartolo", value: " San Bartolo" }, { display: " San Isidro del Inca", value: " San Isidro del Inca" }, { display: " San Juan", value: " San Juan" }, { display: " Solanda", value: " Solanda" }, { display: " Turubamba)", value: " Turubamba)" },];
-    var Aguarico = [{ display: "Tipitini", value: "Tipitini" }, { display: "Nuevo Rocafuerte", value: "Nuevo Rocafuerte" }, { display: "Capitán Augusto Rivadeneyra", value: "Capitán Augusto Rivadeneyra" }, { display: "Cononaco", value: "Cononaco" }, { display: "Santa María De Huiririma", value: "Santa María De Huiririma" }, { display: "Tiputini", value: "Tiputini" }, { display: "Yasuní", value: "Yasuní" }];
-
-
-
-    var Ambato = [
-        { display: "Atocha – Ficoa", value: "Atocha – Ficoa" },
-        { display: "Celiano Monge", value: "Celiano Monge" },
-        { display: "Huachi Chico", value: "Huachi Chico" },
-        { display: "Huachi Loreto", value: "Huachi Loreto" },
-        { display: "La Merced", value: "La Merced" },
-        { display: "La Península", value: "La Península" },
-        { display: "Matriz", value: "Matriz" },
-        { display: "Pishilata", value: "Pishilata" },
-        { display: "San Francisco", value: "San Francisco" },
-        { display: "Ambato", value: "Ambato" },
-        { display: "Ambatillo", value: "Ambatillo" },
-        { display: "Atahualpa (Chisalata)", value: "Atahualpa (Chisalata)" },
-        { display: "Augusto N. Martínez (Mundugleo)", value: "Augusto N. Martínez (Mundugleo)" },
-        { display: "Constantino Fernández (Cab. En Cullitahua)", value: "Constantino Fernández (Cab. En Cullitahua)" },
-        { display: "Huachi Grande", value: "Huachi Grande" },
-        { display: "Izamba", value: "Izamba" },
-        { display: "Juan Benigno Vela", value: "Juan Benigno Vela" },
-        { display: "Montalvo", value: "Montalvo" },
-        { display: "Pasa", value: "Pasa" },
-        { display: "Picaigua", value: "Picaigua" },
-        { display: "Pilagüín (Pilahüín)", value: "Pilagüín (Pilahüín)" },
-        { display: "Quisapincha (Quizapincha)", value: "Quisapincha (Quizapincha)" },
-        { display: "San Bartolomé De Pinllog", value: "San Bartolomé De Pinllog" },
-        { display: "San Fernando (Pasa San Fernando)", value: "San Fernando (Pasa San Fernando)" },
-        { display: "Santa Rosa", value: "Santa Rosa" },
-        { display: "Totoras", value: "Totoras" },
-        { display: "Cunchibamba", value: "Cunchibamba" },
-        { display: "Unamuncho", value: "Unamuncho" }
-
-
-    ];
-
-
-    var Arajuno = [
-
-        { display: "Arajuno", value: "Arajuno" },
-        { display: "Curaray", value: "Curaray" }
-
-    ];
-    var Archidona = [
-        { display: "Archidona", value: "Archidona" },
-        { display: "Avila", value: "Avila" },
-        { display: "Cotundo", value: "Cotundo" },
-        { display: "Loreto", value: "Loreto" },
-        { display: "San Pablo De Ushpayacu", value: "San Pablo De Ushpayacu" },
-        { display: "Puerto Murialdo", value: "Puerto Murialdo" }
-
-
-    ];
-
-    var Arenillas = [
-        { display: "Chacras", value: "Chacras" },
-        { display: "Palmales", value: "Palmales" },
-        { display: "Carcabón", value: "Carcabón" }
-
-    ];
-    var Arlos_Julio_Arosemena_Tol = [
-        { display: "Carlos Julio Arosemena Tola", value: "Carlos_Julio_Arosemena_Tola" }
-
-
-    ];
-
-
-    var Atahualpa = [{ display: "Paccha", value: "Paccha" }, { display: "Ayapamba", value: "Ayapamba" }, { display: "Cordoncillo", value: "Cordoncillo" }, { display: "Milagro", value: "Milagro" }, { display: "San José", value: "San José" }, { display: "San Juan De Cerro Azul", value: "San Juan De Cerro Azul" }];
-
-
-
-
-    var Balsas = [{ display: "Balsas", value: "Balsas" }, { display: "Bellamaría", value: "Bellamaría" }];
-
-    var Baños_De_Agua_Santa = [{ display: "Baños De Agua Santa", value: "Baños De Agua Santa" }, { display: "Lligua", value: "Lligua" }, { display: "Río Negro", value: "Río Negro" }, { display: "Río Verde", value: "Río Verde" }, { display: "Ulba", value: "Ulba" }];
-    var Biblian = [{ display: "Biblián", value: "Biblián" }, { display: "Nazón (Cab. En Pampa De Domínguez)", value: "Nazón (Cab. En Pampa De Domínguez)" }, { display: "San Francisco De Sageo", value: "San Francisco De Sageo" }, { display: "Turupamba", value: "Turupamba" }, { display: "Jerusalén", value: "Jerusalén" }];
-    var Bolivar = [{ display: "Bolívar", value: "Bolívar" }, { display: "García Moreno", value: "García Moreno" }, { display: "Los Andes", value: "Los Andes" }, { display: "Monte Olivo", value: "Monte Olivo" }, { display: "San Vicente De Pusir", value: "San Vicente De Pusir" }, { display: "San Rafael", value: "San Rafael" }, { display: "Calceta", value: "Calceta" }, { display: "Membrillo", value: "Membrillo" }, { display: "Quiroga", value: "Quiroga" }];
-
-    var Camilo_Ponce_Enriquez = [{ display: "Camilo Ponce Enríquez", value: "Camilo Ponce Enríquez" }, { display: "El Carmen De Pijilí", value: "El Carmen De Pijilí" }];
-    var Cañar = [{ display: "Cañar", value: "Cañar" }, { display: "Chontamarca", value: "Chontamarca" }, { display: "Chorocopte", value: "Chorocopte" }, { display: "General Morales (Socarte)", value: "General Morales (Socarte)" }, { display: "Gualleturo", value: "Gualleturo" }, { display: "Honorato Vásquez (Tambo Viejo)", value: "Honorato Vásquez (Tambo Viejo)" }, { display: "Ingapirca", value: "Ingapirca" }, { display: "Juncal", value: "Juncal" }, { display: "San Antonio", value: "San Antonio" }, { display: "Suscal", value: "Suscal" }, { display: "Tambo", value: "Tambo" }, { display: "Zhud", value: "Zhud" }, { display: "Ventura", value: "Ventura" }, { display: "Ducur", value: "Ducur" }];
-    var Cascales = [{ display: "El Dorado De Cascales", value: "El Dorado De Cascales" }, { display: "Santa Rosa De Sucumbíos", value: "Santa Rosa De Sucumbíos" }, { display: "Sevilla", value: "Sevilla" }];
-
-    var Cayambe = [{ display: "Ayora", value: "Ayora" }, { display: "Cayambe", value: "Cayambe" }, { display: "Juan Montalvo", value: "Juan Montalvo" }, { display: "Cayambe", value: "Cayambe" }, { display: "Ascázubi", value: "Ascázubi" }, { display: "Cangahua", value: "Cangahua" }, { display: "Olmedo (Pesillo)", value: "Olmedo (Pesillo)" }, { display: "Otón", value: "Otón" }, { display: "Santa Rosa De Cuzubamba", value: "Santa Rosa De Cuzubamba" }];
-
-
-    var Centinela_Del_Cóndor = [{ display: "Zumbi", value: "Zumbi" }, { display: "Paquisha", value: "Paquisha" }, { display: "Triunfo-Dorado", value: "Triunfo-Dorado" }, { display: "Panguintza", value: "Panguintza" }];
-    var Cevallos = [{ display: "Cevallos", value: "Cevallos" }];
-
-  
-
-    var Chillanes = [{ display: "Chillanes", value: "Chillanes" }, { display: "San José Del Tambo (Tambopamba)", value: "San José Del Tambo (Tambopamba)" }];
-    var Chimbo = [{ display: "San José De Chimbo", value: "San José De Chimbo" }, { display: "Asunción (Asancoto)", value: "Asunción (Asancoto)" }, { display: "Caluma", value: "Caluma" }, { display: "Magdalena (Chapacoto)", value: "Magdalena (Chapacoto)" }, { display: "San Sebastián", value: "San Sebastián" }, { display: "Telimbela", value: "Telimbela" }];
-    var Chinchipe = [{ display: "Zumba", value: "Zumba" }, { display: "Chito", value: "Chito" }, { display: "El Chorro", value: "El Chorro" }, { display: "El Porvenir Del Carmen", value: "El Porvenir Del Carmen" }, { display: "La Chonta", value: "La Chonta" }, { display: "Palanda", value: "Palanda" }, { display: "Pucapamba", value: "Pucapamba" }, { display: "San Francisco Del Vergel", value: "San Francisco Del Vergel" }, { display: "Valladolid", value: "Valladolid" }, { display: "San Andrés", value: "San Andrés" }];
-    var Chone = [{ display: "Chone", value: "Chone" }, { display: "Santa Rita", value: "Santa Rita" }, { display: "Boyacá", value: "Boyacá" }, { display: "Canuto", value: "Canuto" }, { display: "Convento", value: "Convento" }, { display: "Chibunga", value: "Chibunga" }, { display: "Eloy Alfaro", value: "Eloy Alfaro" }, { display: "Ricaurte", value: "Ricaurte" }, { display: "San Antonio", value: "San Antonio" }];
-    var Chordeleg = [{ display: "Chordeleg", value: "Chordeleg" }, { display: "Principal", value: "Principal" }, { display: "La Unión", value: "La Unión" }, { display: "Luis Galarza Orellana (Cab.En Delegsol)", value: "Luis Galarza Orellana (Cab.En Delegsol)" }, { display: "San Martín De Puzhio", value: "San Martín De Puzhio" }];
-    var Chunchi = [{ display: "Chunchi", value: "Chunchi" }, { display: "Capzol", value: "Capzol" }, { display: "Compud", value: "Compud" }, { display: "Gonzol", value: "Gonzol" }, { display: "Llagos", value: "Llagos" }];
-
-    var Colta = [{ display: "Cajabamba", value: "Cajabamba" }, { display: "Sicalpa", value: "Sicalpa" }, { display: "Villa La Unión (Cajabamba)", value: "Villa La Unión (Cajabamba)" }, { display: "Cañi", value: "Cañi" }, { display: "Columbe", value: "Columbe" }, { display: "Juan De Velasco (Pangor)", value: "Juan De Velasco (Pangor)" }, { display: "Santiago De Quito (Cab. En San Antonio De Quito)", value: "Santiago De Quito (Cab. En San Antonio De Quito)" }];
-
-
-    var Cumanda = [{ display: "Cumandá", value: "Cumandá" }];
-    var Cuyabeno = [{ display: "Tarapoa", value: "Tarapoa" }, { display: "Cuyabeno", value: "Cuyabeno" }, { display: "Aguas Negras", value: "Aguas Negras" }];
-
-    var Déleg = [{ display: "Déleg", value: "Déleg" }, { display: "Solano", value: "Solano" }];
-
-    var El_Carmen = [{ display: "El Carmen", value: "El Carmen" }, { display: "4 De Diciembre", value: "4 De Diciembre" }, { display: "El Carmen", value: "El Carmen" }, { display: "Wilfrido Loor Moreira (Maicito)", value: "Wilfrido Loor Moreira (Maicito)" }, { display: "San Pedro De Suma", value: "San Pedro De Suma" }];
-    var El_Chaco = [{ display: "El Chaco", value: "El Chaco" }, { display: "Gonzalo Díaz De Pineda (El Bombón)", value: "Gonzalo Díaz De Pineda (El Bombón)" }, { display: "Linares", value: "Linares" }, { display: "Oyacachi", value: "Oyacachi" }, { display: "Santa Rosa", value: "Santa Rosa" }, { display: "Sardinas", value: "Sardinas" }];
-
-    var El_Pan = [{ display: "El Pan", value: "El Pan" }, { display: "Amaluza", value: "Amaluza" }, { display: "Palmas", value: "Palmas" }, { display: "San Vicente", value: "San Vicente" }];
-    var El_Pangui = [{ display: "El Pangui", value: "El Pangui" }, { display: "El Guisme", value: "El Guisme" }, { display: "Pachicutza", value: "Pachicutza" }, { display: "Tundayme", value: "Tundayme" }];
-    var El_Piedrero = [{ display: "El Piedrero", value: "El Piedrero" }];
-  
-
-    var Espejo = [{ display: "El Ángel", value: "El Ángel" }, { display: "27 De Septiembre", value: "27 De Septiembre" }, { display: "El Angel", value: "El Angel" }, { display: "El Goaltal", value: "El Goaltal" }, { display: "La Libertad (Alizo)", value: "La Libertad (Alizo)" }, { display: "San Isidro", value: "San Isidro" }];
-
-    var Flavio_Alfaro = [{ display: "Flavio Alfaro", value: "Flavio Alfaro" }, { display: "San Francisco De Novillo (Cab. En", value: "San Francisco De Novillo (Cab. En" }, { display: "Zapallo", value: "Zapallo" }];
-
-    var Girón = [{ display: "Girón", value: "Girón" }, { display: "Asunción", value: "Asunción" }, { display: "San Gerardo", value: "San Gerardo" }];
-    var Gonzalo_Pizarro = [{ display: "El Dorado De Cascales", value: "El Dorado De Cascales" }, { display: "El Reventador", value: "El Reventador" }, { display: "Gonzalo Pizarro", value: "Gonzalo Pizarro" }, { display: "Lumbaquí", value: "Lumbaquí" }, { display: "Puerto Libre", value: "Puerto Libre" }, { display: "Santa Rosa De Sucumbíos", value: "Santa Rosa De Sucumbíos" }];
-
-    var Guachapala = [{ display: "Guachapala", value: "Guachapala" }];
-    var Gualaceo = [{ display: "Gualaceo", value: "Gualaceo" }, { display: "Chordeleg", value: "Chordeleg" }, { display: "Daniel Córdova Toral (El Oriente)", value: "Daniel Córdova Toral (El Oriente)" }, { display: "Jadán", value: "Jadán" }, { display: "Mariano Moreno", value: "Mariano Moreno" }, { display: "Principal", value: "Principal" }, { display: "Remigio Crespo Toral (Gúlag)", value: "Remigio Crespo Toral (Gúlag)" }, { display: "San Juan", value: "San Juan" }, { display: "Zhidmad", value: "Zhidmad" }, { display: "Luis Cordero Vega", value: "Luis Cordero Vega" }, { display: "Simón Bolívar (Cab. En Gañanzol)", value: "Simón Bolívar (Cab. En Gañanzol)" }];
-    var Gualaquiza = [{ display: "Mercedes Molina", value: "Mercedes Molina" }, { display: "Gualaquiza", value: "Gualaquiza" }, { display: "Amazonas (Rosario De Cuyes)", value: "Amazonas (Rosario De Cuyes)" }, { display: "Bermejos", value: "Bermejos" }, { display: "Bomboiza", value: "Bomboiza" }, { display: "Chigüinda", value: "Chigüinda" }, { display: "El Rosario", value: "El Rosario" }, { display: "Nueva Tarqui", value: "Nueva Tarqui" }, { display: "San Miguel De Cuyes", value: "San Miguel De Cuyes" }, { display: "El Ideal", value: "El Ideal" }, { display: "General Leonidas Plaza Gutiérrez (Limón)", value: "General Leonidas Plaza Gutiérrez (Limón)" }];
-
-    var Guano = [{ display: "La Matriz", value: "La Matriz" }, { display: "Guano", value: "Guano" }, { display: "Guanando", value: "Guanando" }, { display: "Ilapo", value: "Ilapo" }, { display: "La Providencia", value: "La Providencia" }, { display: "San Andrés", value: "San Andrés" }, { display: "San Gerardo De Pacaicaguán", value: "San Gerardo De Pacaicaguán" }, { display: "San Isidro De Patulú", value: "San Isidro De Patulú" }, { display: "San José Del Chazo", value: "San José Del Chazo" }, { display: "Santa Fé De Galán", value: "Santa Fé De Galán" }, { display: "Valparaíso", value: "Valparaíso" }, { display: "Pallatanga", value: "Pallatanga" }];
-    var Guaranda = [{ display: "Gabriel Ignacio Veintimilla", value: "Gabriel Ignacio Veintimilla" }, { display: "Guanujo", value: "Guanujo" }, { display: "Guaranda", value: "Guaranda" }, { display: "Facundo Vela", value: "Facundo Vela" }, { display: "Guanujo", value: "Guanujo" }, { display: "Julio E. Moreno (Catanahuán Grande)", value: "Julio E. Moreno (Catanahuán Grande)" }, { display: "Las Naves", value: "Las Naves" }, { display: "Salinas", value: "Salinas" }, { display: "San Lorenzo", value: "San Lorenzo" }, { display: "San Simón (Yacoto)", value: "San Simón (Yacoto)" }, { display: "Santa Fé (Santa Fé)", value: "Santa Fé (Santa Fé)" }, { display: "Simiátug", value: "Simiátug" }, { display: "San Luis De Pambil", value: "San Luis De Pambil" }, { display: "Chillanes", value: "Chillanes" }];
-
-    var Huamboya = [{ display: "Chiguaza", value: "Chiguaza" }, { display: "Pablo Sexto", value: "Pablo Sexto" }, { display: "San Juan Bosco", value: "San Juan Bosco" }];
-
-
-    var Jama = [{ display: "Jama", value: "Jama" }];
-    var Jaramijó = [{ display: "Jaramijó", value: "Jaramijó" }];
-    var Jipijapa = [{ display: "Dr. Miguel Morán Lucio", value: "Dr. Miguel Morán Lucio" }, { display: "Manuel Inocencio Parrales Y Guale", value: "Manuel Inocencio Parrales Y Guale" }, { display: "San Lorenzo De Jipijapa", value: "San Lorenzo De Jipijapa" }, { display: "Jipijapa", value: "Jipijapa" }, { display: "América", value: "América" }, { display: "El Anegado (Cab. En Eloy Alfaro)", value: "El Anegado (Cab. En Eloy Alfaro)" }, { display: "Julcuy", value: "Julcuy" }, { display: "La Unión", value: "La Unión" }, { display: "Machalilla", value: "Machalilla" }, { display: "Membrillal", value: "Membrillal" }, { display: "Pedro Pablo Gómez", value: "Pedro Pablo Gómez" }, { display: "Puerto De Cayo", value: "Puerto De Cayo" }, { display: "Puerto López", value: "Puerto López" }];
-    var Junín = [{ display: "Junín", value: "Junín" }];
-    var La_Concordia = [{ display: "La Concordia", value: "La Concordia" }, { display: "Monterrey", value: "Monterrey" }, { display: "La Villegas", value: "La Villegas" }, { display: "Plan Piloto", value: "Plan Piloto" }];
-    var La_Joya_De_Los_Sachas = [{ display: "La Joya De Los Sachas", value: "La Joya De Los Sachas" }, { display: "Enokanqui", value: "Enokanqui" }, { display: "Pompeya", value: "Pompeya" }, { display: "San Carlos", value: "San Carlos" }, { display: "San Sebastián Del Coca", value: "San Sebastián Del Coca" }, { display: "Lago San Pedro", value: "Lago San Pedro" }, { display: "Rumipamba", value: "Rumipamba" }, { display: "Tres De Noviembre", value: "Tres De Noviembre" }, { display: "Unión Milagreña", value: "Unión Milagreña" }];
-    var La_Libertad = [{ display: "La Libertad", value: "La Libertad" }];
-    var La_Maná = [{ display: "El Carmen", value: "El Carmen" }, { display: "La Maná", value: "La Maná" }, { display: "El Triunfo", value: "El Triunfo" }, { display: "La Maná", value: "La Maná" }, { display: "Guasaganda (Cab.En Guasaganda", value: "Guasaganda (Cab.En Guasaganda" }, { display: "Pucayacu", value: "Pucayacu" }];
-    var La_Troncal = [{ display: "La Troncal", value: "La Troncal" }, { display: "Manuel J. Calle", value: "Manuel J. Calle" }, { display: "Pancho Negro", value: "Pancho Negro" }];
-    var Lago_Agrio = [{ display: "Nueva Loja", value: "Nueva Loja" }, { display: "Cuyabeno", value: "Cuyabeno" }, { display: "Dureno", value: "Dureno" }, { display: "General Farfán", value: "General Farfán" }, { display: "Tarapoa", value: "Tarapoa" }, { display: "El Eno", value: "El Eno" }, { display: "Pacayacu", value: "Pacayacu" }, { display: "Jambelí", value: "Jambelí" }, { display: "Santa Cecilia", value: "Santa Cecilia" }, { display: "Aguas Negras", value: "Aguas Negras" }];
-    var Las_Golondrinas = [{ display: "Las Golondrinas", value: "Las Golondrinas" }];
-
-    var Las_Naves = [{ display: "Las Mercedes", value: "Las Mercedes" }, { display: "Las Naves", value: "Las Naves" }, { display: "Las Naves", value: "Las Naves" }];
-    var Latacunga = [{ display: "Eloy Alfaro (San Felipe)", value: "Eloy Alfaro (San Felipe)" }, { display: "Ignacio Flores (Parque Flores)", value: "Ignacio Flores (Parque Flores)" }, { display: "Juan Montalvo (San Sebastián)", value: "Juan Montalvo (San Sebastián)" }, { display: "La Matriz", value: "La Matriz" }, { display: "San Buenaventura", value: "San Buenaventura" }, { display: "Latacunga", value: "Latacunga" }, { display: "Alaques (Aláquez)", value: "Alaques (Aláquez)" }, { display: "Belisario Quevedo (Guanailín)", value: "Belisario Quevedo (Guanailín)" }, { display: "Guaitacama (Guaytacama)", value: "Guaitacama (Guaytacama)" }, { display: "Joseguango Bajo", value: "Joseguango Bajo" }, { display: "Las Pampas", value: "Las Pampas" }, { display: "Mulaló", value: "Mulaló" }, { display: "11 De Noviembre (Ilinchisi)", value: "11 De Noviembre (Ilinchisi)" }, { display: "Poaló", value: "Poaló" }, { display: "San Juan De Pastocalle", value: "San Juan De Pastocalle" }, { display: "Sigchos", value: "Sigchos" }, { display: "Tanicuchí", value: "Tanicuchí" }, { display: "Toacaso", value: "Toacaso" }, { display: "Palo Quemado", value: "Palo Quemado" }];
-    var Limón_Indanza = [{ display: "General Leonidas Plaza Gutiérrez (Limón)", value: "General Leonidas Plaza Gutiérrez (Limón)" }, { display: "Indanza", value: "Indanza" }, { display: "Pan De Azúcar", value: "Pan De Azúcar" }, { display: "San Antonio (Cab. En San Antonio Centro", value: "San Antonio (Cab. En San Antonio Centro" }, { display: "San Carlos De Limón (San Carlos Del", value: "San Carlos De Limón (San Carlos Del" }, { display: "San Juan Bosco", value: "San Juan Bosco" }, { display: "San Miguel De Conchay", value: "San Miguel De Conchay" }, { display: "Santa Susana De Chiviaza (Cab. En Chiviaza)", value: "Santa Susana De Chiviaza (Cab. En Chiviaza)" }, { display: "Yunganza (Cab. En El Rosario)", value: "Yunganza (Cab. En El Rosario)" }];
-    var Logroño = [{ display: "Logroño", value: "Logroño" }, { display: "Yaupi", value: "Yaupi" }, { display: "Shimpis", value: "Shimpis" }];
-
-    var Loreto = [{ display: "Loreto", value: "Loreto" }, { display: "Avila (Cab. En Huiruno)", value: "Avila (Cab. En Huiruno)" }, { display: "Puerto Murialdo", value: "Puerto Murialdo" }, { display: "San José De Payamino", value: "San José De Payamino" }, { display: "San José De Dahuano", value: "San José De Dahuano" }, { display: "San Vicente De Huaticocha", value: "San Vicente De Huaticocha" }];
-
-    var Machala = [{ display: "La Providencia", value: "La Providencia" }, { display: "Machala", value: "Machala" }, { display: "Puerto Bolívar", value: "Puerto Bolívar" }, { display: "Nueve De Mayo", value: "Nueve De Mayo" }, { display: "El Cambio", value: "El Cambio" }, { display: "Machala", value: "Machala" }, { display: "El Cambio", value: "El Cambio" }, { display: "El Retiro", value: "El Retiro" }];
-    var Manga_Del_Cura = [{ display: "Manga Del Cura", value: "Manga Del Cura" }];
-    var Manta = [{ display: "Los Esteros", value: "Los Esteros" }, { display: "Manta", value: "Manta" }, { display: "San Mateo", value: "San Mateo" }, { display: "Tarqui", value: "Tarqui" }, { display: "Eloy Alfaro", value: "Eloy Alfaro" }, { display: "Manta", value: "Manta" }, { display: "San Lorenzo", value: "San Lorenzo" }, { display: "Santa Marianita (Boca De Pacoche)", value: "Santa Marianita (Boca De Pacoche)" }];
-    var Mira = [{ display: "Mira (Chontahuasi)", value: "Mira (Chontahuasi)" }, { display: "Concepción", value: "Concepción" }, { display: "Jijón Y Caamaño (Cab. En Río Blanco)", value: "Jijón Y Caamaño (Cab. En Río Blanco)" }, { display: "Juan Montalvo (San Ignacio De Quil)", value: "Juan Montalvo (San Ignacio De Quil)" }];
-
-
-
-    var Mejia = [{ display: "Alóag", value: "Alóag" }, { display: "Aloasi", value: "Aloasi" }, { display: "Cutuglahua", value: "Cutuglahua" }, { display: " El Chaupi", value: " El Chaupi" }, { display: "Manuel Cornejo Astorga", value: "Manuel Cornejo Astorga" }, { display: "Tambillo", value: "Tambillo" }, { display: "Uyumbicho", value: "Uyumbicho" }];
-
-    var Mocha = [{ display: "Mocha", value: "Mocha" }, { display: "Pinguilí", value: "Pinguilí" }];
-
-    var De_Mayo = [{ display: "Sucre", value: "Sucre" }, { display: "Bellavista", value: "Bellavista" }, { display: "Noboa", value: "Noboa" }, { display: "Arq. Sixto Durán Ballén", value: "Arq. Sixto Durán Ballén" }];
-    var Montecristi = [{ display: "Anibal San Andrés", value: "Anibal San Andrés" }, { display: "Montecristi", value: "Montecristi" }, { display: "El Colorado", value: "El Colorado" }, { display: "General Eloy Alfaro", value: "General Eloy Alfaro" }, { display: "Leonidas Proaño", value: "Leonidas Proaño" }, { display: "Montecristi", value: "Montecristi" }, { display: "Jaramijó", value: "Jaramijó" }, { display: "La Pila", value: "La Pila" }];
-    var Montúfar = [{ display: "González Suárez", value: "González Suárez" }, { display: "San José", value: "San José" }, { display: "San Gabriel", value: "San Gabriel" }, { display: "Cristóbal Colón", value: "Cristóbal Colón" }, { display: "Chitán De Navarrete", value: "Chitán De Navarrete" }, { display: "Fernández Salvador", value: "Fernández Salvador" }, { display: "La Paz", value: "La Paz" }, { display: "Piartal", value: "Piartal" }];
-    var Morona = [{ display: "Macas", value: "Macas" }, { display: "Alshi (Cab. En 9 De Octubre)", value: "Alshi (Cab. En 9 De Octubre)" }, { display: "Chiguaza", value: "Chiguaza" }, { display: "General Proaño", value: "General Proaño" }, { display: "Huasaga (Cab.En Wampuik)", value: "Huasaga (Cab.En Wampuik)" }, { display: "Macuma", value: "Macuma" }, { display: "San Isidro", value: "San Isidro" }, { display: "Sevilla Don Bosco", value: "Sevilla Don Bosco" }, { display: "Sinaí", value: "Sinaí" }, { display: "Taisha", value: "Taisha" }, { display: "Zuña (Zúñac)", value: "Zuña (Zúñac)" }, { display: "Tuutinentza", value: "Tuutinentza" }, { display: "Cuchaentza", value: "Cuchaentza" }, { display: "San José De Morona", value: "San José De Morona" }, { display: "Río Blanco", value: "Río Blanco" }];
-
-    var Nabón = [{ display: "Nabón", value: "Nabón" }, { display: "Cochapata", value: "Cochapata" }, { display: "El Progreso (Cab.En Zhota)", value: "El Progreso (Cab.En Zhota)" }, { display: "Las Nieves (Chaya)", value: "Las Nieves (Chaya)" }, { display: "Oña", value: "Oña" }];
-    var Nangaritza = [{ display: "Guayzimi", value: "Guayzimi" }, { display: "Zurmi", value: "Zurmi" }, { display: "Nuevo Paraíso", value: "Nuevo Paraíso" }];
-
-    var Santiago_Mendez = [{ display: "Copal", value: "Copal" }, { display: "Chupianza", value: "Chupianza" }, { display: "Patuca", value: "Patuca" }, { display: "San Luis de El Acho", value: "San Luis de El Acho" }, { display: "Tayuza", value: "Tayuza" }, { display: "San Francisco de Chinimbimi", value: "San Francisco de Chinimbimi" }];
-
-
-
-
-    var Oña = [{ display: "San Felipe De Oña Cabecera Cantonal", value: "San Felipe De Oña Cabecera Cantonal" }, { display: "Susudel", value: "Susudel" }];
-    var Orellana = [{ display: "Puerto Francisco De Orellana (El Coca)", value: "Puerto Francisco De Orellana (El Coca)" }, { display: "Dayuma", value: "Dayuma" }, { display: "Taracoa (Nueva Esperanza: Yuca)", value: "Taracoa (Nueva Esperanza: Yuca)" }, { display: "Alejandro Labaka", value: "Alejandro Labaka" }, { display: "El Dorado", value: "El Dorado" }, { display: "El Edén", value: "El Edén" }, { display: "García Moreno", value: "García Moreno" }, { display: "Inés Arango (Cab. En Western)", value: "Inés Arango (Cab. En Western)" }, { display: "La Belleza", value: "La Belleza" }, { display: "Nuevo Paraíso (Cab. En Unión", value: "Nuevo Paraíso (Cab. En Unión" }, { display: "San José De Guayusa", value: "San José De Guayusa" }, { display: "San Luis De Armenia", value: "San Luis De Armenia" }];
-
-
-    var Pablo_Sexto = [{ display: "Pablo Sexto", value: "Pablo Sexto" }];
-    var Paján = [{ display: "Paján", value: "Paján" }, { display: "Campozano (La Palma De Paján)", value: "Campozano (La Palma De Paján)" }, { display: "Cascol", value: "Cascol" }, { display: "Guale", value: "Guale" }, { display: "Lascano", value: "Lascano" }];
-    var Palanda = [{ display: "Palanda", value: "Palanda" }, { display: "El Porvenir Del Carmen", value: "El Porvenir Del Carmen" }, { display: "San Francisco Del Vergel", value: "San Francisco Del Vergel" }, { display: "Valladolid", value: "Valladolid" }, { display: "La Canela", value: "La Canela" }];
-
-
-    var Pallatanga = [{ display: "Pallatanga", value: "Pallatanga" }];
-    var Palora = [{ display: "Palora (Metzera)", value: "Palora (Metzera)" }, { display: "Arapicos", value: "Arapicos" }, { display: "Cumandá (Cab. En Colonia Agrícola Sevilla Del Oro)", value: "Cumandá (Cab. En Colonia Agrícola Sevilla Del Oro)" }, { display: "Huamboya", value: "Huamboya" }, { display: "Sangay (Cab. En Nayamanaca)", value: "Sangay (Cab. En Nayamanaca)" }];
-
-    var Pangua = [{ display: "El Corazón", value: "El Corazón" }, { display: "Moraspungo", value: "Moraspungo" }, { display: "Pinllopata", value: "Pinllopata" }, { display: "Ramón Campaña", value: "Ramón Campaña" }];
-    var Paquisha = [{ display: "Paquisha", value: "Paquisha" }, { display: "Bellavista", value: "Bellavista" }, { display: "Nuevo Quito", value: "Nuevo Quito" }];
-
-    var Pastaza = [{ display: "Puyo", value: "Puyo" }, { display: "Arajuno", value: "Arajuno" }, { display: "Canelos", value: "Canelos" }, { display: "Curaray", value: "Curaray" }, { display: "Diez De Agosto", value: "Diez De Agosto" }, { display: "Fátima", value: "Fátima" }, { display: "Montalvo (Andoas)", value: "Montalvo (Andoas)" }, { display: "Pomona", value: "Pomona" }, { display: "Río Corrientes", value: "Río Corrientes" }, { display: "Río Tigre", value: "Río Tigre" }, { display: "Santa Clara", value: "Santa Clara" }, { display: "Sarayacu", value: "Sarayacu" }, { display: "Simón Bolívar (Cab. En Mushullacta)", value: "Simón Bolívar (Cab. En Mushullacta)" }, { display: "Tarqui", value: "Tarqui" }, { display: "Teniente Hugo Ortiz", value: "Teniente Hugo Ortiz" }, { display: "Veracruz (Indillama) (Cab. En Indillama)", value: "Veracruz (Indillama) (Cab. En Indillama)" }, { display: "El Triunfo", value: "El Triunfo" }];
-    var Patate = [{ display: "Patate", value: "Patate" }, { display: "El Triunfo", value: "El Triunfo" }, { display: "Los Andes (Cab. En Poatug)", value: "Los Andes (Cab. En Poatug)" }, { display: "Sucre (Cab. En Sucre-Patate Urcu)", value: "Sucre (Cab. En Sucre-Patate Urcu)" }];
-    var Paute = [{ display: "Paute", value: "Paute" }, { display: "Amaluza", value: "Amaluza" }, { display: "Bulán (José Víctor Izquierdo)", value: "Bulán (José Víctor Izquierdo)" }, { display: "Chicán (Guillermo Ortega)", value: "Chicán (Guillermo Ortega)" }, { display: "El Cabo", value: "El Cabo" }, { display: "Guachapala", value: "Guachapala" }, { display: "Guarainag", value: "Guarainag" }, { display: "Palmas", value: "Palmas" }, { display: "Pan", value: "Pan" }, { display: "San Cristóbal (Carlos Ordóñez Lazo)", value: "San Cristóbal (Carlos Ordóñez Lazo)" }, { display: "Sevilla De Oro", value: "Sevilla De Oro" }, { display: "Tomebamba", value: "Tomebamba" }, { display: "Dug Dug", value: "Dug Dug" }];
-    var Pedernales = [{ display: "Pedernales", value: "Pedernales" }, { display: "Cojimíes", value: "Cojimíes" }, { display: "10 De Agosto", value: "10 De Agosto" }, { display: "Atahualpa", value: "Atahualpa" }];
-
-    var Pedro_Moncayo = [{ display: "Tabacundo", value: "Tabacundo" }, { display: "La Esperanza", value: "La Esperanza" }, { display: "Malchinguí", value: "Malchinguí" }, { display: "Tocachi", value: "Tocachi" }, { display: "Tupigachi", value: "Tupigachi" }];
-    var Pedro_Vicente_Maldonado = [{ display: "Pedro Vicente Maldonado", value: "Pedro Vicente Maldonado" }];
-    var Penipe = [{ display: "Penipe", value: "Penipe" }, { display: "El Altar", value: "El Altar" }, { display: "Matus", value: "Matus" }, { display: "Puela", value: "Puela" }, { display: "San Antonio De Bayushig", value: "San Antonio De Bayushig" }, { display: "La Candelaria", value: "La Candelaria" }, { display: "Bilbao (Cab.En Quilluyacu)", value: "Bilbao (Cab.En Quilluyacu)" }];
-    var Pichincha = [{ display: "Pichincha", value: "Pichincha" }, { display: "Barraganete", value: "Barraganete" }, { display: "San Sebastián", value: "San Sebastián" }];
-
-
-    var Portovelo = [{ display: "Portovelo", value: "Portovelo" }, { display: "Curtincapa", value: "Curtincapa" }, { display: "Morales", value: "Morales" }, { display: "Salatí", value: "Salatí" }];
-    var Portoviejo = [{ display: "Portoviejo", value: "Portoviejo" }, { display: "12 De Marzo", value: "12 De Marzo" }, { display: "Colón", value: "Colón" }, { display: "Picoazá", value: "Picoazá" }, { display: "San Pablo", value: "San Pablo" }, { display: "Andrés De Vera", value: "Andrés De Vera" }, { display: "Francisco Pacheco", value: "Francisco Pacheco" }, { display: "18 De Octubre", value: "18 De Octubre" }, { display: "Simón Bolívar", value: "Simón Bolívar" }, { display: "Portoviejo", value: "Portoviejo" }, { display: "Abdón Calderón (San Francisco)", value: "Abdón Calderón (San Francisco)" }, { display: "Alhajuela (Bajo Grande)", value: "Alhajuela (Bajo Grande)" }, { display: "Crucita", value: "Crucita" }, { display: "Pueblo Nuevo", value: "Pueblo Nuevo" }, { display: "Riochico (Río Chico)", value: "Riochico (Río Chico)" }, { display: "San Plácido", value: "San Plácido" }, { display: "Chirijos", value: "Chirijos" }];
-  
-    var Puerto_López = [{ display: "Puerto López", value: "Puerto López" }, { display: "Machalilla", value: "Machalilla" }, { display: "Salango", value: "Salango" }];
-    var Puerto_Quito = [{ display: "Puerto Quito", value: "Puerto Quito" }];
-  
-    var Putumayo = [{ display: "Puerto El Carmen Del Putumayo", value: "Puerto El Carmen Del Putumayo" }, { display: "Palma Roja", value: "Palma Roja" }, { display: "Puerto Bolívar (Puerto Montúfar)", value: "Puerto Bolívar (Puerto Montúfar)" }, { display: "Puerto Rodríguez", value: "Puerto Rodríguez" }, { display: "Santa Elena", value: "Santa Elena" },];
-
-    var Quero = [{ display: "Quero", value: "Quero" }, { display: "Rumipamba", value: "Rumipamba" }, { display: "Yanayacu - Mochapata (Cab. En Yanayacu)", value: "Yanayacu - Mochapata (Cab. En Yanayacu)" }];
-
-    var Quijos = [{ display: "Baeza", value: "Baeza" }, { display: "Cosanga", value: "Cosanga" }, { display: "Cuyuja", value: "Cuyuja" }, { display: "Papallacta", value: "Papallacta" }, { display: "San Francisco De Borja (Virgilio Dávila)", value: "San Francisco De Borja (Virgilio Dávila)" }, { display: "San José Del Payamino", value: "San José Del Payamino" }, { display: "Sumaco", value: "Sumaco" }];
-    var Quilanga = [{ display: "Quilanga", value: "Quilanga" }, { display: "Fundochamba", value: "Fundochamba" }, { display: "San Antonio De Las Aradas (Cab. En Las Aradas)", value: "San Antonio De Las Aradas (Cab. En Las Aradas)" }];
-    var Quinindé = [{ display: "Rosa Zárate (Quinindé)", value: "Rosa Zárate (Quinindé)" }, { display: "Cube", value: "Cube" }, { display: "Chura (Chancama) (Cab. En El Yerbero)", value: "Chura (Chancama) (Cab. En El Yerbero)" }, { display: "Malimpia", value: "Malimpia" }, { display: "Viche", value: "Viche" }, { display: "La Unión", value: "La Unión" }];
-
-    var Riobamba = [{ display: "Lizarzaburu", value: "Lizarzaburu" }, { display: "Maldonado", value: "Maldonado" }, { display: "Velasco", value: "Velasco" }, { display: "Veloz", value: "Veloz" }, { display: "Yaruquíes", value: "Yaruquíes" }, { display: "Riobamba", value: "Riobamba" }, { display: "Cacha (Cab. En Machángara)", value: "Cacha (Cab. En Machángara)" }, { display: "Calpi", value: "Calpi" }, { display: "Cubijíes", value: "Cubijíes" }, { display: "Flores", value: "Flores" }, { display: "Licán", value: "Licán" }, { display: "Licto", value: "Licto" }, { display: "Pungalá", value: "Pungalá" }, { display: "Punín", value: "Punín" }, { display: "Quimiag", value: "Quimiag" }, { display: "San Juan", value: "San Juan" }, { display: "San Luis", value: "San Luis" }];
-
-    var Rumiñahui = [{ display: "Sangolquí", value: "Sangolquí" }, { display: "San Pedro De Taboada", value: "San Pedro De Taboada" }, { display: "San Rafael", value: "San Rafael" }, { display: "Sangolqui", value: "Sangolqui" }, { display: "Cotogchoa", value: "Cotogchoa" }, { display: "Rumipamba", value: "Rumipamba" }];
-    var Salcedo = [{ display: "San Miguel", value: "San Miguel" }, { display: "Antonio José Holguín (Santa Lucía)", value: "Antonio José Holguín (Santa Lucía)" }, { display: "Cusubamba", value: "Cusubamba" }, { display: "Mulalillo", value: "Mulalillo" }, { display: "Mulliquindil (Santa Ana)", value: "Mulliquindil (Santa Ana)" }, { display: "Pansaleo", value: "Pansaleo" }];
-    var Salinas = [{ display: "Carlos Espinoza Larrea", value: "Carlos Espinoza Larrea" }, { display: "Gral. Alberto Enríquez Gallo", value: "Gral. Alberto Enríquez Gallo" }, { display: "Vicente Rocafuerte", value: "Vicente Rocafuerte" }, { display: "Santa Rosa", value: "Santa Rosa" }, { display: "Salinas", value: "Salinas" }, { display: "Anconcito", value: "Anconcito" }, { display: "José Luis Tamayo (Muey)", value: "José Luis Tamayo (Muey)" }];
-
-    var San_Fernando = [{ display: "San Fernando", value: "San Fernando" }, { display: "Chumblín", value: "Chumblín" }];
-    var San_Jacinto_De_Yaguachi = [{ display: "San Jacinto De Yaguachi", value: "San Jacinto De Yaguachi" }, { display: "Crnel. Lorenzo De Garaicoa (Pedregal)", value: "Crnel. Lorenzo De Garaicoa (Pedregal)" }, { display: "Crnel. Marcelino Maridueña (San Carlos)", value: "Crnel. Marcelino Maridueña (San Carlos)" }, { display: "Gral. Pedro J. Montero (Boliche)", value: "Gral. Pedro J. Montero (Boliche)" }, { display: "Simón Bolívar", value: "Simón Bolívar" }, { display: "Yaguachi Viejo (Cone)", value: "Yaguachi Viejo (Cone)" }, { display: "Virgen De Fátima", value: "Virgen De Fátima" }];
-    var San_Juan_Bosco = [{ display: "San Juan Bosco", value: "San Juan Bosco" }, { display: "Pan De Azúcar", value: "Pan De Azúcar" }, { display: "San Carlos De Limón", value: "San Carlos De Limón" }, { display: "San Jacinto De Wakambeis", value: "San Jacinto De Wakambeis" }, { display: "Santiago De Pananza", value: "Santiago De Pananza" }];
-
-    var San_Miguel = [{ display: "San Miguel", value: "San Miguel" }, { display: "Balsapamba", value: "Balsapamba" }, { display: "Bilován", value: "Bilován" }, { display: "Régulo De Mora", value: "Régulo De Mora" }, { display: "San Pablo (San Pablo De Atenas)", value: "San Pablo (San Pablo De Atenas)" }, { display: "Santiago", value: "Santiago" }, { display: "San Vicente", value: "San Vicente" }];
-    var San_Miguel_De_Los_Bancos = [{ display: "San Miguel De Los Bancos", value: "San Miguel De Los Bancos" }, { display: "Mindo", value: "Mindo" }, { display: "Pedro Vicente Maldonado", value: "Pedro Vicente Maldonado" }, { display: "Puerto Quito", value: "Puerto Quito" }];
-
-    var San_Pedro_De_Huaca = [{ display: "Huaca", value: "Huaca" }, { display: "Mariscal Sucre", value: "Mariscal Sucre" }];
-    var San_Pedro_De_Pelileo = [{ display: "Pelileo", value: "Pelileo" }, { display: "Pelileo Grande", value: "Pelileo Grande" }, { display: "Pelileo", value: "Pelileo" }, { display: "Benítez (Pachanlica)", value: "Benítez (Pachanlica)" }, { display: "Bolívar", value: "Bolívar" }, { display: "Cotaló", value: "Cotaló" }, { display: "Chiquicha (Cab. En Chiquicha Grande)", value: "Chiquicha (Cab. En Chiquicha Grande)" }, { display: "El Rosario (Rumichaca)", value: "El Rosario (Rumichaca)" }, { display: "García Moreno (Chumaqui)", value: "García Moreno (Chumaqui)" }, { display: "Guambaló (Huambaló)", value: "Guambaló (Huambaló)" }, { display: "Salasaca", value: "Salasaca" }];
-    var San_Vicente = [{ display: "San Vicente", value: "San Vicente" }, { display: "Canoa", value: "Canoa" }];
-    var Santa_Ana = [{ display: "Santa Ana", value: "Santa Ana" }, { display: "Lodana", value: "Lodana" }, { display: "Santa Ana De Vuelta Larga", value: "Santa Ana De Vuelta Larga" }, { display: "Ayacucho", value: "Ayacucho" }, { display: "Honorato Vásquez (Cab. En Vásquez)", value: "Honorato Vásquez (Cab. En Vásquez)" }, { display: "La Unión", value: "La Unión" }, { display: "Olmedo", value: "Olmedo" }, { display: "San Pablo (Cab. En Pueblo Nuevo)", value: "San Pablo (Cab. En Pueblo Nuevo)" }];
-    var Santa_Clara = [{ display: "Santa Clara", value: "Santa Clara" }, { display: "San José", value: "San José" }];
-
-    var Santa_Elena = [{ display: "Ballenita", value: "Ballenita" }, { display: "Santa Elena", value: "Santa Elena" }, { display: "Santa Elena", value: "Santa Elena" }, { display: "Atahualpa", value: "Atahualpa" }, { display: "Colonche", value: "Colonche" }, { display: "Chanduy", value: "Chanduy" }, { display: "Manglaralto", value: "Manglaralto" }, { display: "Simón Bolívar (Julio Moreno)", value: "Simón Bolívar (Julio Moreno)" }, { display: "San José De Ancón", value: "San José De Ancón" }];
-    var Santa_Isabel = [{ display: "Santa Isabel (Chaguarurco)", value: "Santa Isabel (Chaguarurco)" }, { display: "Abdón Calderón (La Unión)", value: "Abdón Calderón (La Unión)" }, { display: "El Carmen De Pijilí", value: "El Carmen De Pijilí" }, { display: "Zhaglli (Shaglli)", value: "Zhaglli (Shaglli)" }, { display: "San Salvador De Cañaribamba", value: "San Salvador De Cañaribamba" }];
-
-
-    var Santiago = [{ display: "Santiago De Méndez", value: "Santiago De Méndez" }, { display: "Copal", value: "Copal" }, { display: "Chupianza", value: "Chupianza" }, { display: "Patuca", value: "Patuca" }, { display: "San Luis De El Acho (Cab. En El Acho)", value: "San Luis De El Acho (Cab. En El Acho)" }, { display: "Santiago", value: "Santiago" }, { display: "Tayuza", value: "Tayuza" }, { display: "San Francisco De Chinimbimi", value: "San Francisco De Chinimbimi" }];
-    var Santiago_De_Píllaro = [{ display: "Ciudad Nueva", value: "Ciudad Nueva" }, { display: "Píllaro", value: "Píllaro" }, { display: "Píllaro", value: "Píllaro" }, { display: "Baquerizo Moreno", value: "Baquerizo Moreno" }, { display: "Emilio María Terán (Rumipamba)", value: "Emilio María Terán (Rumipamba)" }, { display: "Marcos Espinel (Chacata)", value: "Marcos Espinel (Chacata)" }, { display: "Presidente Urbina (Chagrapamba -Patzucul)", value: "Presidente Urbina (Chagrapamba -Patzucul)" }, { display: "San Andrés", value: "San Andrés" }, { display: "San José De Poaló", value: "San José De Poaló" }, { display: "San Miguelito", value: "San Miguelito" }];
-
-    var Saquisilí = [{ display: "Saquisilí", value: "Saquisilí" }, { display: "Canchagua", value: "Canchagua" }, { display: "Chantilín", value: "Chantilín" }, { display: "Cochapamba", value: "Cochapamba" }];
-    var Saraguro = [{ display: "Saraguro", value: "Saraguro" }, { display: "El Paraíso De Celén", value: "El Paraíso De Celén" }, { display: "El Tablón", value: "El Tablón" }, { display: "Lluzhapa", value: "Lluzhapa" }, { display: "Manú", value: "Manú" }, { display: "San Antonio De Qumbe (Cumbe)", value: "San Antonio De Qumbe (Cumbe)" }, { display: "San Pablo De Tenta", value: "San Pablo De Tenta" }, { display: "San Sebastián De Yúluc", value: "San Sebastián De Yúluc" }, { display: "Selva Alegre", value: "Selva Alegre" }, { display: "Urdaneta (Paquishapa)", value: "Urdaneta (Paquishapa)" }, { display: "Sumaypamba", value: "Sumaypamba" }];
+    let cantonesYProvincias = {
+
+        "CUENCA": ["BELLAVISTA", "CAÑARIBAMBA", "EL BATÁN", "EL SAGRARIO", "EL VECINO", "GIL RAMÍREZ DÁVALOS", "HUAYNACÁPAC", "MACHÁNGARA", "MONAY", "SAN BLAS", "SAN SEBASTIÁN", "SUCRE", "TOTORACOCHA", "YANUNCAY", "HERMANO MIGUEL", "CUENCA", "BAÑOS", "CUMBE", "CHAUCHA", "CHECA (JIDCAY)", "CHIQUINTAD", "LLACAO", "MOLLETURO", "NULTI", "OCTAVIO CORDERO PALACIOS (SANTA ROSA)", "PACCHA", "QUINGEO", "RICAURTE", "SAN JOAQUÍN", "SANTA ANA", "SAYAUSÍ", "SIDCAY", "SININCAY", "TARQUI", "TURI", "VALLE", "VICTORIA DEL PORTETE (IRQUIS)"],
+        "GIRÓN": ["GIRÓN", "ASUNCIÓN", "SAN GERARDO"],
+        "GUALACEO": ["GUALACEO", "CHORDELEG", "DANIEL CÓRDOVA TORAL (EL ORIENTE)", "JADÁN", "MARIANO MORENO", "PRINCIPAL", "REMIGIO CRESPO TORAL (GÚLAG)", "SAN JUAN", "ZHIDMAD", "LUIS CORDERO VEGA", "SIMÓN BOLÍVAR (CAB. EN GAÑANZOL)"],
+        "NABÓN": ["NABÓN", "COCHAPATA", "EL PROGRESO (CAB.EN ZHOTA)", "LAS NIEVES (CHAYA)", "OÑA"],
+        "PAUTE": ["PAUTE", "AMALUZA", "BULÁN (JOSÉ VÍCTOR IZQUIERDO)", "CHICÁN (GUILLERMO ORTEGA)", "EL CABO", "GUACHAPALA", "GUARAINAG", "PALMAS", "PAN", "SAN CRISTÓBAL (CARLOS ORDÓÑEZ LAZO)", "SEVILLA DE ORO", "TOMEBAMBA", "DUG DUG"],
+        "PUCARA": ["PUCARÁ", "CAMILO PONCE ENRÍQUEZ (CAB. EN RÍO 7 DE MOLLEPONGO", "SAN RAFAEL DE SHARUG"],
+        "SAN FERNANDO": ["SAN FERNANDO", "CHUMBLÍN"],
+        "SANTA ISABEL": ["SANTA ISABEL (CHAGUARURCO)", "ABDÓN CALDERÓN (LA UNIÓN)", "EL CARMEN DE PIJILÍ", "ZHAGLLI (SHAGLLI)", "SAN SALVADOR DE CAÑARIBAMBA"],
+        "SIGSIG": ["SIGSIG", "CUCHIL (CUTCHIL)", "GIMA", "GUEL", "LUDO", "SAN BARTOLOMÉ", "SAN JOSÉ DE RARANGA"],
+        "OÑA": ["SAN FELIPE DE OÑA CABECERA CANTONAL", "SUSUDEL"],
+        "CHORDELEG": ["CHORDELEG", "PRINCIPAL", "LA UNIÓN", "LUIS GALARZA ORELLANA (CAB.EN DELEGSOL)", "SAN MARTÍN DE PUZHIO"],
+        "EL PAN": ["EL PAN", "AMALUZA", "PALMAS", "SAN VICENTE"],
+        "SEVILLA DE ORO": ["SEVILLA DE ORO", "AMALUZA", "PALMAS"],
+        "GUACHAPALA": ["GUACHAPALA"],
+        "CAMILO PONCE ENRÍQUEZ": ["CAMILO PONCE ENRÍQUEZ", "EL CARMEN DE PIJILÍ"],
+        "GUARANDA": ["ÁNGEL POLIBIO CHÁVES", "GABRIEL IGNACIO VEINTIMILLA", "GUANUJO", "GUARANDA", "FACUNDO VELA", "JULIO E. MORENO (CATANAHUÁN GRANDE)", "LAS NAVES", "SALINAS", "SAN LORENZO", "SAN SIMÓN (YACOTO)", "SANTA FÉ (SANTA FÉ)", "SIMIÁTUG", "SAN LUIS DE PAMBIL"],
+        "CHILLANES": ["CHILLANES", "SAN JOSÉ DEL TAMBO (TAMBOPAMBA)"],
+        "CHIMBO": ["SAN JOSÉ DE CHIMBO", "ASUNCIÓN (ASANCOTO)", "CALUMA", "MAGDALENA (CHAPACOTO)", "SAN SEBASTIÁN", "TELIMBELA"],
+        "ECHEANDÍA": ["ECHEANDÍA"],
+        "SAN MIGUEL": ["SAN MIGUEL", "BALSAPAMBA", "BILOVÁN", "RÉGULO DE MORA", "SAN PABLO (SAN PABLO DE ATENAS)", "SANTIAGO", "SAN VICENTE"],
+        "CALUMA": ["CALUMA"],
+        "LAS NAVES": ["LAS MERCEDES", "LAS NAVES", "LAS NAVES"],
+        "AZOGUES": ["AURELIO BAYAS MARTÍNEZ", "AZOGUES", "BORRERO", "SAN FRANCISCO", "AZOGUES", "COJITAMBO", "DÉLEG", "GUAPÁN", "JAVIER LOYOLA (CHUQUIPATA)", "LUIS CORDERO", "PINDILIG", "RIVERA", "SAN MIGUEL", "SOLANO", "TADAY"],
+        "BIBLIÁN": ["BIBLIÁN", "NAZÓN (CAB. EN PAMPA DE DOMÍNGUEZ)", "SAN FRANCISCO DE SAGEO", "TURUPAMBA", "JERUSALÉN"],
+        "CAÑAR": ["CAÑAR", "CHONTAMARCA", "CHOROCOPTE", "GENERAL MORALES (SOCARTE)", "GUALLETURO", "HONORATO VÁSQUEZ (TAMBO VIEJO)", "INGAPIRCA", "JUNCAL", "SAN ANTONIO", "SUSCAL", "TAMBO", "ZHUD", "VENTURA", "DUCUR"],
+        "LA TRONCAL": ["LA TRONCAL", "MANUEL J. CALLE", "PANCHO NEGRO"],
+        "EL TAMBO": ["EL TAMBO"],
+        "DÉLEG": ["DÉLEG", "SOLANO"],
+        "SUSCAL": ["SUSCAL"],
+        "TULCÁN": ["GONZÁLEZ SUÁREZ", "TULCÁN", "TULCÁN", "EL CARMELO (EL PUN)", "HUACA", "JULIO ANDRADE (OREJUELA)", "MALDONADO", "PIOTER", "TOBAR DONOSO (LA BOCANA DE CAMUMBÍ)", "TUFIÑO", "URBINA (TAYA)", "EL CHICAL", "MARISCAL SUCRE", "SANTA MARTHA DE CUBA"],
+        "BOLÍVAR": ["BOLÍVAR", "GARCÍA MORENO", "LOS ANDES", "MONTE OLIVO", "SAN VICENTE DE PUSIR", "SAN RAFAEL", "CALCETA", "MEMBRILLO", "QUIROGA"],
+        "ESPEJO": ["EL ÁNGEL", "27 DE SEPTIEMBRE", "EL ANGEL", "EL GOALTAL", "LA LIBERTAD (ALIZO)", "SAN ISIDRO"],
+        "MIRA": ["MIRA (CHONTAHUASI)", "CONCEPCIÓN", "JIJÓN Y CAAMAÑO (CAB. EN RÍO BLANCO)", "JUAN MONTALVO (SAN IGNACIO DE QUIL)"],
+        "MONTÚFAR": ["GONZÁLEZ SUÁREZ", "SAN JOSÉ", "SAN GABRIEL", "CRISTÓBAL COLÓN", "CHITÁN DE NAVARRETE", "FERNÁNDEZ SALVADOR", "LA PAZ", "PIARTAL"],
+        "SAN PEDRO DE HUACA": ["HUACA", "MARISCAL SUCRE"],
+        "LATACUNGA": ["ELOY ALFARO (SAN FELIPE)", "IGNACIO FLORES (PARQUE FLORES)", "JUAN MONTALVO (SAN SEBASTIÁN)", "LA MATRIZ", "SAN BUENAVENTURA", "LATACUNGA", "ALAQUES (ALÁQUEZ)", "BELISARIO QUEVEDO (GUANAILÍN)", "GUAITACAMA (GUAYTACAMA)", "JOSEGUANGO BAJO", "LAS PAMPAS", "MULALÓ", "11 DE NOVIEMBRE (ILINCHISI)", "POALÓ", "SAN JUAN DE PASTOCALLE", "SIGCHOS", "TANICUCHÍ", "TOACASO", "PALO QUEMADO"],
+        "LA MANÁ": ["EL CARMEN", "LA MANÁ", "EL TRIUNFO", "LA MANÁ", "GUASAGANDA (CAB.EN GUASAGANDA)", "PUCAYACU"],
+        "PANGUA": ["EL CORAZÓN", "MORASPUNGO", "PINLLOPATA", "RAMÓN CAMPAÑA"],
+        "PUJILI": ["PUJILÍ", "ANGAMARCA", "CHUCCHILÁN (CHUGCHILÁN)", "GUANGAJE", "ISINLIBÍ (ISINLIVÍ)", "LA VICTORIA", "PILALÓ", "TINGO", "ZUMBAHUA"],
+        "SALCEDO": ["SAN MIGUEL", "ANTONIO JOSÉ HOLGUÍN (SANTA LUCÍA)", "CUSUBAMBA", "MULALILLO", "MULLIQUINDIL (SANTA ANA)", "PANSALEO"],
+        "SAQUISILÍ": ["SAQUISILÍ", "CANCHAGUA", "CHANTILÍN", "COCHAPAMBA"],
+        "SIGCHOS": ["SIGCHOS", "CHUGCHILLÁN", "ISINLIVÍ", "LAS PAMPAS", "PALO QUEMADO"],
+        "RIOBAMBA": ["LIZARZABURU", "MALDONADO", "VELASCO", "VELOZ", "YARUQUÍES", "RIOBAMBA", "CACHA (CAB. EN MACHÁNGARA)", "CALPI", "CUBIJÍES", "FLORES", "LICÁN", "LICTO", "PUNGALÁ", "PUNÍN", "QUIMIAG", "SAN JUAN", "SAN LUIS"],
+        "ALAUSI": ["ALAUSÍ", "ACHUPALLAS", "CUMANDÁ", "GUASUNTOS", "HUIGRA", "MULTITUD", "PISTISHÍ (NARIZ DEL DIABLO)", "PUMALLACTA", "SEVILLA", "SIBAMBE", "TIXÁN"],
+        "COLTA": ["CAJABAMBA", "SICALPA", "VILLA LA UNIÓN (CAJABAMBA)", "CAÑI", "COLUMBE", "JUAN DE VELASCO (PANGOR)", "SANTIAGO DE QUITO (CAB. EN SAN ANTONIO DE QUITO)"],
+        "CHAMBO": ["CHAMBO"],
+        "CHUNCHI": ["CHUNCHI", "CAPZOL", "COMPUD", "GONZOL", "LLAGOS"],
+        "GUAMOTE": ["GUAMOTE", "CEBADAS", "PALMIRA"],
+        "GUANO": ["EL ROSARIO", "LA MATRIZ", "GUANO", "GUANANDO", "ILAPO", "LA PROVIDENCIA", "SAN ANDRÉS", "SAN GERARDO DE PACAICAGUÁN", "SAN ISIDRO DE PATULÚ", "SAN JOSÉ DEL CHAZO", "SANTA FÉ DE GALÁN", "VALPARAÍSO"],
+        "PALLATANGA": ["PALLATANGA"],
+        "PENIPE": ["PENIPE", "EL ALTAR", "MATUS", "PUELA", "SAN ANTONIO DE BAYUSHIG", "LA CANDELARIA", "BILBAO (CAB.EN QUILLUYACU)"],
+        "CUMANDÁ": ["CUMANDÁ"],
+        "MACHALA": ["LA PROVIDENCIA", "MACHALA", "PUERTO BOLÍVAR", "NUEVE DE MAYO", "EL CAMBIO", "EL RETIRO"],
+        "ARENILLAS": ["ARENILLAS", "CHACRAS", "LA LIBERTAD", "LAS LAJAS (CAB. EN LA VICTORIA)", "PALMALES", "CARCABÓN"],
+        "ATAHUALPA": ["PACCHA", "AYAPAMBA", "CORDONCILLO", "MILAGRO", "SAN JOSÉ", "SAN JUAN DE CERRO AZUL"],
+        "BALSAS": ["BALSAS", "BELLAMARÍA"],
+        "CHILLA": ["CHILLA"],
+        "EL GUABO": ["EL GUABO", "BARBONES (SUCRE)", "LA IBERIA", "TENDALES (CAB.EN PUERTO TENDALES)", "RÍO BONITO"],
+        "HUAQUILLAS": ["ECUADOR", "EL PARAÍSO", "HUALTACO", "MILTON REYES", "UNIÓN LOJANA", "HUAQUILLAS"],
+        "MARCABELÍ": ["MARCABELÍ", "EL INGENIO"],
+        "PASAJE": ["BOLÍVAR", "LOMA DE FRANCO", "OCHOA LEÓN (MATRIZ)", "TRES CERRITOS", "PASAJE", "BUENAVISTA", "CASACAY", "LA PEAÑA", "PROGRESO", "UZHCURRUMI", "CAÑAQUEMADA"],
+        "PIÑAS": ["LA MATRIZ", "LA SUSAYA", "PIÑAS GRANDE", "PIÑAS", "CAPIRO (CAB. EN LA CAPILLA DE CAPIRO)", "LA BOCANA", "MOROMORO (CAB. EN EL VADO)", "PIEDRAS", "SAN ROQUE (AMBROSIO MALDONADO)", "SARACAY"],
+        "PORTOVELO": ["PORTOVELO", "CURTINCAPA", "MORALES", "SALATÍ"],
+        "SANTA ROSA": ["SANTA ROSA", "PUERTO JELÍ", "BALNEARIO JAMBELÍ (SATÉLITE)", "JUMÓN (SATÉLITE)", "NUEVO SANTA ROSA", "SANTA ROSA", "BELLAVISTA", "JAMBELÍ", "LA AVANZADA", "SAN ANTONIO", "TORATA", "VICTORIA"],
+        "ZARUMA": ["ZARUMA", "ABAÑÍN", "ARCAPAMBA", "GUANAZÁN", "GUIZHAGUIÑA", "HUERTAS", "MALVAS", "MULUNCAY GRANDE", "SINSAO", "SALVIAS"],
+        "LAS LAJAS": ["LA VICTORIA", "PLATANILLOS", "VALLE HERMOSO", "LA VICTORIA", "LA LIBERTAD", "EL PARAÍSO", "SAN ISIDRO"],
+        "ESMERALDAS": ["BARTOLOMÉ RUIZ (CÉSAR FRANCO CARRIÓN)", "5 DE AGOSTO", "ESMERALDAS", "LUIS TELLO (LAS PALMAS)", "SIMÓN PLATA TORRES", "ESMERALDAS", "ATACAMES", "CAMARONES (CAB. EN SAN VICENTE)", "CRNEL. CARLOS CONCHA TORRES (CAB.EN HUELE)", "CHINCA", "CHONTADURO", "CHUMUNDÉ", "LAGARTO", "LA UNIÓN", "MAJUA", "MONTALVO (CAB. EN HORQUETA)", "RÍO VERDE", "ROCAFUERTE", "SAN MATEO", "SÚA (CAB. EN LA BOCANA)", "TABIAZO", "TACHINA", "TONCHIGÜE", "VUELTA LARGA"],
+        "ELOY ALFARO": ["VALDEZ (LIMONES)", "ANCHAYACU", "ATAHUALPA (CAB. EN CAMARONES)", "BORBÓN", "LA TOLA", "LUIS VARGAS TORRES (CAB. EN PLAYA DE ORO)", "MALDONADO", "PAMPANAL DE BOLÍVAR", "SAN FRANCISCO DE ONZOLE", "SANTO DOMINGO DE ONZOLE", "SELVA ALEGRE", "TELEMBÍ", "COLÓN ELOY DEL MARÍA", "SAN JOSÉ DE CAYAPAS", "TIMBIRÉ"],
+        "MUISNE": ["MUISNE", "BOLÍVAR", "DAULE", "GALERA", "QUINGUE (OLMEDO PERDOMO FRANCO)", "SALIMA", "SAN FRANCISCO", "SAN GREGORIO", "SAN JOSÉ DE CHAMANGA (CAB.EN CHAMANGA)"],
+        "QUININDÉ": ["ROSA ZÁRATE (QUININDÉ)", "CUBE", "CHURA (CHANCAMA) (CAB. EN EL YERBERO)", "MALIMPIA", "VICHE", "LA UNIÓN"],
+        "SAN LORENZO": ["SAN LORENZO", "ALTO TAMBO (CAB. EN GUADUAL)", "ANCÓN (PICHANGAL) (CAB. EN PALMA REAL)", "CALDERÓN", "CARONDELET", "5 DE JUNIO (CAB. EN UIMBI)", "CONCEPCIÓN", "MATAJE (CAB. EN SANTANDER)", "SAN JAVIER DE CACHAVÍ (CAB. EN SAN JAVIER)", "SANTA RITA", "TAMBILLO", "TULULBÍ (CAB. EN RICAURTE)", "URBINA"],
+        "ATACAMES": ["ATACAMES", "LA UNIÓN", "SÚA (CAB. EN LA BOCANA)", "TONCHIGÜE", "TONSUPA"],
+        "RIOVERDE": ["RIOVERDE", "CHONTADURO", "CHUMUNDÉ", "LAGARTO", "MONTALVO (CAB. EN HORQUETA)", "ROCAFUERTE"],
+        "LA CONCORDIA": ["LA CONCORDIA", "MONTERREY", "LA VILLEGAS", "PLAN PILOTO"],
+        "GUAYAQUIL": ["AYACUCHO", "BOLÍVAR (SAGRARIO)", "CARBO (CONCEPCIÓN)", "FEBRES CORDERO", "GARCÍA MORENO", "LETAMENDI", "NUEVE DE OCTUBRE", "OLMEDO (SAN ALEJO)", "ROCA", "ROCAFUERTE", "SUCRE", "TARQUI", "URDANETA", "XIMENA", "PASCUALES", "GUAYAQUIL", "CHONGÓN", "JUAN GÓMEZ RENDÓN (PROGRESO)", "MORRO", "PASCUALES", "PLAYAS (GRAL. VILLAMIL)", "POSORJA", "PUNÁ", "TENGUEL"],
+        "DO BAQUERIZO MORENO JU": ["ALFREDO BAQUERIZO MORENO (JUJÁN)"],
+        "BALAO": ["BALAO"],
+        "BALZAR": ["BALZAR"],
+        "COLIMES": ["COLIMES", "SAN JACINTO"],
+        "DAULE": ["DAULE", "LA AURORA (SATÉLITE)", "BANIFE", "EMILIANO CAICEDO MARCOS", "MAGRO", "PADRE JUAN BAUTISTA AGUIRRE", "SANTA CLARA", "VICENTE PIEDRAHITA", "DAULE", "ISIDRO AYORA (SOLEDAD)", "JUAN BAUTISTA AGUIRRE (LOS TINTOS)", "LAUREL", "LIMONAL", "LOMAS DE SARGENTILLO", "LOS LOJAS (ENRIQUE BAQUERIZO MORENO)", "PIEDRAHITA (NOBOL)"],
+        "DURÁN": ["ELOY ALFARO (DURÁN)", "EL RECREO"],
+        "EL EMPALME": ["VELASCO IBARRA (EL EMPALME)", "GUAYAS (PUEBLO NUEVO)", "EL ROSARIO"],
+        "EL TRIUNFO": ["EL TRIUNFO"],
+        "MILAGRO": ["MILAGRO", "CHOBO", "GENERAL ELIZALDE (BUCAY)", "MARISCAL SUCRE (HUAQUES)", "ROBERTO ASTUDILLO (CAB. EN CRUCE DE VENECIA)"],
+        "NARANJAL": ["NARANJAL", "JESÚS MARÍA", "SAN CARLOS", "SANTA ROSA DE FLANDES", "TAURA"],
+        "NARANJITO": ["NARANJITO"],
+        "PALESTINA": ["PALESTINA"],
+        "PEDRO CARBO": ["PEDRO CARBO"],
+        "SAMBORONDÓN": ["SAMBORONDÓN", "LA PUNTILLA (SATÉLITE)", "SAMBORONDÓN", "TARIFA"],
+        "SANTA LUCÍA": ["SANTA LUCÍA"],
+        "SALITRE URBINA JADO": ["BOCANA", "CANDILEJOS", "CENTRAL", "PARAÍSO", "SAN MATEO", "EL SALITRE (LAS RAMAS)", "GRAL. VERNAZA (DOS ESTEROS)", "LA VICTORIA (ÑAUZA)", "JUNQUILLAL"],
+        "SAN JACINTO DE YAGUACHI": ["SAN JACINTO DE YAGUACHI", "CRNEL. LORENZO DE GARAICOA (PEDREGAL)", "CRNEL. MARCELINO MARIDUEÑA (SAN CARLOS)", "GRAL. PEDRO J. MONTERO (BOLICHE)", "SIMÓN BOLÍVAR", "YAGUACHI VIEJO (CONE)", "VIRGEN DE FÁTIMA"],
+        "PLAYAS": ["GENERAL VILLAMIL (PLAYAS)"],
+        "SIMÓN BOLÍVAR": ["SIMÓN BOLÍVAR", "CRNEL.LORENZO DE GARAICOA (PEDREGAL)"],
+        "ORONEL MARCELINO MARIDUE": ["CORONEL MARCELINO MARIDUEÑA (SAN CARLOS)"],
+        "LOMAS DE SARGENTILLO": ["LOMAS DE SARGENTILLO", "ISIDRO AYORA (SOLEDAD)"],
+        "NOBOL": ["NARCISA DE JESÚS"],
+        "GENERAL ANTONIO ELIZALDE": ["GENERAL ANTONIO ELIZALDE (BUCAY)"],
+        "ISIDRO AYORA": ["ISIDRO AYORA"],
+        "IBARRA": ["CARANQUI", "GUAYAQUIL DE ALPACHACA", "SAGRARIO", "SAN FRANCISCO", "LA DOLOROSA DEL PRIORATO", "SAN MIGUEL DE IBARRA", "AMBUQUÍ", "ANGOCHAGUA", "CAROLINA", "LA ESPERANZA", "LITA", "SALINAS", "SAN ANTONIO"],
+        "ANTONIO ANTE": ["ANDRADE MARÍN (LOURDES)", "ATUNTAQUI", "IMBAYA (SAN LUIS DE COBUENDO)", "SAN FRANCISCO DE NATABUELA", "SAN JOSÉ DE CHALTURA", "SAN ROQUE"],
+        "COTACACHI": ["SAGRARIO", "SAN FRANCISCO", "COTACACHI", "APUELA", "GARCÍA MORENO (LLURIMAGUA)", "IMANTAG", "PEÑAHERRERA", "PLAZA GUTIÉRREZ (CALVARIO)", "QUIROGA", "6 DE JULIO DE CUELLAJE (CAB. EN CUELLAJE)", "VACAS GALINDO (EL CHURO) (CAB.EN SAN MIGUEL ALTO)"],
+        "OTAVALO": ["JORDÁN", "SAN LUIS", "OTAVALO", "DR. MIGUEL EGAS CABEZAS (PEGUCHE)", "EUGENIO ESPEJO (CALPAQUÍ)", "GONZÁLEZ SUÁREZ", "PATAQUÍ", "SAN JOSÉ DE QUICHINCHE", "SAN JUAN DE ILUMÁN", "SAN PABLO", "SAN RAFAEL", "SELVA ALEGRE (CAB.EN SAN MIGUEL DE PAMPLONA)"],
+        "PIMAMPIRO": ["PIMAMPIRO", "CHUGÁ", "MARIANO ACOSTA", "SAN FRANCISCO DE SIGSIPAMBA"],
+        "SAN MIGUEL DE URCUQUÍ": ["URCUQUÍ CABECERA CANTONAL", "CAHUASQUÍ", "LA MERCED DE BUENOS AIRES", "PABLO ARENAS", "SAN BLAS", "TUMBABIRO"],
+        "LOJA": ["EL SAGRARIO", "SAN SEBASTIÁN", "SUCRE", "VALLE", "LOJA", "CHANTACO", "CHUQUIRIBAMBA", "EL CISNE", "GUALEL", "JIMBILLA", "MALACATOS (VALLADOLID)", "SAN LUCAS", "SAN PEDRO DE VILCABAMBA", "SANTIAGO", "TAQUIL (MIGUEL RIOFRÍO)", "VILCABAMBA (VICTORIA)", "YANGANA (ARSENIO CASTILLO)", "QUINARA"],
+        "CALVAS": ["CARIAMANGA", "CHILE", "SAN VICENTE", "CARIAMANGA", "COLAISACA", "EL LUCERO", "UTUANA", "SANGUILLÍN"],
+        "CATAMAYO": ["CATAMAYO", "SAN JOSÉ", "CATAMAYO (LA TOMA)", "EL TAMBO", "GUAYQUICHUMA", "SAN PEDRO DE LA BENDITA", "ZAMBI"],
+        "CELICA": ["CELICA", "CRUZPAMBA (CAB. EN CARLOS BUSTAMANTE)", "CHAQUINAL", "12 DE DICIEMBRE (CAB. EN ACHIOTES)", "PINDAL (FEDERICO PÁEZ)", "POZUL (SAN JUAN DE POZUL)", "SABANILLA", "TNTE. MAXIMILIANO RODRÍGUEZ LOAIZA"],
+        "CHAGUARPAMBA": ["CHAGUARPAMBA", "BUENAVISTA", "EL ROSARIO", "SANTA RUFINA", "AMARILLOS"],
+        "ESPÍNDOLA": ["AMALUZA", "BELLAVISTA", "JIMBURA", "SANTA TERESITA", "27 DE ABRIL (CAB. EN LA NARANJA)", "EL INGENIO", "EL AIRO"],
+        "GONZANAMÁ": ["GONZANAMÁ", "CHANGAIMINA (LA LIBERTAD)", "FUNDOCHAMBA", "NAMBACOLA", "PURUNUMA (EGUIGUREN)", "QUILANGA (LA PAZ)", "SACAPALCA", "SAN ANTONIO DE LAS ARADAS (CAB. EN LAS ARADAS)"],
+        "MACARÁ": ["GENERAL ELOY ALFARO (SAN SEBASTIÁN)", "MACARÁ (MANUEL ENRIQUE RENGEL SUQUILANDA)", "MACARÁ", "LARAMA", "LA VICTORIA", "SABIANGO (LA CAPILLA)"],
+        "PALTAS": ["CATACOCHA", "LOURDES", "CATACOCHA", "CANGONAMÁ", "GUACHANAMÁ", "LA TINGUE", "LAURO GUERRERO", "OLMEDO (SANTA BÁRBARA)", "ORIANGA", "SAN ANTONIO", "CASANGA", "YAMANA"],
+        "PUYANGO": ["ALAMOR", "CIANO", "EL ARENAL", "EL LIMO (MARIANA DE JESÚS)", "MERCADILLO", "VICENTINO"],
+        "SARAGURO": ["SARAGURO", "EL PARAÍSO DE CELÉN", "EL TABLÓN", "LLUZHAPA", "MANÚ", "SAN ANTONIO DE QUMBE (CUMBE)", "SAN PABLO DE TENTA", "SAN SEBASTIÁN DE YÚLUC", "SELVA ALEGRE", "URDANETA (PAQUISHAPA)", "SUMAYPAMBA"],
+        "SOZORANGA": ["SOZORANGA", "NUEVA FÁTIMA", "TACAMOROS"],
+        "ZAPOTILLO": ["ZAPOTILLO", "MANGAHURCO (CAZADEROS)", "GARZAREAL", "LIMONES", "PALETILLAS", "BOLASPAMBA"],
+        "PINDAL": ["PINDAL", "CHAQUINAL", "12 DE DICIEMBRE (CAB.EN ACHIOTES)", "MILAGROS"],
+        "QUILANGA": ["QUILANGA", "FUNDOCHAMBA", "SAN ANTONIO DE LAS ARADAS (CAB. EN LAS ARADAS)"],
+        "OLMEDO": ["OLMEDO", "LA TINGUE"],
+        "BABAHOYO": ["CLEMENTE BAQUERIZO", "DR. CAMILO PONCE", "BARREIRO", "EL SALTO", "BABAHOYO", "BARREIRO (SANTA RITA)", "CARACOL", "FEBRES CORDERO (LAS JUNTAS)", "PIMOCHA", "LA UNIÓN"],
+        "BABA": ["BABA", "GUARE", "ISLA DE BEJUCAL"],
+        "MONTALVO": ["MONTALVO"],
+        "PUEBLOVIEJO": ["PUEBLOVIEJO", "PUERTO PECHICHE", "SAN JUAN"],
+        "QUEVEDO": ["QUEVEDO", "SAN CAMILO", "SAN JOSÉ", "GUAYACÁN", "NICOLÁS INFANTE DÍAZ", "SAN CRISTÓBAL", "SIETE DE OCTUBRE", "24 DE MAYO", "VENUS DEL RÍO QUEVEDO", "VIVA ALFARO", "BUENA FÉ", "MOCACHE", "SAN CARLOS", "VALENCIA", "LA ESPERANZA"],
+        "URDANETA": ["CATARAMA", "RICAURTE"],
+        "VENTANAS": ["10 DE NOVIEMBRE", "VENTANAS", "QUINSALOMA", "ZAPOTAL", "CHACARITA", "LOS ÁNGELES"],
+        "VÍNCES": ["VINCES", "ANTONIO SOTOMAYOR (CAB. EN PLAYAS DE VINCES)", "PALENQUE"],
+        "PALENQUE": ["PALENQUE"],
+        "BUENA FÉ": ["SAN JACINTO DE BUENA FÉ", "7 DE AGOSTO", "11 DE OCTUBRE", "SAN JACINTO DE BUENA FÉ", "PATRICIA PILAR"],
+        "VALENCIA": ["VALENCIA"],
+        "MOCACHE": ["MOCACHE"],
+        "QUINSALOMA": ["QUINSALOMA"],
+        "PORTOVIEJO": ["PORTOVIEJO", "12 DE MARZO", "COLÓN", "PICOAZÁ", "SAN PABLO", "ANDRÉS DE VERA", "FRANCISCO PACHECO", "18 DE OCTUBRE", "SIMÓN BOLÍVAR", "ABDÓN CALDERÓN (SAN FRANCISCO)", "ALHAJUELA (BAJO GRANDE)", "CRUCITA", "PUEBLO NUEVO", "RIOCHICO (RÍO CHICO)", "SAN PLÁCIDO", "CHIRIJOS"],
+        "CHONE": ["CHONE", "SANTA RITA", "BOYACÁ", "CANUTO", "CONVENTO", "CHIBUNGA", "ELOY ALFARO", "RICAURTE", "SAN ANTONIO"],
+        "EL CARMEN": ["EL CARMEN", "4 DE DICIEMBRE", "EL CARMEN", "WILFRIDO LOOR MOREIRA (MAICITO)", "SAN PEDRO DE SUMA"],
+        "FLAVIO ALFARO": ["FLAVIO ALFARO", "SAN FRANCISCO DE NOVILLO (CAB. EN ZAPALLO)"],
+        "JIPIJAPA": ["DR. MIGUEL MORÁN LUCIO", "MANUEL INOCENCIO PARRALES Y GUALE", "SAN LORENZO DE JIPIJAPA", "JIPIJAPA", "AMÉRICA", "EL ANEGADO (CAB. EN ELOY ALFARO)", "JULCUY", "LA UNIÓN", "MACHALILLA", "MEMBRILLAL", "PEDRO PABLO GÓMEZ", "PUERTO DE CAYO", "PUERTO LÓPEZ"],
+        "JUNÍN": ["JUNÍN"],
+        "MANTA": ["LOS ESTEROS", "MANTA", "SAN MATEO", "TARQUI", "ELOY ALFARO", "MANTA", "SAN LORENZO", "SANTA MARIANITA (BOCA DE PACOCHE)"],
+        "MONTECRISTI": ["ANIBAL SAN ANDRÉS", "MONTECRISTI", "EL COLORADO", "GENERAL ELOY ALFARO", "LEONIDAS PROAÑO", "MONTECRISTI", "JARAMIJÓ", "LA PILA"],
+        "PAJÁN": ["PAJÁN", "CAMPOZANO (LA PALMA DE PAJÁN)", "CASCOL", "GUALE", "LASCANO"],
+        "PICHINCHA": ["PICHINCHA", "BARRAGANETE", "SAN SEBASTIÁN"],
+        "ROCAFUERTE": ["ROCAFUERTE"],
+        "SANTA ANA": ["SANTA ANA", "LODANA", "SANTA ANA DE VUELTA LARGA", "AYACUCHO", "HONORATO VÁSQUEZ (CAB. EN VÁSQUEZ)", "LA UNIÓN", "OLMEDO", "SAN PABLO (CAB. EN PUEBLO NUEVO)"],
+        "SUCRE": ["BAHÍA DE CARÁQUEZ", "LEONIDAS PLAZA GUTIÉRREZ", "BAHÍA DE CARÁQUEZ", "CANOA", "COJIMÍES", "CHARAPOTÓ", "10 DE AGOSTO", "JAMA", "PEDERNALES", "SAN ISIDRO", "SAN VICENTE"],
+        "TOSAGUA": ["TOSAGUA", "BACHILLERO", "ANGEL PEDRO GILER (LA ESTANCILLA)"],
+        "24 DE MAYO": ["SUCRE", "BELLAVISTA", "NOBOA", "ARQ. SIXTO DURÁN BALLÉN"],
+        "PEDERNALES": ["PEDERNALES", "COJIMÍES", "10 DE AGOSTO", "ATAHUALPA"],
+        "PUERTO LÓPEZ": ["PUERTO LÓPEZ", "MACHALILLA", "SALANGO"],
+        "JAMA": ["JAMA"],
+        "JARAMIJÓ": ["JARAMIJÓ"],
+        "SAN VICENTE": ["SAN VICENTE", "CANOA"],
+        "MORONA": ["MACAS", "ALSHI (CAB. EN 9 DE OCTUBRE)", "CHIGUAZA", "GENERAL PROAÑO", "HUASAGA (CAB.EN WAMPUIK)", "MACUMA", "SAN ISIDRO", "SEVILLA DON BOSCO", "SINAÍ", "TAISHA", "ZUÑA (ZÚÑAC)", "TUUTINENTZA", "CUCHAENTZA", "SAN JOSÉ DE MORONA", "RÍO BLANCO"],
+        "GUALAQUIZA": ["GUALAQUIZA", "MERCEDES MOLINA", "GUALAQUIZA", "AMAZONAS (ROSARIO DE CUYES)", "BERMEJOS", "BOMBOIZA", "CHIGÜINDA", "EL ROSARIO", "NUEVA TARQUI", "SAN MIGUEL DE CUYES", "EL IDEAL"],
+        "LIMÓN INDANZA": ["GENERAL LEONIDAS PLAZA GUTIÉRREZ (LIMÓN)", "INDANZA", "PAN DE AZÚCAR", "SAN ANTONIO (CAB. EN SAN ANTONIO CENTRO)", "SAN CARLOS DE LIMÓN (SAN CARLOS DEL", "SAN JUAN BOSCO", "SAN MIGUEL DE CONCHAY", "SANTA SUSANA DE CHIVIAZA (CAB. EN CHIVIAZA)", "YUNGANZA (CAB. EN EL ROSARIO)"],
+        "PALORA": ["PALORA (METZERA)", "ARAPICOS", "CUMANDÁ (CAB. EN COLONIA AGRÍCOLA SEVILLA DEL ORO)", "HUAMBOYA", "SANGAY (CAB. EN NAYAMANACA)"],
+        "SANTIAGO": ["SANTIAGO DE MÉNDEZ", "COPAL", "CHUPIANZA", "PATUCA", "SAN LUIS DE EL ACHO (CAB. EN EL ACHO)", "SANTIAGO", "TAYUZA", "SAN FRANCISCO DE CHINIMBIMI"],
+        "SUCÚA": ["SUCÚA", "ASUNCIÓN", "HUAMBI", "LOGROÑO", "YAUPI", "SANTA MARIANITA DE JESÚS"],
+        "HUAMBOYA": ["HUAMBOYA", "CHIGUAZA", "PABLO SEXTO"], "SAN JUAN BOSCO": ["SAN JUAN BOSCO", "PAN DE AZÚCAR", "SAN CARLOS DE LIMÓN", "SAN JACINTO DE WAKAMBEIS", "SANTIAGO DE PANANZA"],
+        "TAISHA": ["TAISHA", "HUASAGA (CAB. EN WAMPUIK)", "MACUMA", "TUUTINENTZA", "PUMPUENTSA"],
+        "LOGROÑO": ["LOGROÑO", "YAUPI", "SHIMPIS"],
+        "PABLO SEXTO": ["PABLO SEXTO"],
+        "TIWINTZA": ["SANTIAGO", "SAN JOSÉ DE MORONA"],
+        "TENA": ["TENA", "AHUANO", "CARLOS JULIO AROSEMENA TOLA (ZATZA-YACU)", "CHONTAPUNTA", "PANO", "PUERTO MISAHUALLI", "PUERTO NAPO", "TÁLAG", "SAN JUAN DE MUYUNA"],
+        "ARCHIDONA": ["ARCHIDONA", "AVILA", "COTUNDO", "LORETO", "SAN PABLO DE USHPAYACU", "PUERTO MURIALDO"],
+        "EL CHACO": ["EL CHACO", "GONZALO DíAZ DE PINEDA (EL BOMBÓN)", "LINARES", "OYACACHI", "SANTA ROSA", "SARDINAS"],
+        "QUIJOS": ["BAEZA", "COSANGA", "CUYUJA", "PAPALLACTA", "SAN FRANCISCO DE BORJA (VIRGILIO DÁVILA)", "SAN JOSÉ DEL PAYAMINO", "SUMACO"],
+        "CARLOS JULIO AROSEMENA TOL": ["CARLOS JULIO AROSEMENA TOLA"],
+        "PASTAZA": ["PUYO", "ARAJUNO", "CANELOS", "CURARAY", "DIEZ DE AGOSTO", "FÁTIMA", "MONTALVO (ANDOAS)", "POMONA", "RÍO CORRIENTES", "RÍO TIGRE", "SANTA CLARA", "SARAYACU", "SIMÓN BOLÍVAR (CAB. EN MUSHULLACTA)", "TARQUI", "TENIENTE HUGO ORTIZ", "VERACRUZ (INDILLAMA) (CAB. EN INDILLAMA)", "EL TRIUNFO"],
+        "MERA": ["MERA", "MADRE TIERRA", "SHELL"], "SANTA CLARA": ["SANTA CLARA", "SAN JOSÉ"],
+        "ARAJUNO": ["ARAJUNO", "CURARAY"],
+        "QUITO": ["BELISARIO QUEVEDO", "CARCELÉN", "CENTRO HISTÓRICO", "COCHAPAMBA", "COMITÉ DEL PUEBLO", "COTOCOLLAO", "CHILIBULO", "CHILLOGALLO", "CHIMBACALLE", "EL CONDADO", "GUAMANÍ", "IÑAQUITO", "ITCHIMBÍA", "JIPIJAPA", "KENNEDY", "LA ARGELIA", "LA CONCEPCIÓN", "LA ECUATORIANA", "LA FERROVIARIA", "LA LIBERTAD", "LA MAGDALENA", "LA MENA", "MARISCAL SUCRE", "PONCEANO", "PUENGASÍ", "QUITUMBE", "RUMIPAMBA", "SAN BARTOLO", "SAN ISIDRO DEL INCA", "SAN JUAN", "SOLANDA", "TURUBAMBA", "QUITO DISTRITO METROPOLITANO", "ALANGASÍ", "AMAGUAÑA", "ATAHUALPA", "CALACALÍ", "CALDERÓN", "CONOCOTO", "CUMBAYÁ", "CHAVEZPAMBA", "CHECA", "EL QUINCHE", "GUALEA", "GUANGOPOLO", "GUAYLLABAMBA", "LA MERCED", "LLANO CHICO", "LLOA", "MINDO", "NANEGAL", "NANEGALITO", "NAYÓN", "NONO", "PACTO", "PEDRO VICENTE MALDONADO", "PERUCHO", "PIFO", "PÍNTAG", "POMASQUI", "PUÉLLARO", "PUEMBO", "SAN ANTONIO", "SAN JOSÉ DE MINAS", "SAN MIGUEL DE LOS BANCOS", "TABABELA", "TUMBACO", "YARUQUÍ", "ZAMBIZA", "PUERTO QUITO"],
+        "CAYAMBE": ["AYORA", "CAYAMBE", "JUAN MONTALVO", "ASCÁZUBI", "CANGAHUA", "OLMEDO (PESILLO)", "OTÓN", "SANTA ROSA DE CUZUBAMBA"],
+        "MEJIA": ["MACHACHI", "ALÓAG", "ALOASÍ", "CUTUGLAHUA", "EL CHAUPI", "MANUEL CORNEJO ASTORGA (TANDAPI)", "TAMBILLO", "UYUMBICHO"], "PEDRO MONCAYO": ["TABACUNDO", "LA ESPERANZA", "MALCHINGUÍ", "TOCACHI", "TUPIGACHI"],
+        "RUMIÑAHUI": ["SANGOLQUÍ", "SAN PEDRO DE TABOADA", "SAN RAFAEL", "SANGOLQUI", "COTOGCHOA", "RUMIPAMBA"],
+        "SAN MIGUEL DE LOS BANCOS": ["SAN MIGUEL DE LOS BANCOS", "MINDO", "PEDRO VICENTE MALDONADO", "PUERTO QUITO"],
+        "PEDRO VICENTE MALDONADO": ["PEDRO VICENTE MALDONADO"],
+        "PUERTO QUITO": ["PUERTO QUITO"],
+        "AMBATO": ["ATOCHA – FICOA", "CELIANO MONGE", "HUACHI CHICO", "HUACHI LORETO", "LA MERCED", "LA PENÍNSULA", "MATRIZ", "PISHILATA", "SAN FRANCISCO", "AMBATO", "AMBATILLO", "ATAHUALPA (CHISALATA)", "AUGUSTO N. MARTÍNEZ (MUNDUGLEO)", "CONSTANTINO FERNÁNDEZ (CAB. EN CULLITAHUA)", "HUACHI GRANDE", "IZAMBA", "JUAN BENIGNO VELA", "MONTALVO", "PASA", "PICAIGUA", "PILAGÜÍN (PILAHÜÍN)", "QUISAPINCHA (QUIZAPINCHA)", "SAN BARTOLOMÉ DE PINLLOG", "SAN FERNANDO (PASA SAN FERNANDO)", "SANTA ROSA", "TOTORAS", "CUNCHIBAMBA", "UNAMUNCHO"],
+        "BAÑOS DE AGUA SANTA": ["BAÑOS DE AGUA SANTA", "LLIGUA", "RÍO NEGRO", "RÍO VERDE", "ULBA"],
+        "CEVALLOS": ["CEVALLOS"],
+        "MOCHA": ["MOCHA", "PINGUILÍ"],
+        "PATATE": ["PATATE", "EL TRIUNFO", "LOS ANDES (CAB. EN POATUG)", "SUCRE (CAB. EN SUCRE-PATATE URCU)"],
+        "QUERO": ["QUERO", "RUMIPAMBA", "YANAYACU - MOCHAPATA (CAB. EN YANAYACU)"], "SAN PEDRO DE PELILEO": ["PELILEO", "PELILEO GRANDE", "PELILEO", "BENÍTEZ (PACHANLICA)", "BOLÍVAR", "COTALÓ", "CHIQUICHA (CAB. EN CHIQUICHA GRANDE)", "EL ROSARIO (RUMICHACA)", "GARCÍA MORENO (CHUMAQUI)", "GUAMBALÓ (HUAMBALÓ)", "SALASACA"],
+        "SANTIAGO DE PÍLLARO": ["CIUDAD NUEVA", "PÍLLARO", "PÍLLARO", "BAQUERIZO MORENO", "EMILIO MARÍA TERÁN (RUMIPAMBA)", "MARCOS ESPINEL (CHACATA)", "PRESIDENTE URBINA (CHAGRAPAMBA -PATZUCUL)", "SAN ANDRÉS", "SAN JOSÉ DE POALÓ", "SAN MIGUELITO"],
+        "TISALEO": ["TISALEO", "QUINCHICOTO"],
+        "ZAMORA": ["EL LIMÓN", "ZAMORA", "CUMBARATZA", "GUADALUPE", "IMBANA (LA VICTORIA DE IMBANA)", "PAQUISHA", "SABANILLA", "TIMBARA", "ZUMBI", "SAN CARLOS DE LAS MINAS"],
+        "CHINCHIPE": ["ZUMBA", "CHITO", "EL CHORRO", "EL PORVENIR DEL CARMEN", "LA CHONTA", "PALANDA", "PUCAPAMBA", "SAN FRANCISCO DEL VERGEL", "VALLADOLID", "SAN ANDRÉS"],
+        "NANGARITZA": ["GUAYZIMI", "ZURMI", "NUEVO PARAÍSO"],
+        "YACUAMBI": ["28 DE MAYO (SAN JOSÉ DE YACUAMBI)", "LA PAZ", "TUTUPALI"], "YANTZAZA (YANZATZA)": ["YANTZAZA (YANZATZA)", "CHICAÑA", "EL PANGUI", "LOS ENCUENTROS"], "EL PANGUI": ["EL PANGUI", "EL GUISME", "PACHICUTZA", "TUNDAYME"], "CENTINELA DEL CÓNDOR": ["ZUMBI", "PAQUISHA", "TRIUNFO-DORADO", "PANGUINTZA"],
+        "PALANDA": ["PALANDA", "EL PORVENIR DEL CARMEN", "SAN FRANCISCO DEL VERGEL", "VALLADOLID", "LA CANELA"],
+        "PAQUISHA": ["PAQUISHA", "BELLAVISTA", "NUEVO QUITO"], "SAN CRISTÓBAL": ["PUERTO BAQUERIZO MORENO", "EL PROGRESO", "A SANTA MARÍA (FLOREANA) (CAB. EN PTO. VELASCO IBARR"],
+        "ISABELA": ["PUERTO VILLAMIL", "TOMÁS DE BERLANGA (SANTO TOMÁS)"], "SANTA CRUZ": ["PUERTO AYORA", "BELLAVISTA", "SANTA ROSA (INCLUYE LA ISLA BALTRA)"], "LAGO AGRIO": ["NUEVA LOJA", "CUYABENO", "DURENO", "GENERAL FARFÁN", "TARAPOA", "EL ENO", "PACAYACU", "JAMBELÍ", "SANTA CECILIA", "AGUAS NEGRAS"],
+        "GONZALO PIZARRO": ["EL DORADO DE CASCALES", "EL REVENTADOR", "GONZALO PIZARRO", "LUMBAQUÍ", "PUERTO LIBRE", "SANTA ROSA DE SUCUMBÍOS"],
+        "PUTUMAYO": ["PUERTO EL CARMEN DEL PUTUMAYO", "PALMA ROJA", "PUERTO BOLÍVAR (PUERTO MONTÚFAR)", "PUERTO RODRÍGUEZ", "SANTA ELENA"],
+        "SHUSHUFINDI": ["SHUSHUFINDI", "LIMONCOCHA", "PAÑACOCHA", "SAN ROQUE (CAB. EN SAN VICENTE)", "SAN PEDRO DE LOS COFANES", "SIETE DE JULIO"],
+        "SUCUMBÍOS": ["LA BONITA", "EL PLAYÓN DE SAN FRANCISCO", "LA SOFÍA", "ROSA FLORIDA", "SANTA BÁRBARA"],
+        "CASCALES": ["EL DORADO DE CASCALES", "SANTA ROSA DE SUCUMBÍOS", "SEVILLA"],
+        "CUYABENO": ["TARAPOA", "CUYABENO", "AGUAS NEGRAS"],
+        "ORELLANA": ["PUERTO FRANCISCO DE ORELLANA (EL COCA)", "DAYUMA", "TARACOA (NUEVA ESPERANZA: YUCA)", "ALEJANDRO LABAKA", "EL DORADO", "EL EDÉN", "GARCÍA MORENO", "INÉS ARANGO (CAB. EN WESTERN)", "LA BELLEZA", "NUEVO PARAÍSO (CAB. EN UNIÓN", "SAN JOSÉ DE GUAYUSA", "SAN LUIS DE ARMENIA"],
+        "AGUARICO": ["TIPITINI", "NUEVO ROCAFUERTE", "CAPITÁN AUGUSTO RIVADENEYRA", "CONONACO", "SANTA MARÍA DE HUIRIRIMA", "TIPUTINI", "YASUNÍ"],
+        "LA JOYA DE LOS SACHAS": ["LA JOYA DE LOS SACHAS", "ENOKANQUI", "POMPEYA", "SAN CARLOS", "SAN SEBASTIÁN DEL COCA", "LAGO SAN PEDRO", "RUMIPAMBA", "TRES DE NOVIEMBRE", "UNIÓN MILAGREÑA"],
+        "LORETO": ["LORETO", "AVILA (CAB. EN HUIRUNO)", "PUERTO MURIALDO", "SAN JOSÉ DE PAYAMINO", "SAN JOSÉ DE DAHUANO", "SAN VICENTE DE HUATICOCHA"],
+        "SANTO DOMINGO": ["ABRAHAM CALAZACÓN", "BOMBOLÍ", "CHIGUILPE", "RÍO TOACHI", "RÍO VERDE", "SANTO DOMINGO DE LOS COLORADOS", "ZARACAY", "SANTO DOMINGO DE LOS COLORADOS", "ALLURIQUÍN", "PUERTO LIMÓN", "LUZ DE AMÉRICA", "SAN JACINTO DEL BÚA", "VALLE HERMOSO", "EL ESFUERZO", "SANTA MARÍA DEL TOACHI"],
+        "SANTA ELENA": ["BALLENITA", "SANTA ELENA", "SANTA ELENA", "ATAHUALPA", "COLONCHE", "CHANDUY", "MANGLARALTO", "SIMÓN BOLÍVAR (JULIO MORENO)", "SAN JOSÉ DE ANCÓN"],
+        "LA LIBERTAD": ["LA LIBERTAD"],
+        "SALINAS": ["CARLOS ESPINOZA LARREA", "GRAL. ALBERTO ENRÍQUEZ GALLO", "VICENTE ROCAFUERTE", "SANTA ROSA", "SALINAS", "ANCONCITO", "JOSÉ LUIS TAMAYO (MUEY)"],
+        "LAS GOLONDRINAS": ["LAS GOLONDRINAS"],
+        "MANGA DEL CURA": ["MANGA DEL CURA"],
+        "EL PIEDRERO": ["EL PIEDRERO"],
+        "SAN VICENTE": ['SAN VICENTE', 'CANOA'],
+        "SAN JUAN BOSCO": ['SAN JUAN BOSCO', 'PAN DE AZÚCAR', 'SAN CARLOS DE LIMÓN', 'SAN JACINTO DE WAKAMBEIS', 'SANTIAGO DE PANANZA'],
+        "SANTA CLARA": ['SANTA CLARA', 'SAN JOSÉ'],
+        "PEDRO MONCAYO": ['TABACUNDO', 'LA ESPERANZA', 'MALCHINGUÍ', 'TOCACHI', 'TUPIGACHI'],
+        "SAN PEDRO DE PELILEO": ['PELILEO', 'PELILEO GRANDE', 'PELILEO', 'BENÍTEZ (PACHANLICA)', 'BOLÍVAR', 'COTALÓ', 'CHIQUICHA (CAB. EN CHIQUICHA GRANDE)', 'EL ROSARIO (RUMICHACA)', 'GARCÍA MORENO (CHUMAQUI)', 'GUAMBALÓ (HUAMBALÓ)', 'SALASACA'],
+        "YANTZAZA ": ['YANTZAZA (YANZATZA)', 'CHICAÑA', 'EL PANGUI', 'LOS ENCUENTROS'],
+        "EL PANGUI": ['EL PANGUI', 'EL GUISME', 'PACHICUTZA', 'TUNDAYME'],
+        "CENTINELA DEL CÓNDOR": ['ZUMBI', 'PAQUISHA', 'TRIUNFO-DORADO', 'PANGUINTZA'],
+        "SAN CRISTÓBAL": ['PUERTO BAQUERIZO MORENO', 'EL PROGRESO', 'A SANTA MARÍA (FLOREANA) (CAB. EN PTO. VELASCO IBARR'],
+        "SANTA CRUZ": ['PUERTO AYORA', 'BELLAVISTA', 'SANTA ROSA (INCLUYE LA ISLA BALTRA)'],
+        "LAGO AGRIO": ['NUEVA LOJA', 'CUYABENO', 'DURENO', 'GENERAL FARFÁN', 'TARAPOA', 'EL ENO', 'PACAYACU', 'JAMBELÍ', 'SANTA CECILIA', 'AGUAS NEGRAS']
+
+
+    };
    
-    var Shushufindi = [{ display: "Shushufindi", value: "Shushufindi" }, { display: "Limoncocha", value: "Limoncocha" }, { display: "Pañacocha", value: "Pañacocha" }, { display: "San Roque (Cab. En San Vicente)", value: "San Roque (Cab. En San Vicente)" }, { display: "San Pedro De Los Cofanes", value: "San Pedro De Los Cofanes" }, { display: "Siete De Julio", value: "Siete De Julio" }];
-    var Sigchos = [{ display: "Sigchos", value: "Sigchos" }, { display: "Chugchillán", value: "Chugchillán" }, { display: "Isinliví", value: "Isinliví" }, { display: "Las Pampas", value: "Las Pampas" }, { display: "Palo Quemado", value: "Palo Quemado" }];
-    var Sigsig = [{ display: "Sigsig", value: "Sigsig" }, { display: "Cuchil (Cutchil)", value: "Cuchil (Cutchil)" }, { display: "Gima", value: "Gima" }, { display: "Guel", value: "Guel" }, { display: "Ludo", value: "Ludo" }, { display: "San Bartolomé", value: "San Bartolomé" }, { display: "San José De Raranga", value: "San José De Raranga" }];
+    // Función para cargar las provincias según el cantón seleccionado
+    function cargarProvincias() {
+        let cantonSelect = document.getElementById("canton");
+        let provinciaSelect = document.getElementById("sector");
+        let canton = cantonSelect.value;
 
-    var Sozoranga = [{ display: "Sozoranga", value: "Sozoranga" }, { display: "Nueva Fátima", value: "Nueva Fátima" }, { display: "Tacamoros", value: "Tacamoros" }];
-    var Sucre = [{ display: "Bahía De Caráquez", value: "Bahía De Caráquez" }, { display: "Leonidas Plaza Gutiérrez", value: "Leonidas Plaza Gutiérrez" }, { display: "Bahía De Caráquez", value: "Bahía De Caráquez" }, { display: "Canoa", value: "Canoa" }, { display: "Cojimíes", value: "Cojimíes" }, { display: "Charapotó", value: "Charapotó" }, { display: "10 De Agosto", value: "10 De Agosto" }, { display: "Jama", value: "Jama" }, { display: "Pedernales", value: "Pedernales" }, { display: "San Isidro", value: "San Isidro" }, { display: "San Vicente", value: "San Vicente" }];
-    var Sucúa = [{ display: "Sucúa", value: "Sucúa" }, { display: "Asunción", value: "Asunción" }, { display: "Huambi", value: "Huambi" }, { display: "Logroño", value: "Logroño" }, { display: "Yaupi", value: "Yaupi" }, { display: "Santa Marianita De Jesús", value: "Santa Marianita De Jesús" }];
-    var Sucumbíos = [{ display: "La Bonita", value: "La Bonita" }, { display: "El Playón De San Francisco", value: "El Playón De San Francisco" }, { display: "La Sofía", value: "La Sofía" }, { display: "Rosa Florida", value: "Rosa Florida" }, { display: "Santa Bárbara", value: "Santa Bárbara" }];
+        // Limpia el selector de provincias
+        provinciaSelect.innerHTML = "<option value=''>Seleccione una provincia</option>";
 
-    var Taisha = [{ display: "Taisha", value: "Taisha" }, { display: "Huasaga (Cab. En Wampuik)", value: "Huasaga (Cab. En Wampuik)" }, { display: "Macuma", value: "Macuma" }, { display: "Tuutinentza", value: "Tuutinentza" }, { display: "Pumpuentsa", value: "Pumpuentsa" }];
-    var Tena = [{ display: "Tena", value: "Tena" }, { display: "Ahuano", value: "Ahuano" }, { display: "Carlos Julio Arosemena Tola (Zatza-Yacu)", value: "Carlos Julio Arosemena Tola (Zatza-Yacu)" }, { display: "Chontapunta", value: "Chontapunta" }, { display: "Pano", value: "Pano" }, { display: "Puerto Misahualli", value: "Puerto Misahualli" }, { display: "Puerto Napo", value: "Puerto Napo" }, { display: "Tálag", value: "Tálag" }, { display: "San Juan De Muyuna", value: "San Juan De Muyuna" }];
-    var Tisaleo = [{ display: "Tisaleo", value: "Tisaleo" }, { display: "Quinchicoto", value: "Quinchicoto" }];
-    var Tiwintza = [{ display: "Santiago", value: "Santiago" }, { display: "San José De Morona", value: "San José De Morona" }];
-    var Tosagua = [{ display: "Tosagua", value: "Tosagua" }, { display: "Bachillero", value: "Bachillero" }, { display: "Angel Pedro Giler (La Estancilla)", value: "Angel Pedro Giler (La Estancilla)" }];
-    var Tulcán = [{ display: "González Suárez", value: "González Suárez" }, { display: "Tulcán", value: "Tulcán" }, { display: "Tulcán", value: "Tulcán" }, { display: "El Carmelo (El Pun)", value: "El Carmelo (El Pun)" }, { display: "Huaca", value: "Huaca" }, { display: "Julio Andrade (Orejuela)", value: "Julio Andrade (Orejuela)" }, { display: "Maldonado", value: "Maldonado" }, { display: "Pioter", value: "Pioter" }, { display: "Tobar Donoso (La Bocana De Camumbí)", value: "Tobar Donoso (La Bocana De Camumbí)" }, { display: "Tufiño", value: "Tufiño" }, { display: "Urbina (Taya)", value: "Urbina (Taya)" }, { display: "El Chical", value: "El Chical" }, { display: "Mariscal Sucre", value: "Mariscal Sucre" }, { display: "Santa Martha De Cuba", value: "Santa Martha De Cuba" }];
-
-
-
-
-    var Yacuambi = [{ display: "28 De Mayo (San José De Yacuambi)", value: "28 De Mayo (San José De Yacuambi)" }, { display: "La Paz", value: "La Paz" }, { display: "Tutupali", value: "Tutupali" }];
-    var Yantzaza = [{ display: "Yantzaza (Yanzatza)", value: "Yantzaza (Yanzatza)" }, { display: "Chicaña", value: "Chicaña" }, { display: "El Pangui", value: "El Pangui" }, { display: "Los Encuentros", value: "Los Encuentros" }];
-    var Zamora = [{ display: "El Limón", value: "El Limón" }, { display: "Zamora", value: "Zamora" }, { display: "Zamora", value: "Zamora" }, { display: "Cumbaratza", value: "Cumbaratza" }, { display: "Guadalupe", value: "Guadalupe" }, { display: "Imbana (La Victoria De Imbana)", value: "Imbana (La Victoria De Imbana)" }, { display: "Paquisha", value: "Paquisha" }, { display: "Sabanilla", value: "Sabanilla" }, { display: "Timbara", value: "Timbara" }, { display: "Zumbi", value: "Zumbi" }, { display: "San Carlos De Las Minas", value: "San Carlos De Las Minas" }]; var Zapotillo = [{ display: "Zapotillo", value: "Zapotillo" }, { display: "Mangahurco (Cazaderos)", value: "Mangahurco (Cazaderos)" }, { display: "Garzareal", value: "Garzareal" }, { display: "Limones", value: "Limones" }, { display: "Paletillas", value: "Paletillas" }, { display: "Bolaspamba", value: "Bolaspamba" }];
-    var Zapotillo = [{ display: "Zapotillo", value: "Zapotillo" }, { display: "Mangahurco (Cazaderos)", value: "Mangahurco (Cazaderos)" }, { display: "Garzareal", value: "Garzareal" }, { display: "Limones", value: "Limones" }, { display: "Paletillas", value: "Paletillas" }, { display: "Bolaspamba", value: "Bolaspamba" }];
-    var Zaruma = [{ display: "Zaruma", value: "Zaruma" }, { display: "Abañín", value: "Abañín" }, { display: "Arcapamba", value: "Arcapamba" }, { display: "Guanazán", value: "Guanazán" }, { display: "Guizhaguiña", value: "Guizhaguiña" }, { display: "Huertas", value: "Huertas" }, { display: "Malvas", value: "Malvas" }, { display: "Muluncay Grande", value: "Muluncay Grande" }, { display: "Sinsao", value: "Sinsao" }, { display: "Salvias", value: "Salvias" }];
-    var Azogues = [{ display: "Aurelio Bayas Martínez", value: "Aurelio Bayas Martínez" }, { display: "Azogues", value: "Azogues" }, { display: "Borrero", value: "Borrero" }, { display: "San Francisco", value: "San Francisco" }, { display: "Azogues", value: "Azogues" }, { display: "Cojitambo", value: "Cojitambo" }, { display: "Déleg", value: "Déleg" }, { display: "Guapán", value: "Guapán" }, { display: "Javier Loyola (Chuquipata)", value: "Javier Loyola (Chuquipata)" }, { display: "Luis Cordero", value: "Luis Cordero" }, { display: "Pindilig", value: "Pindilig" }, { display: "Rivera", value: "Rivera" }, { display: "San Miguel", value: "San Miguel" }, { display: "Solano", value: "Solano" }, { display: "Taday", value: "Taday" }];
-
-
-
-
-
-
-
+        // Verifica si el cantón seleccionado existe en el objeto cantonesYProvincias
+        if (canton in cantonesYProvincias) {
+            let provincias = cantonesYProvincias[canton];
+            // Crea y agrega las opciones de provincias según el cantón seleccionado
+            provincias.forEach(function (provincia) {
+                let option = document.createElement("option");
+                option.value = provincia.toLowerCase();
+                option.textContent = provincia;
+                provinciaSelect.appendChild(option);
+            });
+        }
+    }
 
  
-    //data que viene selecccionada ya de la bd 
-    var sectores = $('#canton').data('sectores');
+
 
     //obtener valor cambiado del select
     $("#canton").change(function () {
-      
+        cargarProvincias();
 
+    });
+
+       // Agregar evento click al selectHtml para que cargue las provincias al hacer clic
+    $("#sector").dblclick(function () {
+        cargarProvincias();
+        console.log('Doble clic');
     });
  
   
 
-    var servicio_default = [
-        { display: "Seleccione una...", value: "Seleccione una..." }];
-
-
-    // Aqui creamos verificamos cual opciones apareceran dependiendo de la seleccion@superservicios
-
-    $("#canton").change(function () {
-        var parent = $(this).val();
-        switch (parent) {
-            case 'Quito':
-                list(Quito); break;
-            case 'Antonio_Ante': list(Antonio_Ante); break;
-            case 'Antonio Ante': list(Antonio_Ante); break;
-            case 'Arajuno': list(Arajuno); break;
-            case 'Archidona': list(Archidona); break;
-            case 'Ambato': list(Ambato); break;
-            case 'Aguarico': list(Aguarico); break;
-            case 'Carlos_Julio_Arosemena_Tola': list(Arlos_Julio_Arosemena_Tol); break;
-            case 'Carlos Julio Arosemena Tola': list(Arlos_Julio_Arosemena_Tol); break;
-            case 'Cuenca': list(Cuenca); break;
-            case 'Girón': list(Girón); break;
-            case 'Gualaceo': list(Gualaceo); break;
-            case 'Nabón': list(Nabón); break;
-            case 'Paute': list(Paute); break;
-            case 'Pucará': list(Pucará); break;
-            case 'San_Fernando': list(San_Fernando); break;
-            case 'Santa_Isabel': list(Santa_Isabel); break;
-            case 'San Fernando': list(San_Fernando); break;
-            case 'Santa Isabel': list(Santa_Isabel); break;
-            case 'Sigsig': list(Sigsig); break;
-            case 'Sígsig': list(Sigsig); break;
-            case 'Oña': list(Oña); break;
-            case 'Chordeleg': list(Chordeleg); break;
-            case 'El_Pan': list(El_Pan); break; 
-            case 'El Pan': list(El_Pan); break;
-            case 'Sevilla_de_Oro': list(Sevilla_de_Oro); break;
-            case 'Sevilla de Oro': list(Sevilla_de_Oro); break;
-            case 'Santiago de Méndez': list(Santiago_Mendez); break;
-            case 'Santiago_de_Mendez': list(Santiago_Mendez); break;
-            case 'Guachapala': list(Guachapala); break;
-            case 'Camilo_Ponce_Enríquez': list(Camilo_Ponce_Enriquez); break;
-            case 'Camilo Ponce Enríquez': list(Camilo_Ponce_Enriquez); break;
-            case 'Guaranda': list(Guaranda); break;
-            case 'Chillanes': list(Chillanes); break;
-            case 'Chimbo': list(Chimbo); break;
-            case 'Echeandía': list(Echeandía); break;
-            case 'San_Miguel': list(San_Miguel); break;
-            case 'San Miguel': list(San_Miguel); break;
-            case 'Caluma': list(Caluma); break;
-            case 'Las_Naves': list(Las_Naves); break;
-            case 'Las Naves': list(Las_Naves); break;
-            case 'Azogues': list(Azogues); break;
-            case 'Biblián': list(Biblián); break;
-            case 'Cañar': list(Cañar); break;
-            case 'La_Troncal': list(La_Troncal); break;
-            case 'El_Tambo': list(El_Tambo); break;
-            case 'La Troncal': list(La_Troncal); break;
-            case 'El Tambo': list(El_Tambo); break;
-            case 'Déleg': list(Déleg); break;
-            case 'Suscal': list(Suscal); break;
-            case 'Tulcán': list(Tulcán); break;
-            case 'Bolívar': list(Bolívar); break;
-            case 'Espejo': list(Espejo); break;
-            case 'Mira': list(Mira); break;
-            case 'Montúfar': list(Montúfar); break;
-            case 'San_Pedro_De_Huaca': list(San_Pedro_De_Huaca); break;
-            case 'Huaca': list(San_Pedro_De_Huaca); break;
-            case 'Latacunga': list(Latacunga); break;
-            case 'La_Maná': list(La_Maná); break;
-            case 'La Maná': list(La_Maná); break;
-            case 'Pangua': list(Pangua); break;
-            case 'Pujilí': list(Pujilí); break;
-            case 'Salcedo': list(Salcedo); break;
-            case 'Saquisilí': list(Saquisilí); break;
-            case 'Sigchos': list(Sigchos); break;
-            case 'Riobamba': list(Riobamba); break;
-            case 'Alausí': list(Alausí); break;
-            case 'Colta': list(Colta); break;
-            case 'Chambo': list(Chambo); break;
-            case 'Chunchi': list(Chunchi); break;
-            case 'Guamote': list(Guamote); break;
-            case 'Guano': list(Guano); break;
-            case 'Pallatanga': list(Pallatanga); break;
-            case 'Penipe': list(Penipe); break;
-            case 'Cumandá': list(Cumandá); break;
-            case 'Machala': list(Machala); break;
-            case 'Arenillas': list(Arenillas); break;
-            case 'Atahualpa': list(Atahualpa); break;
-            case 'Balsas': list(Balsas); break;
-            case 'Chilla': list(Chilla); break;
-            case 'El_Guabo': list(El_Guabo); break;
-            case 'El Guabo': list(El_Guabo); break;
-            case 'Huaquillas': list(Huaquillas); break;
-            case 'Marcabelí': list(Marcabelí); break;
-            case 'Pasaje': list(Pasaje); break;
-            case 'Piñas': list(Piñas); break;
-            case 'Portovelo': list(Portovelo); break;
-            case 'Santa_Rosa': list(Santa_Rosa); break;
-            case 'Santa Rosa': list(Santa_Rosa); break;
-            case 'Zaruma': list(Zaruma); break;
-            case 'Las_Lajas': list(Las_Lajas); break;
-            case 'Las Lajas': list(Las_Lajas); break;
-            case 'Esmeraldas': list(Esmeraldas); break;
-            case 'Eloy_Alfaro': list(Eloy_Alfaro); break;
-            case 'Eloy Alfaro': list(Eloy_Alfaro); break;
-            case 'Muisne': list(Muisne); break;
-            case 'Quinindé': list(Quinindé); break;
-            case 'San_Lorenzo': list(San_Lorenzo); break;
-            case 'San Lorenzo': list(San_Lorenzo); break;
-            case 'Atacames': list(Atacames); break;
-            case 'Rioverde': list(Rioverde); break;
-            case 'La_Concordia': list(La_Concordia); break;
-            case 'La Concordia': list(La_Concordia); break
-            case 'Guayaquil': list(Guayaquil); break;
-            case 'Do_Baquerizo_Moreno': list(Do_Baquerizo_Moreno); break;
-            case 'Alfredo_Baquerizo': list(Do_Baquerizo_Moreno); break;
-            case 'Balao': list(Balao); break;
-            case 'Balzar': list(Balzar); break;
-            case 'Colimes': list(Colimes); break;
-            case 'Daule': list(Daule); break;
-            case 'Duran': list(Duran); break;
-            case 'Durán': list(Duran); break;
-            case 'El_Empalme': list(El_Empalme); break;
-            case 'El Empalme': list(El_Empalme); break;
-            case 'El_Triunfo': list(El_Triunfo); break;
-            case 'El Triunfo': list(El_Triunfo); break;
-            case 'Milagro': list(Milagro); break;
-            case 'Naranjal': list(Naranjal); break;
-            case 'Naranjito': list(Naranjito); break;
-            case 'Palestina': list(Palestina); break;
-            case 'Baba': list(Baba); break;
-            case 'De_Mayo': list(De_Mayo); break;
-            case '24 de Mayo': list(De_Mayo); break;
-            case 'Babahoyo': list(Babahoyo); break;
-            case 'Baños_De_Agua_Santa': list(Baños_De_Agua_Santa); break;
-            case 'Baños': list(Baños_De_Agua_Santa); break;
-            case 'Biblian': list(Biblian); break;
-            case 'Bolivar': list(Bolivar); break;
-            case 'Buena_Fe': list(Buena_Fe); break;
-            case 'Buena Fe': list(Buena_Fe); break;
-            case 'Calvas': list(Calvas); break;
-            case 'Cascales': list(Cascales); break;
-            case 'Catamayo': list(Catamayo); break;
-            case 'Cayambe': list(Cayambe); break;
-            case 'Celica': list(Celica); break;
-            case 'Centinela_Del_Cóndor': list(Centinela_Del_Cóndor); break;
-            case 'Centinela del Cóndor': list(Centinela_Del_Cóndor); break;
-            case 'Cevallos': list(Cevallos); break;
-            case 'Chaguarpamba': list(Chaguarpamba); break;
-            case 'Chinchipe': list(Chinchipe); break;
-            case 'Chone': list(Chone); break;
-            case 'Cotacachi': list(Cotacachi); break;
-            case 'Cumanda': list(Cumanda); break;
-            case 'Cuyabeno': list(Cuyabeno); break;
-            case 'Delég': list(Deleg); break;
-            case 'El_Carmen': list(El_Carmen); break;
-            case 'El Carmen': list(El_Carmen); break;
-            case 'El_Chaco': list(El_Chaco); break;
-            case 'El Chaco': list(El_Chaco); break;
-            case 'El_Pangui': list(El_Pangui); break;
-            case 'El Pangui': list(El_Pangui); break;
-            case 'El_Piedrero': list(El_Piedrero); break;
-            case 'El Piedrero': list(El_Piedrero); break
-            case 'Espíndola': list(Espíndola); break;
-            case 'Flavio_Alfaro': list(Flavio_Alfaro); break;
-            case 'Flavio Alfaro': list(Flavio_Alfaro); break;
-            case 'General_Antonio_Elizalde': list(General_Antonio_Elizalde); break;
-            case 'General Antonio Elizale': list(General_Antonio_Elizalde); break;
-            case 'Gonzalo_Pizarro': list(Gonzalo_Pizarro); break;
-            case 'Gonzalo Pizarro': list(Gonzalo_Pizarro); break;
-            case 'Gonzanamá': list(Gonzanamá); break;
-            case 'Gualaquiza': list(Gualaquiza); break;
-            case 'Huamboya': list(Huamboya); break;
-            case 'Ibarra': list(Ibarra); break;
-            case 'Isabela': list(Isabela); break;
-            case 'Isidro_Ayora': list(Isidro_Ayora); break;
-            case 'Isidro Ayora': list(Isidro_Ayora); break;
-            case 'Jama': list(Jama); break;
-            case 'Jaramijó': list(Jaramijó); break;
-            case 'Jipijapa': list(Jipijapa); break;
-            case 'Junín': list(Junín); break;
-            case 'La_Joya_De_Los_Sachas': list(La_Joya_De_Los_Sachas); break;
-            case 'La_Libertad': list(La_Libertad); break;
-            case 'La_Maná': list(La_Maná); break;
-            case 'Lago_Agrio': list(Lago_Agrio); break;
-            case 'Las_Golondrinas': list(Las_Golondrinas); break;
-            case 'Limón_Indanza': list(Limón_Indanza); break;
-            case 'La Joya de los Sachas': list(La_Joya_De_Los_Sachas); break;
-            case 'La Libertad': list(La_Libertad); break;
-            case 'La Maná': list(La_Maná); break;
-            case 'Lago Agrio': list(Lago_Agrio); break;
-            case 'Las Golondrinas': list(Las_Golondrinas); break;
-            case 'Limón Indanza': list(Limón_Indanza); break;
-            case 'Logroño': list(Logroño); break;
-            case 'Loja': list(Loja); break;
-            case 'Lomas_De_Sargentillo': list(Lomas_De_Sargentillo); break;
-            case 'Lomas de Sargentillo': list(Lomas_De_Sargentillo); break;
-            case 'Loreto': list(Loreto); break;
-            case 'Macará': list(Macará); break;
-            case 'Manga_Del_Cura': list(Manga_Del_Cura); break;
-            case 'Manga Del Cura': list(Manga_Del_Cura); break;
-            case 'Manta': list(Manta); break;
-            case 'Mejvar_Mejia': list(Mejvar_Mejia); break;
-            case 'Mejvar Mejia': list(Mejvar_Mejia); break;
-            case 'Mejia': list(Mejia); break;
-            case 'Mejía': list(Mejia); break;
-            case 'Mocache': list(Mocache); break;
-            case 'Mocha': list(Mocha); break;
-            case 'Montalvo': list(Montalvo); break;
-            case 'Montecristi': list(Montecristi); break;
-            case 'Morona': list(Morona); break;
-            case 'Nangaritza': list(Nangaritza); break;
-            case 'Nobol': list(Nobol); break;
-            case 'Olmedo': list(Olmedo); break;
-            case 'Orellana': list(Orellana); break;
-            case 'Francisco de Orellana': list(Orellana); break;
-            case 'Marcelino_Maridue': list(Marcelino_Maridue); break;
-            case 'Marcelino Maridueña': list(Marcelino_Maridue); break;
-            case 'Otavalo': list(Otavalo); break;
-            case 'Pablo_Sexto': list(Pablo_Sexto); break;
-            case 'Pablo Sexto': list(Pablo_Sexto); break;
-            case 'Paján': list(Paján); break;
-            case 'Palanda': list(Palanda); break;
-            case 'Palenque': list(Palenque); break;
-            case 'Palora': list(Palora); break;
-            case 'Paltas': list(Paltas); break;
-            case 'Paquisha': list(Paquisha); break;
-            case 'Pastaza': list(Pastaza); break;
-            case 'Patate': list(Patate); break;
-            case 'Pedernales': list(Pedernales); break;
-            case 'Pedro_Carbo': list(Pedro_Carbo); break;
-            case 'Pedro_Moncayo': list(Pedro_Moncayo); break;
-            case 'Pedro_Vicente_Maldonado': list(Pedro_Vicente_Maldonado); break;
-            case 'Pedro Carbo': list(Pedro_Carbo); break;
-            case 'Pedro Moncayo': list(Pedro_Moncayo); break;
-            case 'Pedro Vicente Maldonado': list(Pedro_Vicente_Maldonado); break;
-            case 'Pichincha': list(Pichincha); break;
-            case 'Pimampiro': list(Pimampiro); break;
-            case 'Pindal': list(Pindal); break;
-            case 'Playas': list(Playas); break;
-            case 'Portoviejo': list(Portoviejo); break;
-            case 'Puebloviejo': list(Puebloviejo); break;
-            case 'Puerto_López': list(Puerto_López); break;
-            case 'Puerto_Quito': list(Puerto_Quito); break;
-            case 'Puerto López': list(Puerto_López); break;
-            case 'Puerto Quito': list(Puerto_Quito); break;
-            case 'Putumayo': list(Putumayo); break;
-            case 'Puyango': list(Puyango); break;
-            case 'Quero': list(Quero); break;
-            case 'Quevedo': list(Quevedo); break;
-            case 'Quijos': list(Quijos); break;
-            case 'Quilanga': list(Quilanga); break;
-            case 'Quinsaloma': list(Quinsaloma); break;
-            case 'Rocafuerte': list(Rocafuerte); break;
-            case 'Rumiñahui': list(Rumiñahui); break;
-            case 'Salinas': list(Salinas); break;
-            case 'Salitre': list(Salitre); break;
-            case 'Samborondón': list(Samborondón); break;
-            case 'San_Cristóbal': list(San_Cristóbal); break;
-            case 'San_Jacinto_De_Yaguachi': list(San_Jacinto_De_Yaguachi); break;
-            case 'San_Juan_Bosco': list(San_Juan_Bosco); break;
-            case 'San_Miguel_De_Los_Bancos': list(San_Miguel_De_Los_Bancos); break;
-            case 'San_Miguel_De_Urcuquí': list(San_Miguel_De_Urcuquí); break;
-            case 'San_Pedro_De_Pelileo': list(San_Pedro_De_Pelileo); break;
-            case 'San_Vicente': list(San_Vicente); break;
-            case 'Santa_Ana': list(Santa_Ana); break;
-            case 'Santa_Clara': list(Santa_Clara); break;
-            case 'Santa_Cruz': list(Santa_Cruz); break;
-            case 'Santa_Elena': list(Santa_Elena); break;
-            case 'Santa_Lucía': list(Santa_Lucía); break;
-            case 'San Cristóbal': list(San_Cristóbal); break;
-            case 'San Jacinto_De_Yaguachi': list(San_Jacinto_De_Yaguachi); break;
-            case 'San Juan Bosco': list(San_Juan_Bosco); break;
-            case 'San Miguel de los Bancos': list(San_Miguel_De_Los_Bancos); break;
-            case 'San Miguel de Urcuquí': list(San_Miguel_De_Urcuquí); break;
-            case 'San Pedro de Pelileo': list(San_Pedro_De_Pelileo); break;
-            case 'San Vicente': list(San_Vicente); break;
-            case 'Santa Ana': list(Santa_Ana); break;
-            case 'Santa Clara': list(Santa_Clara); break;
-            case 'Santa Cruz': list(Santa_Cruz); break;
-            case 'Santa Elena': list(Santa_Elena); break;
-            case 'Santa Lucía': list(Santa_Lucía); break;
-            case 'Santiago': list(Santiago); break;
-            case 'Santiago_De_Píllaro': list(Santiago_De_Píllaro); break;
-            case 'Santo_Domingo': list(Santo_Domingo); break;
-            case 'Santiago de Píllaro': list(Santiago_De_Píllaro); break;
-            case 'Santo Domingo': list(Santo_Domingo); break;
-            case 'Saraguro': list(Saraguro); break;
-            case 'Shushufindi': list(Shushufindi); break;
-            case 'Simón_Bolívar': list(Simón_Bolívar); break;
-            case 'Simón Bolívar': list(Simón_Bolívar); break;
-            case 'Sozoranga': list(Sozoranga); break;
-            case 'Sucre': list(Sucre); break;
-            case 'Sucúa': list(Sucúa); break;
-            case 'Sucumbíos': list(Sucumbíos); break;
-            case 'Taisha': list(Taisha); break;
-            case 'Tena': list(Tena); break;
-            case 'Tisaleo': list(Tisaleo); break;
-            case 'Tiwintza': list(Tiwintza); break;
-            case 'Tosagua': list(Tosagua); break;
-            case 'Urdaneta': list(Urdaneta); break;
-            case 'Valencia': list(Valencia); break;
-            case 'Ventanas': list(Ventanas); break;
-            case 'Vínces': list(Vínces); break;
-            case 'Vinces': list(Vínces); break;
-            case 'Yacuambi': list(Yacuambi); break;
-            case 'Yantzaza': list(Yantzaza); break;
-            case 'Zamora': list(Zamora); break;
-            case 'Zapotillo': list(Zapotillo); break;
-            case 'Yaguachi': list(Yaguachi); break;
-
-            case '0':
-                list(servicio_default);
-                break;
-            default: //default child option is blank
-                $("#inlineFormSelectPref").html('');
-                break;
-        }
-    });
-    //function to populate child select box
-    function list(array_list) {
-        $("#inlineFormSelectPref").html(""); //reset child options
-        $(array_list).each(function (i) { //populate child options
-            $("#inlineFormSelectPref").append("<option value=\"" + array_list[i].value + "\">" + array_list[i].display + "</option>");
-        });
-
-    }
     ///tooltips
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
