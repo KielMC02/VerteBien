@@ -9,6 +9,60 @@
     .carousel-item {
         width: 100% !important;
     }
+
+    .card {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column; /* Orientación vertical */
+        height: 100%;
+    }
+
+    .contenedor-imagen {
+        flex: 1;
+    }
+
+    .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column; /* Orientación vertical */
+        justify-content: space-between; /* Distribuir elementos verticalmente */
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .card-text {
+        font-size: 16px;
+        line-height: 1.5;
+        max-height: 3.75em; /* Aproximadamente 76 caracteres a un tamaño de fuente de 16px */
+        overflow: hidden;
+    }
+
+    .precio {
+        font-family: 'Lato', sans-serif;
+        color: #777;
+        font-size: 18px;
+        font-weight: 900;
+        line-height: 45px;
+        z-index: 1;
+    }
+
+    .botones-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .capitalize-first-letter {
+        text-transform: lowercase;
+    }
+
+        .capitalize-first-letter:first-letter {
+            text-transform: uppercase;
+        }
+
+
 </style>
 
 
@@ -58,240 +112,236 @@
             <div class="col-12  col-lg-2">
                 <select name="canton" id="canton" class="form-select col-12">
                     <option>Seleccione un cantón</option>
-                    <option value="De_Mayo">24 de Mayo</option>
-                    <option value="Aguarico">Aguarico</option>
-                    <option value="Alausí">Alausí</option>
-                    <option value="Alfredo_Baquerizo">Alfredo Baquerizo</option>
-                    <option value="Ambato">Ambato</option>
-                    <option value="Antonio_Ante">Antonio Ante</option>
-                    <option value="Arajuno">Arajuno</option>
-                    <option value="Archidona">Archidona</option>
-                    <option value="Arenillas">Arenillas</option>
-                    <option value="Atacames">Atacames</option>
-                    <option value="Atahualpa">Atahualpa</option>
-                    <option value="Azogues">Azogues</option>
-                    <option value="Baba">Baba</option>
-                    <option value="Babahoyo">Babahoyo</option>
-                    <option value="Balao">Balao</option>
-                    <option value="Balsas">Balsas</option>
-                    <option value="Balzar">Balzar</option>
-                    <option value="Baños">Baños</option>
-                    <option value="Biblián">Biblián</option>
-                    <option value="Bolívar">Bolívar</option>
-                    <option value="Bolívar">Bolívar</option>
-                    <option value="Buena_Fe">Buena Fe</option>
-                    <option value="Caluma">Caluma</option>
-                    <option value="Calvas">Calvas</option>
-                    <option value="Camilo_Ponce_Enríquez">Camilo Ponce Enríquez</option>
-                    <option value="Cañar">Cañar</option>
-                    <option value="Carlos_Julio_Arosemena_Tola">Carlos Julio Arosemena Tola</option>
-                    <option value="Cascales">Cascales</option>
-                    <option value="Catamayo">Catamayo</option>
-                    <option value="Cayambe">Cayambe</option>
-                    <option value="Celica">Celica</option>
-                    <option value="Centinela_del_Cóndor">Centinela del Cóndor</option>
-                    <option value="Cevallos">Cevallos</option>
-                    <option value="Chaguarpamba">Chaguarpamba</option>
-                    <option value="Chambo">Chambo</option>
-                    <option value="Chilla">Chilla</option>
-                    <option value="Chillanes">Chillanes</option>
-                    <option value="Chimbo">Chimbo</option>
-                    <option value="Chinchipe">Chinchipe</option>
-                    <option value="Chone">Chone</option>
-                    <option value="Chordeleg">Chordeleg</option>
-                    <option value="Chunchi">Chunchi</option>
-                    <option value="Colimes">Colimes</option>
-                    <option value="Colta">Colta</option>
-                    <option value="Cotacachi">Cotacachi</option>
-                    <option value="Cuenca">Cuenca</option>
-                    <option value="Cumandá">Cumandá</option>
-                    <option value="Cuyabeno">Cuyabeno</option>
-                    <option value="Daule">Daule</option>
-                    <option value="Déleg">Déleg</option>
-                    <option value="Durán">Durán</option>
-                    <option value="Echeandía">Echeandía</option>
-                    <option value="El_Carmen">El Carmen</option>
-                    <option value="El_Chaco">El Chaco</option>
-                    <option value="El_Empalme">El Empalme</option>
-                    <option value="El_Guabo">El Guabo</option>
-                    <option value="El_Pan">El Pan</option>
-                    <option value="El_Pangui">El Pangui</option>
-                    <option value="El_Tambo">El Tambo</option>
-                    <option value="El_Triunfo">El Triunfo</option>
-                    <option value="Eloy_Alfaro">Eloy Alfaro</option>
-                    <option value="Esmeraldas">Esmeraldas</option>
-                    <option value="Espejo">Espejo</option>
-                    <option value="Espíndola">Espíndola</option>
-                    <option value="Flavio_Alfaro">Flavio Alfaro</option>
-                    <option value="Francisco_de_Orellana">Francisco de Orellana</option>
-                    <option value="General_Antonio_Elizale">General Antonio Elizale</option>
-                    <option value="Girón">Girón</option>
-                    <option value="Gonzalo_Pizarro">Gonzalo Pizarro</option>
-                    <option value="Gonzanamá">Gonzanamá</option>
-                    <option value="Guachapala">Guachapala</option>
-                    <option value="Gualaceo">Gualaceo</option>
-                    <option value="Gualaquiza">Gualaquiza</option>
-                    <option value="Guamote">Guamote</option>
-                    <option value="Guano">Guano</option>
-                    <option value="Guaranda">Guaranda</option>
-                    <option value="Guayaquil">Guayaquil</option>
-                    <option value="Huaca">Huaca</option>
-                    <option value="Huamboya">Huamboya</option>
-                    <option value="Huaquillas">Huaquillas</option>
-                    <option value="Ibarra">Ibarra</option>
-                    <option value="Isabela">Isabela</option>
-                    <option value="Isidro_Ayora">Isidro Ayora</option>
-                    <option value="Jama">Jama</option>
-                    <option value="Jaramijó">Jaramijó</option>
-                    <option value="Jipijapa">Jipijapa</option>
-                    <option value="Junín">Junín</option>
-                    <option value="La_Concordia">La Concordia</option>
-                    <option value="La_Joya_de_los_Sachas">La Joya de los Sachas</option>
-                    <option value="La_Libertad">La Libertad</option>
-                    <option value="La_Maná">La Maná</option>
-                    <option value="La_Troncal">La Troncal</option>
-                    <option value="Lago_Agrio">Lago Agrio</option>
-                    <option value="Las_Lajas">Las Lajas</option>
-                    <option value="Las_Naves">Las Naves</option>
-                    <option value="Latacunga">Latacunga</option>
-                    <option value="Limón_Indanza">Limón Indanza</option>
-                    <option value="Logroño">Logroño</option>
-                    <option value="Loja">Loja</option>
-                    <option value="Lomas_de_Sargentillo">Lomas de Sargentillo</option>
-                    <option value="Loreto">Loreto</option>
-                    <option value="Macará">Macará</option>
-                    <option value="Machala">Machala</option>
-                    <option value="Manta">Manta</option>
-                    <option value="Marcabelí">Marcabelí</option>
-                    <option value="Marcelino_Maridueña">Marcelino Maridueña</option>
-                    <option value="Mejía">Mejía</option>
-                    <option value="Mera">Mera</option>
-                    <option value="Milagro">Milagro</option>
-                    <option value="Mira">Mira</option>
-                    <option value="Mocache">Mocache</option>
-                    <option value="Mocha">Mocha</option>
-                    <option value="Montalvo">Montalvo</option>
-                    <option value="Montecristi">Montecristi</option>
-                    <option value="Montúfar">Montúfar</option>
-                    <option value="Morona">Morona</option>
-                    <option value="Muisne">Muisne</option>
-                    <option value="Nabón">Nabón</option>
-                    <option value="Nangaritza">Nangaritza</option>
-                    <option value="Naranjal">Naranjal</option>
-                    <option value="Naranjito">Naranjito</option>
-                    <option value="Nobol">Nobol</option>
-                    <option value="Olmedo">Olmedo</option>
-                    <option value="Olmedo">Olmedo</option>
-                    <option value="Oña">Oña</option>
-                    <option value="Otavalo">Otavalo</option>
-                    <option value="Pablo_Sexto">Pablo Sexto</option>
-                    <option value="Paján">Paján</option>
-                    <option value="Palana">Palana</option>
-                    <option value="Palenque">Palenque</option>
-                    <option value="Palestina">Palestina</option>
-                    <option value="Pallatanga">Pallatanga</option>
-                    <option value="Palora">Palora</option>
-                    <option value="Paltas">Paltas</option>
-                    <option value="Pangua">Pangua</option>
-                    <option value="Paquisha">Paquisha</option>
-                    <option value="Pasaje">Pasaje</option>
-                    <option value="Pastaza">Pastaza</option>
-                    <option value="Patate">Patate</option>
-                    <option value="Paute">Paute</option>
-                    <option value="Pedernales">Pedernales</option>
-                    <option value="Pedro_Carbo">Pedro Carbo</option>
-                    <option value="Pedro_Moncayo">Pedro Moncayo</option>
-                    <option value="Pedro_Vicente_Maldonado">Pedro Vicente Maldonado</option>
-                    <option value="Penipe">Penipe</option>
-                    <option value="Pichincha">Pichincha</option>
-                    <option value="Pimampiro">Pimampiro</option>
-                    <option value="Pindal">Pindal</option>
-                    <option value="Piñas">Piñas</option>
-                    <option value="Playas">Playas</option>
-                    <option value="Portovelo">Portovelo</option>
-                    <option value="Portoviejo">Portoviejo</option>
-                    <option value="Pucará">Pucará</option>
-                    <option value="Puebloviejo">Puebloviejo</option>
-                    <option value="Puerto_López">Puerto López</option>
-                    <option value="Puerto_Quito">Puerto Quito</option>
-                    <option value="Pujilí">Pujilí</option>
-                    <option value="Putumayo">Putumayo</option>
-                    <option value="Puyango">Puyango</option>
-                    <option value="Quero">Quero</option>
-                    <option value="Quevedo">Quevedo</option>
-                    <option value="Quijos">Quijos</option>
-                    <option value="Quilanga">Quilanga</option>
-                    <option value="Quinindé">Quinindé</option>
-                    <option value="Quinsaloma">Quinsaloma</option>
-                    <option value="Quito">Quito</option>
-                    <option value="Riobamba">Riobamba</option>
-                    <option value="Rioverde">Rioverde</option>
-                    <option value="Rocafuerte">Rocafuerte</option>
-                    <option value="Rumiñahui">Rumiñahui</option>
-                    <option value="Salcedo">Salcedo</option>
-                    <option value="Salinas">Salinas</option>
-                    <option value="Salitre">Salitre</option>
-                    <option value="Samborondón">Samborondón</option>
-                    <option value="San_Cristóbal">San Cristóbal</option>
-                    <option value="San_Fernando">San Fernando</option>
-                    <option value="San_Juan_Bosco">San Juan Bosco</option>
-                    <option value="San_Lorenzo">San Lorenzo</option>
-                    <option value="San_Miguel">San Miguel</option>
-                    <option value="San_Miguel_de_Urcuquí">San Miguel de Urcuquí</option>
-                    <option value="San_Miguel_de_los_Bancos">San Miguel de los Bancos</option>
-                    <option value="San_Pedro_de_Pelileo">San Pedro de Pelileo</option>
-                    <option value="San_Vicente">San Vicente</option>
-                    <option value="Santa_Ana">Santa Ana</option>
-                    <option value="Santa_Clara">Santa Clara</option>
-                    <option value="Santa_Cruz">Santa Cruz</option>
-                    <option value="Santa_Elena">Santa Elena</option>
-                    <option value="Santa_Isabel">Santa Isabel</option>
-                    <option value="Santa_Lucía">Santa Lucía</option>
-                    <option value="Santa_Rosa">Santa Rosa</option>
-                    <option value="Santiago_de_Méndez">Santiago de Méndez</option>
-                    <option value="Santiago_de_Píllaro">Santiago de Píllaro</option>
-                    <option value="Santo_Domingo">Santo Domingo</option>
-                    <option value="Saquisilí">Saquisilí</option>
-                    <option value="Saraguro">Saraguro</option>
-                    <option value="Sevilla_de_Oro">Sevilla de Oro</option>
-                    <option value="Shushufindi">Shushufindi</option>
-                    <option value="Sigchos">Sigchos</option>
-                    <option value="Sígsig">Sígsig</option>
-                    <option value="Simón_Bolívar">Simón Bolívar</option>
-                    <option value="Sozoranga">Sozoranga</option>
-                    <option value="Sucre">Sucre</option>
-                    <option value="Sucúa">Sucúa</option>
-                    <option value="Sucumbíos">Sucumbíos</option>
-                    <option value="Suscal">Suscal</option>
-                    <option value="Taisha">Taisha</option>
-                    <option value="Tena">Tena</option>
-                    <option value="Tisaleo">Tisaleo</option>
-                    <option value="Tiwintza">Tiwintza</option>
-                    <option value="Tosagua">Tosagua</option>
-                    <option value="Tulcán">Tulcán</option>
-                    <option value="Urdaneta">Urdaneta</option>
-                    <option value="Valencia">Valencia</option>
-                    <option value="Ventanas">Ventanas</option>
-                    <option value="Vinces">Vinces</option>
-                    <option value="Yacuambi">Yacuambi</option>
-                    <option value="Yaguachi">Yaguachi</option>
-                    <option value="Yantzaza">Yantzaza</option>
-                    <option value="Zamora">Zamora</option>
-                    <option value="Zapotillo">Zapotillo</option>
-                    <option value="Zaruma">Zaruma</option>
-
-
-
+                    <option value="AGUARICO">AGUARICO</option>
+                    <option value="ALAUSI">ALAUSI</option>
+                    <option value="AMBATO">AMBATO</option>
+                    <option value="ANTONIO ANTE">ANTONIO ANTE</option>
+                    <option value="ARAJUNO">ARAJUNO</option>
+                    <option value="ARCHIDONA">ARCHIDONA</option>
+                    <option value="ARENILLAS">ARENILLAS</option>
+                    <option value="ATACAMES">ATACAMES</option>
+                    <option value="ATAHUALPA">ATAHUALPA</option>
+                    <option value="AZOGUES">AZOGUES</option>
+                    <option value="BABA">BABA</option>
+                    <option value="BABAHOYO">BABAHOYO</option>
+                    <option value="BALAO">BALAO</option>
+                    <option value="BALSAS">BALSAS</option>
+                    <option value="BALZAR">BALZAR</option>
+                    <option value="BAÑOS DE AGUA SANTA">BAÑOS DE AGUA SANTA</option>
+                    <option value="BIBLIÁN">BIBLIÁN</option>
+                    <option value="BOLÍVAR">BOLÍVAR</option>
+                    <option value="BUENA FÉ">BUENA FÉ</option>
+                    <option value="CALUMA">CALUMA</option>
+                    <option value="CALVAS">CALVAS</option>
+                    <option value="CARLOS JULIO AROSEMENA TOL">CARLOS JULIO AROSEMENA TOL</option>
+                    <option value="CUENCA">CUENCA</option>
+                    <option value="CAMILO PONCE ENRÍQUEZ">CAMILO PONCE ENRÍQUEZ</option>
+                    <option value="CAÑAR">CAÑAR</option>
+                    <option value="CASCALES">CASCALES</option>
+                    <option value="CATAMAYO">CATAMAYO</option>
+                    <option value="CAYAMBE">CAYAMBE</option>
+                    <option value="CELICA">CELICA</option>
+                    <option value="CENTINELA DEL CÓNDOR">CENTINELA DEL CÓNDOR</option>
+                    <option value="CEVALLOS">CEVALLOS</option>
+                    <option value="CHAGUARPAMBA">CHAGUARPAMBA</option>
+                    <option value="CHAMBO">CHAMBO</option>
+                    <option value="CHILLA">CHILLA</option>
+                    <option value="CHILLANES">CHILLANES</option>
+                    <option value="CHIMBO">CHIMBO</option>
+                    <option value="CHINCHIPE">CHINCHIPE</option>
+                    <option value="CHONE">CHONE</option>
+                    <option value="CHORDELEG">CHORDELEG</option>
+                    <option value="CHUNCHI">CHUNCHI</option>
+                    <option value="COLIMES">COLIMES</option>
+                    <option value="COLTA">COLTA</option>
+                    <option value="COTACACHI">COTACACHI</option>
+                    <option value="CUMANDÁ">CUMANDÁ</option>
+                    <option value="CUYABENO">CUYABENO</option>
+                    <option value="DAULE">DAULE</option>
+                    <option value="24 DE MAYO">24 DE MAYO</option>
+                    <option value="DÉLEG">DÉLEG</option>
+                    <option value="DO BAQUERIZO MORENO JU">DO BAQUERIZO MORENO</option>
+                    <option value="DURÁN">DURÁN</option>
+                    <option value="ECHEANDÍA">ECHEANDÍA</option>
+                    <option value="EL CARMEN">EL CARMEN</option>
+                    <option value="EL CHACO">EL CHACO</option>
+                    <option value="EL EMPALME">EL EMPALME</option>
+                    <option value="EL GUABO">EL GUABO</option>
+                    <option value="EL PAN">EL PAN</option>
+                    <option value="EL PANGUI">EL PANGUI</option>
+                    <option value="EL PIEDRERO">EL PIEDRERO</option>
+                    <option value="EL TAMBO">EL TAMBO</option>
+                    <option value="EL TRIUNFO">EL TRIUNFO</option>
+                    <option value="ELOY ALFARO">ELOY ALFARO</option>
+                    <option value="ESMERALDAS">ESMERALDAS</option>
+                    <option value="ESPEJO">ESPEJO</option>
+                    <option value="ESPÍNDOLA">ESPÍNDOLA</option>
+                    <option value="FLAVIO ALFARO">FLAVIO ALFARO</option>
+                    <option value="GENERAL ANTONIO ELIZALDE">GENERAL ANTONIO ELIZALDE</option>
+                    <option value="GIRÓN">GIRÓN</option>
+                    <option value="GONZALO PIZARRO">GONZALO PIZARRO</option>
+                    <option value="GONZANAMÁ">GONZANAMÁ</option>
+                    <option value="GUACHAPALA">GUACHAPALA</option>
+                    <option value="GUALACEO">GUALACEO</option>
+                    <option value="GUALAQUIZA">GUALAQUIZA</option>
+                    <option value="GUAMOTE">GUAMOTE</option>
+                    <option value="GUANO">GUANO</option>
+                    <option value="GUARANDA">GUARANDA</option>
+                    <option value="GUAYAQUIL">GUAYAQUIL</option>
+                    <option value="HUAMBOYA">HUAMBOYA</option>
+                    <option value="HUAQUILLAS">HUAQUILLAS</option>
+                    <option value="IBARRA">IBARRA</option>
+                    <option value="ISABELA">ISABELA</option>
+                    <option value="ISIDRO AYORA">ISIDRO AYORA</option>
+                    <option value="JAMA">JAMA</option>
+                    <option value="JARAMIJÓ">JARAMIJÓ</option>
+                    <option value="JIPIJAPA">JIPIJAPA</option>
+                    <option value="JUNÍN">JUNÍN</option>
+                    <option value="LA CONCORDIA">LA CONCORDIA</option>
+                    <option value="LA JOYA DE LOS SACHAS">LA JOYA DE LOS SACHAS</option>
+                    <option value="LA LIBERTAD">LA LIBERTAD</option>
+                    <option value="LA MANÁ">LA MANÁ</option>
+                    <option value="LA TRONCAL">LA TRONCAL</option>
+                    <option value="LAGO AGRIO">LAGO AGRIO</option>
+                    <option value="LAS GOLONDRINAS">LAS GOLONDRINAS</option>
+                    <option value="LAS LAJAS">LAS LAJAS</option>
+                    <option value="LAS NAVES">LAS NAVES</option>
+                    <option value="LATACUNGA">LATACUNGA</option>
+                    <option value="LIMÓN INDANZA">LIMÓN INDANZA</option>
+                    <option value="LOGROÑO">LOGROÑO</option>
+                    <option value="LOJA">LOJA</option>
+                    <option value="LOMAS DE SARGENTILLO">LOMAS DE SARGENTILLO</option>
+                    <option value="LORETO">LORETO</option>
+                    <option value="MACARÁ">MACARÁ</option>
+                    <option value="MACHALA">MACHALA</option>
+                    <option value="MANGA DEL CURA">MANGA DEL CURA</option>
+                    <option value="MANTA">MANTA</option>
+                    <option value="MARCABELÍ">MARCABELÍ</option>
+                    <option value="MEJIA">MEJIA</option>
+                    <option value="MERA">MERA</option>
+                    <option value="MILAGRO">MILAGRO</option>
+                    <option value="MIRA">MIRA</option>
+                    <option value="MOCACHE">MOCACHE</option>
+                    <option value="MOCHA">MOCHA</option>
+                    <option value="MONTALVO">MONTALVO</option>
+                    <option value="MONTECRISTI">MONTECRISTI</option>
+                    <option value="MONTÚFAR">MONTÚFAR</option>
+                    <option value="MORONA">MORONA</option>
+                    <option value="MUISNE">MUISNE</option>
+                    <option value="NABÓN">NABÓN</option>
+                    <option value="NANGARITZA">NANGARITZA</option>
+                    <option value="NARANJAL">NARANJAL</option>
+                    <option value="NARANJITO">NARANJITO</option>
+                    <option value="NOBOL">NOBOL</option>
+                    <option value="OLMEDO">OLMEDO</option>
+                    <option value="OÑA">OÑA</option>
+                    <option value="ORELLANA">ORELLANA</option>
+                    <option value="ORONEL MARCELINO MARIDUE">ORONEL MARCELINO MARIDUE</option>
+                    <option value="OTAVALO">OTAVALO</option>
+                    <option value="PABLO SEXTO">PABLO SEXTO</option>
+                    <option value="PAJÁN">PAJÁN</option>
+                    <option value="PALANDA">PALANDA</option>
+                    <option value="PALENQUE">PALENQUE</option>
+                    <option value="PALESTINA">PALESTINA</option>
+                    <option value="PALLATANGA">PALLATANGA</option>
+                    <option value="PALORA">PALORA</option>
+                    <option value="PALTAS">PALTAS</option>
+                    <option value="PANGUA">PANGUA</option>
+                    <option value="PAQUISHA">PAQUISHA</option>
+                    <option value="PASAJE">PASAJE</option>
+                    <option value="PASTAZA">PASTAZA</option>
+                    <option value="PATATE">PATATE</option>
+                    <option value="PAUTE">PAUTE</option>
+                    <option value="PEDERNALES">PEDERNALES</option>
+                    <option value="PEDRO CARBO">PEDRO CARBO</option>
+                    <option value="PEDRO MONCAYO">PEDRO MONCAYO</option>
+                    <option value="PEDRO VICENTE MALDONADO">PEDRO VICENTE MALDONADO</option>
+                    <option value="PENIPE">PENIPE</option>
+                    <option value="PICHINCHA">PICHINCHA</option>
+                    <option value="PIMAMPIRO">PIMAMPIRO</option>
+                    <option value="PINDAL">PINDAL</option>
+                    <option value="PIÑAS">PIÑAS</option>
+                    <option value="PLAYAS">PLAYAS</option>
+                    <option value="PORTOVELO">PORTOVELO</option>
+                    <option value="PORTOVIEJO">PORTOVIEJO</option>
+                    <option value="PUCARA">PUCARA</option>
+                    <option value="PUEBLOVIEJO">PUEBLOVIEJO</option>
+                    <option value="PUERTO LÓPEZ">PUERTO LÓPEZ</option>
+                    <option value="PUERTO QUITO">PUERTO QUITO</option>
+                    <option value="PUJILI">PUJILI</option>
+                    <option value="PUTUMAYO">PUTUMAYO</option>
+                    <option value="PUYANGO">PUYANGO</option>
+                    <option value="QUERO">QUERO</option>
+                    <option value="QUEVEDO">QUEVEDO</option>
+                    <option value="QUIJOS">QUIJOS</option>
+                    <option value="QUILANGA">QUILANGA</option>
+                    <option value="QUININDÉ">QUININDÉ</option>
+                    <option value="QUINSALOMA">QUINSALOMA</option>
+                    <option value="QUITO">QUITO</option>
+                    <option value="RIOBAMBA">RIOBAMBA</option>
+                    <option value="RIOVERDE">RIOVERDE</option>
+                    <option value="ROCAFUERTE">ROCAFUERTE</option>
+                    <option value="RUMIÑAHUI">RUMIÑAHUI</option>
+                    <option value="SALCEDO">SALCEDO</option>
+                    <option value="SALINAS">SALINAS</option>
+                    <option value="SALITRE (URBINA JADO)">SALITRE (URBINA JADO)</option>
+                    <option value="SAMBORONDÓN">SAMBORONDÓN</option>
+                    <option value="SAN CRISTÓBAL">SAN CRISTÓBAL</option>
+                    <option value="SAN FERNANDO">SAN FERNANDO</option>
+                    <option value="SAN JACINTO DE YAGUACHI">SAN JACINTO DE YAGUACHI</option>
+                    <option value="SAN JUAN BOSCO">SAN JUAN BOSCO</option>
+                    <option value="SAN LORENZO">SAN LORENZO</option>
+                    <option value="SAN MIGUEL">SAN MIGUEL</option>
+                    <option value="SAN MIGUEL DE LOS BANCOS">SAN MIGUEL DE LOS BANCOS</option>
+                    <option value="SAN MIGUEL DE URCUQUÍ">SAN MIGUEL DE URCUQUÍ</option>
+                    <option value="SAN PEDRO DE HUACA">SAN PEDRO DE HUACA</option>
+                    <option value="SAN PEDRO DE PELILEO">SAN PEDRO DE PELILEO</option>
+                    <option value="SAN VICENTE">SAN VICENTE</option>
+                    <option value="SANTA ANA">SANTA ANA</option>
+                    <option value="SANTA CLARA">SANTA CLARA</option>
+                    <option value="SANTA CRUZ">SANTA CRUZ</option>
+                    <option value="SANTA ELENA">SANTA ELENA</option>
+                    <option value="SANTA ISABEL">SANTA ISABEL</option>
+                    <option value="SANTA LUCÍA">SANTA LUCÍA</option>
+                    <option value="SANTA ROSA">SANTA ROSA</option>
+                    <option value="SANTIAGO">SANTIAGO</option>
+                    <option value="SANTIAGO DE PÍLLARO">SANTIAGO DE PÍLLARO</option>
+                    <option value="SANTO DOMINGO">SANTO DOMINGO</option>
+                    <option value="SAQUISILÍ">SAQUISILÍ</option>
+                    <option value="SARAGURO">SARAGURO</option>
+                    <option value="SEVILLA DE ORO">SEVILLA DE ORO</option>
+                    <option value="SHUSHUFINDI">SHUSHUFINDI</option>
+                    <option value="SIGCHOS">SIGCHOS</option>
+                    <option value="SIGSIG">SIGSIG</option>
+                    <option value="SIMÓN BOLÍVAR">SIMÓN BOLÍVAR</option>
+                    <option value="SOZORANGA">SOZORANGA</option>
+                    <option value="SUCRE">SUCRE</option>
+                    <option value="SUCÚA">SUCÚA</option>
+                    <option value="SUCUMBÍOS">SUCUMBÍOS</option>
+                    <option value="SUSCAL">SUSCAL</option>
+                    <option value="TAISHA">TAISHA</option>
+                    <option value="TENA">TENA</option>
+                    <option value="TISALEO">TISALEO</option>
+                    <option value="TIWINTZA">TIWINTZA</option>
+                    <option value="TOSAGUA">TOSAGUA</option>
+                    <option value="TULCÁN">TULCÁN</option>
+                    <option value="URDANETA">URDANETA</option>
+                    <option value="VALENCIA">VALENCIA</option>
+                    <option value="VENTANAS">VENTANAS</option>
+                    <option value="VÍNCES">VÍNCES</option>
+                    <option value="YACUAMBI">YACUAMBI</option>
+                    <option value="YANTZAZA ">YANTZAZA (YANZATZA)</option>
+                    <option value="ZAMORA">ZAMORA</option>
+                    <option value="ZAPOTILLO">ZAPOTILLO</option>
+                    <option value="ZARUMA">ZARUMA</option>
                 </select>
             </div>
-
-
 
             <div class="col-12  col-lg-2">
 
 
                 <label class="visually-hidden" for="inlineFormSelectPref">Sector</label>
-                <select name="sector" class="form-select col-12" id="inlineFormSelectPref">
+                <select name="sector" class="form-select col-12" id="sector">
                     <option>Seleccione una...</option>
 
                 </select>
@@ -319,68 +369,40 @@
                     //Separamos los nombres de las imagenes y guardamos en una lista
                     List<String> imagenes = (item.imagenes.Split(';')).ToList();
 
-                    <div class="col-12 col-md-6 col-lg-4 mb-2">
-
-                        <div class="card " style="max-width: 100%; height: 100%; ">
-                            <img class="card-img-top" src="~/imagenes_servicios/@imagenes[0]" alt="Card image cap" style="height: 265px; object-fit: cover;">
-                            <div class="card-body" style="height:100%">
-                                <h5 class="card-title">@Html.DisplayFor(modelItem => item.nombre_servicio)</h5>
-                                <p class="card-text indexdetlles">@Html.DisplayFor(modelItem => item.descripcion).</p>
-
-                                <div class="my-2 mb-3">
-                                    <small class=" mx-2" style="font-family: 'Lato', sans-serif; color: #777; font-size: 18px; color: #777; font-weight: 900; line-height: 45px; z-index: 1;"> $ @Html.DisplayFor(modelItem => item.precio_servicio)</small>
-                                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-2">
 
 
-                                <div class="row justify-content-between align-items-center " style="">
-                                    <div class="col-12 col-md-6">
-                                        @Html.ActionLink("Crear cita", "Create", "CITAS", new { idServicio = item.id_servicio }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm my-2 my-md-0 rounded text-wrap col-12", id = "volbtn", style = " " })
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        @Html.ActionLink("Más detalles", "Details", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn text-white btn-sm rounded text-wrap col-12 my-2 my-md-0", style = "background-color:#DBA312" })
 
-                                    </div>
+                    <div class="card " style="max-width: 100%; height: 100%;">
+            <div class="contenedor-imagen">
+                <img class="card-img-top" src="~/imagenes_servicios/@imagenes[0]" alt="Card image cap" style="height: 290px; object-fit: cover;">
+            </div>
+            <div class="card-body" style="height:100%">
+                <h5 class="card-title capitalize-first-letter">@Html.DisplayFor(modelItem => item.nombre_servicio)</h5>
+                <p class="card-text indexdetlles descripcion">@Html.DisplayFor(modelItem => item.descripcion).</p>
+
+                <div class="my-2 mb-3" style="">
+                    <small class=" mx-2" style="font-family: 'Lato', sans-serif; color: #777; font-size: 18px; color: #777; font-weight: 900; line-height: 45px; z-index: 1;"> $ @Html.DisplayFor(modelItem => item.precio_servicio)</small>
+                </div>
 
 
-                                </div>
-                            </div>
+                <div class="row justify-content-between align-items-center " style="" >
+                    <div class="col-12 col-md-6">
+                        @Html.ActionLink("Crear cita", "Create", "CITAS", new { idServicio = item.id_servicio }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm my-2 my-md-0 rounded text-wrap col-12", id = "volbtn", style = " " })
+                    </div>
+                    <div class="col-12 col-md-6">
+                        @Html.ActionLink("Más detalles", "Details", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn text-white btn-sm rounded text-wrap col-12 my-2 my-md-0", style = "background-color:#DBA312" })
+
+                    </div>
+
+
+                          </div>
+                       </div>
                         </div>
 
 
-                        @*<div class="card shadow my-2 justify-content-md-center" style="max-width:576px; ">
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-12 col-xs-12 col-lg-12 col-xl-4">
-                                        <div class="glider-contain">
-                                            <div class="glider" style="width:100%; height:100%;">
-                                                <div> <img src="~/imagenes_servicios/@imagenes[0]" class="w-full h-98 md:h-auto object-fit  md:rounded-none md:rounded-l-lg" style="height: 265px;" alt="..."></div>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="card-body col-md-8 col-sm-12 col-xs-12 col-lg-12 col-xl-8 p-4">
-                                        <h3 class="card-title fw-bold">@Html.DisplayFor(modelItem => item.nombre_servicio)</h3>
-                                        <p class="card-subtitle mb-4 text-muted "> @Html.DisplayFor(modelItem => item.AspNetUsers.nombre_peluqueria)</p>
-                                        <p class="card-text d-inline-block text-truncate mb-4 " style="max-width: 200px;">@Html.DisplayFor(modelItem => item.descripcion)</p>
-                                        <div class="my-2">
-                                            <small class="text-muted mx-2"> $ @Html.DisplayFor(modelItem => item.precio_servicio)</small>
-                                        </div>
-                                        <div class="row justify-content-between align-items-center ">
-                                            <div class="col-12 col-md-6">
-                                                @Html.ActionLink("Crear cita", "Create", "CITAS", new { idServicio = item.id_servicio }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm my-2 my-md-0 rounded text-wrap col-12", id = "volbtn", style = " " })
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                @Html.ActionLink("Más información", "Details", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn text-white btn-sm rounded text-wrap col-12 my-2 my-md-0", style = "background-color:#DBA312" })
-
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>*@
-                    </div>
+               
+                 </div>
 
 
 
@@ -393,69 +415,18 @@
 </div>
 
 
-<!--<table class="table">-->
-@*<tr>
-            <th>
-                @Html.DisplayNameFor(model => model.nombre_servicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.precio_servicio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.tiempo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.imagenes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AspNetUsers.nombre_peluqueria)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CATEGORIAS_SERVICIOS.nombre_categoria)
-            </th>
-            <th></th>
-        </tr>
+<script>
+    let elementosDescripcion = document.querySelectorAll(".descripcion");
+    const maxHeight = 5.75 * 16; // 76 caracteres a un tamaño de fuente de 16px
+    const lineHeight = 1.5 * 16; // Tamaño de línea de 16px
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nombre_servicio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.precio_servicio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tiempo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.imagenes)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.estado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AspNetUsers.nombre_peluqueria)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CATEGORIAS_SERVICIOS.nombre_categoria)
-                </td>
-                <td>
-                    @Html.ActionLink("Crear Cita", "Create", "CITAS", new { idServicio = item.id_servicio }, null) |
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id_servicio }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id_servicio }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id_servicio })
-                </td>
-            </tr>
+    elementosDescripcion.forEach(elemento => {
+        if (elemento.offsetHeight > maxHeight) {
+            let text = elemento.innerText.trim();
+            while (elemento.offsetHeight > maxHeight) {
+                text = text.slice(0, -1); // Eliminar el último carácter del texto
+                elemento.innerText = text + "..."; // Agregar puntos suspensivos
+            }
         }
-
-    </table>*@
+    });
+</script>
