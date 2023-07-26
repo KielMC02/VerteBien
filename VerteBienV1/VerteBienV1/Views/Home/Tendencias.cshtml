@@ -5,6 +5,16 @@
 
 @*<h1 class="h2 text-capitalize text-center my-4"> Tendencias </h1>*@
 
+<style>
+    .capitalize-first-letter {
+        text-transform: lowercase;
+    }
+
+        .capitalize-first-letter:first-letter {
+            text-transform: uppercase;
+        }
+
+</style>
 <div class="">
 
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -42,7 +52,8 @@
                     <h2 class="my-4">VerteBien</h2>
                     <div class="media">
                         <div class="avatar">
-                            <img src="~/Imagenes/verte bien negro.png" title="" alt="" style="vertical-align: middle; width: 75px; height: 75px; border-radius: 50%;">
+                            <img src="~/Imagenes/Verte Bien Transparente 2.png" style="vertical-align: middle; width: 75px; height: 75px; border-radius: 50%;" />
+                          
                         </div>
                         <div class="text-muted">
                             <label>Verte Bien</label>
@@ -336,19 +347,21 @@
                             <img class="card-img-top" src="~/imagenes_servicios/@imagenes[0]" alt="Card image cap">
                             <a href="~/imagenes_servicios/@imagenes[0]" class="lightbox-link capa">
                                 <div class="">
-                                    <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar</p>
+                                    <p class="card-subtitle"><i class="fas fa-search-plus"></i> Ampliar</p>
                                 </div>
                             </a>
-                            <a href="@item.id_servicio"  class="btn text-white btn-sm rounded text-wrap lightbox-details d-none lightbox-details" style="background-color:#DBA312"></a>
+                            <a href="@item.id_servicio" class="btn text-white btn-sm rounded text-wrap lightbox-details d-none lightbox-details" style="background-color:#DBA312"></a>
                         </div>
                         <div class="row">
                             <div class="col-12">
                             </div>
                             <div class="card-body col-12 p-4">
                                 <div class="col-6 w-auto">
-                                    <h1 class="card-title h4">@Html.DisplayFor(modelItem => item.nombre_servicio) <span class="fa fa-star"></span><span class="text-muted text-small">(3)</span></h1>
+                                    <h5 class="card-title capitalize-first-letter">@Html.DisplayFor(modelItem => item.nombre_servicio) <span class="fa fa-star"></span><span class="text-muted text-small">(3)</span></h5>
                                 </div>
-                                <p class="card-subtitle text-muted"> <b>Precio:</b> @Html.DisplayFor(modelItem => item.precio_servicio)</p>
+                                <p class="card-subtitle text-muted" style="font-family: 'Lato', sans-serif; color: #777; font-size: 18px; color: #777; font-weight: 500; line-height: 45px;"> <b>Precio:</b> @Html.DisplayFor(modelItem => item.precio_servicio)</p>
+
+
                                 <p class="card-text card-text-trend mb-4">@Html.DisplayFor(modelItem => item.descripcion)</p>
                             </div>
                         </div>
@@ -428,5 +441,5 @@
 
             }
 
-        </div>
-    </div>*@
+        </div>*@
+</div>
