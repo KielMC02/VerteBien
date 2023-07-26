@@ -6,7 +6,7 @@
 
 
 <center>
-    <img src="~/Imagenes/verte bien negro.png" width="128" height="128" style="margin-top:2%" />
+    <img src="~/Imagenes/Verte Bien Transparente 2.png" width="128" height="128" style="margin-top:2%" />
     <h4>Editar mi información</h4>
     <hr class="w-50" />
 </center>
@@ -88,7 +88,7 @@
                         <div class="form-group col-md-6 col-sm-12 mb-2">
                             @Html.Label("Cantón", htmlAttributes: new { @class = "control-label col-md-10" })
                             <div class="col-md-10">
-                         
+                             
                                 @Html.DropDownList("cantones", null, htmlAttributes: new { @class = "form-control control-form col-md-10", @id = "canton" })
                                 @Html.ValidationMessageFor(model => model.ciudad, "", new { @class = "text-danger" })
                                 <span id="sectore" data-sectores=""></span>
@@ -111,21 +111,23 @@
                         <div class="form-group col-md-6 col-sm-12 formulario__grupo" id="grupo__ciudad">
                             @Html.Label("Sectores", htmlAttributes: new { @class = "control-label col-md-10" })
                             <div class="col-md-10  formulario__grupo-input">
+
                                 @*@Html.EditorFor(model => model.ciudad, new { htmlAttributes = new { @class = "form-control control-form col-md-10 formulario__input", id = "ciudad", name = "ciudad" } })*@
-                                @Html.DropDownList("sectores", null, htmlAttributes: new { @class = "form-control control-form col-md-10", @id = "inlineFormSelectPref", name = "ciudad" })
+                                <select name="sector"  data-bs-toggle="tooltip" data-bs-placement="top" title="Doble clic para ver todos los sectores" class="form-control control-form col-md-10" id="sector">
+                                    <option>Seleccione una...</option>
+                                </select>
+                                @Html.DropDownList("sectores", null, htmlAttributes: new { @class = "form-control control-form col-md-10 d-none clas", @id = "sectores", name = "ciudad" })
                                 @Html.ValidationMessageFor(model => model.ciudad, "", new { @class = "text-danger" })
 
                             </div>
                             <p class="formulario__input-error">Elegir una ciudad valida</p>
                         </div>
 
-                        <label class="visually-hidden" for="inlineFormSelectPref">Sector</label>
-                        @*<select name="sector" class="form-select col-12" id="inlineFormSelectPref">
-            <option>Seleccione una...</option>
+                       
+                        <label class="d-none" for="">Sector</label>
+                       
 
-        </select>*@
-
-                        <span id="nombre-negocio" data-nombre="   @Html.DisplayFor(model => model.nombre_peluqueria)"></span>
+                        <span id="nombre-negocio" data-nombre="@Html.DisplayFor(model => model.nombre_peluqueria)"></span>
                         <span id="latitud" data-latitud="@Html.DisplayFor(model => model.latitud)"></span>
                         <span id="longitud" data-longitud="    @Html.DisplayFor(model => model.longitud)"></span>
 
@@ -137,7 +139,7 @@
                         <div class="form-group col-md-6 col-sm-12 my-4">
                             <center>
                                 @Html.Label("Latitud ", htmlAttributes: new { @class = "control-label col-md-10" })
-                                <div class="col-md-10" , data-bs-toggle="tooltip" , data-bs-placement="top" , title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
+                                <div class="col-md-10" , data-bs-toggle="tooltip"  data-bs-placement="top"title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
                                     @Html.EditorFor(model => model.latitud, new { htmlAttributes = new { @class = "form-control col-md-10", id = "Latitud" } })
                                     @Html.ValidationMessageFor(model => model.latitud, "", new { @class = "text-danger", })
                                 </div>
@@ -147,7 +149,7 @@
                         <div class="form-group col-md-6 col-sm-12 my-4">
                             <center>
                                 @Html.Label("Longitud ", htmlAttributes: new { @class = "control-label col-md-10" })
-                                <div class="col-md-10" , data-bs-toggle="tooltip" , data-bs-placement="top" , title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
+                                <div class="col-md-10" , data-bs-toggle="tooltip"  data-bs-placement="top" title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
                                     @Html.EditorFor(model => model.longitud, new { htmlAttributes = new { @class = "form-control  col-md-10", id = "Longitud" } })
                                     @Html.ValidationMessageFor(model => model.longitud, "", new { @class = "text-danger" })
                                 </div>
@@ -156,7 +158,9 @@
 
 
                         <div class="my-3">
-                            @Html.ActionLink("Cambiar mi contraseña", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "btn text-white col-md-5", @style = "background-color:#DBA312;" })
+                       
+                                @Html.ActionLink("Cambiar mi contraseña", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "btn text-white col-md-5", @style = "background-color:#DBA312;" })
+                          
                         </div>
 
 
@@ -180,12 +184,12 @@
                                 {
  
                                     <div class="col-lg-4 mt-3">
-                                        <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; max-height:250px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
+                                        <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; height:290px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
 
                                         <div class="mt-3 row col-12">
 
                                             <span class="@("file"+@ViewBag.contador)">
-                                                <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" required />
+                                                <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
                                             </span>
                                             <label for="@("file"+@ViewBag.contador)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Cambiar foto de perfil</span></label>
 
@@ -196,7 +200,7 @@
                                 else
                                 {
                                     <div class="col-lg-4 mt-3">
-                                        <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; max-height:250px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
+                                        <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; height:290px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
 
                                         <div class="mt-3 row col-12">
 
@@ -227,7 +231,7 @@
                                 if (ViewBag.contador2 == 1)
                                 {
                                     <span class="@("file"+@ViewBag.contador2)">
-                                        <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" required />
+                                        <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
                                     </span>
                                 }
                                 else
@@ -288,10 +292,43 @@
             $('#modal').modal('show');
 
         }
+        var dropDownList = document.getElementById("sectores");
+        var selectHtml = document.getElementById("sector");
 
-      
-      
+        // Función para establecer el valor seleccionado del selectHtml
+        function establecerValorSeleccionado() {
+            // Obtener el texto seleccionado en el dropDownList (mayúsculas)
+            var textoSeleccionado = dropDownList.options[dropDownList.selectedIndex].text.toUpperCase();
+
+            // Establecer el texto seleccionado en el selectHtml
+            selectHtml.innerHTML = '<option value="' + textoSeleccionado + '">' + textoSeleccionado + '</option>';
+        }
+
+        // Establecer el valor seleccionado al cargar la página
+        establecerValorSeleccionado();
+
+        // Establecer el evento change en el dropDownList
+        dropDownList.addEventListener("change", function () {
+            // Obtener el texto seleccionado en el dropDownList (mayúsculas)
+            var textoSeleccionado = dropDownList.options[dropDownList.selectedIndex].text.toUpperCase();
+
+            // Establecer el texto seleccionado en el selectHtml
+            selectHtml.innerHTML = '<option value="' + textoSeleccionado + '">' + textoSeleccionado + '</option>';
+        });
+
+        // Agregar evento change al selectHtml
+        selectHtml.addEventListener("change", function () {
+            // Obtener el nuevo valor seleccionado en selectHtml (mayúsculas)
+            var nuevoValorSeleccionado = selectHtml.value.toUpperCase();
+
+            // Establecer el nuevo valor seleccionado en el dropDownList
+            dropDownList.value = nuevoValorSeleccionado;
+        });
+        
+
     }
+
+
 </script>
 
 
