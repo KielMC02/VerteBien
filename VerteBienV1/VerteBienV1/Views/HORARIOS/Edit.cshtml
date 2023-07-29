@@ -28,84 +28,19 @@
                     <div class="col-md-4 col-12 col-lg-4">
                         <div class="form-group ">
                             @Html.Label("Horario de apertura días semanales", htmlAttributes: new { @class = "control-label col-md-12 my-1 my-1" })
-                            <div class="">
-                                <select name="semanales_inicio" id="cars" class="form-control">
-                                    <option value="7" type="number" step="any">7:00AM</option>
-                                    <option value="7,50">7:30AM</option>
-                                    <option value="8">8:00AM</option>
-                                    <option value="8,5">8:30AM</option>
-                                    <option value="9">9:00AM</option>
-                                    <option value="9,50">9:30AM</option>
-                                    <option value="10">10:00AM</option>
-                                    <option value="10,50">10:30AM</option>
-                                    <option value="11">11:00AM</option>
-                                    <option value="11,50">11:30AM</option>
-                                    <option value="12">12:00PM</option>
-                                    <option value="12,50">12:30PM</option>
-                                    <option value="13">13:00PM</option>
-                                    <option value="13,50">13:30PM</option>
-                                    <option value="14">14:00PM</option>
-                                    <option value="14,50">14:30PM</option>
-                                    <option value="15">15:00PM</option>
-                                    <option value="15,50">15:30PM</option>
-                                    <option value="16">16:00PM</option>
-                                    <option value="16,50">16:30PM</option>
-                                    <option value="17">17:00PM</option>
-                                    <option value="17,50">17:30PM</option>
-                                    <option value="18">18:00PM</option>
-                                    <option value="18,50">18:30PM</option>
-                                    <option value="19">19:00PM</option>
-                                    <option value="19,50">19:30PM</option>
-                                    <option value="20">20:00PM</option>
-                                    <option value="20,50">20:30PM</option>
-                                    <option value="21">21:00PM</option>
-                                    <option value="21,50">21:30PM</option>
-                                </select>
+                                <div class="col-md-12" id="cars">
+                                    @Html.DropDownList("semanalesInicio", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                                    @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        @*Semanales Cierre*@
-                        <div class="form-group ">
-                            @Html.Label("Horario de cierre días semanales", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
-                            <div class="">
-                                <select name="semanales_cierre" id="cars" class="form-control">
-                                    <option value="7" type="number" step="any">7:00AM</option>
-                                    <option value="7,50">7:30AM</option>
-                                    <option value="8">8:00AM</option>
-                                    <option value="8,5">8:30AM</option>
-                                    <option value="9">9:00AM</option>
-                                    <option value="9,50">9:30AM</option>
-                                    <option value="10">10:00AM</option>
-                                    <option value="10,50">10:30AM</option>
-                                    <option value="11">11:00AM</option>
-                                    <option value="11,50">11:30AM</option>
-                                    <option value="12">12:00PM</option>
-                                    <option value="12,50">12:30PM</option>
-                                    <option value="13">13:00PM</option>
-                                    <option value="13,50">13:30PM</option>
-                                    <option value="14">14:00PM</option>
-                                    <option value="14,50">14:30PM</option>
-                                    <option value="15">15:00PM</option>
-                                    <option value="15,50">15:30PM</option>
-                                    <option value="16">16:00PM</option>
-                                    <option value="16,50">16:30PM</option>
-                                    <option value="17">17:00PM</option>
-                                    <option value="17,50">17:30PM</option>
-                                    <option value="18">18:00PM</option>
-                                    <option value="18,50">18:30PM</option>
-                                    <option value="19">19:00PM</option>
-                                    <option value="19,50">19:30PM</option>
-                                    <option value="20">20:00PM</option>
-                                    <option value="20,50">20:30PM</option>
-                                    <option value="21">21:00PM</option>
-                                    <option value="21,50">21:30PM</option>
-                                </select>
-                                <label class="col-12 mt-1">
-                                    <input type="checkbox" name="checkboxName" class="checkbox" />
-                                    <div class="switch switch_1"></div>
-                                    <p class="status" id="status1">Cerrado</p>
-                                </label>
+                            @*Semanales Cierre*@
+                            <div class="form-group ">
+                                @Html.Label("Horario de cierre días semanales", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
+                                                                <div class="col-md-12" id="cars">
+                                    @Html.DropDownList("semanalesCierre", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                                    @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
                     </div>
 
@@ -113,84 +48,19 @@
                         @*Sabados Inicio*@
                         <div class="form-group">
                             @Html.Label("Horario de apertura los sábados", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
-                            <div class="">
-                                <select name="sabados_inicio" id="cars" class="form-control">
-                                    <option value="7" type="number" step="any">7:00AM</option>
-                                    <option value="7,50">7:30AM</option>
-                                    <option value="8">8:00AM</option>
-                                    <option value="8,5">8:30AM</option>
-                                    <option value="9">9:00AM</option>
-                                    <option value="9,50">9:30AM</option>
-                                    <option value="10">10:00AM</option>
-                                    <option value="10,50">10:30AM</option>
-                                    <option value="11">11:00AM</option>
-                                    <option value="11,50">11:30AM</option>
-                                    <option value="12">12:00PM</option>
-                                    <option value="12,50">12:30PM</option>
-                                    <option value="13">13:00PM</option>
-                                    <option value="13,50">13:30PM</option>
-                                    <option value="14">14:00PM</option>
-                                    <option value="14,50">14:30PM</option>
-                                    <option value="15">15:00PM</option>
-                                    <option value="15,50">15:30PM</option>
-                                    <option value="16">16:00PM</option>
-                                    <option value="16,50">16:30PM</option>
-                                    <option value="17">17:00PM</option>
-                                    <option value="17,50">17:30PM</option>
-                                    <option value="18">18:00PM</option>
-                                    <option value="18,50">18:30PM</option>
-                                    <option value="19">19:00PM</option>
-                                    <option value="19,50">19:30PM</option>
-                                    <option value="20">20:00PM</option>
-                                    <option value="20,50">20:30PM</option>
-                                    <option value="21">21:00PM</option>
-                                    <option value="21,50">21:30PM</option>
-                                </select>
+                            <div class="col-md-12" id="cars">
+                                @Html.DropDownList("sabadoInicio", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                                @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         @*Sabados Cierre*@
-                        <div class="form-group ">
-                            @Html.Label("Horario de cierre los sábados", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
-                            <div class="">
-                                <select name="sabados_cierre" id="cars" class="form-control">
-                                    <option value="7" type="number" step="any">7:00AM</option>
-                                    <option value="7,50">7:30AM</option>
-                                    <option value="8">8:00AM</option>
-                                    <option value="8,5">8:30AM</option>
-                                    <option value="9">9:00AM</option>
-                                    <option value="9,50">9:30AM</option>
-                                    <option value="10">10:00AM</option>
-                                    <option value="10,50">10:30AM</option>
-                                    <option value="11">11:00AM</option>
-                                    <option value="11,50">11:30AM</option>
-                                    <option value="12">12:00PM</option>
-                                    <option value="12,50">12:30PM</option>
-                                    <option value="13">13:00PM</option>
-                                    <option value="13,50">13:30PM</option>
-                                    <option value="14">14:00PM</option>
-                                    <option value="14,50">14:30PM</option>
-                                    <option value="15">15:00PM</option>
-                                    <option value="15,50">15:30PM</option>
-                                    <option value="16">16:00PM</option>
-                                    <option value="16,50">16:30PM</option>
-                                    <option value="17">17:00PM</option>
-                                    <option value="17,50">17:30PM</option>
-                                    <option value="18">18:00PM</option>
-                                    <option value="18,50">18:30PM</option>
-                                    <option value="19">19:00PM</option>
-                                    <option value="19,50">19:30PM</option>
-                                    <option value="20">20:00PM</option>
-                                    <option value="20,50">20:30PM</option>
-                                    <option value="21">21:00PM</option>
-                                    <option value="21,50">21:30PM</option>
-                                </select>
-                                <label class="col-12 mt-1">
-                                    <input type="checkbox" name="checkboxName" class="checkbox" />
-                                    <div class="switch switch_2"></div>
-                                    <p class="status" id="status2">Cerrado</p>
-                                </label>
-                            </div>
+                    <div class="form-group ">
+                        @Html.Label("Horario de cierre los sábados", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
+                        <div class="col-md-12" id="cars">
+                            @Html.DropDownList("sabadoCierre", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                            @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
                         </div>
+                    </div>
 
 
 
@@ -200,84 +70,19 @@
                         @*Domingos Inicio*@
                         <div class="form-group ">
                             @Html.Label("Horario de apertura los domingos", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
-                            <div class="">
-                                <select name="domingo_inicio" id="cars" class="form-control">
-                                    <option value="7" type="number" step="any">7:00AM</option>
-                                    <option value="7,50">7:30AM</option>
-                                    <option value="8">8:00AM</option>
-                                    <option value="8,5">8:30AM</option>
-                                    <option value="9">9:00AM</option>
-                                    <option value="9,50">9:30AM</option>
-                                    <option value="10">10:00AM</option>
-                                    <option value="10,50">10:30AM</option>
-                                    <option value="11">11:00AM</option>
-                                    <option value="11,50">11:30AM</option>
-                                    <option value="12">12:00PM</option>
-                                    <option value="12,50">12:30PM</option>
-                                    <option value="13">13:00PM</option>
-                                    <option value="13,50">13:30PM</option>
-                                    <option value="14">14:00PM</option>
-                                    <option value="14,50">14:30PM</option>
-                                    <option value="15">15:00PM</option>
-                                    <option value="15,50">15:30PM</option>
-                                    <option value="16">16:00PM</option>
-                                    <option value="16,50">16:30PM</option>
-                                    <option value="17">17:00PM</option>
-                                    <option value="17,50">17:30PM</option>
-                                    <option value="18">18:00PM</option>
-                                    <option value="18,50">18:30PM</option>
-                                    <option value="19">19:00PM</option>
-                                    <option value="19,50">19:30PM</option>
-                                    <option value="20">20:00PM</option>
-                                    <option value="20,50">20:30PM</option>
-                                    <option value="21">21:00PM</option>
-                                    <option value="21,50">21:30PM</option>
-                                </select>
+                            <div class="col-md-12" id="cars">
+                                @Html.DropDownList("domingoInicio", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                                @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         @*Domingos Cierre*@
-                        <div class="form-group ">
-                            @Html.Label("Horario de cierre los domingos", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
-                            <div class="">
-                                <select name="domingo_cierre" id="cars" class="form-control">
-                                    <option value="7" type="number" step="any">7:00AM</option>
-                                    <option value="7,50">7:30AM</option>
-                                    <option value="8">8:00AM</option>
-                                    <option value="8,5">8:30AM</option>
-                                    <option value="9">9:00AM</option>
-                                    <option value="9,50">9:30AM</option>
-                                    <option value="10">10:00AM</option>
-                                    <option value="10,50">10:30AM</option>
-                                    <option value="11">11:00AM</option>
-                                    <option value="11,50">11:30AM</option>
-                                    <option value="12">12:00PM</option>
-                                    <option value="12,50">12:30PM</option>
-                                    <option value="13">13:00PM</option>
-                                    <option value="13,50">13:30PM</option>
-                                    <option value="14">14:00PM</option>
-                                    <option value="14,50">14:30PM</option>
-                                    <option value="15">15:00PM</option>
-                                    <option value="15,50">15:30PM</option>
-                                    <option value="16">16:00PM</option>
-                                    <option value="16,50">16:30PM</option>
-                                    <option value="17">17:00PM</option>
-                                    <option value="17,50">17:30PM</option>
-                                    <option value="18">18:00PM</option>
-                                    <option value="18,50">18:30PM</option>
-                                    <option value="19">19:00PM</option>
-                                    <option value="19,50">19:30PM</option>
-                                    <option value="20">20:00PM</option>
-                                    <option value="20,50">20:30PM</option>
-                                    <option value="21">21:00PM</option>
-                                    <option value="21,50">21:30PM</option>
-                                </select>
-                                <label class="col-12 mt-1">
-                                    <input type="checkbox" name="checkboxName" class="checkbox" />
-                                    <div class="switch switch_3"></div>
-                                    <p class="status" id="status3">Cerrado</p>
-                                </label>
-                            </div>
+                    <div class="form-group ">
+                        @Html.Label("Horario de cierre los domingos", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
+                        <div class="col-md-12" id="cars">
+                            @Html.DropDownList("domingoCierre", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                            @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
                         </div>
+                    </div>
 
 
 
