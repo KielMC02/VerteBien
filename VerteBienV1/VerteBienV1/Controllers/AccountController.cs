@@ -221,7 +221,7 @@ namespace VerteBienV1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, nombre = model.nombre, apellido = model.apellido, fecha_nacimiento_ = model.fecha_nacimiento_, fecha_creacion_ = DateTime.Today/*, capacidad_simultanea_ = 0, estado = "activo"*/};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, nombre = model.nombre, apellido = model.apellido, fecha_nacimiento_ = model.fecha_nacimiento_, fecha_creacion_ = DateTime.Today, telefono = model.telefono/*, capacidad_simultanea_ = 0, estado = "activo"*/};
 
                 user.capacidad_simultanea_ = 0;
                 user.estado = "activo";

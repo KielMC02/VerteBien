@@ -2090,14 +2090,14 @@ namespace VerteBienV1.Controllers
                 db.SaveChanges();
                 SERVICIOSController validar = new SERVICIOSController();
                 string idUser = User.Identity.GetUserId();
-                var estatus = validar.VerificarUser(idUser);
-                if(estatus == "redes")
+                var respuesta = validar.VerificarUser(idUser);
+                if (respuesta == "redes")
                 {
-                    return RedirectToAction("Create", "REDES_SOCIALES", new { estatus });
+                    return RedirectToAction("Create", "REDES_SOCIALES", new { respuesta });
                 }
-                if (estatus == "horario")
+                if (respuesta == "horario")
                 {
-                    return RedirectToAction("Create", "HORARIOS", new { estatus });
+                    return RedirectToAction("Create", "HORARIOS", new { respuesta });
                 }
                 else
                 {

@@ -86,7 +86,7 @@
                                 @Html.TextBoxFor(m => m.nombre, new { @class = "form-control control-form formulario__input ", id = "nombre", name = "nombre" })
 
                             </div>
-                            <p class="formulario__input-error text-center">El nombre tiene que ser letras espacion y pueden llevar acento.</p>
+                            <p class="formulario__input-error text-center">El nombre tiene que ser letras y pueden llevar acento.</p>
                         </div>
 
 
@@ -110,6 +110,16 @@
                             </div>
                             <p class="formulario__input-error text-center">La fecha tiene que ser día/mes/años</p>
                             <p class="formulario__input-errorr text-center">Tiene que tener al menos 15 años de edad</p>
+                        </div>
+
+                        <div class="form-group col-md-12 formulario__grupo" id="grupo__telefono">
+                            @Html.Label("Teléfono", new { @class = "col-md-2 control-label", @style = "margin-left:3px;" })
+                            <div class="formulario__grupo-input">
+                                <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
+                                @Html.TextBoxFor(m => m.telefono, new { @class = "form-control control-form formulario__input", @required = "required", id = "telefono", name = "telefono" })
+
+                            </div>
+                            <p class="formulario__input-error">Por favor, introducir un telefono valido </p>
                         </div>
                         <div class="mt-4 text-center">
                             <input type="button" class="btn btn btn-outline-warning volbtn" name="back" value="Atras" onclick="msf_btn_back()">
