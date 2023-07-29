@@ -90,14 +90,14 @@ namespace VerteBienV1.Controllers
                 db.SaveChanges();
                 SERVICIOSController validar = new SERVICIOSController();
                 string idUser = User.Identity.GetUserId();
-                var estatus = validar.VerificarUser(idUser);
-                if (estatus == "horario")
+                string respuesta = validar.VerificarUser(idUser);
+                if (respuesta == "horario")
                 {
-                    return RedirectToAction("Create", "HORARIOS", new { estatus });
+                    return RedirectToAction("Create", "HORARIOS", new { respuesta });
                 }
-                if (estatus == "no fotos")
+                if (respuesta == "no fotos")
                 {
-                    return RedirectToAction("Edit", "AspNetUsers", new { estatus });
+                    return RedirectToAction("Edit", "AspNetUsers", new { respuesta });
                 }
                 else
                 {
@@ -154,7 +154,7 @@ namespace VerteBienV1.Controllers
             {
                 db.Entry(rEDES_SOCIALES).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","SERVICIOS");
             }
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", rEDES_SOCIALES.id_usuario);
             return View(rEDES_SOCIALES);
