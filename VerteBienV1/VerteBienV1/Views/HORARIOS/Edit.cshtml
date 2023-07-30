@@ -28,19 +28,24 @@
                     <div class="col-md-4 col-12 col-lg-4">
                         <div class="form-group ">
                             @Html.Label("Horario de apertura días semanales", htmlAttributes: new { @class = "control-label col-md-12 my-1 my-1" })
-                                <div class="col-md-12" id="cars">
-                                    @Html.DropDownList("semanalesInicio", null, htmlAttributes: new { @class = "form-control col-md-10 " })
-                                    @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
-                                </div>
+                            <div class="col-md-12" id="cars">
+                                @Html.DropDownList("semanalesInicio", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                                @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
                             </div>
-                            @*Semanales Cierre*@
-                            <div class="form-group ">
-                                @Html.Label("Horario de cierre días semanales", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
-                                                                <div class="col-md-12" id="cars">
-                                    @Html.DropDownList("semanalesCierre", null, htmlAttributes: new { @class = "form-control col-md-10 " })
-                                    @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
-                                </div>
+                        </div>
+                        @*Semanales Cierre*@
+                        <div class="form-group ">
+                            @Html.Label("Horario de cierre días semanales", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
+                            <div class="col-md-12" id="cars">
+                                @Html.DropDownList("semanalesCierre", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                                @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
+                                <label class="col-12 mt-1">
+                                    <input type="checkbox" name="checkboxName" class="checkbox" />
+                                    <div class="switch switch_1"></div>
+                                    <p class="status" id="status1">Cerrado</p>
+                                </label>
                             </div>
+                        </div>
 
                     </div>
 
@@ -54,13 +59,18 @@
                             </div>
                         </div>
                         @*Sabados Cierre*@
-                    <div class="form-group ">
-                        @Html.Label("Horario de cierre los sábados", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
-                        <div class="col-md-12" id="cars">
-                            @Html.DropDownList("sabadoCierre", null, htmlAttributes: new { @class = "form-control col-md-10 " })
-                            @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
+                        <div class="form-group ">
+                            @Html.Label("Horario de cierre los sábados", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
+                            <div class="col-md-12" id="cars">
+                                @Html.DropDownList("sabadoCierre", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                                @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
+                                <label class="col-12 mt-1">
+                                    <input type="checkbox" name="checkboxName" class="checkbox" />
+                                    <div class="switch switch_2"></div>
+                                    <p class="status" id="status2">Cerrado</p>
+                                </label>
+                            </div>
                         </div>
-                    </div>
 
 
 
@@ -76,13 +86,19 @@
                             </div>
                         </div>
                         @*Domingos Cierre*@
-                    <div class="form-group ">
-                        @Html.Label("Horario de cierre los domingos", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
-                        <div class="col-md-12" id="cars">
-                            @Html.DropDownList("domingoCierre", null, htmlAttributes: new { @class = "form-control col-md-10 " })
-                            @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
+                        <div class="form-group ">
+                            @Html.Label("Horario de cierre los domingos", htmlAttributes: new { @class = "control-label col-md-12 my-1" })
+                            <div class="col-md-12" id="cars">
+                                @Html.DropDownList("domingoCierre", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                                @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
+                                <label class="col-12 mt-1">
+                                    <input type="checkbox" name="checkboxName" class="checkbox" />
+                                    <div class="switch switch_3"></div>
+                                    <p class="status" id="status3">Cerrado</p>
+                                </label>
+                            </div>
+
                         </div>
-                    </div>
 
 
 
