@@ -271,9 +271,40 @@ $(document).ready(function () {
         formatiniciodom == '07:00:am' && formatcierredom == '07:00:am' ? $('#domingo').text("Domingo:" + " " + 'Cerrado' + " " + "-" + " " + 'Cerrado') : $('#domingo').text("Domingo:" + " " + formatiniciodom + " " + "-" + " " + formatcierredom)
 
     }
-   
-  
+    function ModificarHora(decimal) {
+        // La función ModificarHora() permanece igual
+        decimal = decimal.replace(/,/, '.');
+        let horas = Math.floor(decimal),
+            minutosDecimal = decimal % 1 * 100,
+            minutos = Math.floor(minutosDecimal),
+            segundos = Math.floor((minutosDecimal % 1) * 60);
 
+        let am_pm = 'am';
+        if (horas >= 12) {
+            am_pm = 'pm';
+            if (horas > 12) {
+                horas -= 12;
+            }
+        }
+
+        return `${('00' + horas).slice(-2)}:${('00' + minutos).slice(-2)}:${am_pm}`;
+    }
+
+    // Verificamos si existen elementos con la clase ".hora"
+    if ($(".hora").length) {
+        let HoraCita = $('.hora');
+
+        HoraCita.each(function (index, eHora) {
+            let hora = $(eHora).data('hora');
+            ModHora = ModificarHora(hora.toString());
+
+            // Imprimimos el resultado en el elemento HTML
+            $(eHora).html('<b>Hora de la cita: </b>' +"" + ModHora);
+
+        });
+    }
+  
+   
 
     ///*Activador de datos mas informacion detalles.*/
     //    if ($("#more-information").length) {
