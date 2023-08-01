@@ -293,11 +293,10 @@ $(document).ready(function () {
     // Verificamos si existen elementos con la clase ".hora"
     if ($(".hora").length) {
         let HoraCita = $('.hora');
-
         HoraCita.each(function (index, eHora) {
             let hora = $(eHora).data('hora');
+            console.log(hora)
             ModHora = ModificarHora(hora.toString());
-
             // Imprimimos el resultado en el elemento HTML
             $(eHora).html('<b>Hora de la cita: </b>' +"" + ModHora);
 
