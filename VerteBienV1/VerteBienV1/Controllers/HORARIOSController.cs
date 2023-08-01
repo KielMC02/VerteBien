@@ -167,6 +167,7 @@ namespace VerteBienV1.Controllers
                 semanalesInicio.Add(Convert.ToDecimal(23.50));
 
                 List<decimal> semanalesCierre = new List<decimal>();
+                semanalesCierre.Add(Convert.ToDecimal(7));
                 semanalesCierre.Add(Convert.ToDecimal(7.50));
                 semanalesCierre.Add(Convert.ToDecimal(8));
                 semanalesCierre.Add(Convert.ToDecimal(8.50));
@@ -202,6 +203,7 @@ namespace VerteBienV1.Controllers
                 semanalesCierre.Add(Convert.ToDecimal(23.50));
 
                 List<decimal> sabadoInicio= new List<decimal>();
+                sabadoInicio.Add(Convert.ToDecimal(7));
                 sabadoInicio.Add(Convert.ToDecimal(7.50));
                 sabadoInicio.Add(Convert.ToDecimal(8));
                 sabadoInicio.Add(Convert.ToDecimal(8.50));
@@ -237,6 +239,7 @@ namespace VerteBienV1.Controllers
                 sabadoInicio.Add(Convert.ToDecimal(23.50));
 
                 List<decimal> sabadoCierre = new List<decimal>();
+                sabadoCierre.Add(Convert.ToDecimal(7));
                 sabadoCierre.Add(Convert.ToDecimal(7.50));
                 sabadoCierre.Add(Convert.ToDecimal(8));
                 sabadoCierre.Add(Convert.ToDecimal(8.50));
@@ -272,6 +275,7 @@ namespace VerteBienV1.Controllers
                 sabadoCierre.Add(Convert.ToDecimal(23.50));
 
                 List<decimal> domingoInicio = new List<decimal>();
+                domingoInicio.Add(Convert.ToDecimal(7));
                 domingoInicio.Add(Convert.ToDecimal(7.50));
                 domingoInicio.Add(Convert.ToDecimal(8));
                 domingoInicio.Add(Convert.ToDecimal(8.50));
@@ -307,6 +311,7 @@ namespace VerteBienV1.Controllers
                 domingoInicio.Add(Convert.ToDecimal(23.50));
 
                 List<decimal> domingoCierre = new List<decimal>();
+                domingoCierre.Add(Convert.ToDecimal(7));
                 domingoCierre.Add(Convert.ToDecimal(7.50));
                 domingoCierre.Add(Convert.ToDecimal(8));
                 domingoCierre.Add(Convert.ToDecimal(8.50));
