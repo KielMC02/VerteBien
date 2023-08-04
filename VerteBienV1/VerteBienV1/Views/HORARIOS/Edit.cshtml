@@ -76,7 +76,7 @@
                                 <select name="sabado_cierre" data-bs-toggle="tooltip" data-bs-placement="top" title="" class="form-control col-md-10" id="sabado_cierre">
                                     <option>Seleccione una...</option>
                                 </select>
-                                @Html.DropDownList("sabadoCierre", null, htmlAttributes: new { @class = "form-control col-md-10 d-none", @id = "sabadoCierre" })
+                                @Html.DropDownList("sabadoCierre", null, htmlAttributes: new { @class = "form-control col-md-10 d-none ", @id = "sabadoCierre" })
                                 @Html.ValidationMessageFor(model => model.semanales_inicio, "", new { @class = "text-danger" })
                                 <label class="col-12 mt-1">
                                     <input type="checkbox" name="checkboxName" class="checkbox" />
@@ -144,9 +144,10 @@
 <script>
     window.onload = function () {
         function convertirNumeroDecimalAHora(valorNumerico) {
-            var hora = Math.floor(valorNumerico);
-            var minutos = (valorNumerico % 1) * 60;
-            var ampm = hora >= 12 ? "PM" : "AM";
+            valorNumerico = valorNumerico.replace(/,/, '.');
+            let hora = Math.floor(valorNumerico);
+            let minutos = (valorNumerico % 1) * 60;
+            let ampm = hora >= 12 ? "PM" : "AM";
 
             // Ajustar el formato de las horas y minutos para que tengan dos dígitos y cambiar a formato de 12 horas
             if (hora === 0) {
@@ -164,26 +165,26 @@
 
         // Función para llenar el selectHtml con las opciones del dropDownList
         function llenarSelectHtml(sufijo) {
-            var dropDownList = document.getElementById(sufijo + "Inicio");
-            var selectHtml = document.getElementById(sufijo + "_inicio");
+            let dropDownList = document.getElementById(sufijo + "Inicio");
+            let selectHtml = document.getElementById(sufijo + "_inicio");
             selectHtml.innerHTML = ''; // Limpiar opciones previas
 
-            for (var i = 0; i < dropDownList.options.length; i++) {
-                var optionText = convertirNumeroDecimalAHora(parseFloat(dropDownList.options[i].value));
-                var optionValue = dropDownList.options[i].value;
-                var newOption = new Option(optionText, optionValue);
+            for (let i = 0; i < dropDownList.options.length; i++) {
+                let optionText = convertirNumeroDecimalAHora(dropDownList.options[i].value);
+                let optionValue = dropDownList.options[i].value;
+                let newOption = new Option(optionText, optionValue);
                 selectHtml.appendChild(newOption);
             }
 
             // Obtener el elemento de cierre correspondiente
-            var dropDownListCierre = document.getElementById(sufijo + "Cierre");
-            var selectHtmlCierre = document.getElementById(sufijo + "_cierre");
+            let dropDownListCierre = document.getElementById(sufijo + "Cierre");
+            let selectHtmlCierre = document.getElementById(sufijo + "_cierre");
             selectHtmlCierre.innerHTML = ''; // Limpiar opciones previas
 
-            for (var j = 0; j < dropDownListCierre.options.length; j++) {
-                var optionTextCierre = convertirNumeroDecimalAHora(parseFloat(dropDownListCierre.options[j].value));
-                var optionValueCierre = dropDownListCierre.options[j].value;
-                var newOptionCierre = new Option(optionTextCierre, optionValueCierre);
+            for (let j = 0; j < dropDownListCierre.options.length; j++) {
+                let optionTextCierre = convertirNumeroDecimalAHora(dropDownListCierre.options[j].value);
+                let optionValueCierre = dropDownListCierre.options[j].value;
+                let newOptionCierre = new Option(optionTextCierre, optionValueCierre);
                 selectHtmlCierre.appendChild(newOptionCierre);
             }
         }
@@ -191,52 +192,52 @@
 
         // Función para establecer el valor seleccionado en ambos elementos
         function establecerValoresSeleccionados(sufijo) {
-            var dropDownList = document.getElementById(sufijo + "Inicio");
-            var selectHtml = document.getElementById(sufijo + "_inicio");
-            var textoSeleccionado = dropDownList.options[dropDownList.selectedIndex].text;
+            let dropDownList = document.getElementById(sufijo + "Inicio");
+            let selectHtml = document.getElementById(sufijo + "_inicio");
+            let textoSeleccionado = dropDownList.options[dropDownList.selectedIndex].text;
             selectHtml.value = textoSeleccionado;
 
             // Obtener el elemento de cierre correspondiente
-            var dropDownListCierre = document.getElementById(sufijo + "Cierre");
-            var selectHtmlCierre = document.getElementById(sufijo + "_cierre");
+            let dropDownListCierre = document.getElementById(sufijo + "Cierre");
+            let selectHtmlCierre = document.getElementById(sufijo + "_cierre");
 
-            var textoSeleccionadoCierre = dropDownListCierre.options[dropDownListCierre.selectedIndex].text;
+            let textoSeleccionadoCierre = dropDownListCierre.options[dropDownListCierre.selectedIndex].text;
             selectHtmlCierre.value = textoSeleccionadoCierre;
         }
 
         // Llenar y establecer valores seleccionados al cargar la página para cada par de selects
-        var sufijos = ["semanales", "sabado", "domingo"];
+        let sufijos = ["semanales", "sabado", "domingo"];
         sufijos.forEach(function (sufijo) {
             llenarSelectHtml(sufijo);
             establecerValoresSeleccionados(sufijo);
 
-            var dropDownList = document.getElementById(sufijo + "Inicio");
-            var selectHtml = document.getElementById(sufijo + "_inicio");
+            let dropDownList = document.getElementById(sufijo + "Inicio");
+            let selectHtml = document.getElementById(sufijo + "_inicio");
 
             // Establecer eventos para cada par de selects de inicio
             dropDownList.addEventListener("change", function () {
-                var textoSeleccionado = dropDownList.options[dropDownList.selectedIndex].text;
+                let textoSeleccionado = dropDownList.options[dropDownList.selectedIndex].text;
                 selectHtml.value = textoSeleccionado;
             });
 
             selectHtml.addEventListener("change", function () {
-                var nuevoValorSeleccionado = selectHtml.value;
+                let nuevoValorSeleccionado = selectHtml.value;
                 dropDownList.value = nuevoValorSeleccionado;
             });
 
             // Obtener los elementos de cierre
-            var dropDownListCierre = document.getElementById(sufijo + "Cierre");
-            var selectHtmlCierre = document.getElementById(sufijo + "_cierre");
+            let dropDownListCierre = document.getElementById(sufijo + "Cierre");
+            let selectHtmlCierre = document.getElementById(sufijo + "_cierre");
 
             // Establecer eventos para cada par de selects de cierre
             dropDownListCierre.addEventListener("change", function () {
-                var textoSeleccionadoCierre = dropDownListCierre.options[dropDownListCierre.selectedIndex].text;
+                let textoSeleccionadoCierre = dropDownListCierre.options[dropDownListCierre.selectedIndex].text;
                 selectHtmlCierre.value = textoSeleccionadoCierre;
                 console.log(textoSeleccionadoCierre)
             });
 
             selectHtmlCierre.addEventListener("change", function () {
-                var nuevoValorSeleccionadoCierre = selectHtmlCierre.value;
+                let nuevoValorSeleccionadoCierre = selectHtmlCierre.value;
                 dropDownListCierre.value = nuevoValorSeleccionadoCierre;
             });
         });
@@ -244,23 +245,27 @@
 
 
         function verificarHorarios() {
-            var semanalesInicio = $('#semanales_inicio').val();
-            var semanalesCierre = $('#semanales_cierre').val();
-            var sabadoInicio = $('#sabado_inicio').val();
-            var sabadoCierre = $('#sabado_cierre').val();
-            var domingoInicio = $('#domingo_inicio').val();
-            var domingoCierre = $('#domingo_cierre').val();
+            let semanalesInicio = $('#semanales_inicio').val();
+            let semanalesCierre = $('#semanales_cierre').val();
+            let sabadoInicio = $('#sabado_inicio').val();
+            let sabadoCierre = $('#sabado_cierre').val();
+            let domingoInicio = $('#domingo_inicio').val();
+            let domingoCierre = $('#domingo_cierre').val();
 
-            if (semanalesInicio !== "7" && semanalesCierre !== "7" && parseInt(semanalesCierre) < parseInt(semanalesInicio)) {
+            if (semanalesInicio !== "7" && semanalesCierre !== "7" && parseInt(semanalesCierre) <= parseInt(semanalesInicio)) {
                 $('select[name="semanales_cierre"]').val(parseInt(semanalesInicio) + 1);
+                $('#semanalesCierre').val((parseInt(semanalesInicio) + 1).toString());
             }
 
-            if (sabadoInicio !== "7" && sabadoCierre !== "7" && parseInt(sabadoCierre) < parseInt(sabadoInicio)) {
-                $('select[name="sabados_cierre"]').val(parseInt(sabadoInicio) + 1);
+            if (sabadoInicio !== "7" && sabadoCierre !== "7" && parseInt(sabadoCierre) <= parseInt(sabadoInicio)) {
+                $('select[name="sabado_cierre"]').val(parseInt(sabadoInicio) + 1);
+                $('#sabadoCierre').val((parseInt(sabadoInicio) + 1).toString());
             }
 
-            if (domingoInicio !== "7" && domingoCierre !== "7" && parseInt(domingoCierre) < parseInt(domingoInicio)) {
+            if (domingoInicio !== "7" && domingoCierre !== "7" && parseInt(domingoCierre) <= parseInt(domingoInicio)) {
                 $('select[name="domingo_cierre"]').val(parseInt(domingoInicio) + 1);
+                $('#domingoCierre').val((parseInt(domingoInicio) + 1).toString());
+
             }
         }
 
@@ -273,6 +278,8 @@
                 $(status).css('opacity', '0');
             }
         }
+
+
         if (semanalesInicio === "7" && semanalesCierre === "7") {
             $('.switch_1').addClass("switchOn");
         } else {
@@ -294,9 +301,11 @@
       
 
 
-        function handleClickSwitch(selector, inicio, cierre, status) {
+        function handleClickSwitch(selector, inicio, cierre,dropInicio,dropCierre, status) {
             var inicioValue = $('select[name="' + inicio + '"]').val();
             var cierreValue = $('select[name="' + cierre + '"]').val();
+           
+        
 
             if (inicioValue === "7" && cierreValue === "7") {
                 $('#modalStatus').modal('show'); // abrir el modal de Bootstrap
@@ -308,6 +317,8 @@
                 } else {
                     $('select[name="' + inicio + '"]').val("7");
                     $('select[name="' + cierre + '"]').val("7");
+                    $('select[name="' + dropInicio + '"]').val("7");
+                    $('select[name="' + dropCierre + '"]').val("7");
                     $(status).css('opacity', '1');
                 }
             }
@@ -344,21 +355,24 @@
         });
 
         $('.switch_1').click(function () {
-            handleClickSwitch('.switch_1', 'semanales_inicio', 'semanales_cierre', '#status1');
+            handleClickSwitch('.switch_1', 'semanales_inicio', 'semanales_cierre','semanalesInicio','semanalesCierre', '#status1');
+        
         });
 
         $('.switch_2').click(function () {
-            handleClickSwitch('.switch_2', 'sabado_inicio', 'sabado_cierre', '#status2');
+            handleClickSwitch('.switch_2', 'sabado_inicio', 'sabado_cierre','sabadoInicio','sabadoCierre', '#status2');
         });
 
         $('.switch_3').click(function () {
-            handleClickSwitch('.switch_3', 'domingo_inicio', 'domingo_cierre', '#status3');
+            handleClickSwitch('.switch_3', 'domingo_inicio', 'domingo_cierre','domingoInicio','domingoCierre','#status3');
+      
         });
 
         //Los id se pueden quedar como estaba utiliza select html para que se visualicen y utiliza la sincro para que pasen los valores al BAck, utilizando los html puedes usar el codigo anterior de los status ya que si cambian de valor el dropback tambien
-        actualizarEstado(semanalesInicio, semanalesCierre, '.switch_1', '#status1');
-        actualizarEstado(sabadoInicio, sabadoCierre, '.switch_2', '#status2');
-        actualizarEstado(domingoInicio, domingoCierre, '.switch_3', '#status3');
+
+        actualizarEstado($('select[name="semanales_inicio"]').val(), $('select[name="semanales_cierre"]').val(), '.switch_1', '#status1');
+        actualizarEstado($('select[name="sabado_inicio"]').val(), $('select[name="sabado_cierre"]').val(), '.switch_2', '#status2');
+        actualizarEstado( $('select[name="domingo_inicio"]').val(), $('select[name="domingo_cierre"]').val(), '.switch_3', '#status3');
 
     }
    
