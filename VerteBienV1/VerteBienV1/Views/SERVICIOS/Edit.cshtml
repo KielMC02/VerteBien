@@ -16,22 +16,22 @@
         @Html.AntiForgeryToken()
         <div class="card-body ml-5 mt-5">
             <center>
-                <img src="~/Imagenes/verte bien negro.png" width="128" height="128" style="margin-top:2%" />
+                <img src="~/Imagenes/Verte Bien Transparente 2.png" alt="Logo" width="128" height="128" style="margin-top:2%" />
                 <h4>Editar Servicio</h4>
                 <hr class="w-50" />
             </center><br />
-
+           
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger col-md-10" })
             @Html.HiddenFor(model => model.id_servicio)
 
             <div class="form-row">
                 @*<div class="form-group col-md-10">
-                    <div class="col-md-6">
-                        @Html.DropDownList("id_usuario", null, htmlAttributes: new { @class = "form-control col-md-10", @hidden = "hidden", @readonly = "readonly" })
-                        @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
+                <div class="col-md-6">
+                    @Html.DropDownList("id_usuario", null, htmlAttributes: new { @class = "form-control col-md-10", @hidden = "hidden", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.id_usuario, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
                 <div class="row">
                     <div class="container mb-5 ">
                         <div class="card h-100 shadow-lg p-2">
@@ -80,7 +80,7 @@
                                         <div class="d-none">
                                             @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label col-md-8" })
                                             <div class="col-md-12">
-                                                    @Html.DropDownList("duraciones", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                                                @Html.DropDownList("duraciones", null, htmlAttributes: new { @class = "form-control col-md-10 " })
                                                 @Html.ValidationMessageFor(model => model.tiempo, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -180,59 +180,59 @@
 
                                 <!-- #region Botones_subir_imagenes -->
                                 @* <div class="form-group row mt-4">
-                @Html.Label("Imagenes del Servicio", htmlAttributes: new { @class = "control-label col-md-10 col-sm-12" })
-                <div class="col-md-12 col-sm-12">
-                    @if (User.IsInRole("expres"))
-                    {
-                        <input type="file" name="img1" class="btn col-md-4 col-sm-12 col" style="background-color:#EBE3E2" /><span>Reemplazar imagen 1</span>
+                            @Html.Label("Imagenes del Servicio", htmlAttributes: new { @class = "control-label col-md-10 col-sm-12" })
+                            <div class="col-md-12 col-sm-12">
+                                @if (User.IsInRole("expres"))
+                                {
+                                    <input type="file" name="img1" class="btn col-md-4 col-sm-12 col" style="background-color:#EBE3E2" /><span>Reemplazar imagen 1</span>
 
-                    }
-                    @if (User.IsInRole("preferencial"))
-                    {
-                        <input type="file" name="img1" class="btn col-md-3 col-sm-12 ml-4 col" style="background-color:#EBE3E2; margin-top:1%" /><span>Reemplazar imagen 1</span>
-                        <input type="file" name="img2" class="btn col-md-3 col-sm-12 col" style="background-color:#EBE3E2; margin-top:1%" /><span>Reemplazar o subir nueva imagen 2</span>
-                        <input type="file" name="img3" class="btn col-md-3 col-sm-12 col" style="background-color:#EBE3E2; margin-top:1%" /><span>Reemplazar o subir nueva imagen 3</span>
-                    }
-                    @if (User.IsInRole("vip"))
+                                }
+                                @if (User.IsInRole("preferencial"))
+                                {
+                                    <input type="file" name="img1" class="btn col-md-3 col-sm-12 ml-4 col" style="background-color:#EBE3E2; margin-top:1%" /><span>Reemplazar imagen 1</span>
+                                    <input type="file" name="img2" class="btn col-md-3 col-sm-12 col" style="background-color:#EBE3E2; margin-top:1%" /><span>Reemplazar o subir nueva imagen 2</span>
+                                    <input type="file" name="img3" class="btn col-md-3 col-sm-12 col" style="background-color:#EBE3E2; margin-top:1%" /><span>Reemplazar o subir nueva imagen 3</span>
+                                }
+                                @if (User.IsInRole("vip"))
 
-                    {<div class="row">
-                            <div class="col-12 col-xl-6 col-sm-12 col-md-6 ">
-                                <div class="col-4 col-xl-6 col-sm-2 col-md-6 ">
-                                    <input type="file" name="img1" class="btn shadow-lg shadow-md input-group-text" style="background-color:#ffffff; margin-top:1%;" />
-                                </div>
-                                <span>Reemplazar imagen 1</span>
-                            </div>
+                                {<div class="row">
+                                        <div class="col-12 col-xl-6 col-sm-12 col-md-6 ">
+                                            <div class="col-4 col-xl-6 col-sm-2 col-md-6 ">
+                                                <input type="file" name="img1" class="btn shadow-lg shadow-md input-group-text" style="background-color:#ffffff; margin-top:1%;" />
+                                            </div>
+                                            <span>Reemplazar imagen 1</span>
+                                        </div>
 
-                            <div class="col-12 col-xl-6 col-sm-12 col-md-6">
-                                <div class="col-12 col-xl-6 col-sm-12 col-md-6">
-                                    <input type="file" name="img2" class="btn mx-2 " style="background-color:#ededed; margin-top:1%;" />
-                                </div>
-                                <span>subir nueva imagen 2</span>
-                            </div>
-                            <div class="col-12 col-xl-6 col-sm-12 col-md-6">
-                                <div class="col-12 col-xl-6 col-sm-12 col-md-6">
-                                    <input type="file" name="img3" class="btn  mx-2 " style="background-color:#ffffff; margin-top:1%;" />
-                                </div>
-                                <span>Reemplazar o subir nueva imagen 3</span>
-                            </div>
-                            <div class="col-12 col-xl-6 col-sm-12 col-md-6">
-                                <div class="col-12 col-xl-6 col-sm-12 col-md-6">
-                                    <input type="file" name="img4" class="btn  mx-2 " style="background-color:#ffffff; margin-top:1%;" /><span>Reemplazar o subir nueva imagen 4</span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-xl-6 col-sm-12 col-md-6">
-                                <div class="col-12 col-xl-6 col-sm-12 col-md-6">
-                                    <input type="file" name="img5" class="btn  mx-2 " style="background-color:#ffffff; margin-top:1%;" /><span>Reemplazar o subir nueva imagen 5</span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-xl-6 col-sm-12 col-md-6">
-                                <div class="col-12 col-xl-6 col-sm-12 col-md-6">
-                                    <input type="file" name="img6" class="btn mx-2" style="background-color:#ffffff; margin-top:1%;" />
-                                </div>
-                                <span>Reemplazar o subir nueva imagen 6</span>
-                            </div>
-                        </div>
-                    }*@
+                                        <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                            <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                <input type="file" name="img2" class="btn mx-2 " style="background-color:#ededed; margin-top:1%;" />
+                                            </div>
+                                            <span>subir nueva imagen 2</span>
+                                        </div>
+                                        <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                            <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                <input type="file" name="img3" class="btn  mx-2 " style="background-color:#ffffff; margin-top:1%;" />
+                                            </div>
+                                            <span>Reemplazar o subir nueva imagen 3</span>
+                                        </div>
+                                        <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                            <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                <input type="file" name="img4" class="btn  mx-2 " style="background-color:#ffffff; margin-top:1%;" /><span>Reemplazar o subir nueva imagen 4</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                            <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                <input type="file" name="img5" class="btn  mx-2 " style="background-color:#ffffff; margin-top:1%;" /><span>Reemplazar o subir nueva imagen 5</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                            <div class="col-12 col-xl-6 col-sm-12 col-md-6">
+                                                <input type="file" name="img6" class="btn mx-2" style="background-color:#ffffff; margin-top:1%;" />
+                                            </div>
+                                            <span>Reemplazar o subir nueva imagen 6</span>
+                                        </div>
+                                    </div>
+                                }*@
                                 <!-- #endregion -->
                                 @*@Html.EditorFor(model => model.imagenes, new { htmlAttributes = new { @class = "form-control" } })*@
                                 @Html.ValidationMessageFor(model => model.imagenes, "", new { @class = "text-danger" })
@@ -249,7 +249,7 @@
                             </div>
                         </div>
 
-                      
+
 
                         @Html.EditorFor(model => model.imagenes, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.imagenes, "", new { @class = "text-danger" })
