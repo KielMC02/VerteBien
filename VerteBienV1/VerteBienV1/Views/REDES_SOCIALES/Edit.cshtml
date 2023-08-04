@@ -3,8 +3,12 @@
 @{
     ViewBag.Title = "Editar Redes sociales";
 }
+<center>
+    <img src="~/Imagenes/Verte Bien Transparente 2.png" alt="Logo" width="128" height="128" style="margin-top:2%" />
+    <h4 class="text-center my-3">@ViewBag.Title</h4>
+    <hr class="w-50" />
+</center>
 
-<h4 class="text-center my-3">@ViewBag.Title</h4>
 
 @*@using (Html.BeginForm())*@
 @using (Html.BeginForm("Edit", "REDES_SOCIALES", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "formulario" }))
