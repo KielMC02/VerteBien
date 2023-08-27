@@ -58,8 +58,12 @@ namespace VerteBienV1.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string returnUrl, string userNuevo)
         {
+            if (userNuevo == "nuevo")
+            {
+                ViewBag.verifica = "nuevo";
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
