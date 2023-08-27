@@ -119,6 +119,7 @@ $(document).ready(function () {
     /*pequeño Js para enseñar las estrellas este es para la parte de  para mostrar edicion*/
     var rating = document.getElementsByClassName("str");
     var reltado = document.getElementById("resstrella");
+    let puntuacionBuscar = document.getElementById("puntuacionBuscar");
 
     for (var a = 0; a < rating.length; a++) {
 
@@ -130,7 +131,9 @@ $(document).ready(function () {
             change: function (e, valor) {
                 reltado.value = valor;
                 if (valor !=undefined) { 
-                reltado.innerHTML = '('+valor+')';
+                    reltado.innerHTML = '(' + valor + ')';
+                    puntuacionBuscar.innerHTML = '(' + valor + ')';
+
                 }
 
             }
@@ -381,207 +384,45 @@ $(document).ready(function () {
 
 
 });
-/* query para poner el nombre del archivo que se sube*/
-jQuery('input[type=file]').change(function (event) {
-    var filename = jQuery(this).val().split('\\').pop();
-    var idname = jQuery(this).attr('id');
-    let id = this.id;
-    var res = filename.substring(0, 15);
-    var fname = res + "...";
-    jQuery('span.' + idname).next().find('span').html(fname);
-    /*console.log(fname)*/
-    if (pathname == '/SERVICIOS/Create') {
-        $('span.' + id).html(fname);
-       /* console.log(fname)*/
-    }
-       
 
 
-});
-
-
-/////* FIN query para poner el nombre del archivo que se sube*/
-
-//$(document).on('change', 'input[type="file"]', function () {
-  
-//    this.files[0].size //recupera el tamaño del archivo
-//     //alert(this.files[0].size);
-
-//    var fileName = this.files[0].name;
-//    var fileSize = this.files[0].size;
-
-
-//    if (fileSize > 5000000) {
-
-
-//        alert('El archivo no debe superar los 5MB');
-
-//        this.value = '';
-//        this.files[0].name = '';
-//    } else {
-
-
-//         //recuperamos la extensión del archivo
-//        var ext = fileName.split('.').pop();
-
-//         //Convertimos en minúscula porque 
-//         //la extensión del archivo puede estar en mayúscula
-//        ext = ext.toLowerCase();
-
+$(document).ready(function () {
+    $(document).on('change', 'input[type="file"]', function () {
+        let fileName = this.files[0].name;
+        let fileSize = this.files[0].size;
+        let idname = $(this).attr('id');
+        let id = this.id;
         
-//        switch (ext) {
-//            case 'jpg':
-//            case 'jpeg':
-//            case 'png':
-//            case 'pdf': break;
-//            default:
-//                alert('El archivo no tiene la extensión adecuada');
-//                this.value = ''; // reset del valor
-//                this.files[0].name = '';
-
-//        }
-
-//    }
-//});
-/////* fin query para poner el nombre del archivo que se sube*/
-/* Pequeño query para poner el nombre del archivo que se sube*/
-jQuery('input[type=file]').change(function () {
-    var filename = jQuery(this).val().split('\\').pop();
-    var idname = jQuery(this).attr('id');
-    jQuery('span.' + idname).next().find('span').html(filename);
-});
-
-$(document).on('change', 'input[type="file"]', function () {
-    // this.files[0].size recupera el tamaño del archivo
-    // alert(this.files[0].size);
-
-    var fileName = this.files[0].name;
-    var fileSize = this.files[0].size;
-
-
-    if (fileSize > 5000000) {
-
-
-        alert('El archivo no debe superar los 5MB');
-
-        this.value = '';
-        this.files[0].name = '';
-    } else {
-
-
-        // recuperamos la extensión del archivo
-        var ext = fileName.split('.').pop();
-
-        // Convertimos en minúscula porque 
-        // la extensión del archivo puede estar en mayúscula
-        ext = ext.toLowerCase();
-
-        // console.log(ext);
-        switch (ext) {
-            case 'jpg':
-            case 'jpeg':
-            case 'png':
-            case 'pdf': break;
-            default:
-                alert('El archivo no tiene la extensión adecuada');
-                this.value = ''; // reset del valor
-                this.files[0].name = '';
-
+        if (fileSize > 12000) {
+            let parrafo = $('#p-modal-img');
+            parrafo.text('El archivo no debe superar los 12MB');
+            $('#modalImg').modal('show'); // abrirr el modal de boostrap
+            this.value = '';
+            return;
         }
 
-    }
+        let validExtensions = ['jpg', 'jpeg', 'png'];
+        let fileExtension = fileName.split('.').pop().toLowerCase();
+
+        if (!validExtensions.includes(fileExtension)) {
+            let parrafo = $('#p-modal-img');
+            parrafo.text('El archivo no tiene la extensión adecuada');
+            $('#modalImg').modal('show'); // abrirr el modal de boostrap
+
+            this.value = '';
+            return;
+        }
+
+        let res = fileName.substring(0, 15) + "...";
+        $('span.' + idname).next().find('span').html(res);
+
+        if (pathname == '/SERVICIOS/Create') {
+            $('span.' + id).html(res);
+        }
+    });
 });
 
-function validarImagen(input) {
-    var file = input.files[0];
-    var maxSize = 8 * 1024 * 1024; // 8MB en bytes
-    var minWidth = 540;
-    var minHeight = 540;
-    var maxWidth = 1080;
-    var maxHeight = 1080;
 
-    // Validar el tamaño del archivo
-    if (file.size > maxSize) {
-        $('#modalFileSize').modal('show');
-        input.value = "";
-        return;
-    }
-
-    // Crear una nueva imagen para obtener sus dimensiones
-    var img = new Image();
-    img.onload = function () {
-        // Validar la resolución mínima y máxima de la imagen
-        if (img.width < minWidth || img.height < minHeight) {
-            $('#modalFileMin').modal('show');
-            input.value = "";
-        } else if (img.width > maxWidth || img.height > maxHeight) {
-            $('#modalFileMax').modal('show');
-            input.value = "";
-        } else {
-            // Mostrar el nombre del archivo seleccionado si pasa la validación
-            var filename = input.value.split('\\').pop();
-            var idname = input.id;
-            var res = filename.substring(0, 15);
-            var fname = res + "...";
-            jQuery('span.' + idname).next().find('span').html(fname);
-
-            if (pathname == '/SERVICIOS/Create') {
-                $('span.' + idname).html(fname);
-            }
-        }
-    };
-    img.src = URL.createObjectURL(file);
-}
-
-// FIN Función para validar el tamaño y la resolución de las imágenes
-
-
-//// Función para validar el tamaño y la resolución de las imágenes
-//function validarImagen(input) {
-//    var file = input.files[0];
-//    var maxSize = 8 * 1024 * 1024; // 8MB en bytes
-//    var minWidth = 540;
-//    var minHeight = 540;
-
-//    // Validar el tamaño del archivo
-//    if (file.size > maxSize) {
-//        $('#modalFileSize').modal('show'); // abrirr el modal de boostrap
-//        /*    alert("El tamaño máximo permitido para la imagen es de 8MB.");*/
-//        input.value = "";
-//        return;
-//    }
-
-//    // Crear una nueva imagen para obtener sus dimensiones
-//    var img = new Image();
-//    img.onload = function () {
-//        // Validar la resolución mínima de la imagen
-//        if (img.width < minWidth || img.height < minHeight) {
-//            $('#modalFile').modal('show'); // abrirr el modal de boostrap
-//            /*    alert("La resolución mínima permitida para la imagen es de 540x540 píxeles.");*/
-//            input.value = "";
-//        } else {
-//            // Mostrar el nombre del archivo seleccionado si pasa la validación
-//            var filename = input.value.split('\\').pop();
-//            var idname = input.id;
-//            var res = filename.substring(0, 15);
-//            var fname = res + "...";
-//            jQuery('span.' + idname).next().find('span').html(fname);
-//            /*console.log(fname)*/
-//            if (pathname == '/SERVICIOS/Create') {
-//                $('span.' + idname).html(fname);
-//                /* console.log(fname)*/
-//            }
-//        }
-//    };
-//    img.src = URL.createObjectURL(file);
-//}
-
-////// FIN Función para validar el tamaño y la resolución de las imágenes
-
-//// Asociar la función de validación al evento onchange de los elementos input[type=file]
-//jQuery('input[type=file]').change(function (event) {
-//    validarImagen(this);
-//});
 
 
 
@@ -603,13 +444,15 @@ const expresiones = {
     telefono: /^\d{9,10}$/, // 9 a 10 numeros.
     fecha: /^(?:0?[1-9]|1[1-2])([\-/.])(3[01]|[12][0-9]|0?[1-9])\1\d{4}$/, //pra fechas mes/dia/año
     numero: /^[0-9]{1,4}$/, //numeros de 1 a 4 digios
-    alphanumerico: /[A-Z? a-z 0-9 À-ÿ .,]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*){10,150}$/,//Alfanumerico
+    alphanumerico: /[A-Z? a-z 0-9 À-ÿ .,]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*){10,200}$/,//Alfanumerico
     callenumero: /^[a-zA-ZÀ-ÿ\s  0-9?]{1,15}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
     precio: /^\d{1,4}(\.\d{1,2})?$/, //número decimal o flotante
     fbuser: /[a-zA-Z0-9\_\-\@]/, //Fb user
     iguser: /[a-zA-Z0-9\_\-\@]/,// Instgram User.
     web: /[a-zA-Z0-9\_\-\@]/,
     ciudadnombre: /[A-Z? a-z 0-9?]{10,25}$/,//Alfanumerico
+    descralpha: /^(?!.*  )(?=.*[a-zA-Z0-9])[a-zA-Z0-9., ]{10,250}$/ //para los campos descripsion
+
 };
 
 
@@ -640,7 +483,7 @@ const campos = {
     id_usuario: false,
     comentario: false,
     nombre_categoria: false,
-  
+    img: false,
 
 }
 const validarFormulario = (e) => {
@@ -688,7 +531,7 @@ const validarFormulario = (e) => {
             validarCampo(expresiones.precio, e.target, 'tiempo');
             break;
         case "descripcion":
-            validarCampo(expresiones.alphanumerico, e.target, 'descripcion');
+            validarCampo(expresiones.descralpha, e.target, 'descripcion');
             break;
         case "calle":
             validarCampo(expresiones.callenumero, e.target, 'calle');
@@ -716,6 +559,9 @@ const validarFormulario = (e) => {
             break;
         case "nombre_categoria":
             validarCampo(expresiones.nombre, e.target, 'nombre_categoria');
+            break;
+        case "img1":
+            validarImg();
             break;
        
        
@@ -754,6 +600,7 @@ const validarFech = (expresion, input, campo) => {
         campos[campo] = false;
     }
 }
+
 
 
 
@@ -872,7 +719,32 @@ inputs.forEach((input) => {
     input.addEventListener('blur', validarFormulario);
 
 });
+const validarImg = () => {
+        const inputImagen = $('#img1')[0];
+        if (inputImagen.files.length === 0) {
+            event.preventDefault(); // Evitar que el formulario se envíe
+            campos['img'] = false;
+            $('label[for="img1"]').css('outline', '2px solid red');
+            $('label[for="img1"]').tooltip({
+                title: 'Por favor, sube al menos una imagen para poder continuar',
+                placement: 'top',
+                 delay: { "show": 200, "hide": 2000 } // 2 segundos de retraso para ocultar
+            }).tooltip('show');
+            //let parrafo = $('#p-modal');
+            //parrafo.text('Por favor subir al menos una imagen para poder continuar');
+            $('#modal').modal('show'); // abrirr el modal de boostrap 
+        } else {
+            campos['img'] = true;
+            $('label[for="img1"]').css('outline', 'none');
+            $('label[for="img1"]').tooltip({
+                title: 'Por favor, sube al menos una imagen para poder continuar',
+                placement: 'top'
+            }).tooltip('hide');
+       
+        }
 
+
+}
 
 
 
@@ -904,12 +776,12 @@ if (frm) {
         switch (pathname) {
             case '/SERVICIOS/Create':  // para registrar negocios o peluqueria 
 
-                if (campos.precio_servicio && campos.nombre_servicio && campos.descripcion) {
 
-
+                if (campos.precio_servicio && campos.nombre_servicio && campos.descripcion && campos.img ) {
                     formulario.submit();
 
                 } else {
+                    validarImg();
                     $('#modal').modal('show'); // abrirr el modal de boostrap 
 
                 }
@@ -963,7 +835,7 @@ if (frm) {
                     formulario.submit();
 
                 } else {
-                    var parrafo = $('#p-modal');
+                    let parrafo = $('#p-modal');
                     parrafo.text('Por favor verificar que los datos del formulario esten correcto.');
                     $('#modal').modal('show'); // abrirr el modal de boostrap 
 
@@ -979,7 +851,7 @@ if (frm) {
                     formulario.submit();
 
                 } else {
-                    var parrafo = $('#p-modal');
+                    let parrafo = $('#p-modal');
                     parrafo.text('Por favor verificar que los datos del formulario esten correcto antes de editar.');
                     $('#modal').modal('show'); // abrirr el modal de boostrap 
 
@@ -1146,7 +1018,7 @@ if (frm) {
 
 if (pathname === '/REDES_SOCIALES/Edit') {
     let inputs = document.querySelectorAll('input[type=text]');
-    for (var i = 0; i < inputs.length ; i++) {
+    for (let i = 0; i < inputs.length ; i++) {
 
         document.getElementById(`grupo__${inputs[i].name}`).classList.remove('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${inputs[i].name}`).classList.add('formulario__grupo-correcto');
@@ -1162,7 +1034,7 @@ if (pathname === '/REDES_SOCIALES/Edit') {
 
 if (pathNa === '/AspNetUsers/Edit/') {
     let inputs = document.querySelectorAll('input[type=text]');
-    for (var i = 0; i < inputs.length -2; i++) {
+    for (let i = 0; i < inputs.length -2; i++) {
 
         document.getElementById(`grupo__${inputs[i].name}`).classList.remove('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${inputs[i].name}`).classList.add('formulario__grupo-correcto');
@@ -1182,7 +1054,7 @@ if (pathNa === '/AspNetUsers/Edit/') {
 }
 if (pathname === '/AspNetUsers/EditUserCliente') {
     let inputs = document.querySelectorAll('input[type=text]');
-    for (var i = 0; i < inputs.length; i++) {
+    for (let i = 0; i < inputs.length; i++) {
 
         document.getElementById(`grupo__${inputs[i].name}`).classList.remove('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${inputs[i].name}`).classList.add('formulario__grupo-correcto');
@@ -1212,7 +1084,7 @@ if (pathname === '/AspNetUsers/EditUserCliente') {
     // comentarios asincronos.
     if ($('#pdetalles').length) {
     $(function () {
-        var $h3s = $('li.opcion-detalles').click(function () {
+        let $h3s = $('li.opcion-detalles').click(function () {
             $h3s.removeClass('active');
             $(this).addClass('active');
         });
@@ -1245,9 +1117,9 @@ if (pathname === '/AspNetUsers/EditUserCliente') {
     asyncCall();
 
 
-    var triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
+        let triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
     triggerTabList.forEach(function (triggerEl) {
-        var tabTrigger = new bootstrap.Tab(triggerEl)
+        let tabTrigger = new bootstrap.Tab(triggerEl)
 
         triggerEl.addEventListener('click', function (event) {
             event.preventDefault()
@@ -1347,11 +1219,11 @@ window.addEventListener('load', function () {
 
 
 
-        var touchStartX = 0;
-        var touchStartY = 0;
-        var touchEndX = 0;
-        var touchEndY = 0;
-        var elementosTouch = document.querySelectorAll(".galeria");
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+        let elementosTouch = document.querySelectorAll(".galeria");
 
         for (let i = 0; i < elementosTouch.length; i++) {
             elementosTouch[i].addEventListener('touchstart', function (event) {
@@ -1400,10 +1272,10 @@ window.addEventListener('load', function () {
 /*MAPA para servicio*/
 
 if (pathNa === '/SERVICIOS/Details/') {
-    var latitud = $('#latitud').data('latitud');
-    var longitud = $('#longitud').data('longitud');
-    var nombre = $('#nombre-negocio').data('nombre');
-    var map = L.map('map').setView([latitud, longitud], 15);
+    let latitud = $('#latitud').data('latitud');
+    let longitud = $('#longitud').data('longitud');
+    let nombre = $('#nombre-negocio').data('nombre');
+    let map = L.map('map').setView([latitud, longitud], 15);
     L.marker([latitud, longitud]).addTo(map)
         .bindPopup(nombre)
         .openPopup();
@@ -1514,7 +1386,7 @@ if (msf_getFsTag.length) {
 ///* MApa registro*/
 function mapactive() {
 
-    var tileLayer = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    let tileLayer = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data & copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
         maxZoom: 18,
         id: 'mapbox/streets-v11',
@@ -1524,14 +1396,14 @@ function mapactive() {
     });
 
 
-    var map = new L.Map('map', {
+    let map = new L.Map('map', {
 
         'center': [-0.18205139994814276, -78.46831482728689],
         'zoom': 12,
         'layers': [tileLayer]
     });
 
-    var marker = L.marker([-0.18205139994814276, -78.46831482728689], {
+    let marker = L.marker([-0.18205139994814276, -78.46831482728689], {
         draggable: true
     }).addTo(map);
 
@@ -2163,7 +2035,7 @@ $(document).ready(function () {
         let canton = cantonSelect.value;
 
         // Limpia el selector de provincias
-        provinciaSelect.innerHTML = "<option value=''>Seleccione una provincia</option>";
+        provinciaSelect.innerHTML = "<option value=''>Seleccione una sector</option>";
 
         // Verifica si el cantón seleccionado existe en el objeto cantonesYProvincias
         if (canton in cantonesYProvincias) {
