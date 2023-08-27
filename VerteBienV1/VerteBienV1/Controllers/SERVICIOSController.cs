@@ -112,17 +112,34 @@ namespace VerteBienV1.Controllers
         public ActionResult Index(string canton, string sector, string servicio, string puntuacion)
         {
             //Variable a utilizar en caso de que uno de los parametros sea un string vacio
-            var nulo = DBNull.Value;     
+            var nulo = DBNull.Value;
+            //Poner paremetros
+            if(sector == "")
+            {
+                sector = null;
+            }
+            if (servicio == "")
+            {
+                servicio = null;
+            }
+            if (puntuacion == "")
+            {
+                puntuacion = null;
+            }
             ////Lista que guarda el resultado de la Busqueda
             List<SERVICIOS> resultadoBusqueda = new List<SERVICIOS>();
-            if(canton != null) { 
-                    if( canton != "" || sector != "" || servicio != "" || puntuacion != "")
-                    {
-                    resultadoBusqueda = db.Database.SqlQuery<SERVICIOS>("filtrar @ciudad, @sector, @puntuacion, @dato", new SqlParameter("@ciudad", Convert.ToString(canton)), new SqlParameter("@sector", sector), new SqlParameter("@puntuacion", puntuacion == null ? (object)nulo : puntuacion), new SqlParameter("@dato", servicio ==null? (object)nulo : servicio)).ToList();
+            //Cuando se utilizan todos los parametros.
+            if( canton != "" && canton != null && canton != "Seleccione un cantón")
+             {
+                resultadoBusqueda = db.Database.SqlQuery<SERVICIOS>("filtrar @ciudad, @sector, @puntuacion, @dato", new SqlParameter("@ciudad", Convert.ToString(canton)), new SqlParameter("@sector", sector == null ? (object)nulo : sector), new SqlParameter("@puntuacion", puntuacion == null ? (object)nulo : puntuacion), new SqlParameter("@dato", servicio == null ? (object)nulo : servicio)).ToList();
 
 
-                    }
             }
+            if ( resultadoBusqueda.Count == 0)
+            {
+                ViewBag.noResult = "Sin resultados";
+            }
+
             //Lista completa de servicios sin filtrado
             //var sERVICIOS = db.SERVICIOS.Include(s => s.AspNetUsers).Include(s => s.CATEGORIAS_SERVICIOS);
             //resultadoBusqueda = db.Database.SqlQuery<SERVICIOS>("SP_SELECT @dato", new SqlParameter("@dato",servicio)).ToList();
