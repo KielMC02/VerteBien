@@ -96,19 +96,21 @@
 <br />
 
 <div class="container">
-  
-    <form class="row row-cols-lg-12 g-0 align-content-center">
-        <div class=" row w-100">
-            <div class="col-6 w-auto">
-                <span id="" class="str" data-rating="3"></span>
-                <span id="resstrella" name="puntuacion" class="text-muted">(3)</span>
+
+
+
+
+
+    @using (Html.BeginForm("Index", "SERVICIOS", FormMethod.Get, new {@class="row row-cols-lg-12 g-0 align-content-center" }))
+    {
+
+            <div class=" row w-100">
+                <div class="col-6 w-auto">
+                    <span id="" class="str" data-rating="3"></span>
+                    @*<span id="resstrella" class="text-muted">(3)</span>*@
+                    <input type="text" id="resstrella" name="puntuacion" class="d-none"/> 
+                </div>
             </div>
-        </div>
-      
-
-
-        @using (Html.BeginForm("Index", "SERVICIOS", FormMethod.Get))
-        {
             <div class="col-12  col-lg-2">
                 <select name="canton" id="canton" class="form-select col-12">
                     <option>Seleccione un cantón</option>
@@ -353,66 +355,65 @@
             <div class="col-12 col-lg-2 mt-2 mt-lg-0">
                 <button type="submit" class="btn col-12 text-white" style="background-color:#DBA312"><i class="fas fa-search mx-2"></i>Buscar</button>
             </div>
-        }
-    </form>
-    <br />
+
+        <br />
+    }
 
 
 
+        <br />
+        <div class="my-4" style="min-height:35vh;">
+            <div class=" ">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        //Separamos los nombres de las imagenes y guardamos en una lista
+                        List<String> imagenes = (item.imagenes.Split(';')).ToList();
 
-    <br />
-    <div class="my-4" style="min-height:35vh;">
-        <div class=" ">
-            <div class="row">
-                @foreach (var item in Model)
-                {
-                    //Separamos los nombres de las imagenes y guardamos en una lista
-                    List<String> imagenes = (item.imagenes.Split(';')).ToList();
-
-                <div class="col-12 col-md-6 col-lg-4 mb-2">
-
+                        <div class="col-12 col-md-6 col-lg-4 mb-2">
 
 
-                    <div class="card " style="max-width: 100%; height: 100%;">
-            <div class="contenedor-imagen">
-                <img class="card-img-top" src="~/imagenes_servicios/@imagenes[0]" alt="Card image cap" style="height: 290px; object-fit: cover;">
-            </div>
-            <div class="card-body" style="height:100%">
-                <h5 class="card-title capitalize-first-letter">@Html.DisplayFor(modelItem => item.nombre_servicio)</h5>
-                <p class="card-text indexdetlles descripcion">@Html.DisplayFor(modelItem => item.descripcion).</p>
 
-                <div class="my-2 mb-3" style="">
-                    <small class=" mx-2" style="font-family: 'Lato', sans-serif; color: #777; font-size: 18px; color: #777; font-weight: 900; line-height: 45px; z-index: 1;"> $ @Html.DisplayFor(modelItem => item.precio_servicio)</small>
-                </div>
+                            <div class="card " style="max-width: 100%; height: 100%;">
+                                <div class="contenedor-imagen">
+                                    <img class="card-img-top" src="~/imagenes_servicios/@imagenes[0]" alt="Card image cap" style="height: 290px; object-fit: cover;">
+                                </div>
+                                <div class="card-body" style="height:100%">
+                                    <h5 class="card-title capitalize-first-letter">@Html.DisplayFor(modelItem => item.nombre_servicio)</h5>
+                                    <p class="card-text indexdetlles descripcion">@Html.DisplayFor(modelItem => item.descripcion).</p>
 
-
-                <div class="row justify-content-between align-items-center " style="" >
-                    <div class="col-12 col-md-6">
-                        @Html.ActionLink("Crear cita", "Create", "CITAS", new { idServicio = item.id_servicio }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm my-2 my-md-0 rounded text-wrap col-12", id = "volbtn", style = " " })
-                    </div>
-                    <div class="col-12 col-md-6">
-                        @Html.ActionLink("Más detalles", "Details", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn text-white btn-sm rounded text-wrap col-12 my-2 my-md-0", style = "background-color:#DBA312" })
-
-                    </div>
+                                    <div class="my-2 mb-3" style="">
+                                        <small class=" mx-2" style="font-family: 'Lato', sans-serif; color: #777; font-size: 18px; color: #777; font-weight: 900; line-height: 45px; z-index: 1;"> $ @Html.DisplayFor(modelItem => item.precio_servicio)</small>
+                                    </div>
 
 
-                          </div>
-                       </div>
+                                    <div class="row justify-content-between align-items-center " style="">
+                                        <div class="col-12 col-md-6">
+                                            @Html.ActionLink("Crear cita", "Create", "CITAS", new { idServicio = item.id_servicio }, htmlAttributes: new { @class = "btn btn-outline-warning btn-sm my-2 my-md-0 rounded text-wrap col-12", id = "volbtn", style = " " })
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            @Html.ActionLink("Más detalles", "Details", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn text-white btn-sm rounded text-wrap col-12 my-2 my-md-0", style = "background-color:#DBA312" })
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                         </div>
 
 
-               
-                 </div>
 
 
 
-
-
-                }
+                    }
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 <script>
