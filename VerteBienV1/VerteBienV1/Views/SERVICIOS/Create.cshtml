@@ -26,7 +26,7 @@
         <div class="card h-100 shadow-lg mb-5 p-2">
             <div class="card-body" style="margin-left:5%">
                 <div class="form-row ">
-                    
+
                     <div class="row">
                         <div class="form-group col-md-6 formulario__grupo" id="grupo__nombre_servicio">
                             @Html.Label("Nombre del servicio", htmlAttributes: new { @class = "control-label " })
@@ -77,9 +77,9 @@
                                 @*@Html.TextAreaFor(model => model.descripcion, new { @class = "form-control  control-form", @rows = "3", id = "descripcion" })*@
                                 @*<textarea class="form-control col-md-11" id="exampleFormControlTextarea1" rows="3"></textarea>*@
                             </div>
-                            <p class="formulario__input-error">Por favor, introducir una descripcion valida  </p>
+                            <p class="formulario__input-error">Por favor, introduce una descripción válida de 10 a 250 caracteres y evitando espacios innecesarios. </p>
                         </div>
-                    
+
                     </div>
 
                     @*<div class="col-md-4">*@
@@ -94,7 +94,7 @@
                                     <label for="img2" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img2"> Subir imagen</span> </label>
                                     <label for="img3" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img3"> Subir imagen</span> </label>
 
-                                    <input type="file" name="img1" id="img1" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
+                                    <input type="file" name="img1" id="img1" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
                                     <input type="file" name="img2" id="img2" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
                                     <input type="file" name="img3" id="img3" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
                                 }
@@ -110,7 +110,7 @@
                                     <label for="img6" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img6"> Subir imagen</span> </label>
 
 
-                                    <input type="file" name="img1" id="img1" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
+                                    <input type="file" name="img1" id="img1" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
                                     <input type="file" name="img2" id="img2" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
                                     <input type="file" name="img3" id="img3" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
                                     <input type="file" name="img4" id="img4" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
@@ -123,7 +123,7 @@
 
                                 {
 
-                                    
+
 
                                     <label for="img1" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img1"> Subir imagen</span> </label>
                                     <label for="img2" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img2"> Subir imagen</span> </label>
@@ -136,7 +136,7 @@
                                     <label for="img9" class="cfile col-xl-4  col-12 col-md-4 m-1  imgsubir">   <i class="far fa-upload"></i>&nbsp;  <span class="img9"> Subir imagen</span> </label>
 
 
-                                    <input type="file" name="img1" id="img1" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" required />
+                                    <input type="file" name="img1" id="img1" accept=".png, .jpg, .jpeg" class="btn mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
                                     <input type="file" name="img2" id="img2" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
                                     <input type="file" name="img3" id="img3" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
                                     <input type="file" name="img4" id="img4" accept=".png, .jpg, .jpeg" class="btn  mx-2 col-md-3 col-sm-12" style="background-color:#EBE3E2; margin-top:1%" />
@@ -166,7 +166,7 @@
                 </div>
 
                 <center>
-                    <div class="form-group my-3" >
+                    <div class="form-group my-3">
                         <div class="col-md-12">
                             @Html.ActionLink("Volver", "misServicios", null, htmlAttributes: new { @class = "btn  btn-outline-warning  ", @style = "", id = "volbtn" })
                             <button type="submit" class="btn text-white " style="background-color:#DBA312; ">Registrar Servicio</button>
@@ -181,4 +181,42 @@
 </form>
 
 <br />
+
+<div class="modal" tabindex="-1" id="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Verificar formulario
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="p-modal">Por favor verificar que los datos del formulario esten correcto.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modalImg">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Verificar formulario
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="p-modal-img">Por favor verificar que los datos del formulario esten correcto.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
