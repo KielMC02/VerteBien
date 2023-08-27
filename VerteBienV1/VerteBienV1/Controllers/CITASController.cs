@@ -164,7 +164,7 @@ namespace VerteBienV1.Controllers
             return resultadoDisponibilidad;
         }
         [Authorize]
-        public String AgregarCita(int idservicio, DateTime fecha, decimal hora, string comentario_cliente, string comentario_peluqueria) 
+        public String AgregarCita(int idservicio, DateTime fecha, decimal hora, string comentarios, string comentario_peluqueria) 
         {
             string estatus = "suspendido";
             string resultado = "no";
@@ -197,21 +197,21 @@ namespace VerteBienV1.Controllers
 
                 //Variable a utilizar en caso de que uno de los parametros sea un string vacio
                 var nulo = DBNull.Value;
-                //if(comentario_cliente == null)
-                //{
-                //    comentario_cliente = "Sin comentarios";
-                //}
+                if (comentarios == "")
+                {
+                    comentarios = null;
+                }
                 //if(comentario_peluqueria == null)
                 //{
                 //    comentario_peluqueria = "Sin comentarios";
                 //}
-                
+
 
                 SERVICIOS sERVICIO = db.SERVICIOS.Find(idservicio);
                 var idcliente = User.Identity.GetUserId();
                 List<Mensaje> agregarCita = new List<Mensaje>();
 
-                 agregarCita = db.Database.SqlQuery<Mensaje>("addCita @usuario_peluqueria, @Fecha, @hora, @servicio, @dia, @usuario_cita, @comentario_cliente, @comentario_peluqueria", new SqlParameter("@usuario_peluqueria", sERVICIO.id_usuario), new SqlParameter("@Fecha", fecha), new SqlParameter("@hora", hora), new SqlParameter("@servicio", idservicio), new SqlParameter("@dia", dia), new SqlParameter("@usuario_cita", idcliente), new SqlParameter("@comentario_cliente", comentario_cliente == null ? (object)nulo : comentario_cliente), new SqlParameter("@comentario_peluqueria", comentario_peluqueria == null ? (object)nulo : comentario_peluqueria)).ToList();
+                 agregarCita = db.Database.SqlQuery<Mensaje>("addCita @usuario_peluqueria, @Fecha, @hora, @servicio, @dia, @usuario_cita, @comentario_cliente, @comentario_peluqueria", new SqlParameter("@usuario_peluqueria", sERVICIO.id_usuario), new SqlParameter("@Fecha", fecha), new SqlParameter("@hora", hora), new SqlParameter("@servicio", idservicio), new SqlParameter("@dia", dia), new SqlParameter("@usuario_cita", idcliente), new SqlParameter("@comentario_cliente", comentarios == null ? (object)nulo : comentarios), new SqlParameter("@comentario_peluqueria", comentario_peluqueria == null ? (object)nulo : comentario_peluqueria)).ToList();
 
 
                 foreach (var item in agregarCita)
