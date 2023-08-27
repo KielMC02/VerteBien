@@ -267,16 +267,16 @@
                         body: JSON.stringify(cardResponse.card)
                     }).then(async (res) => {
                         let response = await res.json();
-                        if (response.toString() == "Ok")
+                        if (response.toString() == "OK")
                         {
                             console.log('es un ok');
                             window.location.href = '@Url.Action("Index", "CARD")'
-
+                            
                         }
                         if (response.toString() == "NEW")
                         {
                             console.log('es new');
-                            window.location.href = '@Url.Action("Login", "Account")'
+                            window.location.href = '@Url.Action("Login", "Account", new { userNuevo = "nuevo" })'
 
                         }
                     });
