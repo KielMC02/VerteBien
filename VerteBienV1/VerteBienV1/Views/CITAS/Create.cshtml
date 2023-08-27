@@ -30,7 +30,8 @@
                     @Html.ValidationMessageFor(model => model.id_servicio, "", new { @class = "text-danger" })
                 </div>
             </div>*@
-        <div class="container">
+    <div class="container">
+        <div id="Reservacion">
             <div class="card h-100 w-75 shadow-lg my-4">
                 <div class="card-body rounded">
                     <div class="form-row">
@@ -45,81 +46,82 @@
                         <div class="form-group col-md-12">
                             @Html.Label("Comentario", htmlAttributes: new { @class = "control-label col-md-8" })
                             <div class="col-md-12">
-                                @Html.TextAreaFor(model => model.comentario_cliente, new { @class = "form-control col-md-11", @rows = "3" })
+                                @*@Html.TextAreaFor(model => model.comentario_cliente, new { @class = "form-control col-md-11", @rows = "3" })*@
+                                <textarea rows="3" class="form-control col-md-11"  type="text" name="comentarios" v-model="comentarios"></textarea>
                                 @Html.ValidationMessageFor(model => model.comentario_cliente, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         @*<div class="form-group">
-            @Html.LabelFor(model => model.fecha_creacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fecha_creacion, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                            @Html.LabelFor(model => model.fecha_creacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.fecha_creacion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
 
                         @*<div class="form-group col-md-12">
-            @Html.Label("Fecha de la cita", htmlAttributes: new { @class = "control-label col-md-6" })
-            <div class="col-md-10 col-sm-12">
-                @Html.EditorFor(model => model.fecha_cita, new { htmlAttributes = new { @class = "form-control" } })
-                <input name="fecha_cita" />
-                @Html.ValidationMessageFor(model => model.fecha_cita, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                            @Html.Label("Fecha de la cita", htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-10 col-sm-12">
+                                @Html.EditorFor(model => model.fecha_cita, new { htmlAttributes = new { @class = "form-control" } })
+                                <input name="fecha_cita" />
+                                @Html.ValidationMessageFor(model => model.fecha_cita, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
                         <div class="container">
-                            <div id="Reservacion">
-                                <div class="contenedor">
-                                    <input class="form-control col-md-10" type="date" name="fecha" v-model="fecha" :min="minFecha">
-                                </div>
-                                <div class="contenedor">
-                                    <slot v-if="horarios.length">
-                                        <div class="card">
-                                            <div class="horarios card-body overflow-auto">
-                                                <h5 class="card-title">Horarios Disponibles</h5>
-                                                <div v-for="item in horarios">
-                                                    <button v-on:click="reservarCita(item.hora)" style="width:95px; margin-top:5px;" v-if="item.disponibilidad == 'si'" type="button" class="btn btn-outline-primary horario">
-                                                        <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
-                                                    </button>
-                                                    <button style="width:95px; margin-top:5px;" v-else disabled type="button" class="btn btn-outline-secondary horario">
-                                                        <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
-                                                    </button>
-                                                </div>
+
+                            <div class="contenedor">
+                                <input class="form-control col-md-10" type="date" name="fecha" v-model="fecha" :min="minFecha">
+                            </div>
+                            <div class="contenedor">
+                                <slot v-if="horarios.length">
+                                    <div class="card">
+                                        <div class="horarios card-body overflow-auto">
+                                            <h5 class="card-title">Horarios Disponibles</h5>
+                                            <div v-for="item in horarios">
+                                                <button v-on:click="reservarCita(item.hora)" style="width:95px; margin-top:5px;" v-if="item.disponibilidad == 'si'" type="button" class="btn btn-outline-primary horario">
+                                                    <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
+                                                </button>
+                                                <button style="width:95px; margin-top:5px;" v-else disabled type="button" class="btn btn-outline-secondary horario">
+                                                    <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
+                                                </button>
                                             </div>
                                         </div>
-                                    </slot>
-                                </div>
+                                    </div>
+                                </slot>
                             </div>
                         </div>
+                    </div>
 
 
 
-                        @*<div class="container">
-            <div id="Reservacion">
-                <div class="contenedor">
-                    <input class="form-control col-md-10" type="date" name="fecha" v-model="fecha">
-                </div>
-                <div class="contenedor">
-                    <slot v-if="horarios.length">
-                        <div class="card">
-                            <div class="horarios card-body overflow-auto">
-                                <h5 class="card-title ">Horarios Disponibles</h5>
-                                <div v-for="item in horarios">
-                                    <button v-on:click="reservarCita(item.hora)" style="width:95px; margin-top:5px;" v-if="item.disponibilidad == 'si'" type="button" class="btn btn-outline-primary horario">
-                                        <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
-                                    </button>
-                                    <button style="width:95px; margin-top:5px;" v-else disabled type="button" class="btn btn-outline-secondary horario">
-                                        <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
-                                    </button>
-                                </div>
+                    @*<div class="container">
+                        <div id="Reservacion">
+                            <div class="contenedor">
+                                <input class="form-control col-md-10" type="date" name="fecha" v-model="fecha">
+                            </div>
+                            <div class="contenedor">
+                                <slot v-if="horarios.length">
+                                    <div class="card">
+                                        <div class="horarios card-body overflow-auto">
+                                            <h5 class="card-title ">Horarios Disponibles</h5>
+                                            <div v-for="item in horarios">
+                                                <button v-on:click="reservarCita(item.hora)" style="width:95px; margin-top:5px;" v-if="item.disponibilidad == 'si'" type="button" class="btn btn-outline-primary horario">
+                                                    <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
+                                                </button>
+                                                <button style="width:95px; margin-top:5px;" v-else disabled type="button" class="btn btn-outline-secondary horario">
+                                                    <span v-if="horas.find(x=> x.hora === item.hora)">{{ horas.find(x=> x.hora === item.hora).formateada }}</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </slot>
                             </div>
                         </div>
-                    </slot>
-                </div>
-            </div>
-        </div>*@
-                        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
-                        <script>
+                    </div>*@
+                    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+                    <script>
             new Vue({
                 el: '#Reservacion',
                 data: {
@@ -127,8 +129,9 @@
                     fecha: null,
                     servicio: {
                         nombre: '@ViewBag.servicio_selec',
-                        tiempo: '@ViewBag.tiempo'
+                        tiempo: '@ViewBag.tiempo',
                     },
+                    comentarios: null,
                     horarios: [],
                     horas: [
                         { hora: '1.00', formateada: '1:00 AM'},
@@ -196,11 +199,14 @@
                 methods:{
                     async getHorarios() {
                         console.log("La fecha es:",this.fecha);
-                        try{
+
+                        try {
+                            this.horarios = [];
                                 let data = {
                                     idServicio: '@ViewBag.id_servicio',
                                     fecha: this.fecha,
-                                    servicio: this.servicio
+                                    servicio: this.servicio,
+
                             }
                             console.log("Data Disp: ", data)
                                 let response = await axios.post('@Url.Action("Disponibilidad", "CITAS")', data , { 'headers': { 'Content-Type': 'application/json' } });
@@ -255,7 +261,8 @@
                                     let data = {
                                         idServicio: '@ViewBag.id_servicio',
                                         fecha: this.fecha,
-                                        hora: parseFloat(hora)
+                                        hora: parseFloat(hora),
+                                        comentarios: this.comentarios
                                     }
                                     console.log("Esta es la data:",data)
                                     let query = await axios.post('@Url.Action("AgregarCita", "CITAS")', data, { 'headers': { 'Content-Type': 'application/json' } });
@@ -271,7 +278,7 @@
                                             showConfirmButton: false,
                                             timer: 1500
                                         }).then(async(result) => {
-                                            '@Url.Action("Index","CITAS")';
+                                            window.location.href = '@Url.Action("Index", "CITAS")';
                                         })
 
                                     } else {
@@ -296,95 +303,95 @@
                     }
                 }
             })
-                        </script>
-                        <style>
-                            [type="date"] {
-                                background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+                    </script>
+                    <style>
+                        [type="date"] {
+                            background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+                        }
+
+                            [type="date"]::-webkit-inner-spin-button {
+                                display: none;
                             }
 
-                                [type="date"]::-webkit-inner-spin-button {
-                                    display: none;
-                                }
-
-                                [type="date"]::-webkit-calendar-picker-indicator {
-                                    opacity: 0;
-                                }
-
-                            /* custom styles */
-                            input {
-                                border: 1px solid #c4c4c4;
-                                border-radius: 5px;
-                                background-color: #fff;
-                                padding: 3px 5px;
-                                box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
-                                width: 190px;
+                            [type="date"]::-webkit-calendar-picker-indicator {
+                                opacity: 0;
                             }
 
-                            #Reservacion {
-                                margin-top: 5%;
+                        /* custom styles */
+                        input {
+                            border: 1px solid #c4c4c4;
+                            border-radius: 5px;
+                            background-color: #fff;
+                            padding: 3px 5px;
+                            box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+                            width: 190px;
+                        }
+
+                        #Reservacion {
+                            margin-top: 5%;
+                        }
+
+                        .contenedor {
+                            display: flex;
+                            justify-content: center;
+                            margin-bottom: 15px;
+                        }
+
+
+                        .horarios {
+                            height: 300px;
+                            text-align: center;
+                        }
+
+                            .horarios::-webkit-scrollbar {
+                                width: 8px; /* Tamaño del scroll en vertical */
+                                height: 8px; /* Tamaño del scroll en horizontal */
+                                display: none; /* Ocultar scroll */
                             }
 
-                            .contenedor {
-                                display: flex;
-                                justify-content: center;
-                                margin-bottom: 15px;
+                            .horarios::-webkit-scrollbar-thumb {
+                                background: #ccc;
+                                border-radius: 4px;
                             }
 
+                                /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+                                .horarios::-webkit-scrollbar-thumb:hover {
+                                    background: #b3b3b3;
+                                    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+                                }
 
-                            .horarios {
-                                height: 300px;
-                                text-align: center;
+                                /* Cambiamos el fondo cuando esté en active */
+                                .horarios::-webkit-scrollbar-thumb:active {
+                                    background-color: #999999;
+                                }
+
+                            .horarios::-webkit-scrollbar-track {
+                                background: #e1e1e1;
+                                border-radius: 4px;
                             }
 
-                                .horarios::-webkit-scrollbar {
-                                    width: 8px; /* Tamaño del scroll en vertical */
-                                    height: 8px; /* Tamaño del scroll en horizontal */
-                                    display: none; /* Ocultar scroll */
+                                /* Cambiamos el fondo cuando esté en active o hover */
+                                .horarios::-webkit-scrollbar-track:hover,
+                                .horarios::-webkit-scrollbar-track:active {
+                                    background: #d4d4d4;
                                 }
-
-                                .horarios::-webkit-scrollbar-thumb {
-                                    background: #ccc;
-                                    border-radius: 4px;
-                                }
-
-                                    /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
-                                    .horarios::-webkit-scrollbar-thumb:hover {
-                                        background: #b3b3b3;
-                                        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-                                    }
-
-                                    /* Cambiamos el fondo cuando esté en active */
-                                    .horarios::-webkit-scrollbar-thumb:active {
-                                        background-color: #999999;
-                                    }
-
-                                .horarios::-webkit-scrollbar-track {
-                                    background: #e1e1e1;
-                                    border-radius: 4px;
-                                }
-
-                                    /* Cambiamos el fondo cuando esté en active o hover */
-                                    .horarios::-webkit-scrollbar-track:hover,
-                                    .horarios::-webkit-scrollbar-track:active {
-                                        background: #d4d4d4;
-                                    }
-                        </style>
+                    </style>
 
 
 
 
 
-                        @*<div class="form-group">
-            @Html.LabelFor(model => model.estado, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-                    </div>
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.estado, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
                 </div>
             </div>
-        </div><br />
+        </div>
+    </div><br />
     </center>}
 
 
