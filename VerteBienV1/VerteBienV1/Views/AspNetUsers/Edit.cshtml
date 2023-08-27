@@ -28,7 +28,7 @@
                                 <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
                                 @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control control-form control-form  col-md-10 formulario__input", id = "nombre", name = "nombre" } })
                                 @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
-                              
+
                             </div>
                             <p class="formulario__input-error">El nombre tiene que ser letras espacion y pueden llevar acento. </p>
                         </div>
@@ -52,7 +52,7 @@
                                 <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
                                 @Html.TextBoxFor(model => model.fecha_nacimiento_, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control control-form col-md-10", id = "fecha_nacimiento_", name = "fecha_nacimiento_", max = DateTime.Now.ToString("yyyy-MM-dd") })
                                 @Html.ValidationMessageFor(model => model.fecha_nacimiento_, "", new { @class = "text-danger" })
-                         
+
                             </div>
                             <p class="formulario__input-error">La fecha tiene que ser mes/dia/años</p>
                             <p class="formulario__input-errorr">Tiene que ser mayo de edad</p>
@@ -66,7 +66,7 @@
                                 <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
                                 @Html.EditorFor(model => model.nombre_peluqueria, new { htmlAttributes = new { @class = "form-control control-form col-md-10 formulario__input", id = "nombre_peluqueria", name = "nombre_peluqueria" } })
                                 @Html.ValidationMessageFor(model => model.nombre_peluqueria, "", new { @class = "text-danger" })
-                            
+
                             </div>
                             <p class="formulario__input-error">El nombre de la peluqueria debe tener minimo 4 caracteres,maximo 45 caracteres.</p>
                         </div>
@@ -80,7 +80,7 @@
                                 <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
                                 @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control control-form col-md-10 formulario__input", id = "telefono", name = "telefono" } })
                                 @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
-                          
+
                             </div>
                             <p class="formulario__input-error">Por favor, introducir un telefono valido </p>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="form-group col-md-6 col-sm-12 mb-2">
                             @Html.Label("Cantón", htmlAttributes: new { @class = "control-label col-md-10" })
                             <div class="col-md-10">
-                             
+                                <i class="formulario__validacion-estado control-form-feedback fas fa-check-circle" style="color: #1ed12d "></i>
                                 @Html.DropDownList("cantones", null, htmlAttributes: new { @class = "form-control control-form col-md-10", @id = "canton" })
                                 @Html.ValidationMessageFor(model => model.ciudad, "", new { @class = "text-danger" })
                                 <span id="sectore" data-sectores=""></span>
@@ -101,7 +101,7 @@
                                 <i class="formulario__validacion-estado control-form-feedback fas fa-times-circle"></i>
                                 @Html.EditorFor(model => model.calle, new { htmlAttributes = new { @class = "form-control control-form col-md-10 formulario__input", id = "calle", name = "calle" } })
                                 @Html.ValidationMessageFor(model => model.calle, "", new { @class = "text-danger" })
-                          
+
                             </div>
                             <p class="formulario__input-error">El numero de la calle  solo puede contener numeros y maximo 4 digitos</p>
                         </div>
@@ -109,11 +109,13 @@
 
 
                         <div class="form-group col-md-6 col-sm-12 formulario__grupo" id="grupo__ciudad">
+
                             @Html.Label("Sectores", htmlAttributes: new { @class = "control-label col-md-10" })
                             <div class="col-md-10  formulario__grupo-input">
 
                                 @*@Html.EditorFor(model => model.ciudad, new { htmlAttributes = new { @class = "form-control control-form col-md-10 formulario__input", id = "ciudad", name = "ciudad" } })*@
-                                <select name="sector"  data-bs-toggle="tooltip" data-bs-placement="top" title="Doble clic para ver todos los sectores" class="form-control control-form col-md-10" id="sector">
+                                <i class="formulario__validacion-estado control-form-feedback fas fa-check-circle" style="color: #1ed12d"></i>
+                                <select name="sector" data-bs-toggle="tooltip" data-bs-placement="top" title="Doble clic para ver todos los sectores" class="form-control control-form col-md-10" id="sector">
                                     <option>Seleccione una...</option>
                                 </select>
                                 @Html.DropDownList("sectores", null, htmlAttributes: new { @class = "form-control control-form col-md-10 d-none clas", @id = "sectores", name = "ciudad" })
@@ -123,9 +125,9 @@
                             <p class="formulario__input-error">Elegir una ciudad valida</p>
                         </div>
 
-                       
+
                         <label class="d-none" for="">Sector</label>
-                       
+
 
                         <span id="nombre-negocio" data-nombre="@Html.DisplayFor(model => model.nombre_peluqueria)"></span>
                         <span id="latitud" data-latitud="@Html.DisplayFor(model => model.latitud)"></span>
@@ -139,7 +141,7 @@
                         <div class="form-group col-md-6 col-sm-12 my-4">
                             <center>
                                 @Html.Label("Latitud ", htmlAttributes: new { @class = "control-label col-md-10" })
-                                <div class="col-md-10" , data-bs-toggle="tooltip"  data-bs-placement="top"title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
+                                <div class="col-md-10" , data-bs-toggle="tooltip" data-bs-placement="top" title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
                                     @Html.EditorFor(model => model.latitud, new { htmlAttributes = new { @class = "form-control col-md-10", id = "Latitud" } })
                                     @Html.ValidationMessageFor(model => model.latitud, "", new { @class = "text-danger", })
                                 </div>
@@ -149,7 +151,7 @@
                         <div class="form-group col-md-6 col-sm-12 my-4">
                             <center>
                                 @Html.Label("Longitud ", htmlAttributes: new { @class = "control-label col-md-10" })
-                                <div class="col-md-10" , data-bs-toggle="tooltip"  data-bs-placement="top" title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
+                                <div class="col-md-10" , data-bs-toggle="tooltip" data-bs-placement="top" title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
                                     @Html.EditorFor(model => model.longitud, new { htmlAttributes = new { @class = "form-control  col-md-10", id = "Longitud" } })
                                     @Html.ValidationMessageFor(model => model.longitud, "", new { @class = "text-danger" })
                                 </div>
@@ -158,9 +160,8 @@
 
 
                         <div class="my-3">
-                       
-                                @Html.ActionLink("Cambiar mi contraseña", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "btn text-white col-md-5", @style = "background-color:#DBA312;" })
-                          
+                            @Html.ActionLink("Cambiar mi contraseña", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "btn text-white col-md-5", @id = "volver", @style = "background-color:#DBA312;" })
+
                         </div>
 
 
@@ -172,86 +173,86 @@
 
                         }
 
-                    <div class="row mt-4">
+                        <div class="row mt-4">
 
-                        @if (_list != null)
-                        {<h4 class="my-3"> Galeria de fotos</h4>
-                            foreach (var item in _list)
-                            {
-                                ViewBag.contador = ViewBag.contador + 1;
-                                //Si el contador es igual a 1 ese input va tener el atributo required
-                                if (ViewBag.contador == 1)
+                            @if (_list != null)
+                            {<h4 class="my-3"> Galeria de fotos</h4>
+                                foreach (var item in _list)
                                 {
- 
-                                    <div class="col-lg-4 mt-3">
-                                        <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; height:290px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
+                                    ViewBag.contador = ViewBag.contador + 1;
+                                    //Si el contador es igual a 1 ese input va tener el atributo required
+                                    if (ViewBag.contador == 1)
+                                    {
 
-                                        <div class="mt-3 row col-12">
+                                        <div class="col-lg-4 mt-3">
+                                            <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; height:290px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
 
-                                            <span class="@("file"+@ViewBag.contador)">
-                                                <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
-                                            </span>
-                                            <label for="@("file"+@ViewBag.contador)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Cambiar foto de perfil</span></label>
+                                            <div class="mt-3 row col-12">
+
+                                                <span class="@("file"+@ViewBag.contador)">
+                                                    <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
+                                                </span>
+                                                <label for="@("file"+@ViewBag.contador)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Cambiar foto de perfil</span></label>
+
+                                            </div>
 
                                         </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-lg-4 mt-3">
+                                            <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; height:290px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
 
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="col-lg-4 mt-3">
-                                        <img src="~/imagenes_local/@item" class="img-thumbnail justify-content-lg-center" alt="..." data-title="" style="width:100%; height:290px;"><span class="btn shadow-lg shadow-md">Imagen @ViewBag.contador</span>
+                                            <div class="mt-3 row col-12">
 
-                                        <div class="mt-3 row col-12">
+                                                <span class="@("file"+@ViewBag.contador)">
+                                                    <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
+                                                </span>
+                                                <label for="@("file"+@ViewBag.contador)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Cambiar foto</span></label>
 
-                                            <span class="@("file"+@ViewBag.contador)">
-                                                <input type="file" name="@("img"+@ViewBag.contador)" id="@("file"+@ViewBag.contador)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
-                                            </span>
-                                            <label for="@("file"+@ViewBag.contador)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn"> <i class="far fa-image"></i> &nbsp; <span> Cambiar foto</span></label>
+                                            </div>
 
                                         </div>
-
-                                    </div>
+                                    }
                                 }
                             }
-                        }
-                        @{
-                            inputsFaltantes = inputsFaltantes - ViewBag.contador;
-                        }
+                            @{
+                                inputsFaltantes = inputsFaltantes - ViewBag.contador;
+                            }
 
-                        @if (inputsFaltantes != 0)
-                        {
-                            ViewBag.contador2 = ViewBag.contador;
-                            <h2 class="my-4">Agregar nuevas imagenes a la galería</h2>
-
-                            for (int i = 1; i <= inputsFaltantes; i++)
+                            @if (inputsFaltantes != 0)
                             {
-                                ViewBag.contador2 = ViewBag.contador2 + 1;
-                                //Si el contador es igual a 1 ese input va tener el atributo required
-                                if (ViewBag.contador2 == 1)
+                                ViewBag.contador2 = ViewBag.contador;
+                                <h2 class="my-4">Agregar nuevas imagenes a la galería</h2>
+
+                                for (int i = 1; i <= inputsFaltantes; i++)
                                 {
-                                    <span class="@("file"+@ViewBag.contador2)">
-                                        <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
-                                    </span>
+                                    ViewBag.contador2 = ViewBag.contador2 + 1;
+                                    //Si el contador es igual a 1 ese input va tener el atributo required
+                                    if (ViewBag.contador2 == 1)
+                                    {
+                                        <span class="@("file"+@ViewBag.contador2)">
+                                            <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="@("file"+@ViewBag.contador2)">
+                                            <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
+                                        </span>
+                                    }
+                                    <label for="@("file"+@ViewBag.contador2)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn mb-2"> <i class="far fa-image"></i> &nbsp; <span> Agregar foto</span></label>
                                 }
-                                else
-                                {
-                                    <span class="@("file"+@ViewBag.contador2)">
-                                        <input type="file" name="@("img"+@ViewBag.contador2)" id="@("file"+@ViewBag.contador2)" accept=".png, .jpg, .jpeg" class="btn mx-2 col-lg-12 col-sm-8 pulse" style="background-color: #f2f2f2;margin-top: 1%;" />
-                                    </span>
-                                }
-                                <label for="@("file"+@ViewBag.contador2)" id="cfile" class="rounded mx-2 col-lg-12 col-sm-8 btn mb-2"> <i class="far fa-image"></i> &nbsp; <span> Agregar foto</span></label>
                             }
-                        }
 
 
-                        <div class="form-group my-5 d-grid justify-content-center">
-                            <div class=" ">
-                                <button type="submit" class="btn text-white w-100" style="background-color:#DBA312;">Guardar cambios</button>
+                            <div class="form-group my-5 d-grid justify-content-center">
+                                <div class=" ">
+                                    <button type="submit" class="btn text-white w-100" style="background-color:#DBA312;">Guardar cambios</button>
+                                </div>
                             </div>
-                        </div>
 
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -277,18 +278,39 @@
         </div>
     </div>
 </div>
-<p class="d-none" id="p-respuesta" data-respuesta="@ViewBag.respuesta" ></p>
+<div class="modal" tabindex="-1" id="modalImg">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Verificar formulario
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="p-modal-img">Por favor verificar que los datos del formulario esten correcto.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<p class="d-none" id="p-respuesta" data-respuesta="@ViewBag.respuesta"></p>
 
 <script>
- 
+
 
     window.onload = function () {
-     
+
         var parrafo = $('#p-modal');
         var respuesta = $('#p-respuesta').data('respuesta');
         if (respuesta == "no fotos") {
 
-            parrafo.text('Para registrar tus servicios debes primero registrar las fotos de tu peluquería. Llena el formulario a continuación por favor.' );
+            parrafo.text('Para registrar tus servicios debes primero registrar las fotos de tu peluquería. Llena el formulario a continuación por favor.');
             $('#modal').modal('show');
 
         }
@@ -324,7 +346,7 @@
             // Establecer el nuevo valor seleccionado en el dropDownList
             dropDownList.value = nuevoValorSeleccionado;
         });
-        
+
 
     }
 
@@ -333,71 +355,71 @@
 
 
 @*@Html.EditorFor(model => model.fecha_creacion_, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
-@Html.ValidationMessageFor(model => model.fecha_creacion_, "", new { @class = "text-danger" })
+    @Html.ValidationMessageFor(model => model.fecha_creacion_, "", new { @class = "text-danger" })
 
 
-@Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control ", @hidden = "hidden", @readonly = "readonly" } })
+    @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control ", @hidden = "hidden", @readonly = "readonly" } })
 
-@Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
-
-
-@Html.EditorFor(model => model.capacidad_simultanea_, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
-
-@Html.ValidationMessageFor(model => model.capacidad_simultanea_, "", new { @class = "text-danger" })
+    @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
 
 
-@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control ", @hidden = "hidden", @readonly = "readonly" } })
+    @Html.EditorFor(model => model.capacidad_simultanea_, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
 
-    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-
-
-@Html.EditorFor(model => model.EmailConfirmed, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
-
-@Html.ValidationMessageFor(model => model.EmailConfirmed, "", new { @class = "text-danger" })
+    @Html.ValidationMessageFor(model => model.capacidad_simultanea_, "", new { @class = "text-danger" })
 
 
+    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control ", @hidden = "hidden", @readonly = "readonly" } })
 
-@Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 
-@Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
+
+    @Html.EditorFor(model => model.EmailConfirmed, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+
+    @Html.ValidationMessageFor(model => model.EmailConfirmed, "", new { @class = "text-danger" })
 
 
 
-@Html.EditorFor(model => model.SecurityStamp, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+    @Html.EditorFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
 
-@Html.ValidationMessageFor(model => model.SecurityStamp, "", new { @class = "text-danger" })
-
-
-
-@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
-
-@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-
-
-@Html.EditorFor(model => model.PhoneNumberConfirmed, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
-
-@Html.ValidationMessageFor(model => model.PhoneNumberConfirmed, "", new { @class = "text-danger" })
-
-
-@Html.EditorFor(model => model.TwoFactorEnabled, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
-
-@Html.ValidationMessageFor(model => model.TwoFactorEnabled, "", new { @class = "text-danger" })
-
-
-@Html.EditorFor(model => model.LockoutEndDateUtc, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
-
-@Html.ValidationMessageFor(model => model.LockoutEndDateUtc, "", new { @class = "text-danger" })
+    @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
 
 
 
-@Html.EditorFor(model => model.LockoutEnabled, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
-@Html.ValidationMessageFor(model => model.LockoutEnabled, "", new { @class = "text-danger" })
+    @Html.EditorFor(model => model.SecurityStamp, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+
+    @Html.ValidationMessageFor(model => model.SecurityStamp, "", new { @class = "text-danger" })
 
 
 
-@Html.EditorFor(model => model.AccessFailedCount, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
-@Html.ValidationMessageFor(model => model.AccessFailedCount, "", new { @class = "text-danger" })
+    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+
+    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
 
 
-@Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
-@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })*@
+    @Html.EditorFor(model => model.PhoneNumberConfirmed, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+
+    @Html.ValidationMessageFor(model => model.PhoneNumberConfirmed, "", new { @class = "text-danger" })
+
+
+    @Html.EditorFor(model => model.TwoFactorEnabled, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+
+    @Html.ValidationMessageFor(model => model.TwoFactorEnabled, "", new { @class = "text-danger" })
+
+
+    @Html.EditorFor(model => model.LockoutEndDateUtc, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+
+    @Html.ValidationMessageFor(model => model.LockoutEndDateUtc, "", new { @class = "text-danger" })
+
+
+
+    @Html.EditorFor(model => model.LockoutEnabled, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+    @Html.ValidationMessageFor(model => model.LockoutEnabled, "", new { @class = "text-danger" })
+
+
+
+    @Html.EditorFor(model => model.AccessFailedCount, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+    @Html.ValidationMessageFor(model => model.AccessFailedCount, "", new { @class = "text-danger" })
+
+
+    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden", @readonly = "readonly" } })
+    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })*@
