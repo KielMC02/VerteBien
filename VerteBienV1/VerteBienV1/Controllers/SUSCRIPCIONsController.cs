@@ -256,7 +256,35 @@ namespace VerteBienV1.Controllers
         {
             List<AspNetUsers> listaUsers = new List<AspNetUsers>();
             CardResponse infoParaCobrar = new CardResponse();
-            listaUsers = (from buscarUsers in db.AspNetUsers where buscarUsers.fecha_creacion_.Day == DateTime.Today.Day select buscarUsers).ToList();
+            // Obtener el primer día del mes siguiente
+            DateTime primerDiaMesSiguiente = DateTime.Today.AddMonths(1).AddDays(-DateTime.Today.Day + 1);
+
+            // Obtener el último día del mes actual
+            DateTime ultimoDiaMesActual = primerDiaMesSiguiente.AddDays(-1);
+
+            // Obtener el día actual 
+            DateTime diaActual = DateTime.Today;
+
+            //Si el dia actual es igual a 28 de febrero, entonces se deben tomar los usuarios del 28, 29, 30 y 31 para realizar el cobro.
+            if (diaActual.Month == 2 && diaActual.Day == 28)
+            {
+                //En caso de ser asi, se toman todos los usuarios creados dia 28, 29, 30 y 31 para realizar el cobro.
+                listaUsers = (from buscarUsers in db.AspNetUsers where buscarUsers.fecha_creacion_.Day >= DateTime.Today.Day select buscarUsers).ToList();
+
+            }
+            //Si el dia actual es igual al dia 30 de cada mes, se debe evualar si el mes es de 31
+            if (diaActual.Day == 30)
+            {
+                //En caso de ser asi, se toman todos los usuarios creados dia 30 y 31, para realizar el cobro.
+                listaUsers = (from buscarUsers in db.AspNetUsers where buscarUsers.fecha_creacion_.Day >= DateTime.Today.Day select buscarUsers).ToList();
+
+            }
+            //Si no se cumplen las condiciones se toman los usuarios que fueron creado el mismo numero de dia que el actual.
+            else
+            {
+                listaUsers = (from buscarUsers in db.AspNetUsers where buscarUsers.fecha_creacion_.Day == DateTime.Today.Day select buscarUsers).ToList();
+            }
+            //listaUsers = (from buscarUsers in db.AspNetUsers where buscarUsers.fecha_creacion_.Day == DateTime.Today.Day select buscarUsers).ToList();
             if (listaUsers.Count > 0)
             {
                 foreach (var item in listaUsers)
@@ -467,7 +495,7 @@ namespace VerteBienV1.Controllers
                 {
                     respuesta.Membresia = "preferencial";
                 }
-                if (resultadoBusqueda[0] == "4")
+                if (resultadoBusqueda[0] == "5")
                 {
                     respuesta.Membresia = "vip";
                 }
@@ -522,7 +550,7 @@ namespace VerteBienV1.Controllers
                 insertarTarjeta.Create(nuevaTarjeta);
 
                 var resultadoProc = db.Database.ExecuteSqlCommand("SP_NuevaTarjetaDefault @id, @digitos", new SqlParameter("@id", Convert.ToString(respuesta.IdUser)), new SqlParameter("@digitos", Convert.ToString(respuesta.number)));
-                res = "Ok";
+                res = "OK";
                 return Json(res);
 
             }
