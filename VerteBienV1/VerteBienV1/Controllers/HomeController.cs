@@ -63,5 +63,9 @@ namespace VerteBienV1.Controllers
 
             return View();
         }
+        public ActionResult Gracias()
+        {
+            return View();
+        }
     }
 }
