@@ -62,7 +62,7 @@
                                 <select name="duracion" id="duracion" class="form-control col-md-10">
                                     <option value="0,5" step="any">30 Minutos</option>
                                     <option value="1">1 Hora</option>
-                                    <option value="1.5">1 Hora y 30 Minutos</option>
+                                    <option value="1,5">1 Hora y 30 Minutos</option>
                                     <option value="2">2 Horas</option>
                                 </select>
                                 @Html.ValidationMessageFor(model => model.tiempo, "", new { @class = "text-danger" })
@@ -224,7 +224,7 @@
     $(document).ready(function () {
         function convertir() {
             const selectedValue = $("#duracion").val();
-            const convertedValue = selectedValue.includes(",") ? selectedValue.replace(",", ".") : selectedValue.replace(".", ",");
+            const convertedValue = selectedValue.includes(",") ? selectedValue.replace(",", ".") : selectedValue;
 
             $("#duracion").find("option[value='" + selectedValue + "']").val(convertedValue);
         }
