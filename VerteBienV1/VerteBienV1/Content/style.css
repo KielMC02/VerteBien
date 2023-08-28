@@ -2637,47 +2637,47 @@ z
     }
 }
 
-/* Estilos para pantallas grandes (mayor o igual a 992px) */
-@media (min-width: 992px) {
-    .carousel-item:nth-child(1) img {
-        content: url('../Imagenes/Banner chicos  pc.jpg');
-    }
+.pagina-carousel {
+    /* Estilos para pantallas grandes (mayor o igual a 992px) */
+    @media (min-width: 992px) {
+        .carousel-item:nth-child(1) img {
+            content: url('../Imagenes/Banner chicos  pc.jpg');
+        }
 
-    .carousel-item:nth-child(2) img {
-        content: url('../Imagenes/Banner chicas pc.jpg');
-    }
+        .carousel-item:nth-child(2) img {
+            content: url('../Imagenes/Banner chicas pc.jpg');
+        }
 
-    .carousel-item:nth-child(3) img {
-        content: url('../Imagenes/Banner peluqeuria pc.jpg');
+        .carousel-item:nth-child(3) img {
+            content: url('../Imagenes/Banner peluqeuria pc.jpg');
+        }
     }
-}
+    /* Estilos para tablets (entre 768px y 991px) */
+    @media (min-width: 768px) and (max-width: 991px) {
+        .carousel-item:nth-child(1) img {
+            content: url('/Imagenes/Banner chicos tablet.jpg');
+        }
 
-/* Estilos para tablets (entre 768px y 991px) */
-@media (min-width: 768px) and (max-width: 991px) {
-    .carousel-item:nth-child(1) img {
-        content: url('/Imagenes/Banner chicos tablet.jpg');
+        .carousel-item:nth-child(2) img {
+            content: url('/Imagenes/Banner chicas tablet.jpg');
+        }
+
+        .carousel-item:nth-child(3) img {
+            content: url('/Imagenes/Banner peluqeuria tablet.jpg');
+        }
     }
+    /* Estilos para dispositivos móviles (menos de 768px) */
+    @media (max-width: 767px) {
+        .carousel-item:nth-child(1) img {
+            content: url('/Imagenes/Banner chicas celular.jpg');
+        }
 
-    .carousel-item:nth-child(2) img {
-        content: url('/Imagenes/Banner chicas tablet.jpg');
-    }
+        .carousel-item:nth-child(2) img {
+            content: url('/Imagenes/Banner chicos celular.jpg');
+        }
 
-    .carousel-item:nth-child(3) img {
-        content: url('/Imagenes/Banner peluqeuria tablet.jpg');
-    }
-}
-
-/* Estilos para dispositivos móviles (menos de 768px) */
-@media (max-width: 767px) {
-    .carousel-item:nth-child(1) img {
-        content: url('/Imagenes/Banner chicas celular.jpg');
-    }
-
-    .carousel-item:nth-child(2) img {
-        content: url('/Imagenes/Banner chicos celular.jpg');
-    }
-
-    .carousel-item:nth-child(3) img {
-        content: url('/Imagenes/Banner peluqeuria celular.jpg');
+        .carousel-item:nth-child(3) img {
+            content: url('/Imagenes/Banner peluqeuria celular.jpg');
+        }
     }
 }
