@@ -80,7 +80,7 @@
                                         <div class="d-none">
                                             @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label col-md-8" })
                                             <div class="col-md-12">
-                                                @Html.DropDownList("duraciones", null, htmlAttributes: new { @class = "form-control col-md-10 " })
+                                                @Html.DropDownList("duraciones", null, htmlAttributes: new { @class = "form-control col-md-10", @id= "duraciones" })
                                                 @Html.ValidationMessageFor(model => model.tiempo, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -88,9 +88,9 @@
                                         <div class="form-group col-md-6 my-2">
                                             @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label col-md-8" })
                                             <select name="select" id="select" class="form-control col-md-10">
-                                                <option value="0,5" selected>30 Minutos</option>
+                                                <option value="0.5" selected>30 Minutos</option>
                                                 <option value="1">1 hora</option>
-                                                <option value="1,5">1 hora y media</option>
+                                                <option value="1.5">1 hora y media</option>
                                                 <option value="2">2 horas</option>
                                             </select>
                                             @Html.ValidationMessageFor(model => model.tiempo, "", new { @class = "text-danger" })
@@ -263,3 +263,21 @@
 
     </form>
 </div>
+<script>
+    $(document).ready(function () {
+        function convertir() {
+            const selectedValue = $("#select").val();
+            const convertedValue = selectedValue.includes(",") ? selectedValue.replace(",", ".") : selectedValue;
+
+            $("#select").find("option[value='" + selectedValue + "']").val(convertedValue);
+        }
+
+        // Ejecutar la función al cargar la página
+        convertir();
+
+        //// Manejar el evento de cambio
+        //$("#duracion").change(function () {
+        //    convertir();
+        //});
+    });
+</script>
