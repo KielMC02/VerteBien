@@ -44,7 +44,7 @@
                                 @Html.ValidationMessageFor(model => model.id_categoria, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        @*</div>*@
+                        @*</div>*@ 
 
                         @*<div class="col-md-4">*@
                         <div class="form-group col-md-6 my-md-3 formulario__grupo" id="grupo__precio_servicio">
@@ -59,10 +59,10 @@
                         <div class="form-group col-md-6 my-md-3 my-2">
                             @Html.Label("Duración del Servicio", htmlAttributes: new { @class = "control-label mx-md-5" })
                             <div class="col-md-10 mx-md-5">
-                                <select name="duracion" class="form-control col-md-10">
+                                <select name="duracion" id="duracion" class="form-control col-md-10">
                                     <option value="0,5" step="any">30 Minutos</option>
                                     <option value="1">1 Hora</option>
-                                    <option value="1,5">1 Hora y 30 Minutos</option>
+                                    <option value="1.5">1 Hora y 30 Minutos</option>
                                     <option value="2">2 Horas</option>
                                 </select>
                                 @Html.ValidationMessageFor(model => model.tiempo, "", new { @class = "text-danger" })
@@ -220,3 +220,21 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        function convertir() {
+            const selectedValue = $("#duracion").val();
+            const convertedValue = selectedValue.includes(",") ? selectedValue.replace(",", ".") : selectedValue.replace(".", ",");
+
+            $("#duracion").find("option[value='" + selectedValue + "']").val(convertedValue);
+        }
+
+        // Ejecutar la función al cargar la página
+        convertir();
+
+        //// Manejar el evento de cambio
+        //$("#duracion").change(function () {
+        //    convertir();
+        //});
+    });
+</script>

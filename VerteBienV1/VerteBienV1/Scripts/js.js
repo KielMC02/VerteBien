@@ -393,7 +393,7 @@ $(document).ready(function () {
         let idname = $(this).attr('id');
         let id = this.id;
         
-        if (fileSize > 12000) {
+        if (fileSize > 12000000) {
             let parrafo = $('#p-modal-img');
             parrafo.text('El archivo no debe superar los 12MB');
             $('#modalImg').modal('show'); // abrirr el modal de boostrap
