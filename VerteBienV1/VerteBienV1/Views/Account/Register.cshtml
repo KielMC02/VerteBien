@@ -16,6 +16,8 @@
             <h4>Registra tu negocio</h4>
             <hr class="w-50" />
         </center>
+      
+
         <style>
             /* Agregamos una animación simple que cambia la opacidad del ícono del ojo */
             .fa-eye {
@@ -30,6 +32,21 @@
             .fa-eye-slash {
                 opacity: 0.5;
             }
+            #Email-error {
+                display: none;
+            }
+
+            #txt-loginerror ul {
+                padding: 0px;
+                color: #686C6D;
+                font-family: "Barlow", sans-serif !important;
+                font-weight: 300;
+                color: #686c6d;
+                letter-spacing: 0.03rem;
+                font-size: 12px;
+                padding: 10px 5px 0px 10px;
+            }
+
         </style>
 
         <br />
@@ -47,6 +64,8 @@
                                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control control-form control-form", id = "Email", name = "Email", placeholder = "Correo@dominio.com" })
 
                                     </div>
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger ", @id = "txt-loginerror" })
                                     <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo. (ejemplo@dominio.com o ejemplo@dominio.com.do)</p>
                                 </div>
                                 <div class="form-group col-12 col-md-6 my-1 formulario__grupo has-feedback" id="grupo__nombre_peluqueria">
@@ -432,7 +451,7 @@
                                 <div class="form-group col-12 col-md-6 my-1 formulario__grupo">
                                     <center>
                                         @Html.Label("Latitud", new { @class = "col-md-4 control-label", @style = "margin-left:3px;" })
-                                        <div class="col-md-10 formulario__grupo-input" data-bs-toggle="tooltip"  data-bs-placement="top"  title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
+                                        <div class="col-md-10 formulario__grupo-input" data-bs-toggle="tooltip" data-bs-placement="top" title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
 
                                             @Html.TextBoxFor(m => m.latitud, new { @class = "form-control", id = "latitud", @required = "required" })
 
@@ -442,7 +461,7 @@
                                 <div class="form-group col-12 col-md-6  my-1 formulario__grupo">
                                     <center>
                                         @Html.Label("Longitud", new { @class = "col-md-4 control-label", @style = "margin-left:3px;" })
-                                        <div class="col-md-10 formulario__grupo-input" data-bs-toggle="tooltip" , data-bs-placement="top"  title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
+                                        <div class="col-md-10 formulario__grupo-input" data-bs-toggle="tooltip" , data-bs-placement="top" title="para rellenar estos campos mueva la ubicacion deseada en el mapa de arriba">
 
                                             @Html.TextBoxFor(m => m.longitud, new { @class = "form-control", id = "longitud", @required = "required" })
 
@@ -532,8 +551,8 @@
 
 <script>
     function mostrarOcultarPassword(inputId, eyeIconId) {
-        var input = document.getElementById(inputId);
-        var ojoIcono = document.getElementById(eyeIconId);
+        let input = document.getElementById(inputId);
+        let ojoIcono = document.getElementById(eyeIconId);
         if (input.type === "password") {
             input.type = "text";
             ojoIcono.classList.remove('fa-eye');
@@ -544,6 +563,22 @@
             ojoIcono.classList.add('fa-eye');
         }
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        let txtLoginError = document.getElementById('txt-loginerror');
+        let emailInput = document.getElementById('grupo__Email');
+
+        if (txtLoginError.style.display !== 'none') {
+            emailInput.classList.add('formulario__grupo-incorrecto');
+            setTimeout(function () {
+                txtLoginError.style.display = 'none';
+                emailInput.classList.remove('formulario__grupo-incorrecto');
+            }, 10000);
+        }
+    });
+
+
+
 </script>
 
 
