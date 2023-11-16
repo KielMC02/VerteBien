@@ -445,12 +445,12 @@ const expresiones = {
     fecha: /^(?:0?[1-9]|1[1-2])([\-/.])(3[01]|[12][0-9]|0?[1-9])\1\d{4}$/, //pra fechas mes/dia/año
     numero: /^[0-9]{1,4}$/, //numeros de 1 a 4 digios
     alphanumerico: /[A-Z? a-z 0-9 À-ÿ .,]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*){10,200}$/,//Alfanumerico
-    callenumero: /^[a-zA-ZÀ-ÿ\s  0-9?]{1,15}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
+    callenumero: /^[a-zA-ZÀ-ÿ\s  0-9?]{1,45}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
     precio: /^\d{1,4}(\.\d{1,2})?$/, //número decimal o flotante
     fbuser: /[a-zA-Z0-9\_\-\@]/, //Fb user
     iguser: /[a-zA-Z0-9\_\-\@]/,// Instgram User.
     web: /[a-zA-Z0-9\_\-\@]/,
-    ciudadnombre: /[A-Z? a-z 0-9?]{10,25}$/,//Alfanumerico
+    ciudadnombre: /[A-Z? a-z 0-9?]{10,45}$/,//Alfanumerico
     descralpha: /^(?!.*  )(?=.*[a-zA-Z0-9])[a-zA-Z0-9., ]{10,250}$/ //para los campos descripsion
 
 };

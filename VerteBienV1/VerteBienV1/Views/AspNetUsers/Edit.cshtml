@@ -103,7 +103,7 @@
                                 @Html.ValidationMessageFor(model => model.calle, "", new { @class = "text-danger" })
 
                             </div>
-                            <p class="formulario__input-error">El numero de la calle  solo puede contener numeros y maximo 4 digitos</p>
+                            <p class="formulario__input-error">El numero de la calle  solo puede contener numeros y maximo 45 carácteres</p>
                         </div>
 
 
@@ -298,6 +298,25 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal" tabindex="-1" id="modalchange">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Verificar Mapa
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Por favor recuerde actualziar los datos del mapa.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <p class="d-none" id="p-respuesta" data-respuesta="@ViewBag.respuesta"></p>
 
@@ -341,12 +360,33 @@
         // Agregar evento change al selectHtml
         selectHtml.addEventListener("change", function () {
             // Obtener el nuevo valor seleccionado en selectHtml (mayúsculas)
-            var nuevoValorSeleccionado = selectHtml.value.toUpperCase();
+            let nuevoValorSeleccionado = selectHtml.value.toUpperCase();
 
             // Establecer el nuevo valor seleccionado en el dropDownList
             dropDownList.value = nuevoValorSeleccionado;
         });
 
+      
+
+
+
+        // Obtener referencias a los elementos
+        let sectorSelect = document.getElementById("sector");
+        let cantonSelect = document.getElementById("canton");
+
+        // Agregar oyentes de eventos de cambio
+        sectorSelect.addEventListener("change", function () {
+            mostrarMensajeYCambiarMapa();
+        });
+
+        cantonSelect.addEventListener("change", function () {
+            mostrarMensajeYCambiarMapa();
+        });
+
+        // Función para mostrar un mensaje en un alert y cambiar la ubicación del mapa (ajustar según sea necesario)
+        function mostrarMensajeYCambiarMapa() {
+            $('#modalchange').modal('show');
+        }
 
     }
 
