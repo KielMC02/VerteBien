@@ -317,7 +317,7 @@ namespace VerteBienV1.Controllers
                             //Limpiamos el contenido de la repsuesta y almacenamos en una lista
                             respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
                             List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
-                            if (contenidoRespuesta[0].Contains("success"))
+                            if (contenidoRespuesta[1].Contains("success"))
                             {
                                 //instancia nueva suscripcion
                                 SUSCRIPCION newSuscripcion = new SUSCRIPCION();
@@ -384,7 +384,7 @@ namespace VerteBienV1.Controllers
                             //Limpiamos el contenido de la repsuesta y almacenamos en una lista
                             respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
                             List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
-                            if (contenidoRespuesta[0].Contains("success"))
+                            if (contenidoRespuesta[1].Contains("success"))
                             {
                                 //instancia nueva suscripcion
                                 SUSCRIPCION newSuscripcion = new SUSCRIPCION();
@@ -449,7 +449,7 @@ namespace VerteBienV1.Controllers
                     //Limpiamos el contenido de la repsuesta y almacenamos en una lista
                     respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
                     List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
-                    if (contenidoRespuesta[0].Contains("success"))
+                    if (contenidoRespuesta[1].Contains("success"))
                     {
                         //instancia nueva suscripcion
                         SUSCRIPCION newSuscripcion = new SUSCRIPCION();
@@ -508,7 +508,7 @@ namespace VerteBienV1.Controllers
                     //Limpiamos el contenido de la repsuesta y almacenamos en una lista
                     respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
                     List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
-                    if (contenidoRespuesta[0].Contains("success"))
+                    if (contenidoRespuesta[1].Contains("success"))
                     {
                         //Instancia de una nueva tarjeta
                         CARD nuevaTarjeta = new CARD();
@@ -566,7 +566,7 @@ namespace VerteBienV1.Controllers
                     //Limpiamos el contenido de la repsuesta y almacenamos en una lista
                     respuestaDebit = Regex.Replace(respuestaDebit, "[:\\{}@\n\"]", string.Empty);
                     List<String> contenidoRespuesta = (respuestaDebit.Split(',')).ToList();
-                    if (contenidoRespuesta[0].Contains("success"))
+                    if (contenidoRespuesta[1].Contains("success"))
                     {
                         //Instancia de una nueva tarjeta
                         CARD nuevaTarjeta = new CARD();
