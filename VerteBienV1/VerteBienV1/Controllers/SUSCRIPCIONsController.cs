@@ -73,8 +73,32 @@ namespace VerteBienV1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_suscripcion,id_usuario,estado,id_suscripcion_kushki,comentario,fecha_suscripcion")] SUSCRIPCION sUSCRIPCION)
+        public ActionResult Create([Bind(Include = "id_suscripcion,id_usuario,estado,comentario,fecha_suscripcion,trasaction_reference, respuesta")] SUSCRIPCION sUSCRIPCION)
         {
+            sUSCRIPCION.fecha_suscripcion = DateTime.Today;
+            sUSCRIPCION.estado = "activo";
+            List<SUSCRIPCION> suscripcionActual = new List<SUSCRIPCION>();
+            suscripcionActual = (from busquedaSuscripcion in db.SUSCRIPCION where busquedaSuscripcion.estado == "activo" && busquedaSuscripcion.id_usuario == sUSCRIPCION.id_usuario select busquedaSuscripcion).ToList();
+            if(suscripcionActual.Count > 0)
+            {
+
+                foreach (var item in suscripcionActual)
+                {
+                    // Calcular cuántos días han pasado desde la suscripción
+                    int diasTranscurridos = (DateTime.Today - item.fecha_suscripcion).Days;
+
+                    // Verificar si han pasado menos de 30 días
+                    if (diasTranscurridos < 30)
+                    {
+                        // Calcular cuántos días faltan para llegar a 30
+                        int diasRestantes = 30 - diasTranscurridos;
+
+                        // Sumar los días restantes a la fecha de hoy
+                        sUSCRIPCION.fecha_suscripcion = DateTime.Today.AddDays(diasRestantes);
+                    }
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.SUSCRIPCION.Add(sUSCRIPCION);
@@ -88,6 +112,7 @@ namespace VerteBienV1.Controllers
             return View(sUSCRIPCION);
         }
 
+        [Authorize(Roles = "administrador")]
         // GET: SUSCRIPCIONs/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -109,8 +134,10 @@ namespace VerteBienV1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_suscripcion,id_usuario,estado,id_suscripcion_kushki,comentario,fecha_suscripcion")] SUSCRIPCION sUSCRIPCION)
+        [Authorize(Roles = "administrador")]
+        public ActionResult Edit([Bind(Include = "id_suscripcion,id_usuario,estado,comentario,fecha_suscripcion,trasaction_reference, respuesta")] SUSCRIPCION sUSCRIPCION)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(sUSCRIPCION).State = EntityState.Modified;
@@ -120,7 +147,7 @@ namespace VerteBienV1.Controllers
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email", sUSCRIPCION.id_usuario);
             return View(sUSCRIPCION);
         }
-
+        [Authorize(Roles = "administrador")]
         // GET: SUSCRIPCIONs/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -155,49 +182,128 @@ namespace VerteBienV1.Controllers
             }
             base.Dispose(disposing);
         }
-
-        //Recordatorio para mitad de mes
-        public ActionResult RecordatorioMitad()
+        [Authorize(Roles = "administrador")]
+        //Recordatorio para las Suscripciones de mas de 25 dias. 
+        public ActionResult recordatorioDePago()
         {
-            var today = DateTime.Today;
-            var mesactual = new DateTime(today.Year, today.Month, 1);
-            var mesanterior = mesactual.AddMonths(-1);
-            var quincena = mesanterior.AddDays(14);
-            AspNetUsers usuario = new AspNetUsers();
-            List<SUSCRIPCION> suscripciones = new List<SUSCRIPCION>();
-            suscripciones = (from busqueda in db.SUSCRIPCION where busqueda.fecha_suscripcion == quincena select busqueda).ToList();
-            if (suscripciones.Count > 0)
+
+            List<AspNetUsers> listaUsers = new List<AspNetUsers>();
+
+
+            // Declaramos una variable que sera igual a la fecha de hace 25 dias.
+            DateTime fechaLimite = DateTime.Today.AddDays(-25);
+
+            //Consulta que obtiene una lista de usuarios activos que tienen una suscripcion activa con 25 dias o mas.
+            listaUsers = (from busquedaUser in db.AspNetUsers
+                          join busquedaSuscripcion in db.SUSCRIPCION
+                          on busquedaUser.Id equals busquedaSuscripcion.id_usuario
+                          where busquedaUser.estado == "activo" &&
+                                busquedaSuscripcion.estado == "activo" &&
+                                busquedaSuscripcion.fecha_suscripcion <= fechaLimite
+                          select busquedaUser).ToList();
+  
+            foreach (var item in listaUsers)
             {
 
-                foreach (var item in suscripciones)
+                //Correo para el usuario
+                string from = "informaciones@vertebien.net"; 
+
+                //Inserta la imagen
+                LinkedResource theEmailImage = new LinkedResource("~/Imagenes/Verte Bien negro.png");
+                theEmailImage.ContentId = "myImageID";
+
+                MailMessage mailUser = new MailMessage(from, item.Email);
                 {
-                    usuario = db.AspNetUsers.Find(item.id_usuario);
-                    string from = "kielcuentas@gmail.com";
-                    MailMessage mailUser = new MailMessage(from, usuario.Email);
-                    {
 
-                        mailUser.Subject = "Recordatorio de Pago";
-                        mailUser.Body = "Hola " + usuario.nombre + " te recordamos que el 15 del mes en curso debes renovar tu suscripcion Verte Bien.";
-                        mailUser.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.EnableSsl = true;
-                        NetworkCredential networkCredential = new NetworkCredential(from, "20175376Octubre0210*");
-                        smtp.UseDefaultCredentials = true;
-                        smtp.Credentials = networkCredential;
-                        smtp.Port = 587;
-                        smtp.Send(mailUser);
-                        ViewBag.Message = "Enviado con exito";
-                    }
-
+                    mailUser.Subject = "Recordatario de Pago";
+                    mailUser.Body = @"<center> <img src=cid:myImageID> </center>" +
+                                     @"<style>
+                                       h4{text-align:justify;
+                                          margin-top: 2%;}
+                                         </style>
+                        <p>Su suscripcion en Verte Bien esta por vencer, recuerde renovar con tiempo para evitar suspension</p>";
+                    mailUser.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = false;
+                    NetworkCredential networkCredential = new NetworkCredential(from, "Octubre0210*");
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = networkCredential;
+                    smtp.Port = 889;
+                    smtp.Send(mailUser);
+                    ViewBag.Message = "Enviado con exito";
 
                 }
 
             }
 
+
+            // Metodo 1 Create - registro de la suscripcion en modo activa, y activa el usuario. Ready
+
+            // Metodo 2 Recordatorio- El sistema envia un recordatorio a todos los usuarios que su suscripciones activas tienen igual o mas de 25 dias. Si tiene una suscripcion que tenga menos de 25 dias no el enviara recordatorio. Ready.
+
+
+            // Metodo 3 - El sistema busca la suscripciones que sean de mas de 30 dias y las pone inactivas. Luego realiza otra consulta y todos los usuarios que no tengan una suscripcion activa, son suspendidos--Manda correo a todos los usuarios suspendidos.
+
+            // Si el usuario realiza el pago por adelantado, al momento de realizar el registro de suscripcion, el sistema ofrecera una fecha conveniente tomando en cuenta los dias que le faltan en su suscripcion actual. Esto lo hare calculando los dias que le quedan a la suscripcion actual y sumandolos a la fecha del dia de hoy.
+            //Si un usuario paga tarde, su suscripcion activa iniciaria ese mismo dia en el que pago.
+
+
+            return RedirectToAction("Index", "AspNetUsers");
+        }
+            
+        public ActionResult suspensionSuscripcion() 
+        {
+
+            List<SUSCRIPCION> listaSuscripcion = new List<SUSCRIPCION>();
+            // Declaramos una variable que sera igual a la fecha de hace 30 dias.
+            DateTime fechaLimite = DateTime.Today.AddDays(-30);
+
+            listaSuscripcion = (from busquedaSuscripcion in db.SUSCRIPCION where busquedaSuscripcion.estado == "activo" && busquedaSuscripcion.fecha_suscripcion <= fechaLimite select busquedaSuscripcion).ToList();
+
+            foreach(var item in listaSuscripcion)
+            {
+                var resultadoProc = db.Database.ExecuteSqlCommand("SP_Actualizar_Estado_Suscripcion_Suspendido @id_usuario,@id_suscripcion", new SqlParameter("@id_usuario", Convert.ToString(item.id_usuario)),new SqlParameter("@id_suscripcion",item.id_suscripcion));
+
+                //Ubicar el usuario
+                AspNetUsers userEmail = db.AspNetUsers.Find(item.id_usuario);
+                //Correo para el usuario
+                string from = "informaciones@vertebien.net";
+
+                //Inserta la imagen
+                LinkedResource theEmailImage = new LinkedResource("~/Imagenes/Verte Bien negro.png");
+                theEmailImage.ContentId = "myImageID";
+
+                MailMessage mailUser = new MailMessage(from, userEmail.Email);
+                {
+
+                    mailUser.Subject = "Su suscripcion del " + Convert.ToString(item.fecha_suscripcion) + "ha sido suspendida" ;
+                    mailUser.Body = @"<center> <img src=cid:myImageID> </center>" +
+                                     @"<style>
+                                       h4{text-align:justify;
+                                          margin-top: 2%;}
+                                         </style>
+                        <p>Su suscripcion del" + Convert.ToString(item.fecha_suscripcion) + " ha sido suspendida, en caso de no tener mas suscripciones activas su usario sera supendido. Si esto es un error puede comunicarse con....</p>";
+                    mailUser.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = false;
+                    NetworkCredential networkCredential = new NetworkCredential(from, "Octubre0210*");
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = networkCredential;
+                    smtp.Port = 889;
+                    smtp.Send(mailUser);
+                    ViewBag.Message = "Enviado con exito";
+
+                }
+            }
+
             return RedirectToAction("Index", "AspNetUsers");
         }
 
+
+
+        [Authorize(Roles = "administrador")]
         //Recordatorio para mitad de mes
         public ActionResult RecordatorioFin()
         {
@@ -251,6 +357,7 @@ namespace VerteBienV1.Controllers
             return View();
         }
 
+        //**********************************PAYMENTEZ*******************
         //Metodo para debitar en masa a todos los usuarios.
         public async Task<String> debitarUsers()
         {
@@ -346,6 +453,7 @@ namespace VerteBienV1.Controllers
             return "Debito realizado";
 
         }
+        //**********************************PAYMENTEZ*******************
         //Debitar usuarios pendientes de pago.
         public async Task<String> debitarUsersPendientes()
         {
@@ -413,6 +521,7 @@ namespace VerteBienV1.Controllers
             return "Debito realizado";
 
         }
+        //**********************************PAYMENTEZ*******************
         //Auto-Debitar por el usuario
         public async Task<String> debitarManualUser()
         {
@@ -476,7 +585,7 @@ namespace VerteBienV1.Controllers
             return "Algo ha fallado";
         }
 
-        //------------------------METODOS DE PAYMENTEZ-----------------
+        //------------------------METODOS PROPIOS DE PAYMENTEZ-----------------
         [System.Web.Http.HttpPost]
         [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
         public async Task<JsonResult> CanalAsync(CardResponse respuesta)
@@ -594,6 +703,7 @@ namespace VerteBienV1.Controllers
 
             return Json(res);
         }
+        
         public ActionResult SaveCard(string Id, string Email, string membresiaSelec)
         {
             if (Id != null && Email != null && membresiaSelec != null)
