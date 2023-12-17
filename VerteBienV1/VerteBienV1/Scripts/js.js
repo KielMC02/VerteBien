@@ -445,13 +445,13 @@ const expresiones = {
     fecha: /^(?:0?[1-9]|1[1-2])([\-/.])(3[01]|[12][0-9]|0?[1-9])\1\d{4}$/, //pra fechas mes/dia/año
     numero: /^[0-9]{1,4}$/, //numeros de 1 a 4 digios
     alphanumerico: /[A-Z? a-z 0-9 À-ÿ .,]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*){10,200}$/,//Alfanumerico
-    callenumero: /^[a-zA-ZÀ-ÿ\s  0-9?]{1,45}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
+    callenumero: /^[a-zA-ZÀ-ÿ\s#,\.0-9?]{1,45}$/, // Letras, espacios, #, ., comas y números, pueden llevar acentos de 4 a 45 caracteres.
     precio: /^\d{1,4}(\.\d{1,2})?$/, //número decimal o flotante
     fbuser: /[a-zA-Z0-9\_\-\@]/, //Fb user
     iguser: /[a-zA-Z0-9\_\-\@]/,// Instgram User.
     web: /[a-zA-Z0-9\_\-\@]/,
     ciudadnombre: /[A-Z? a-z 0-9?]{10,45}$/,//Alfanumerico
-    descralpha: /^(?!.*  )(?=.*[a-zA-Z0-9])[a-zA-Z0-9., ]{10,250}$/ //para los campos descripsion
+    descralpha: /^(?!.*  )(?=.*[a-zA-Z0-9])[a-zA-Z0-9., ]{10,250}$/, //para los campos descripsion
 
 };
 
@@ -485,9 +485,10 @@ const campos = {
     nombre_categoria: false,
     img: false,
 
+
 }
 const validarFormulario = (e) => {
-    /*console.log(e);*/
+   /* console.log(e);*/
     switch (e.target.name) {
         case "usuario":
             validarCampo(expresiones.usuario, e.target, 'usuario');
@@ -563,7 +564,9 @@ const validarFormulario = (e) => {
         case "img1":
             validarImg();
             break;
-       
+        case "trasaction_reference":
+            validarCampo(expresiones.nombreservicio, e.target, 'trasaction_reference');
+            break;
        
     }
 }
@@ -921,7 +924,20 @@ if (frm) {
                 }
                 break;
 
+            case '/SUSCRIPCIONs/Create':  // para crear suscripciones 
 
+        
+
+                if (campos.nombre_servicio && campos.descripcion) {
+                    formulario.submit();
+
+                } else {
+                  
+                    $('#modal').modal('show'); // abrirr el modal de boostrap 
+
+                }
+
+                break;
 
 
         }
