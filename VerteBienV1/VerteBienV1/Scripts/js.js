@@ -444,7 +444,7 @@ const expresiones = {
     telefono: /^\d{9,10}$/, // 9 a 10 numeros.
     fecha: /^(?:0?[1-9]|1[1-2])([\-/.])(3[01]|[12][0-9]|0?[1-9])\1\d{4}$/, //pra fechas mes/dia/año
     numero: /^[0-9]{1,4}$/, //numeros de 1 a 4 digios
-    alphanumerico: /[A-Z? a-z 0-9 À-ÿ .,]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*){10,200}$/,//Alfanumerico
+    alphanumerico: /[A-Z? a-z 0-9 À-ÿ .,]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*){10,250}$/,//Alfanumerico
     callenumero: /^[a-zA-ZÀ-ÿ\s#,\.0-9?]{1,45}$/, // Letras, espacios, #, ., comas y números, pueden llevar acentos de 4 a 45 caracteres.
     precio: /^\d{1,4}(\.\d{1,2})?$/, //número decimal o flotante
     fbuser: /[a-zA-Z0-9\_\-\@]/, //Fb user
@@ -565,7 +565,7 @@ const validarFormulario = (e) => {
             validarImg();
             break;
         case "trasaction_reference":
-            validarCampo(expresiones.nombreservicio, e.target, 'trasaction_reference');
+            validarCampo(expresiones.descralpha, e.target, 'trasaction_reference');
             break;
        
     }
