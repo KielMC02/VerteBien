@@ -484,7 +484,7 @@ const campos = {
     comentario: false,
     nombre_categoria: false,
     img: false,
-
+    trasaction_reference:false,
 
 }
 const validarFormulario = (e) => {
@@ -928,7 +928,7 @@ if (frm) {
 
         
 
-                if (campos.nombre_servicio && campos.descripcion) {
+                if (campos.trasaction_reference && campos.comentario) {
                     formulario.submit();
 
                 } else {
