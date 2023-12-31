@@ -412,39 +412,20 @@
     </div>
 </div>
 
-<div class="modal" tabindex="-1" id="modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    Verificar formulario
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Por favor, selecciona un cantón antes de buscar un servicio.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
-
-
-
     $(document).ready(function () {
         // Agrega un evento al formulario cuando se envía
         $("form").submit(function (event) {
             // Obtiene el valor del campo de selección con id "canton"
             let cantonValue = $("#canton").val();
-            console.log(cantonValue)
             // Verifica si el valor es vacío
             if (cantonValue === "Seleccione un cantón") {
                 // Detiene el envío del formulario si el campo está vacío
-                $('#modal').modal('show');
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Por favor, selecciona un cantón antes de buscar un servicio.",
+                });
                 event.preventDefault();
             }
         });
