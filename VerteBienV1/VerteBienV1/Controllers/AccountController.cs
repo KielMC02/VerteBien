@@ -203,7 +203,7 @@ namespace VerteBienV1.Controllers
                     await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Gracias por registrarte en Verte Bien para confirmar tu cuenta, haz clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
                     //return RedirectToAction("SaveCard", "SUSCRIPCIONs",new {user.Id,user.Email, membresiaSelec});
-                    return RedirectToAction("NuevoUsuarioConfirmacion", "SUSCRIPCIONs");
+                    return RedirectToAction("Gracias", "Home");
                 }
                 AddErrors(result);
             }
@@ -247,7 +247,7 @@ namespace VerteBienV1.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Gracias por registrarte en Verte Bien Para confirmar tu cuenta, haz clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
-                    return RedirectToAction("Login", "account");
+                    return RedirectToAction("Gracias", "Home");
                 }
                 AddErrors(result);
             }
