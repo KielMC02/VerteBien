@@ -202,7 +202,7 @@
         @RenderBody()
     </div>
 
-    <footer class="text-center text-lg-start bg-dark text-white mt-1">
+    <footer class="text-center text-lg-start bg-dark text-white" style="">
         <!-- Section: Social media -->
         <section class="d-flex justify-content-center justify-content-lg-between p-4">
             <!-- Left -->
@@ -212,15 +212,9 @@
             <!-- Left -->
             <!-- Right -->
             <div>
-                <a href="https://www.facebook.com/Verte-Bien-601258597201840/" class="me-4 text-reset">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://twitter.com/VerteBien_FC?t=hsk78p6NnVBjdiQXK3Plug&s=08" class="me-4 text-reset">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://www.instagram.com/vertebien_ec/?utm_medium=copy_link" class="me-4 text-reset">
-                    <i class="fab fa-instagram"></i>
-                </a>
+                <a href="https://www.facebook.com/Verte-Bien-601258597201840/" target="_blank" class="me-4 text-reset"> <i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/VerteBien_FC?t=hsk78p6NnVBjdiQXK3Plug&s=08" target="_blank" class="me-4 text-reset"> <img src="~/Imagenes/x-twitter.svg" alt="X"></a>
+                <a href="https://www.instagram.com/vertebien_ec/?utm_medium=copy_link" target="_blank" class="me-4 text-reset"><i class="fab fa-instagram"></i></a>
             </div>
             <!-- Right -->
         </section>
@@ -236,7 +230,7 @@
                         <h6 class="text-uppercase fw-bold mb-4">
                             <i class="fas fa-cut me-3"></i> Verte Bien
                         </h6>
-                        <p style="text-align:justify">
+                        <p class="text-white" style="text-align:justify">
                             Somos una empresa donde puedes registrar tu negocio del sector estetico, ofrecer tus servicios y adquirir clientes vía nuestra página web.
                         </p>
                     </div>
@@ -245,51 +239,35 @@
                     <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
                         <!-- Links -->
                         <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-bars"></i>
                             Menú
                         </h6>
                         <p>
-                            <a href="/SERVICIOS/Index" class="text-reset" style="text-decoration:none">Inicio</a>
+                            <a href="/SERVICIOS/Index" class=" text-white" style="text-decoration:none">Inicio</a>
                         </p>
                         <p>
-                            <a href="/Home/Membresias" class="text-reset" style="text-decoration:none">Membresías</a>
+                            <a href="/Home/Membresias" class="text-white" style="text-decoration:none">Membresías</a>
                         </p>
                         <p>
-                            <a href="/Account/Register" class="text-reset" style="text-decoration:none">Registra tu negocio</a>>
+                            <a href="/Account/Register" class="text-white" style="text-decoration:none">Registra tu negocio</a>
                         </p>
                         <p>
-                            <a href="/Account/RegisterUser" class="text-reset" style="text-decoration:none">Registrate como cliente</a>
+                            <a href="/Account/RegisterUser" class="text-white" style="text-decoration:none">Registrate como cliente</a>
                         </p>
                     </div>
-
-                    @*<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <h6 class="text-uppercase fw-bold mb-4">
-                                Useful links
-                            </h6>
-                            <p>
-                                <a href="#!" class="text-reset">Pricing</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset">Settings</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset">Orders</a>
-                            </p>
-                            <p>
-                                <a href="#!" class="text-reset">Help</a>
-                            </p>
-                        </div>*@
-
                     <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
                         <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-info-circle"></i>
                             Contactos
                         </h6>
-                        <p><i class="fas fa-home me-1"></i> Ecuador </p>
-                        <p>
-                            <i class="fas fa-envelope me-1"></i>
-                            <a href="mailto:Informaciones@vertebien.net" style="text-decoration:none">Informaciones@vertebien.net</a>
-                        </p>
-                        @*<p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>*@
+                        <p class="text-white"><i class="fas fa-map-marker-alt"></i> C/ Juan Vizcaino y Zarzas, Ecuador </p>
+                        <p class="text-white"> <i class="fas fa-phone"></i><a class="text" href="https://wa.me/593969286586" target="_blank" style="text-decoration:none"> +593 96 928 6586 </a></p>
+                        <p class="text-white"> <i class="fas fa-envelope me-1"></i> <a class="text" href="mailto:Informaciones@vertebien.net" style="text-decoration:none">Informaciones@vertebien.net</a></p>
+
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -297,9 +275,9 @@
         <!-- Section: Links  -->
         <!-- Copyright -->
         <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-            © 2023 Copyright:
-            <a class="text-reset fw-bold" href="#">Vertebien.com</a>
-            <a class="text-reset fw-bold" href="#">Powered By Geekweb</a>
+            © 2024 Copyright:
+            <a class="text-reset fw-bold" href="https://vertebien.net/">Vertebien.com</a>
+            <a class="text-reset fw-bold" href="https://www.instagram.com/galaxenlab/">Powered By Galaxenlab</a>
         </div>
         <!-- Copyright -->
 
@@ -312,9 +290,9 @@
     @Scripts.Render("~/Scripts/js.js")
     @Scripts.Render("~/Scripts/lightbox.js")
     @*@Scripts.Render("~/bundles/bootstrap")*@
-
     <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>
     @RenderSection("scripts", required: false)
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 </html>
