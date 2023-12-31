@@ -128,14 +128,16 @@ namespace VerteBienV1.Controllers
             }
             ////Lista que guarda el resultado de la Busqueda
             List<SERVICIOS> resultadoBusqueda = new List<SERVICIOS>();
+            string alertVerificacion = "Cargada inicial";
             //Cuando se utilizan todos los parametros.
             if( canton != "" && canton != null && canton != "Seleccione un cantón")
              {
+                alertVerificacion = "se busco";
                 resultadoBusqueda = db.Database.SqlQuery<SERVICIOS>("filtrar @ciudad, @sector, @puntuacion, @dato", new SqlParameter("@ciudad", Convert.ToString(canton)), new SqlParameter("@sector", sector == null ? (object)nulo : sector), new SqlParameter("@puntuacion", puntuacion == null ? (object)nulo : puntuacion), new SqlParameter("@dato", servicio == null ? (object)nulo : servicio)).ToList();
 
 
             }
-            if ( resultadoBusqueda.Count == 0)
+            if (alertVerificacion == "se busco" && resultadoBusqueda.Count == 0)
             {
                 ViewBag.noResult = "Sin resultados";
             }
