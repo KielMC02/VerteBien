@@ -1499,7 +1499,7 @@ comentarios = document.querySelectorAll('#comentarios-conteo');
 var rar = $('#miDiv').data('promedio')
 ror = financial(rar).trim();
 /* Cantidad de votos formatiados e impresos dinamicamente.*/
-$('#cantidad-votos').text(ror + " " + "votos");
+$('#cantidad-votos').text(ror + " ");
 /*Cantidad de comentarios.*/
 let ii = 0
 while (ii < comentarios.length) {
