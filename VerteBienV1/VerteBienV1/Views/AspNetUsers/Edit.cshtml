@@ -322,24 +322,32 @@
 
 <script>
 
+    
+    $(document).ready(function () {
+        // Obtener el label por su atributo "for"
+        let label = $('label[for="file1"]');
 
-    window.onload = function () {
+        // Hacer algo con el label, por ejemplo, cambiar el texto del span
+        if (label.length > 0) {
+            label.find('span').text("Configurar foto de perfil");
+        }
+       
 
-        var parrafo = $('#p-modal');
-        var respuesta = $('#p-respuesta').data('respuesta');
+        let parrafo = $('#p-modal');
+            let respuesta = $('#p-respuesta').data('respuesta');
         if (respuesta == "no fotos") {
 
             parrafo.text('Para registrar tus servicios debes primero registrar las fotos de tu peluquería. Llena el formulario a continuación por favor.');
             $('#modal').modal('show');
 
         }
-        var dropDownList = document.getElementById("sectores");
-        var selectHtml = document.getElementById("sector");
+            let dropDownList = document.getElementById("sectores");
+            let selectHtml = document.getElementById("sector");
 
         // Función para establecer el valor seleccionado del selectHtml
         function establecerValorSeleccionado() {
             // Obtener el texto seleccionado en el dropDownList (mayúsculas)
-            var textoSeleccionado = dropDownList.options[dropDownList.selectedIndex].text.toUpperCase();
+            let textoSeleccionado = dropDownList.options[dropDownList.selectedIndex].text.toUpperCase();
 
             // Establecer el texto seleccionado en el selectHtml
             selectHtml.innerHTML = '<option value="' + textoSeleccionado + '">' + textoSeleccionado + '</option>';
@@ -351,7 +359,7 @@
         // Establecer el evento change en el dropDownList
         dropDownList.addEventListener("change", function () {
             // Obtener el texto seleccionado en el dropDownList (mayúsculas)
-            var textoSeleccionado = dropDownList.options[dropDownList.selectedIndex].text.toUpperCase();
+            let textoSeleccionado = dropDownList.options[dropDownList.selectedIndex].text.toUpperCase();
 
             // Establecer el texto seleccionado en el selectHtml
             selectHtml.innerHTML = '<option value="' + textoSeleccionado + '">' + textoSeleccionado + '</option>';
@@ -388,8 +396,8 @@
             $('#modalchange').modal('show');
         }
 
-    }
-
+  
+        });
 
 </script>
 
