@@ -2690,3 +2690,20 @@ z
         }
     }
 }
+
+
+
+/* Estilos para tablets (entre 768px y 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .item-banner:nth-child(1) img {
+        content: url('/Imagenes/Banner peluqeuria tablet.jpg');
+    }
+
+}
+/* Estilos para dispositivos móviles (menos de 768px) */
+@media (max-width: 767px) {
+    .item-banner:nth-child(1) img {
+        content: url('/Imagenes/Banner peluqeuria celular.jpg');
+    }
+
+}
