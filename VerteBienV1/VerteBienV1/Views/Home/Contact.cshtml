@@ -1,71 +1,93 @@
 ﻿@{
-    ViewBag.Title = "Contacto";
+    ViewBag.Title = "Contactanos";
 }
-<section class="" id="">
-    <div class="container-login100">
-        <div class="wrap-login100">
-            <div class="login100-pic js-tilt d-flex justify-content-center align-items-center" data-tilt>
-                <img src="~/imagenes/img-01.png" alt="IMG">
+
+<center>
+    <img src="~/Imagenes/Verte Bien Transparente 2.png" width="128" height="128" style="margin-top:2%" />
+    <h4>@ViewBag.Title </h4>
+    <hr class="w-50" />
+</center>
+<br />
+
+<style>
+    p {
+        font-family: "", sans-serif !important;
+        color: #686c6d;
+        letter-spacing: 0.03rem;
+        margin-bottom: 10px;
+    }
+</style>
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section"></h2>
             </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-12">
+                <div class="wrapper">
+                    <div class="row no-gutters">
+                        <div class="col-md-6 card shadow-lg">
+                            <div class="contact-wrap w-100 p-md-5 p-4">
+                                <div id="form-message-warning" class="mb-4"></div>
 
-            <div class="login100-form validate-form">
-                <span class="login100-form-title">
-                    Contactanos
-                </span>
+                                <div class="col-md-8">
+                                    <div class=" w-100 text-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-map-marker"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p><span>Dirección:</span> Calle Juan Vizcaino y Zarzas, Ecuador</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class=" w-100 text-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-phone"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p><span>Teléfono:</span> <a href="https://wa.me/593969286586" target="_blank">+593 96 928 6586 </a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class=" w-100 text-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <i class="fas fa-envelope" style="color: #DBA312"></i>
+                                        </div>
+                                        <div class="text">
+                                            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class=" w-100 text-center">
+                                        <div class="icon d-flex align-items-center justify-content-center">
+                                            <span class="fa fa-globe"></span>
+                                        </div>
+                                        <div class="text">
+                                            <p><span>Sitio web</span> <a href="https://vertebien.net/">Vertebien.net</a></p>
+                                        </div>
+                                    </div>
+                                </div>
 
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-stretch" style="min-height:400px;">
+                            <div class="info-wrap w-100 p-5" id="map">
 
-                <div class="wrap-input100 validate-input" data-validate="Es requerido el Nombre">
-                    <input type="text" placeholder="Nombre" class="input100">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                    </span>
-
-                </div>
-
-
-                <div class="wrap-input100 validate-input" data-validate="Correo es requerdido">
-                    <input type="text" placeholder="Correo Electronico" class="input100">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                    </span>
-                </div>
-                <div class="wrap-input100 validate-input" data-validate="Contraseña es requerida">
-                    <textarea class="input100" placeholder="Mensaje..." style="width: 100%; height: 150px; min-height:50px;"></textarea>
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-comments-o"></i>
-                    </span>
-                </div>
-
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        Enviar
-                    </button>
-                </div>
-
-                <div class="text-center p-t-136 regis mt-5">
-
-                    <a href="" class="" target="_blank"><i class="fab fa-whatsapp" style="color:#DBA312;font-size:25px;"></i></a>
-
-                    <a href="" class=" mx-3" target="_blank">
-                        <i class="fab fa-facebook" style="color:#DBA312;font-size:25px;">
-                        </i>
-                    </a>
-                    <a href="" class="" target="_blank"> <i class="fab fa-twitter" style="color:#DBA312;font-size:25px;"> </i></a>
-
-
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 </section>
-
-
 
 
 
@@ -73,6 +95,23 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
+<script>
+    // Coordenadas iniciales (latitud, longitud) y nivel de zoom
+    var initialCoordinates = [-0.2529605095366246, -78.55191450902507]; // Cambia estas coordenadas según tu ubicación
+    var initialZoomLevel = 13;
 
+    // Crea el mapa
+    var map = L.map('map').setView(initialCoordinates, initialZoomLevel);
+
+    // Añade una capa de mapa base de OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Añade un marcador en las coordenadas iniciales
+    L.marker(initialCoordinates).addTo(map)
+        .bindPopup('¡Hola! Este es un marcador de ejemplo.');
+
+</script>
 
 
