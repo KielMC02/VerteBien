@@ -92,16 +92,7 @@
                             <br><br>
                         </div>
                         <div class="collapse" id="collapseExample1">
-                            <div class="card h-100 shadow-lg p-1 ml-2  ">
-                                @*<div class="card-body">
-                                        <div class="text-center p-2">
-                                            <h5 class="card-title">Plan Express</h5>
-                                            <br><br>
-                                            <span class="h2">$8</span>/mes
-                                            <br><br>
-                                        </div>
-
-                                    </div>*@
+                            <div class="card h-100 shadow-lg p-1 ml-2">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -326,7 +317,7 @@
                     @*  <h5 class="p-2"><a href="#">Nosotros</a></h5>*@
                     <h4 class="text-center my-2">¿Como contactarnos?</h4>
                     <div class="article-content">
-                        <p>Puedes comunicarte con nosotros a través de nuestro formulario de contacto en el siguiente enlace:</p> <a href="https://vertebien.net/Home/Contact" target="_blank">Contacto - Verte Bien</a>
+                        <p>Puedes comunicarte con nosotros a través de nuestro formulario de contacto en el siguiente enlace:</p> <a href="~/Home/Contact" target="_blank">Contacto - Verte Bien</a>
                         <p>Estamos aquí para ayudarte a destacar en el mundo estético y a expandir tu presencia en línea. ¡Únete a nuestra comunidad de profesionales y clientes satisfechos!</p>
                     </div>
                 </div>
@@ -395,58 +386,4 @@
 
         </div>
     </div>
-
-
-    @*<div id="carouselExampleCaptions" class="carousel planes-container slide col-12 col-md-8  d-md-none h-100" data-bs-ride="carousel" style="max-width: 615px">
-        <h3 class="text-center my-4 my-md-1">Ultimos Servicios Agregados</h3>
-
-
-        <div class="row " style="justify-content: center;">
-            @foreach (var item in Model)
-            {
-
-                List<String> imagenes = (item.imagenes.Split(';')).ToList();
-                <div class="col-12 col-md-12 col-lg-6 col-xl-4 d-flex" style="max-width:400px">
-                    <div class="card shadow my-2 cf contenedor" style="position:relative">
-                        <div class="ribbon blue"><span>Nuevo <i class="fas fa-fire"></i></span></div>
-                        <div class="contenedor-imagen">
-                            <img class="card-img-top" src="~/imagenes_servicios/@imagenes[0]" alt="Card image cap">
-                            <a href="~/imagenes_servicios/@imagenes[0]" class="lightbox-link capa">
-                                <div class="">
-                                    <p class="card-subtitle "><i class="fas fa-search-plus"></i> Ampliar</p>
-                                </div>
-                            </a>
-                            <a href="@item.id_servicio" class="btn text-white btn-sm rounded text-wrap lightbox-details d-none lightbox-details" style="background-color:#DBA312"></a>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                            </div>
-                            <div class="card-body col-12 p-4">
-                                <div class="col-6 w-auto">
-                                    <h1 class="card-title h4">@Html.DisplayFor(modelItem => item.nombre_servicio) <span class="fa fa-star"></span><span class="text-muted text-small">(3)</span></h1>
-                                </div>
-                                <p class="card-subtitle text-muted"> <b>Precio:</b> @Html.DisplayFor(modelItem => item.precio_servicio)</p>
-                                <p class="card-text card-text-trend mb-4">@Html.DisplayFor(modelItem => item.descripcion)</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="justify-content-center p-3" style="position:absolute; bottom:0px;">
-                                @Html.ActionLink("Más detalles", "Details", "SERVICIOS", new { id = item.id_servicio }, htmlAttributes: new { @class = "btn text-white btn-sm rounded text-wrap lightbox-details", style = "background-color:#DBA312" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="lightbox" class="lightbox-tendencia">
-                    <img src="" alt="Imagen en Lightbox">
-                    <div class="lightbox-buttons">
-                        <a href="#" class="lightbox-close"> </a>
-                        <a href="#" data-id="@item.id_servicio" class="btn text-white btn-sm rounded text-wrap lightbox-details details-link" style="background-color:#DBA312">Más detalles</a>
-                    </div>
-                </div>
-
-
-            }
-
-        </div>*@
 </div>
