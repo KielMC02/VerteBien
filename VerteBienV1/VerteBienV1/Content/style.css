@@ -1,6 +1,15 @@
 ﻿
 /*Genericos*/
+html {
+    min-height: 100vh
+}
 
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+    min-height: 100vh;
+}
 
 
 /*Border*/
@@ -881,16 +890,16 @@ a {
         width: 290px;
     }
 
-    .login100-form-title {
-        font-family: Poppins-Bold;
-        font-size: 24px;
-        color: #333333;
-        line-height: 1.2;
-        text-align: center;
-        width: 100%;
-        display: block;
-        padding-bottom: 54px;
-    }
+.login100-form-title {
+    font-family: Sans Serif Collection;
+    font-size: 24px;
+    color: #333333;
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-bottom: 54px;
+}
 
 
     /*---------------------------------------------*/
@@ -901,18 +910,18 @@ a {
         margin-bottom: 10px;
     }
 
-    .input100 {
-        font-family: Poppins-Medium;
-        font-size: 15px;
-        line-height: 1.5;
-        color: #666666;
-        display: block;
-        width: 100%;
-        background: #e6e6e6;
-        height: 50px;
-        border-radius: 25px;
-        padding: 0 30px 0 68px;
-    }
+.input100 {
+    font-family: Sans Serif Collection;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666666;
+    display: block;
+    width: 100%;
+    background: #e6e6e6;
+    height: 50px;
+    border-radius: 8px;
+    padding: 0 30px 0 68px;
+}
 
 
     /*------------------------------------------------------------------
@@ -1071,29 +1080,29 @@ a {
             padding-top: 20px;
         }
 
-        .login100-form-btn {
-            font-family: Montserrat-Bold;
-            font-size: 15px;
-            line-height: 1.5;
-            color: #fff;
-            text-transform: uppercase;
-            width: 100%;
-            height: 50px;
-            border-radius: 25px;
-            background: #DBA312;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0 25px;
-            -webkit-transition: all 0.4s;
-            -o-transition: all 0.4s;
-            -moz-transition: all 0.4s;
-            transition: all 0.4s;
-        }
+.login100-form-btn {
+    font-family: Sans Serif Collection;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #fff;
+    text-transform: uppercase;
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    background: #DBA312;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
 
             .login100-form-btn:hover {
                 background: #333333;
@@ -1791,7 +1800,7 @@ a {
         }
 
         p {
-            font-family: "Barlow", sans-serif !important;
+            font-family: sans-serif !important;
             font-weight: 300;
             font-size: 1rem;
             color: #686c6d;
@@ -2065,7 +2074,7 @@ a {
 }
 
 #cardfront .st3 {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Sans Serif Collection', ;
     font-weight: 600;
 }
 
@@ -2074,7 +2083,7 @@ a {
 }
 
 #cardfront .st5 {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Sans Serif Collection',;
     font-weight: 400;
 }
 
@@ -2096,7 +2105,7 @@ a {
 }
 
 #cardfront .st10 {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Sans Serif Collection', monospace;
     font-weight: 300;
 }
 
@@ -2132,7 +2141,7 @@ a {
 }
 
 #cardback .st6 {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Sans Serif Collection', monospace;
     font-weight: 400;
 }
 
@@ -2157,7 +2166,7 @@ a {
 }
 
 #cardback .st12 {
-    font-family: 'Rock Salt', cursive;
+    font-family: 'Sans Serif Collection', cursive;
 }
 
 #cardback .st13 {
