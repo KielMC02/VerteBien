@@ -204,36 +204,23 @@ namespace VerteBienV1.Controllers
   
             foreach (var item in listaUsers)
             {
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+                MailMessage mailUser = new MailMessage();
+                mailUser.From = new MailAddress("informaciones@vertebien.net");
+                mailUser.To.Add(item.Email);
+                mailUser.Subject = "Recordatorio de suscripcion";
+                mailUser.Body = "Su suscripcion en Verte Bien esta por vencer, recuerde renovar con tiempo para evitar suspension";
+                mailUser.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("mail5009.site4now.net");
+                //smtp.Host = "mail5009.site4now.net";
+                NetworkCredential networkCredential = new NetworkCredential("informaciones@vertebien.net", "Octubre0210*");
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = networkCredential;
+                smtp.Port = 8889;
+                smtp.EnableSsl = false;
+                smtp.Send(mailUser);
+                ViewBag.Message = "Enviado con exito";
 
-                //Correo para el usuario
-                string from = "informaciones@vertebien.net"; 
-
-                //Inserta la imagen
-                LinkedResource theEmailImage = new LinkedResource("~/Imagenes/Verte Bien negro.png");
-                theEmailImage.ContentId = "myImageID";
-
-                MailMessage mailUser = new MailMessage(from, item.Email);
-                {
-
-                    mailUser.Subject = "Recordatario de Pago";
-                    mailUser.Body = @"<center> <img src=cid:myImageID> </center>" +
-                                     @"<style>
-                                       h4{text-align:justify;
-                                          margin-top: 2%;}
-                                         </style>
-                        <p>Su suscripcion en Verte Bien esta por vencer, recuerde renovar con tiempo para evitar suspension</p>";
-                    mailUser.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = false;
-                    NetworkCredential networkCredential = new NetworkCredential(from, "Octubre0210*");
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = networkCredential;
-                    smtp.Port = 889;
-                    smtp.Send(mailUser);
-                    ViewBag.Message = "Enviado con exito";
-
-                }
 
             }
 
@@ -267,35 +254,22 @@ namespace VerteBienV1.Controllers
 
                 //Ubicar el usuario
                 AspNetUsers userEmail = db.AspNetUsers.Find(item.id_usuario);
-                //Correo para el usuario
-                string from = "informaciones@vertebien.net";
-
-                //Inserta la imagen
-                LinkedResource theEmailImage = new LinkedResource("~/Imagenes/Verte Bien negro.png");
-                theEmailImage.ContentId = "myImageID";
-
-                MailMessage mailUser = new MailMessage(from, userEmail.Email);
-                {
-
-                    mailUser.Subject = "Su suscripcion del " + Convert.ToString(item.fecha_suscripcion) + "ha sido suspendida" ;
-                    mailUser.Body = @"<center> <img src=cid:myImageID> </center>" +
-                                     @"<style>
-                                       h4{text-align:justify;
-                                          margin-top: 2%;}
-                                         </style>
-                        <p>Su suscripcion del" + Convert.ToString(item.fecha_suscripcion) + " ha sido suspendida, en caso de no tener mas suscripciones activas su usario sera supendido. Si esto es un error puede comunicarse con....</p>";
-                    mailUser.IsBodyHtml = true;
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.EnableSsl = false;
-                    NetworkCredential networkCredential = new NetworkCredential(from, "Octubre0210*");
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = networkCredential;
-                    smtp.Port = 889;
-                    smtp.Send(mailUser);
-                    ViewBag.Message = "Enviado con exito";
-
-                }
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+                MailMessage mailUser = new MailMessage();
+                mailUser.From = new MailAddress("informaciones@vertebien.net");
+                mailUser.To.Add(userEmail.Email);
+                mailUser.Subject = "Suspension de suscrupcion";
+                mailUser.Body = "Su suscripcion del " + Convert.ToString(item.fecha_suscripcion) + " ha sido suspendida, en caso de no tener mas suscripciones activas su usario sera supendido. Si esto es un error puede comunicarse con informaciones@vertebien.net";
+                mailUser.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient("mail5009.site4now.net");
+                //smtp.Host = "mail5009.site4now.net";
+                NetworkCredential networkCredential = new NetworkCredential("informaciones@vertebien.net", "Octubre0210*");
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = networkCredential;
+                smtp.Port = 8889;
+                smtp.EnableSsl = false;
+                smtp.Send(mailUser);
+                ViewBag.Message = "Enviado con exito";
             }
 
             return RedirectToAction("Index", "AspNetUsers");
