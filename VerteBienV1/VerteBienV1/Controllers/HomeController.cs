@@ -20,7 +20,7 @@ namespace VerteBienV1.Controllers
 
         //    return View();
         //}
-        [Authorize(Roles = "administrador")]
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
