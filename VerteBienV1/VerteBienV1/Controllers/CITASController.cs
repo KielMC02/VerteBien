@@ -39,6 +39,7 @@ namespace VerteBienV1.Controllers
         //[OutputCache(Duration = 3600, VaryByParam = "estatusCitasSelec")]
         public ActionResult Index(string estatusCitasSelec, DateTime? desde, DateTime? hasta)
         {
+
             //Se obtiene el ID del usuairo logueado.
             var id = "vacio";
             var estaAutenticado = User.Identity.IsAuthenticated;
@@ -46,6 +47,14 @@ namespace VerteBienV1.Controllers
             {
                 id = User.Identity.GetUserId();
             }
+            //Validar estado del usuario.
+            SERVICIOSController validar = new SERVICIOSController();
+            var estatus = validar.VerificarUser(id);
+            if(estatus == "suspendido" || estatus == "new")
+            {
+                return RedirectToAction("pagoRequerido", "SUSCRIPCIONs");
+            }
+
             //var cITAS = db.CITAS.Include(c => c.AspNetUsers).Include(c => c.SERVICIOS);
             //Lista que guarda el resultado de la Busqueda
             List<CITAS> citasUsuario = new List<CITAS>();
@@ -218,8 +227,28 @@ namespace VerteBienV1.Controllers
                 {
                     if (item.mensaje == "si")
                     {
-
                         resultado = "si";
+                        SERVICIOS servicioSelec = db.SERVICIOS.Find(idservicio);
+                        AspNetUsers usuarioNegocio = db.AspNetUsers.Find(servicioSelec.id_usuario);
+                        AspNetUsers clienteCita = db.AspNetUsers.Find(idcliente);
+                        var emailNegocio = usuarioNegocio.Email;
+
+                        System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+                        MailMessage mailUser = new MailMessage();
+                        mailUser.From = new MailAddress("informaciones@vertebien.net");
+                        mailUser.To.Add(usuarioNegocio.Email);
+                        mailUser.Subject = "Nueva Solicitud de Cita";
+                        mailUser.Body = "Gracias por usar Verte Bien, el cliente " + clienteCita.Email + " ha creado una cita, por favor verifique la cita proceda a aceptar o cancelar la misma.";
+                        mailUser.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient("mail5009.site4now.net");
+                        //smtp.Host = "mail5009.site4now.net";
+                        NetworkCredential networkCredential = new NetworkCredential("informaciones@vertebien.net", "Octubre0210*");
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = networkCredential;
+                        smtp.Port = 8889;
+                        smtp.EnableSsl = false;
+                        smtp.Send(mailUser);
+                        ViewBag.Message = "Enviado con exito";
                         return resultado;
                     }
                     else
@@ -437,7 +466,7 @@ namespace VerteBienV1.Controllers
                 mailUser.From = new MailAddress("informaciones@vertebien.net");
                 mailUser.To.Add(emailUsuario.Email);
                 mailUser.Subject = "Su Cita ha sido Aceptada";
-                mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido aceptada, puede ir al establecimiento en la fecha establecida, le recomendamos llegar 5 minutos antes para no surfir el riesgo de perder la misma.";
+                mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido aceptada, puede ir al establecimiento en la fecha establecida, le recomendamos llegar 5 minutos antes para no para no perder su cita.";
                 mailUser.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient("mail5009.site4now.net");
                 //smtp.Host = "mail5009.site4now.net";
@@ -459,7 +488,7 @@ namespace VerteBienV1.Controllers
                     MailMessage mailUser = new MailMessage();
                     mailUser.From = new MailAddress("informaciones@vertebien.net");
                     mailUser.To.Add(usuarioNegocio.Email);
-                    mailUser.Subject = "Una cita ha sido cancelado";
+                    mailUser.Subject = "Una cita ha sido cancelada";
                     mailUser.Body = "Lamentamos informarle que el usuario: " + emailUsuario.nombre + " " + emailUsuario.apellido + " ha cancelado su cita programada para; " + cITAS.fecha_cita + ".";
                     mailUser.IsBodyHtml = true;
                     SmtpClient smtp = new SmtpClient("mail5009.site4now.net");
