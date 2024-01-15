@@ -466,7 +466,7 @@ namespace VerteBienV1.Controllers
                 mailUser.From = new MailAddress("informaciones@vertebien.net");
                 mailUser.To.Add(emailUsuario.Email);
                 mailUser.Subject = "Su Cita ha sido Aceptada";
-                mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido aceptada, puede ir al establecimiento en la fecha establecida, le recomendamos llegar 5 minutos antes para no para no perder su cita.";
+                mailUser.Body = "Gracias por usar Verte Bien, su cita en " + usuarioNegocio.nombre_peluqueria + " ha sido aceptada, puede ir al establecimiento en la fecha establecida, le recomendamos llegar 5 minutos antes para no para su cita.";
                 mailUser.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient("mail5009.site4now.net");
                 //smtp.Host = "mail5009.site4now.net";
