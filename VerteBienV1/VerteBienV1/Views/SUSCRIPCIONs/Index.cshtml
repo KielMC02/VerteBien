@@ -11,8 +11,13 @@
     <hr class="w-50" />
 </center>
 <br />
-<div class="container-fluid d-flex">
+<center>
+    @Html.ActionLink("Crear Suscripción", "Create", null, htmlAttributes: new { @class = "btn text-white my-2", @style = "background-color:#DBA312" })
+</center>
+
+<div class="container-fluid d-flex mb-5 my-2">
     <div class="row my-2 gx-2 justify-content-center">
+
 
         @foreach (var item in Model)
         {
@@ -50,9 +55,7 @@
 
     </div>
 </div>
-<center>
-    @Html.ActionLink("Crear Suscripción", "Create", null, htmlAttributes: new { @class = "btn text-white my-2", @style = "background-color:#DBA312" })
-</center>
+
 <script>
     // Espera a que el DOM esté listo
     $(document).ready(function () {
