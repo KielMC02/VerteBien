@@ -61,8 +61,27 @@ namespace VerteBienV1.Controllers
         }
 
         // GET: SUSCRIPCIONs/Create
-        public ActionResult Create()
+        public ActionResult Create(string email, string id)
         {
+            if(email != null)
+            {
+                ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email",email);
+                var resultadoBusqueda = db.Database.SqlQuery<string>("SP_SelectMembresia @id", new SqlParameter("@id", id)).ToList();
+                if (resultadoBusqueda[0] == "2")
+                {
+                    ViewBag.membresia = "expres";
+
+                }
+                if (resultadoBusqueda[0] == "3")
+                {
+                    ViewBag.membresia = "preferencial";
+                }
+                if (resultadoBusqueda[0] == "4")
+                {
+                    ViewBag.membresia = "vip";
+                }
+                return View();
+            }
 
             ViewBag.id_usuario = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
