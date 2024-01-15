@@ -18,7 +18,7 @@
 
 <div class="container">
     <center>
-        <img src="~/Imagenes/verte bien negro.png" width="128" height="128" style="margin-top:2%" />
+        <img src="~/Imagenes/Verte Bien Transparente 2.png" width="128" height="128" style="margin-top:2%" />
         <h4>Listado de Usuarios</h4>
         <hr class="w-50" />
     </center>
@@ -30,6 +30,19 @@
     <form class="row row-cols-lg-12 col-12 col-md-8 g-2 align-content-center">
         <div class="col-md-8 col-sm-6">
             <input type="text" id="Id" name="email" class="form-control col-12" placeholder="Buscar usuario por Email" />
+        </div>
+        <div class="row row-cols-lg-12 g-2 align-content-center">
+            <div class="col-md-8 col-12 ">
+                Filtrar por el estado de la cita
+                <select class="form-control" style="" name="estatusUserSelec">
+                    <option value="">Todos</option>
+                    <option value="suspendido">Suspendido</option>
+                    <option value="activo">Activo</option>
+                    <option value="new">Nuevos</option>
+                </select>
+
+            </div>
+
         </div>
         <div class="col-12 col-md-3">
             <button type="submit" class="btn col-12 text-white" style="background-color:#DBA312">Buscar</button>
@@ -120,6 +133,7 @@
                         </div>
                     </div>
                     <center class="mt-1">
+                        @Html.ActionLink("Renovar suscripcion", "Create", "Suscripcions", new { email = item.Email, id = item.Id }, htmlAttributes: new { @class = "btn text-white float-right", @style = "background-color:#DBA312; margin-top:2%" })
                         @Html.ActionLink("Editar", "Edit", "Aspnetusers", new { id = item.Id }, htmlAttributes: new { @class = "btn text-white float-right", @style = "background-color:#DBA312; margin-top:2%" })
                         @Html.ActionLink("Activar", "CambiarEstado", "Aspnetusers", new { estado = "activo", idusuario = item.Id }, htmlAttributes: new { @class = "btn text-white float-right", @style = "background-color:#DBA312; margin-top:2%" })
                         @Html.ActionLink("Suspender", "CambiarEstado", "Aspnetusers", new { estado = "suspendido", idusuario = item.Id }, htmlAttributes: new { @class = "btn text-white  float-right", @style = "background-color:#DBA312; margin-top:2%" })
