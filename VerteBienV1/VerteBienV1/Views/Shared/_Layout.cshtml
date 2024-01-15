@@ -70,74 +70,6 @@
     </div>
     <div class="fondo-aviso-cookies" id="fondo-aviso-cookies"></div>
 
-    @*<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/SERVICIOS/Index"><img src="~/Imagenes/verte-bien-logo-sin-eslogan.png" alt="" class="d-inline-block align-text-top mx-3"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav" style="font-size:15px">
-                        <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="/SERVICIOS/Index">INICIO</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/Home/About">ACERCA DE</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/Home/Membresias">MEMBRESIAS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">TENDENCIAS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/SERVICIOS/Index">SERVICIOS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">CITAS</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    SERVICIOS
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">CONTACTO</a>
-                        </li>
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </div>
-        </nav>*@
-
-    @*<div class="navbar navbar-expand-lg navbar-light bg-dark">
-            <div class="container">
-                <div class="navbar-header">
-                    <button class="navbar-toggle d-sm d-md-none" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="navbar-toggler"><i class="fas fa-bars"></i></span>
-                    </button>
-                    @Html.ActionLink("Nombre de la aplicación", "Index", "SERVICIOS", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav" style="margin-left:12%">
-                        <li class="mx-2">@Html.ActionLink("Inicio", "Index", "SERVICIOS", new { area = "" }, new { @style = "text-decoration:none" })</li>
-                        <li class="mx-2">@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @style = "text-decoration:none" })</li>
-                        <li class="mx-2">@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @style = "text-decoration:none" })</li>
-                        <li class="mx-2">@Html.ActionLink("Ver Membresias", "Membresias", "Home", new { area = "" }, new { @style = "text-decoration:none" })</li>
-                        <li class="mx-2">@Html.ActionLink("Crear Servicios", "Create", "SERVICIOS", new { area = "" }, new { @style = "text-decoration:none" })</li>
-
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </div>
-        </div>*@
-
-
     @*-------NUEVO MENU DE NAVEGACION-------------------*@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -163,8 +95,21 @@
                             <a class="nav-link text-white" href="/CITAS/Index">MIS CITAS</a>
                         </li>
 
-
-
+                    }
+                    @if (User.IsInRole("administrador"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/SUSCRIPCIONs/index">SUSCRIPCIONES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/AspNetUsers/index">USUARIOS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/PUNTUACION_PELUQUERIA/Index">PUNTUACION PELUQUERIAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/PUNTUACION_SERVICIOS/Index">PUNTUACION SERVICIOS</a>
+                        </li>
                     }
 
                     @if (User.IsInRole("expres") || User.IsInRole("preferencial") || User.IsInRole("vip"))
@@ -263,11 +208,6 @@
                         <p class="text-white"><i class="fas fa-map-marker-alt"></i> C/ Juan Vizcaino y Zarzas, Ecuador </p>
                         <p class="text-white"> <i class="fas fa-phone"></i><a class="text" href="https://wa.me/593969286586" target="_blank" style="text-decoration:none"> +593 96 928 6586 </a></p>
                         <p class="text-white"> <i class="fas fa-envelope me-1"></i> <a class="text" href="mailto:Informaciones@vertebien.net" style="text-decoration:none">Informaciones@vertebien.net</a></p>
-
-
-
-
-
                     </div>
                 </div>
             </div>
