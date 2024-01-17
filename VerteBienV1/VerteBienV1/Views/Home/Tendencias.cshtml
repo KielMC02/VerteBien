@@ -21,17 +21,17 @@
         <div class="carousel-inner " style="max-height: 990px !important;">
             <div class="carousel-item active">
                 <a href="~/Account/RegisterUser">
-                <img src="~/Imagenes/Banner chicas pc.jpg" class="d-block w-100" alt="...">
+                <img loading="lazy"  src="~/Imagenes/Banner chicas pc.jpg" class="d-block w-100" alt="...">
                  </a>
             </div>
             <div class="carousel-item">
                 <a href="~/Account/RegisterUser">
-                    <img src="~/Imagenes/Banner chicos  pc.jpg" class="d-block w-100" alt="...">
+                    <img loading="lazy"  src="~/Imagenes/Banner chicos  pc.jpg" class="d-block w-100" alt="...">
                     </a>
             </div>
             <div class="carousel-item">
                 <a href="~/Account/Register">
-                    <img src="~/Imagenes/Banner peluqeuria pc.jpg" class="d-block w-100" alt="...">
+                    <img loading="lazy"  src="~/Imagenes/Banner peluqeuria pc.jpg" class="d-block w-100" alt="...">
                     </a>
             </div>
         </div>
@@ -245,16 +245,7 @@
                     </div>
                     <div class="col-12 p-1 mt-2">
                         <div class="collapse" id="collapseExample3">
-                            <div class="card h-100 shadow-lg p-1 ml-2  ">
-                                @*<div class="card-body">
-                                        <div class="text-center p-2">
-                                            <h5 class="card-title">Plan Preferencial</h5>
-                                            <br><br>
-                                            <span class="h2">$20</span>/mes
-                                            <br><br>
-                                        </div>
-
-                                    </div>*@
+                            <div class="card h-100 shadow-lg p-1 ml-2 ">
                                 <ul class="list-group list-group-flush">
 
                                     <li class="list-group-item">
@@ -357,7 +348,7 @@
                                 <div class="col-6 w-auto">
                                     <h5 class="card-title capitalize-first-letter">@Html.DisplayFor(modelItem => item.nombre_servicio)</h5>
                                 </div>
-                                <p class="card-subtitle text-muted" style="font-family: 'Lato', sans-serif; color: #777; font-size: 18px; color: #777; font-weight: 500; line-height: 45px;"> <b>Precio:</b> @Html.DisplayFor(modelItem => item.precio_servicio)</p>
+                                <p class="card-subtitle text-muted" style="font-family:'Lato', sans-serif; color: #777; font-size: 18px; color: #777; font-weight: 500; line-height: 45px;"> <b>Precio:</b> @Html.DisplayFor(modelItem => item.precio_servicio)</p>
 
 
                                 <p class="card-text card-text-trend mb-4">@Html.DisplayFor(modelItem => item.descripcion)</p>
