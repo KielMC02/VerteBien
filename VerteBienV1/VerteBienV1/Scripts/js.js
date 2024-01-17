@@ -439,7 +439,7 @@ const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-\@\s]{4,45}$/, // Letras, numeros, guion y guion_bajo
     nombre: /^[a-zA-ZÀ-ÿ\s]{4,25}$/, // Letras y espacios, pueden llevar acentos de 4 a 25 digitos.
     nombreservicio: /[A-Z? a-z 0-9?]{4,25}$/, //Alfanumerico
-    password: /^.{4,12}$/, // 4 a 12 digitos.
+    password: /^(?!.*  )(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{4,12}$/, // 4 a 12 digitos.
     correo: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
     telefono: /^\d{9,10}$/, // 9 a 10 numeros.
     fecha: /^(?:0?[1-9]|1[1-2])([\-/.])(3[01]|[12][0-9]|0?[1-9])\1\d{4}$/, //pra fechas mes/dia/año
@@ -451,7 +451,7 @@ const expresiones = {
     iguser: /[a-zA-Z0-9\_\-\@]/,// Instgram User.
     web: /[a-zA-Z0-9\_\-\@]/,
     ciudadnombre: /[A-Z? a-z 0-9?]{10,45}$/,//Alfanumerico
-    descralpha: /^(?!.*  )(?=.*[a-zA-Z0-9])[a-zA-Z0-9., ]{10,250}$/, //para los campos descripsion
+    descralpha: /^(?!.*  )(?!.*\s$)(?=.*[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9])[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9., ]{10,250}$/, //para los campos descripsion
 
 };
 
@@ -614,23 +614,7 @@ var loc = window.location;
 var pathNa = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
 
 var pathname = window.location.pathname;
-//if (pathname == '/Account/Register') {
-//    //datepicker de formulario neogcio
-//    $(function () {
-//        var dtToday = new Date();
 
-//        var month = dtToday.getMonth() + 1;
-//        var day = dtToday.getDate();
-//        var year = dtToday.getFullYear();
-//        if (month < 10)
-//            month = '0' + month.toString();
-//        if (day < 10)
-//            day = '0' + day.toString();
-
-//        var maxDate = year + '-' + month + '-' + day;
-//        $('#fecha_nacimiento_').attr('max', maxDate);
-//    });
-//}
 
 if (pathname == '/Account/RegisterUser') {
 
@@ -751,21 +735,6 @@ const validarImg = () => {
 
 
 
-//$('input[type="file"]').change(function () {
-//    $("button").prop("disabled", this.files.length == 0);
-//    document.getElementById('obj1').style.display = 'none';
-//});
-
-
-
-//var pathname = window.location.pathname;
-////if (pathname == '/Account/Register') {
-////     else {Account/RegisterUser
-////   } }
-//const imgiput = document.getElementById('file1');
-//if (imgiput.value == "") {
-//    alert("Imagen vacia");
-//} else { }
 
 // Busca la pagina y el directorio exacto. 
 
